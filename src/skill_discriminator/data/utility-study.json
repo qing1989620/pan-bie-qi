@@ -1,0 +1,524 @@
+{
+  "schema": "skill-utility-comparison-v1",
+  "revision": "349eff1e12cf6f210aa9b865a9e865b948b5a89b",
+  "reproduction": {
+    "indexed_skills": 217,
+    "reports": 1288,
+    "invalid_pairs": 134,
+    "valid_pairs": 3730,
+    "published_skill_scores": 1277,
+    "from_scenario_scores_available": 1277,
+    "from_scenario_scores_match": 1277,
+    "from_items_available": 1277,
+    "from_items_match": 1056,
+    "csv_comparable": 1277,
+    "csv_match": 1277,
+    "scenario_items_available": 3730,
+    "scenario_item_totals_match": 3730,
+    "scenario_detail_totals_match": 3730,
+    "scenario_gain_match": 3451
+  },
+  "compared": {
+    "rows": 1193,
+    "skills_or_tasks": 215,
+    "groups": 50,
+    "largest_group": 233,
+    "environments": 6,
+    "folds": [
+      {
+        "rows": 170,
+        "groups": 10
+      },
+      {
+        "rows": 198,
+        "groups": 10
+      },
+      {
+        "rows": 101,
+        "groups": 10
+      },
+      {
+        "rows": 263,
+        "groups": 10
+      },
+      {
+        "rows": 461,
+        "groups": 10
+      }
+    ],
+    "positive": 610,
+    "zero_gain": 583,
+    "negative": 0,
+    "minimum_gain": 0.0,
+    "realized_review_fraction": 0.3989941324392288,
+    "p_at_budget_expanded_minus_raw_prg_ci95": [
+      -0.03205668476333497,
+      0.021392737471343442
+    ],
+    "methods": {
+      "prevalence": {
+        "roc_auc": 0.4266133340831763,
+        "average_precision": 0.4762406155512918,
+        "selected": 476,
+        "precision_at_budget": 0.5483193277310925,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.2006800420168067,
+        "mae_gain": 0.20968400039203525,
+        "brier": 0.25364518885638815,
+        "brier_diff_vs_prg": 0.020167124051071135,
+        "brier_diff_vs_prg_ci95": [
+          0.01077481669034136,
+          0.027526992664665326
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.014235514444666208,
+          0.034389165125622324
+        ]
+      },
+      "with_skill_only": {
+        "roc_auc": 0.459992126648483,
+        "average_precision": 0.48260693686529355,
+        "selected": 476,
+        "precision_at_budget": 0.5189075630252101,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.1895010504201681,
+        "mae_gain": 0.20950130729533856,
+        "brier": 0.2522914329777755,
+        "brier_diff_vs_prg": 0.018813368172458555,
+        "brier_diff_vs_prg_ci95": [
+          0.007617214532662938,
+          0.026564343485198115
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.014444408232913987,
+          0.03421785488605685
+        ]
+      },
+      "prg": {
+        "roc_auc": 0.659923234822709,
+        "average_precision": 0.6400279585326736,
+        "selected": 476,
+        "precision_at_budget": 0.6722689075630253,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.30678865546218487,
+        "mae_gain": 0.18547246318538635,
+        "brier": 0.23347806480531694,
+        "brier_diff_vs_prg": 0.0,
+        "brier_diff_vs_prg_ci95": [
+          0.0,
+          0.0
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.02407552190053082,
+          0.0028628680478977424
+        ]
+      },
+      "expanded": {
+        "roc_auc": 0.6621741697832016,
+        "average_precision": 0.6406662146954116,
+        "selected": 476,
+        "precision_at_budget": 0.6701680672268907,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.30071176470588235,
+        "mae_gain": 0.18520969092394152,
+        "brier": 0.23194255846089581,
+        "brier_diff_vs_prg": -0.001535506344421135,
+        "brier_diff_vs_prg_ci95": [
+          -0.004376347922204761,
+          0.003532428286198384
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.02445132241385691,
+          0.0034810477640957664
+        ]
+      },
+      "without_headroom": {
+        "roc_auc": 0.6641832803756713,
+        "average_precision": 0.642763020594447,
+        "selected": 476,
+        "precision_at_budget": 0.6743697478991597,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.303613025210084,
+        "mae_gain": 0.184780037227942,
+        "brier": 0.23144520689483528,
+        "brier_diff_vs_prg": -0.0020328579104817095,
+        "brier_diff_vs_prg_ci95": [
+          -0.004654161824174723,
+          0.0026637355202952114
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.025011779689018628,
+          0.0027670902690991642
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.001162532770322394,
+          5.477251455747695e-06
+        ]
+      },
+      "without_discordance": {
+        "roc_auc": 0.6592118212749206,
+        "average_precision": 0.647045059657733,
+        "selected": 476,
+        "precision_at_budget": 0.6659663865546218,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.3014371848739496,
+        "mae_gain": 0.1857826149977527,
+        "brier": 0.2326870453349907,
+        "brier_diff_vs_prg": -0.0007910194703262792,
+        "brier_diff_vs_prg_ci95": [
+          -0.0035127656289138413,
+          0.004175366842432509
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.023321974052709443,
+          0.0036476116978254713
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.001042436685712449,
+          0.0027221508306253207
+        ]
+      },
+      "without_environment": {
+        "roc_auc": 0.6576062199476984,
+        "average_precision": 0.6291590349582719,
+        "selected": 476,
+        "precision_at_budget": 0.6638655462184874,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.30163655462184874,
+        "mae_gain": 0.18539477509870217,
+        "brier": 0.23366116871109077,
+        "brier_diff_vs_prg": 0.00018310390577382538,
+        "brier_diff_vs_prg_ci95": [
+          -0.0017583371101640318,
+          0.0021636638136829254
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.02464034719815856,
+          0.0034418547335584512
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.0025695998399412733,
+          0.004097388953348278
+        ]
+      },
+      "environment_only": {
+        "roc_auc": 0.5189115091527712,
+        "average_precision": 0.5206379844573288,
+        "selected": 476,
+        "precision_at_budget": 0.5651260504201681,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.2154563025210084,
+        "mae_gain": 0.2069191211656637,
+        "brier": 0.2515231372881258,
+        "brier_diff_vs_prg": 0.018045072482808774,
+        "brier_diff_vs_prg_ci95": [
+          0.009689993098910547,
+          0.026624127491020687
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          -0.016464638096096357,
+          0.03147235936961593
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          0.010424908702526573,
+          0.026385992196760844
+        ]
+      },
+      "prg_raw": {
+        "roc_auc": 0.6732812192447206,
+        "average_precision": 0.6414109645396787,
+        "selected": 476,
+        "precision_at_budget": 0.6722689075630253,
+        "selected_regressions": 0,
+        "mean_gain_at_budget": 0.30678865546218487,
+        "mae_gain": 0.19282946353730093,
+        "mae_diff_vs_raw_prg_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "external": {
+    "rows": 130,
+    "skills_or_tasks": 21,
+    "groups": 21,
+    "largest_group": 15,
+    "environments": 18,
+    "folds": [
+      {
+        "rows": 27,
+        "groups": 5
+      },
+      {
+        "rows": 21,
+        "groups": 4
+      },
+      {
+        "rows": 25,
+        "groups": 4
+      },
+      {
+        "rows": 22,
+        "groups": 4
+      },
+      {
+        "rows": 35,
+        "groups": 4
+      }
+    ],
+    "positive": 21,
+    "zero_gain": 102,
+    "negative": 7,
+    "minimum_gain": 0.0,
+    "realized_review_fraction": 0.4,
+    "p_at_budget_expanded_minus_raw_prg_ci95": [
+      -0.1066330467208156,
+      0.0013661718605933475
+    ],
+    "methods": {
+      "prevalence": {
+        "roc_auc": 0.3289646133682831,
+        "average_precision": 0.12544453814048323,
+        "selected": 52,
+        "precision_at_budget": 0.23076923076923078,
+        "selected_regressions": 4,
+        "mean_gain_at_budget": 0.15384615384615385,
+        "mae_gain": 0.2947516206429634,
+        "brier": 0.1400374112587522,
+        "brier_diff_vs_prg": 0.019423145491228727,
+        "brier_diff_vs_prg_ci95": [
+          0.0011061460077737577,
+          0.04608790247813231
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.022221865318659953,
+          0.13620111448258426
+        ]
+      },
+      "with_skill_only": {
+        "roc_auc": 0.5412844036697247,
+        "average_precision": 0.1830424257683065,
+        "selected": 52,
+        "precision_at_budget": 0.23076923076923078,
+        "selected_regressions": 3,
+        "mean_gain_at_budget": 0.17307692307692307,
+        "mae_gain": 0.2866166875672693,
+        "brier": 0.13659327276844266,
+        "brier_diff_vs_prg": 0.01597900700091919,
+        "brier_diff_vs_prg_ci95": [
+          0.0015673720698201196,
+          0.036104727801134245
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.014712726687720123,
+          0.1291424309355174
+        ]
+      },
+      "prg": {
+        "roc_auc": 0.6310615989515073,
+        "average_precision": 0.35059601373789434,
+        "selected": 52,
+        "precision_at_budget": 0.2692307692307692,
+        "selected_regressions": 1,
+        "mean_gain_at_budget": 0.25,
+        "mae_gain": 0.26165015245815926,
+        "brier": 0.12061426576752345,
+        "brier_diff_vs_prg": 0.0,
+        "brier_diff_vs_prg_ci95": [
+          0.0,
+          0.0
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.010814637968289294,
+          0.07647038435698325
+        ]
+      },
+      "expanded": {
+        "roc_auc": 0.5458715596330275,
+        "average_precision": 0.24197337507568836,
+        "selected": 52,
+        "precision_at_budget": 0.21153846153846154,
+        "selected_regressions": 1,
+        "mean_gain_at_budget": 0.19230769230769232,
+        "mae_gain": 0.3585197899724922,
+        "brier": 0.1555244252931905,
+        "brier_diff_vs_prg": 0.034910159525667055,
+        "brier_diff_vs_prg_ci95": [
+          0.007683799255919544,
+          0.06627096479652861
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.1005506695576734,
+          0.1654627732433228
+        ]
+      },
+      "without_headroom": {
+        "roc_auc": 0.5502402795980778,
+        "average_precision": 0.24549024205676798,
+        "selected": 52,
+        "precision_at_budget": 0.21153846153846154,
+        "selected_regressions": 1,
+        "mean_gain_at_budget": 0.19230769230769232,
+        "mae_gain": 0.3542604098217796,
+        "brier": 0.15377226190584734,
+        "brier_diff_vs_prg": 0.0331579961383239,
+        "brier_diff_vs_prg_ci95": [
+          0.006037566556919874,
+          0.0649843167992789
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.0962328330699714,
+          0.161614000980488
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.0033079424414681857,
+          -0.00048386547376870454
+        ]
+      },
+      "without_discordance": {
+        "roc_auc": 0.5338575797291394,
+        "average_precision": 0.23318093995388817,
+        "selected": 52,
+        "precision_at_budget": 0.21153846153846154,
+        "selected_regressions": 1,
+        "mean_gain_at_budget": 0.19230769230769232,
+        "mae_gain": 0.3567152184719119,
+        "brier": 0.15320576503345748,
+        "brier_diff_vs_prg": 0.03259149926593406,
+        "brier_diff_vs_prg_ci95": [
+          0.006892986866567637,
+          0.06337643043345782
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.09799747800531577,
+          0.16434464393517098
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.008516167731122307,
+          0.0025250600111738084
+        ]
+      },
+      "without_environment": {
+        "roc_auc": 0.5661861074705111,
+        "average_precision": 0.31739528685167245,
+        "selected": 52,
+        "precision_at_budget": 0.23076923076923078,
+        "selected_regressions": 1,
+        "mean_gain_at_budget": 0.21153846153846154,
+        "mae_gain": 0.270281308094654,
+        "brier": 0.1240189988674662,
+        "brier_diff_vs_prg": 0.0034047330999427442,
+        "brier_diff_vs_prg_ci95": [
+          0.00012302175810446892,
+          0.007125899098897237
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.018019646489804014,
+          0.08451620762946284
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.06226526914133678,
+          -0.00512247986522335
+        ]
+      },
+      "environment_only": {
+        "roc_auc": 0.327217125382263,
+        "average_precision": 0.11949081125957128,
+        "selected": 52,
+        "precision_at_budget": 0.11538461538461539,
+        "selected_regressions": 2,
+        "mean_gain_at_budget": 0.07692307692307693,
+        "mae_gain": 0.3805747861848475,
+        "brier": 0.17339599582277604,
+        "brier_diff_vs_prg": 0.052781730055252614,
+        "brier_diff_vs_prg_ci95": [
+          0.024620609346702953,
+          0.08670496580907182
+        ],
+        "mae_diff_vs_raw_prg_ci95": [
+          0.10784414449023498,
+          0.21477953942220412
+        ],
+        "brier_diff_vs_expanded_ci95": [
+          -0.004492479200641208,
+          0.04913715632625079
+        ]
+      },
+      "prg_raw": {
+        "roc_auc": 0.6764962865880297,
+        "average_precision": 0.37205933671812436,
+        "selected": 52,
+        "precision_at_budget": 0.2692307692307692,
+        "selected_regressions": 1,
+        "mean_gain_at_budget": 0.25,
+        "mae_gain": 0.2230769230769231,
+        "mae_diff_vs_raw_prg_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "signed": {
+    "rows": 1185,
+    "groups": 50,
+    "positive": 608,
+    "negative": 88,
+    "mae_delta_signed_minus_release_ci95": [
+      0.006550716220551551,
+      0.02468845656452869
+    ],
+    "retest_precision_delta_signed_minus_release_ci95": [
+      0.012958748197836562,
+      0.07554555638182997
+    ],
+    "methods": {
+      "release_prg": {
+        "review_n": 474,
+        "review_positive": 319,
+        "review_negative": 34,
+        "review_mean_gain": 0.27724030540486233,
+        "retest_n": 237,
+        "retest_negative": 18,
+        "retest_precision": 0.0759493670886076,
+        "mae": 0.23151587904360058
+      },
+      "signed_mean": {
+        "review_n": 474,
+        "review_positive": 318,
+        "review_negative": 31,
+        "review_mean_gain": 0.278157022302592,
+        "retest_n": 237,
+        "retest_negative": 29,
+        "retest_precision": 0.12236286919831224,
+        "mae": 0.247251356238698
+      },
+      "with_skill_only": {
+        "review_n": 474,
+        "review_positive": 246,
+        "review_negative": 19,
+        "review_mean_gain": 0.17133815551537068,
+        "retest_n": 237,
+        "retest_negative": 40,
+        "retest_precision": 0.16877637130801687
+      },
+      "skilltester_import": {
+        "review_n": 474,
+        "review_positive": 285,
+        "review_negative": 28,
+        "review_mean_gain": 0.22895318464938716,
+        "retest_n": 237,
+        "retest_negative": 30,
+        "retest_precision": 0.12658227848101267
+      }
+    }
+  },
+  "sources": {
+    "SkillAudit 论文": "https://arxiv.org/html/2606.22613v1",
+    "SkillPortrait 固定材料": "https://github.com/SkillAudit/skillaudit/tree/349eff1e12cf6f210aa9b865a9e865b948b5a89b/docs/artifacts/data",
+    "SkillTester 论文": "https://arxiv.org/abs/2603.28815",
+    "SkillsBench 公开成绩": "https://huggingface.co/datasets/benchflow/skillsbench-leaderboard"
+  },
+  "paid_api_calls": 0
+}

@@ -1,0 +1,1253 @@
+{
+  "schema": "contract-verifier-ablation-v1",
+  "status": "retrospective component check on frozen artifacts, with unchanged labels",
+  "cases_hash": "2302dba8accfef6596beb249168f848b432cac171a7c2db7283575f49d9b4486",
+  "artifacts_hash": "596022fe430f67992e79f7852162d44ef73680cb6254d8947d77d84dafa41da1",
+  "verifiers": {
+    "full": "Current exact validator",
+    "without_station": "Ignore station limits on codebook entries",
+    "without_unique_match": "Accept one of several eligible codes in addition to UNKNOWN",
+    "without_no_match": "Skip correctness checks for events with no eligible code",
+    "without_exact_keys": "Check only event identifiers included in the output map",
+    "structure_only": "Check JSON root and exact event identifiers only"
+  },
+  "methods": {
+    "full": {
+      "n": 64,
+      "correct": 64,
+      "true_accept": 31,
+      "true_reject": 33,
+      "false_accept": 0,
+      "false_reject": 0,
+      "by_stratum": {
+        "ambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "station": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 15,
+          "true_reject": 1,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 16,
+          "true_reject": 0,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unlisted": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        }
+      }
+    },
+    "without_station": {
+      "n": 64,
+      "correct": 49,
+      "true_accept": 16,
+      "true_reject": 33,
+      "false_accept": 0,
+      "false_reject": 15,
+      "by_stratum": {
+        "ambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "station": {
+          "n": 16,
+          "correct": 1,
+          "true_accept": 0,
+          "true_reject": 1,
+          "false_accept": 0,
+          "false_reject": 15
+        },
+        "unambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 16,
+          "true_reject": 0,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unlisted": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        }
+      }
+    },
+    "without_unique_match": {
+      "n": 64,
+      "correct": 48,
+      "true_accept": 31,
+      "true_reject": 17,
+      "false_accept": 16,
+      "false_reject": 0,
+      "by_stratum": {
+        "ambiguous": {
+          "n": 16,
+          "correct": 0,
+          "true_accept": 0,
+          "true_reject": 0,
+          "false_accept": 16,
+          "false_reject": 0
+        },
+        "station": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 15,
+          "true_reject": 1,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 16,
+          "true_reject": 0,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unlisted": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        }
+      }
+    },
+    "without_no_match": {
+      "n": 64,
+      "correct": 48,
+      "true_accept": 31,
+      "true_reject": 17,
+      "false_accept": 16,
+      "false_reject": 0,
+      "by_stratum": {
+        "ambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "station": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 15,
+          "true_reject": 1,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 16,
+          "true_reject": 0,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unlisted": {
+          "n": 16,
+          "correct": 0,
+          "true_accept": 0,
+          "true_reject": 0,
+          "false_accept": 16,
+          "false_reject": 0
+        }
+      }
+    },
+    "without_exact_keys": {
+      "n": 64,
+      "correct": 64,
+      "true_accept": 31,
+      "true_reject": 33,
+      "false_accept": 0,
+      "false_reject": 0,
+      "by_stratum": {
+        "ambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "station": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 15,
+          "true_reject": 1,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 16,
+          "true_reject": 0,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unlisted": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 0,
+          "true_reject": 16,
+          "false_accept": 0,
+          "false_reject": 0
+        }
+      }
+    },
+    "structure_only": {
+      "n": 64,
+      "correct": 31,
+      "true_accept": 31,
+      "true_reject": 0,
+      "false_accept": 33,
+      "false_reject": 0,
+      "by_stratum": {
+        "ambiguous": {
+          "n": 16,
+          "correct": 0,
+          "true_accept": 0,
+          "true_reject": 0,
+          "false_accept": 16,
+          "false_reject": 0
+        },
+        "station": {
+          "n": 16,
+          "correct": 15,
+          "true_accept": 15,
+          "true_reject": 0,
+          "false_accept": 1,
+          "false_reject": 0
+        },
+        "unambiguous": {
+          "n": 16,
+          "correct": 16,
+          "true_accept": 16,
+          "true_reject": 0,
+          "false_accept": 0,
+          "false_reject": 0
+        },
+        "unlisted": {
+          "n": 16,
+          "correct": 0,
+          "true_accept": 0,
+          "true_reject": 0,
+          "false_accept": 16,
+          "false_reject": 0
+        }
+      }
+    }
+  },
+  "case_coverage": {
+    "routine": {
+      "no_skill": {
+        "passed": 15,
+        "n": 16
+      },
+      "skill": {
+        "passed": 16,
+        "n": 16
+      }
+    },
+    "boundary": {
+      "no_skill": {
+        "passed": 0,
+        "n": 16
+      },
+      "skill": {
+        "passed": 0,
+        "n": 16
+      }
+    }
+  },
+  "new_model_calls": 0,
+  "verdicts": [
+    {
+      "id": "unambiguous-0-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-0-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-1-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-1-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-2-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-2-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-3-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-3-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-4-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-4-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-5-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-5-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-6-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-6-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-7-no_skill",
+      "arm": "no_skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unambiguous-7-skill",
+      "arm": "skill",
+      "stratum": "unambiguous",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": true,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-0-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-0-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-1-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-1-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-2-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-2-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-3-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-3-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": false,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-4-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-4-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-5-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-5-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-6-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-6-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-7-no_skill",
+      "arm": "no_skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "station-7-skill",
+      "arm": "skill",
+      "stratum": "station",
+      "holdout": true,
+      "gold": true,
+      "verdicts": {
+        "full": true,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": true,
+        "without_exact_keys": true,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-0-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-0-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-1-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-1-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-2-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-2-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-3-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-3-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-4-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-4-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-5-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-5-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-6-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-6-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-7-no_skill",
+      "arm": "no_skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "ambiguous-7-skill",
+      "arm": "skill",
+      "stratum": "ambiguous",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": true,
+        "without_no_match": false,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-0-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-0-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-1-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-1-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-2-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-2-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-3-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-3-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": false,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-4-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-4-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-5-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-5-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-6-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-6-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-7-no_skill",
+      "arm": "no_skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    },
+    {
+      "id": "unlisted-7-skill",
+      "arm": "skill",
+      "stratum": "unlisted",
+      "holdout": true,
+      "gold": false,
+      "verdicts": {
+        "full": false,
+        "without_station": false,
+        "without_unique_match": false,
+        "without_no_match": true,
+        "without_exact_keys": false,
+        "structure_only": true
+      }
+    }
+  ]
+}

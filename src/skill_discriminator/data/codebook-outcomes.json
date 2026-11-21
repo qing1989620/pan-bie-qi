@@ -1,0 +1,4108 @@
+[
+  {
+    "id": "unambiguous-0",
+    "stratum": "unambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-0-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E0-4": "D329",
+            "E0-7": "D672",
+            "E0-1": "D421",
+            "E0-5": "D595",
+            "E0-11": "D918",
+            "E0-6": "D108",
+            "E0-0": "D668",
+            "E0-3": "D691",
+            "E0-9": "D694",
+            "E0-2": "D425",
+            "E0-8": "D773",
+            "E0-10": "D159"
+          }
+        },
+        "tokens": 780,
+        "elapsed_ms": 938
+      },
+      "skill": {
+        "id": "unambiguous-0-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E0-4": "D329",
+            "E0-7": "D672",
+            "E0-1": "D421",
+            "E0-5": "D595",
+            "E0-11": "D918",
+            "E0-6": "D108",
+            "E0-0": "D668",
+            "E0-3": "D691",
+            "E0-9": "D694",
+            "E0-2": "D425",
+            "E0-8": "D773",
+            "E0-10": "D159"
+          }
+        },
+        "tokens": 1658,
+        "elapsed_ms": 984
+      }
+    }
+  },
+  {
+    "id": "unambiguous-1",
+    "stratum": "unambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-1-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E1-3": "D120",
+            "E1-7": "D617",
+            "E1-2": "D130",
+            "E1-5": "D517",
+            "E1-10": "D276",
+            "E1-6": "D181",
+            "E1-11": "D746",
+            "E1-1": "D844",
+            "E1-4": "D665",
+            "E1-0": "D408",
+            "E1-8": "D982",
+            "E1-9": "D666"
+          }
+        },
+        "tokens": 783,
+        "elapsed_ms": 906
+      },
+      "skill": {
+        "id": "unambiguous-1-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E1-3": "D120",
+            "E1-7": "D617",
+            "E1-2": "D130",
+            "E1-5": "D517",
+            "E1-10": "D276",
+            "E1-6": "D181",
+            "E1-11": "D746",
+            "E1-1": "D844",
+            "E1-4": "D665",
+            "E1-0": "D408",
+            "E1-8": "D982",
+            "E1-9": "D666"
+          }
+        },
+        "tokens": 1661,
+        "elapsed_ms": 1109
+      }
+    }
+  },
+  {
+    "id": "unambiguous-2",
+    "stratum": "unambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-2-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E2-2": "D760",
+            "E2-1": "D992",
+            "E2-5": "D335",
+            "E2-9": "D488",
+            "E2-4": "D324",
+            "E2-3": "D343",
+            "E2-0": "D230",
+            "E2-11": "D149",
+            "E2-7": "D417",
+            "E2-8": "D608",
+            "E2-10": "D361",
+            "E2-6": "D602"
+          }
+        },
+        "tokens": 790,
+        "elapsed_ms": 1171
+      },
+      "skill": {
+        "id": "unambiguous-2-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E2-2": "D760",
+            "E2-1": "D992",
+            "E2-5": "D335",
+            "E2-9": "D488",
+            "E2-4": "D324",
+            "E2-3": "D343",
+            "E2-0": "D230",
+            "E2-11": "D149",
+            "E2-7": "D417",
+            "E2-8": "D608",
+            "E2-10": "D361",
+            "E2-6": "D602"
+          }
+        },
+        "tokens": 1668,
+        "elapsed_ms": 797
+      }
+    }
+  },
+  {
+    "id": "unambiguous-3",
+    "stratum": "unambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-3-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E3-1": "D895",
+            "E3-0": "D713",
+            "E3-4": "D815",
+            "E3-11": "D567",
+            "E3-10": "D273",
+            "E3-3": "D814",
+            "E3-5": "D575",
+            "E3-2": "D411",
+            "E3-7": "D821",
+            "E3-6": "D414",
+            "E3-8": "D129",
+            "E3-9": "D229"
+          }
+        },
+        "tokens": 780,
+        "elapsed_ms": 765
+      },
+      "skill": {
+        "id": "unambiguous-3-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E3-1": "D895",
+            "E3-0": "D713",
+            "E3-4": "D815",
+            "E3-11": "D567",
+            "E3-10": "D273",
+            "E3-3": "D814",
+            "E3-5": "D575",
+            "E3-2": "D411",
+            "E3-7": "D821",
+            "E3-6": "D414",
+            "E3-8": "D129",
+            "E3-9": "D229"
+          }
+        },
+        "tokens": 1658,
+        "elapsed_ms": 1078
+      }
+    }
+  },
+  {
+    "id": "unambiguous-4",
+    "stratum": "unambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-4-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E4-4": "D926",
+            "E4-7": "D503",
+            "E4-10": "D315",
+            "E4-6": "D181",
+            "E4-5": "D827",
+            "E4-3": "D572",
+            "E4-11": "D650",
+            "E4-0": "D156",
+            "E4-1": "D964",
+            "E4-8": "D305",
+            "E4-2": "D474",
+            "E4-9": "D578"
+          }
+        },
+        "tokens": 783,
+        "elapsed_ms": 734
+      },
+      "skill": {
+        "id": "unambiguous-4-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E4-4": "D926",
+            "E4-7": "D503",
+            "E4-10": "D315",
+            "E4-6": "D181",
+            "E4-5": "D827",
+            "E4-3": "D572",
+            "E4-11": "D650",
+            "E4-0": "D156",
+            "E4-1": "D964",
+            "E4-8": "D305",
+            "E4-2": "D474",
+            "E4-9": "D578"
+          }
+        },
+        "tokens": 1661,
+        "elapsed_ms": 782
+      }
+    }
+  },
+  {
+    "id": "unambiguous-5",
+    "stratum": "unambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-5-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E5-3": "D459",
+            "E5-6": "D499",
+            "E5-10": "D327",
+            "E5-8": "D409",
+            "E5-9": "D709",
+            "E5-4": "D704",
+            "E5-7": "D886",
+            "E5-1": "D948",
+            "E5-2": "D639",
+            "E5-0": "D565",
+            "E5-5": "D444",
+            "E5-11": "D480"
+          }
+        },
+        "tokens": 779,
+        "elapsed_ms": 844
+      },
+      "skill": {
+        "id": "unambiguous-5-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E5-3": "D459",
+            "E5-6": "D499",
+            "E5-10": "D327",
+            "E5-8": "D409",
+            "E5-9": "D709",
+            "E5-4": "D704",
+            "E5-7": "D886",
+            "E5-1": "D948",
+            "E5-2": "D639",
+            "E5-0": "D565",
+            "E5-5": "D444",
+            "E5-11": "D480"
+          }
+        },
+        "tokens": 1657,
+        "elapsed_ms": 781
+      }
+    }
+  },
+  {
+    "id": "unambiguous-6",
+    "stratum": "unambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-6-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E6-4": "D447",
+            "E6-3": "D613",
+            "E6-11": "D124",
+            "E6-10": "D799",
+            "E6-9": "D151",
+            "E6-7": "D640",
+            "E6-1": "D223",
+            "E6-0": "D943",
+            "E6-5": "D720",
+            "E6-2": "D854",
+            "E6-8": "D475",
+            "E6-6": "D596"
+          }
+        },
+        "tokens": 776,
+        "elapsed_ms": 938
+      },
+      "skill": {
+        "id": "unambiguous-6-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E6-4": "D447",
+            "E6-3": "D613",
+            "E6-11": "D124",
+            "E6-10": "D799",
+            "E6-9": "D151",
+            "E6-7": "D640",
+            "E6-1": "D223",
+            "E6-0": "D943",
+            "E6-5": "D720",
+            "E6-2": "D854",
+            "E6-8": "D475",
+            "E6-6": "D596"
+          }
+        },
+        "tokens": 1654,
+        "elapsed_ms": 1109
+      }
+    }
+  },
+  {
+    "id": "unambiguous-7",
+    "stratum": "unambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unambiguous-7-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E7-2": "D327",
+            "E7-1": "D959",
+            "E7-0": "D618",
+            "E7-9": "D606",
+            "E7-11": "D418",
+            "E7-4": "D253",
+            "E7-8": "D491",
+            "E7-6": "D426",
+            "E7-7": "D691",
+            "E7-10": "D193",
+            "E7-5": "D498",
+            "E7-3": "D538"
+          }
+        },
+        "tokens": 780,
+        "elapsed_ms": 1047
+      },
+      "skill": {
+        "id": "unambiguous-7-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E7-2": "D327",
+            "E7-1": "D959",
+            "E7-0": "D618",
+            "E7-9": "D606",
+            "E7-11": "D418",
+            "E7-4": "D253",
+            "E7-8": "D491",
+            "E7-6": "D426",
+            "E7-7": "D691",
+            "E7-10": "D193",
+            "E7-5": "D498",
+            "E7-3": "D538"
+          }
+        },
+        "tokens": 1658,
+        "elapsed_ms": 687
+      }
+    }
+  },
+  {
+    "id": "station-0",
+    "stratum": "station",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "station-0-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E0-11": "D560",
+            "E0-2": "D792",
+            "E0-4": "D652",
+            "E0-0": "D624",
+            "E0-7": "D506",
+            "E0-8": "D600",
+            "E0-10": "D233",
+            "E0-3": "D581",
+            "E0-5": "D592",
+            "E0-9": "D833",
+            "E0-1": "D915",
+            "E0-6": "D488"
+          }
+        },
+        "tokens": 1016,
+        "elapsed_ms": 1172
+      },
+      "skill": {
+        "id": "station-0-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E0-11": "D560",
+            "E0-2": "D792",
+            "E0-4": "D652",
+            "E0-0": "D624",
+            "E0-7": "D506",
+            "E0-8": "D600",
+            "E0-10": "D233",
+            "E0-3": "D581",
+            "E0-5": "D592",
+            "E0-9": "D833",
+            "E0-1": "D915",
+            "E0-6": "D488"
+          }
+        },
+        "tokens": 1894,
+        "elapsed_ms": 984
+      }
+    }
+  },
+  {
+    "id": "station-1",
+    "stratum": "station",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "station-1-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E1-2": "D841",
+            "E1-4": "D692",
+            "E1-5": "D323",
+            "E1-6": "D912",
+            "E1-7": "D696",
+            "E1-3": "D189",
+            "E1-8": "D513",
+            "E1-1": "D438",
+            "E1-11": "D839",
+            "E1-10": "D660",
+            "E1-0": "D346",
+            "E1-9": "D817"
+          }
+        },
+        "tokens": 1015,
+        "elapsed_ms": 1172
+      },
+      "skill": {
+        "id": "station-1-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E1-2": "D841",
+            "E1-4": "D692",
+            "E1-5": "D323",
+            "E1-6": "D912",
+            "E1-7": "D696",
+            "E1-3": "D189",
+            "E1-8": "D513",
+            "E1-1": "D438",
+            "E1-11": "D839",
+            "E1-10": "D660",
+            "E1-0": "D346",
+            "E1-9": "D817"
+          }
+        },
+        "tokens": 1893,
+        "elapsed_ms": 953
+      }
+    }
+  },
+  {
+    "id": "station-2",
+    "stratum": "station",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "station-2-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E2-6": "D704",
+            "E2-11": "D463",
+            "E2-2": "D750",
+            "E2-10": "D402",
+            "E2-5": "D152",
+            "E2-4": "D366",
+            "E2-3": "D314",
+            "E2-9": "D985",
+            "E2-0": "D333",
+            "E2-1": "D912",
+            "E2-8": "D327",
+            "E2-7": "D401"
+          }
+        },
+        "tokens": 1016,
+        "elapsed_ms": 703
+      },
+      "skill": {
+        "id": "station-2-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E2-6": "D704",
+            "E2-11": "D463",
+            "E2-2": "D750",
+            "E2-10": "D402",
+            "E2-5": "D152",
+            "E2-4": "D366",
+            "E2-3": "D314",
+            "E2-9": "D985",
+            "E2-0": "D333",
+            "E2-1": "D912",
+            "E2-8": "D327",
+            "E2-7": "D401"
+          }
+        },
+        "tokens": 1894,
+        "elapsed_ms": 906
+      }
+    }
+  },
+  {
+    "id": "station-3",
+    "stratum": "station",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "station-3-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-11",
+              "station": "S34",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D153"
+            ],
+            "expected": "D153",
+            "actual": "D403"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E3-6": "D890",
+            "E3-4": "D684",
+            "E3-7": "D612",
+            "E3-10": "D203",
+            "E3-3": "D351",
+            "E3-11": "D403",
+            "E3-1": "D567",
+            "E3-9": "D439",
+            "E3-0": "D912",
+            "E3-2": "D955",
+            "E3-8": "D945",
+            "E3-5": "D555"
+          }
+        },
+        "tokens": 1011,
+        "elapsed_ms": 844
+      },
+      "skill": {
+        "id": "station-3-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E3-6": "D890",
+            "E3-4": "D684",
+            "E3-7": "D612",
+            "E3-10": "D203",
+            "E3-3": "D351",
+            "E3-11": "D153",
+            "E3-1": "D567",
+            "E3-9": "D439",
+            "E3-0": "D912",
+            "E3-2": "D955",
+            "E3-8": "D945",
+            "E3-5": "D555"
+          }
+        },
+        "tokens": 1889,
+        "elapsed_ms": 1250
+      }
+    }
+  },
+  {
+    "id": "station-4",
+    "stratum": "station",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "station-4-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E4-5": "D606",
+            "E4-7": "D297",
+            "E4-2": "D438",
+            "E4-10": "D785",
+            "E4-1": "D512",
+            "E4-6": "D471",
+            "E4-9": "D546",
+            "E4-3": "D301",
+            "E4-8": "D587",
+            "E4-4": "D712",
+            "E4-11": "D231",
+            "E4-0": "D322"
+          }
+        },
+        "tokens": 1015,
+        "elapsed_ms": 672
+      },
+      "skill": {
+        "id": "station-4-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E4-5": "D606",
+            "E4-7": "D297",
+            "E4-2": "D438",
+            "E4-10": "D785",
+            "E4-1": "D512",
+            "E4-6": "D471",
+            "E4-9": "D546",
+            "E4-3": "D301",
+            "E4-8": "D587",
+            "E4-4": "D712",
+            "E4-11": "D231",
+            "E4-0": "D322"
+          }
+        },
+        "tokens": 1893,
+        "elapsed_ms": 1469
+      }
+    }
+  },
+  {
+    "id": "station-5",
+    "stratum": "station",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "station-5-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E5-0": "D519",
+            "E5-7": "D781",
+            "E5-1": "D895",
+            "E5-2": "D715",
+            "E5-6": "D601",
+            "E5-11": "D884",
+            "E5-10": "D628",
+            "E5-8": "D106",
+            "E5-5": "D635",
+            "E5-4": "D362",
+            "E5-9": "D748",
+            "E5-3": "D434"
+          }
+        },
+        "tokens": 1020,
+        "elapsed_ms": 844
+      },
+      "skill": {
+        "id": "station-5-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E5-0": "D519",
+            "E5-7": "D781",
+            "E5-1": "D895",
+            "E5-2": "D715",
+            "E5-6": "D601",
+            "E5-11": "D884",
+            "E5-10": "D628",
+            "E5-8": "D106",
+            "E5-5": "D635",
+            "E5-4": "D362",
+            "E5-9": "D748",
+            "E5-3": "D434"
+          }
+        },
+        "tokens": 1898,
+        "elapsed_ms": 891
+      }
+    }
+  },
+  {
+    "id": "station-6",
+    "stratum": "station",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "station-6-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E6-10": "D474",
+            "E6-0": "D954",
+            "E6-6": "D496",
+            "E6-2": "D901",
+            "E6-9": "D561",
+            "E6-7": "D953",
+            "E6-4": "D781",
+            "E6-11": "D525",
+            "E6-3": "D705",
+            "E6-8": "D185",
+            "E6-5": "D832",
+            "E6-1": "D288"
+          }
+        },
+        "tokens": 1016,
+        "elapsed_ms": 687
+      },
+      "skill": {
+        "id": "station-6-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E6-10": "D474",
+            "E6-0": "D954",
+            "E6-6": "D496",
+            "E6-2": "D901",
+            "E6-9": "D561",
+            "E6-7": "D953",
+            "E6-4": "D781",
+            "E6-11": "D525",
+            "E6-3": "D705",
+            "E6-8": "D185",
+            "E6-5": "D832",
+            "E6-1": "D288"
+          }
+        },
+        "tokens": 1894,
+        "elapsed_ms": 1032
+      }
+    }
+  },
+  {
+    "id": "station-7",
+    "stratum": "station",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "station-7-no_skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E7-10": "D847",
+            "E7-11": "D174",
+            "E7-2": "D668",
+            "E7-5": "D721",
+            "E7-7": "D611",
+            "E7-1": "D863",
+            "E7-6": "D201",
+            "E7-9": "D794",
+            "E7-0": "D738",
+            "E7-4": "D943",
+            "E7-3": "D512",
+            "E7-8": "D213"
+          }
+        },
+        "tokens": 1024,
+        "elapsed_ms": 734
+      },
+      "skill": {
+        "id": "station-7-skill",
+        "accepted": true,
+        "rule_accepts": true,
+        "deviations": [],
+        "artifact": {
+          "result": {
+            "E7-10": "D847",
+            "E7-11": "D174",
+            "E7-2": "D668",
+            "E7-5": "D721",
+            "E7-7": "D611",
+            "E7-1": "D863",
+            "E7-6": "D201",
+            "E7-9": "D794",
+            "E7-0": "D738",
+            "E7-4": "D943",
+            "E7-3": "D512",
+            "E7-8": "D213"
+          }
+        },
+        "tokens": 1902,
+        "elapsed_ms": 1000
+      }
+    }
+  },
+  {
+    "id": "ambiguous-0",
+    "stratum": "ambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-0-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-8",
+              "station": "S25",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D134",
+              "D883"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D883"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-1",
+              "station": "S4",
+              "signal": " 颜色 "
+            },
+            "eligible_codes": [
+              "D232",
+              "D825"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D825"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-2",
+              "station": "S7",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D150",
+              "D404"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D404"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-7",
+              "station": "S22",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D798",
+              "D951"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D951"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-5",
+              "station": "S16",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D102",
+              "D584"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D102"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-4",
+              "station": "S13",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D540",
+              "D634"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D540"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-10",
+              "station": "S31",
+              "signal": " 毛边 "
+            },
+            "eligible_codes": [
+              "D385",
+              "D891"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D891"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E0-8": "D883",
+            "E0-3": "D781",
+            "E0-1": "D825",
+            "E0-9": "D169",
+            "E0-2": "D404",
+            "E0-7": "D951",
+            "E0-5": "D102",
+            "E0-4": "D540",
+            "E0-6": "D590",
+            "E0-10": "D891",
+            "E0-0": "D880",
+            "E0-11": "UNKNOWN"
+          }
+        },
+        "tokens": 925,
+        "elapsed_ms": 969
+      },
+      "skill": {
+        "id": "ambiguous-0-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-8",
+              "station": "S25",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D134",
+              "D883"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D883"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-1",
+              "station": "S4",
+              "signal": " 颜色 "
+            },
+            "eligible_codes": [
+              "D232",
+              "D825"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D825"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-2",
+              "station": "S7",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D150",
+              "D404"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D404"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-7",
+              "station": "S22",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D798",
+              "D951"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D951"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-5",
+              "station": "S16",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D102",
+              "D584"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D102"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-4",
+              "station": "S13",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D540",
+              "D634"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D540"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-10",
+              "station": "S31",
+              "signal": " 毛边 "
+            },
+            "eligible_codes": [
+              "D385",
+              "D891"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D891"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E0-8": "D883",
+            "E0-3": "D781",
+            "E0-1": "D825",
+            "E0-9": "D169",
+            "E0-2": "D404",
+            "E0-7": "D951",
+            "E0-5": "D102",
+            "E0-4": "D540",
+            "E0-6": "D590",
+            "E0-10": "D891",
+            "E0-0": "D880",
+            "E0-11": "UNKNOWN"
+          }
+        },
+        "tokens": 1803,
+        "elapsed_ms": 828
+      }
+    }
+  },
+  {
+    "id": "ambiguous-1",
+    "stratum": "ambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-1-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-7",
+              "station": "S22",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D677",
+              "D682"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D682"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-4",
+              "station": "S13",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D498",
+              "D853"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D853"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-1",
+              "station": "S4",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D841",
+              "D929"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D841"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-10",
+              "station": "S31",
+              "signal": " 颜色 "
+            },
+            "eligible_codes": [
+              "D695",
+              "D990"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D990"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-5",
+              "station": "S16",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D497",
+              "D942"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D942"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-2",
+              "station": "S7",
+              "signal": " TILT "
+            },
+            "eligible_codes": [
+              "D123",
+              "D241"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D123"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E1-3": "D472",
+            "E1-0": "D441",
+            "E1-7": "D682",
+            "E1-4": "D853",
+            "E1-1": "D841",
+            "E1-10": "D990",
+            "E1-5": "D942",
+            "E1-2": "D123",
+            "E1-8": "UNKNOWN",
+            "E1-11": "UNKNOWN",
+            "E1-9": "D652",
+            "E1-6": "D516"
+          }
+        },
+        "tokens": 918,
+        "elapsed_ms": 797
+      },
+      "skill": {
+        "id": "ambiguous-1-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-7",
+              "station": "S22",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D677",
+              "D682"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D682"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-4",
+              "station": "S13",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D498",
+              "D853"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D853"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-1",
+              "station": "S4",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D841",
+              "D929"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D841"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-10",
+              "station": "S31",
+              "signal": " 颜色 "
+            },
+            "eligible_codes": [
+              "D695",
+              "D990"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D990"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-5",
+              "station": "S16",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D497",
+              "D942"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D942"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-2",
+              "station": "S7",
+              "signal": " TILT "
+            },
+            "eligible_codes": [
+              "D123",
+              "D241"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D123"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E1-3": "D472",
+            "E1-0": "D441",
+            "E1-7": "D682",
+            "E1-4": "D853",
+            "E1-1": "D841",
+            "E1-10": "D990",
+            "E1-5": "D942",
+            "E1-2": "D123",
+            "E1-8": "UNKNOWN",
+            "E1-11": "UNKNOWN",
+            "E1-9": "D652",
+            "E1-6": "D516"
+          }
+        },
+        "tokens": 1796,
+        "elapsed_ms": 719
+      }
+    }
+  },
+  {
+    "id": "ambiguous-2",
+    "stratum": "ambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-2-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-8",
+              "station": "S25",
+              "signal": " 裂纹 "
+            },
+            "eligible_codes": [
+              "D479",
+              "D942"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D942"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-11",
+              "station": "S34",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D533",
+              "D768"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D533"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-7",
+              "station": "S22",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D354",
+              "D676"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D676"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-4",
+              "station": "S13",
+              "signal": " BUBBLE "
+            },
+            "eligible_codes": [
+              "D457",
+              "D935"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D935"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-10",
+              "station": "S31",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D673",
+              "D948"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D673"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-1",
+              "station": "S4",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D144",
+              "D308"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D308"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-2",
+              "station": "S7",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D123",
+              "D872"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D872"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E2-9": "D438",
+            "E2-8": "D942",
+            "E2-3": "D606",
+            "E2-11": "D533",
+            "E2-7": "D676",
+            "E2-4": "D935",
+            "E2-10": "D673",
+            "E2-1": "D308",
+            "E2-0": "D407",
+            "E2-6": "D131",
+            "E2-2": "D872",
+            "E2-5": "UNKNOWN"
+          }
+        },
+        "tokens": 932,
+        "elapsed_ms": 1110
+      },
+      "skill": {
+        "id": "ambiguous-2-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-8",
+              "station": "S25",
+              "signal": " 裂纹 "
+            },
+            "eligible_codes": [
+              "D479",
+              "D942"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D942"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-7",
+              "station": "S22",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D354",
+              "D676"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D676"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-4",
+              "station": "S13",
+              "signal": " BUBBLE "
+            },
+            "eligible_codes": [
+              "D457",
+              "D935"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D935"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-10",
+              "station": "S31",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D673",
+              "D948"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D673"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-1",
+              "station": "S4",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D144",
+              "D308"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D308"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E2-9": "D438",
+            "E2-8": "D942",
+            "E2-3": "D606",
+            "E2-11": "UNKNOWN",
+            "E2-7": "D676",
+            "E2-4": "D935",
+            "E2-10": "D673",
+            "E2-1": "D308",
+            "E2-0": "D407",
+            "E2-6": "D131",
+            "E2-2": "UNKNOWN",
+            "E2-5": "UNKNOWN"
+          }
+        },
+        "tokens": 1810,
+        "elapsed_ms": 1281
+      }
+    }
+  },
+  {
+    "id": "ambiguous-3",
+    "stratum": "ambiguous",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-3-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-1",
+              "station": "S4",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D497",
+              "D901"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D497"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-5",
+              "station": "S16",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D433",
+              "D806"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D433"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-7",
+              "station": "S22",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D911",
+              "D940"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D940"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-4",
+              "station": "S13",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D137",
+              "D949"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D949"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-2",
+              "station": "S7",
+              "signal": " BUBBLE "
+            },
+            "eligible_codes": [
+              "D221",
+              "D409"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D409"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-8",
+              "station": "S25",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D344",
+              "D510"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D344"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-11",
+              "station": "S34",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D456",
+              "D885"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D456"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-10",
+              "station": "S31",
+              "signal": " 裂纹 "
+            },
+            "eligible_codes": [
+              "D508",
+              "D835"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D508"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E3-1": "D497",
+            "E3-5": "D433",
+            "E3-6": "D705",
+            "E3-7": "D940",
+            "E3-4": "D949",
+            "E3-2": "D409",
+            "E3-3": "D388",
+            "E3-9": "D517",
+            "E3-8": "D344",
+            "E3-11": "D456",
+            "E3-0": "D318",
+            "E3-10": "D508"
+          }
+        },
+        "tokens": 920,
+        "elapsed_ms": 1297
+      },
+      "skill": {
+        "id": "ambiguous-3-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-1",
+              "station": "S4",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D497",
+              "D901"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D497"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-5",
+              "station": "S16",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D433",
+              "D806"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D433"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-7",
+              "station": "S22",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D911",
+              "D940"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D940"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-4",
+              "station": "S13",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D137",
+              "D949"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D949"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-2",
+              "station": "S7",
+              "signal": " BUBBLE "
+            },
+            "eligible_codes": [
+              "D221",
+              "D409"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D409"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-8",
+              "station": "S25",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D344",
+              "D510"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D344"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-10",
+              "station": "S31",
+              "signal": " 裂纹 "
+            },
+            "eligible_codes": [
+              "D508",
+              "D835"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D508"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E3-1": "D497",
+            "E3-5": "D433",
+            "E3-6": "D705",
+            "E3-7": "D940",
+            "E3-4": "D949",
+            "E3-2": "D409",
+            "E3-3": "D388",
+            "E3-9": "D517",
+            "E3-8": "D344",
+            "E3-11": "UNKNOWN",
+            "E3-0": "D318",
+            "E3-10": "D508"
+          }
+        },
+        "tokens": 1798,
+        "elapsed_ms": 1125
+      }
+    }
+  },
+  {
+    "id": "ambiguous-4",
+    "stratum": "ambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-4-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-2",
+              "station": "S7",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D122",
+              "D188"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D122"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-5",
+              "station": "S16",
+              "signal": " DARK SPOT "
+            },
+            "eligible_codes": [
+              "D487",
+              "D514"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D514"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-1",
+              "station": "S4",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D521",
+              "D524"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D524"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-10",
+              "station": "S31",
+              "signal": " 毛边 "
+            },
+            "eligible_codes": [
+              "D386",
+              "D654"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D654"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-11",
+              "station": "S34",
+              "signal": " WRINKLE "
+            },
+            "eligible_codes": [
+              "D480",
+              "D854"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D480"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-8",
+              "station": "S25",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D157",
+              "D240"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D157"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-4",
+              "station": "S13",
+              "signal": " TILT "
+            },
+            "eligible_codes": [
+              "D395",
+              "D413"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D413"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-7",
+              "station": "S22",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D572",
+              "D579"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D572"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E4-9": "D402",
+            "E4-6": "D671",
+            "E4-2": "D122",
+            "E4-5": "D514",
+            "E4-0": "D908",
+            "E4-1": "D524",
+            "E4-10": "D654",
+            "E4-11": "D480",
+            "E4-8": "D157",
+            "E4-3": "D192",
+            "E4-4": "D413",
+            "E4-7": "D572"
+          }
+        },
+        "tokens": 925,
+        "elapsed_ms": 1156
+      },
+      "skill": {
+        "id": "ambiguous-4-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-2",
+              "station": "S7",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D122",
+              "D188"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D122"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-5",
+              "station": "S16",
+              "signal": " DARK SPOT "
+            },
+            "eligible_codes": [
+              "D487",
+              "D514"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D514"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-1",
+              "station": "S4",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D521",
+              "D524"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D524"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-10",
+              "station": "S31",
+              "signal": " 毛边 "
+            },
+            "eligible_codes": [
+              "D386",
+              "D654"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D654"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-11",
+              "station": "S34",
+              "signal": " WRINKLE "
+            },
+            "eligible_codes": [
+              "D480",
+              "D854"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D480"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-8",
+              "station": "S25",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D157",
+              "D240"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D157"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-4",
+              "station": "S13",
+              "signal": " TILT "
+            },
+            "eligible_codes": [
+              "D395",
+              "D413"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D413"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-7",
+              "station": "S22",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D572",
+              "D579"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D572"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E4-9": "D402",
+            "E4-6": "D671",
+            "E4-2": "D122",
+            "E4-5": "D514",
+            "E4-0": "D908",
+            "E4-1": "D524",
+            "E4-10": "D654",
+            "E4-11": "D480",
+            "E4-8": "D157",
+            "E4-3": "D192",
+            "E4-4": "D413",
+            "E4-7": "D572"
+          }
+        },
+        "tokens": 1803,
+        "elapsed_ms": 812
+      }
+    }
+  },
+  {
+    "id": "ambiguous-5",
+    "stratum": "ambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-5-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-10",
+              "station": "S31",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D132",
+              "D456"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D456"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-11",
+              "station": "S34",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D590",
+              "D598"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D590"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-7",
+              "station": "S22",
+              "signal": " DARK SPOT "
+            },
+            "eligible_codes": [
+              "D656",
+              "D870"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D656"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-8",
+              "station": "S25",
+              "signal": " TILT "
+            },
+            "eligible_codes": [
+              "D497",
+              "D591"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D591"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-2",
+              "station": "S7",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D211",
+              "D386"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D386"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-4",
+              "station": "S13",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D345",
+              "D458"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D345"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-5",
+              "station": "S16",
+              "signal": " BUBBLE "
+            },
+            "eligible_codes": [
+              "D445",
+              "D628"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D445"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-1",
+              "station": "S4",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D575",
+              "D649"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D575"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E5-10": "D456",
+            "E5-11": "D590",
+            "E5-7": "D656",
+            "E5-8": "D591",
+            "E5-0": "D355",
+            "E5-6": "D327",
+            "E5-3": "D900",
+            "E5-2": "D386",
+            "E5-9": "D977",
+            "E5-4": "D345",
+            "E5-5": "D445",
+            "E5-1": "D575"
+          }
+        },
+        "tokens": 931,
+        "elapsed_ms": 719
+      },
+      "skill": {
+        "id": "ambiguous-5-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-10",
+              "station": "S31",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D132",
+              "D456"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D456"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-11",
+              "station": "S34",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D590",
+              "D598"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D590"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-7",
+              "station": "S22",
+              "signal": " DARK SPOT "
+            },
+            "eligible_codes": [
+              "D656",
+              "D870"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D656"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-8",
+              "station": "S25",
+              "signal": " TILT "
+            },
+            "eligible_codes": [
+              "D497",
+              "D591"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D591"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-2",
+              "station": "S7",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D211",
+              "D386"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D386"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-4",
+              "station": "S13",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D345",
+              "D458"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D345"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-5",
+              "station": "S16",
+              "signal": " BUBBLE "
+            },
+            "eligible_codes": [
+              "D445",
+              "D628"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D445"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-1",
+              "station": "S4",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D575",
+              "D649"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D575"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E5-10": "D456",
+            "E5-11": "D590",
+            "E5-7": "D656",
+            "E5-8": "D591",
+            "E5-0": "D355",
+            "E5-6": "D327",
+            "E5-3": "D900",
+            "E5-2": "D386",
+            "E5-9": "D977",
+            "E5-4": "D345",
+            "E5-5": "D445",
+            "E5-1": "D575"
+          }
+        },
+        "tokens": 1809,
+        "elapsed_ms": 891
+      }
+    }
+  },
+  {
+    "id": "ambiguous-6",
+    "stratum": "ambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-6-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-8",
+              "station": "S25",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D570",
+              "D860"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D860"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-1",
+              "station": "S4",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D137",
+              "D180"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D137"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-4",
+              "station": "S13",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D173",
+              "D239"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D239"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-11",
+              "station": "S34",
+              "signal": " WRINKLE "
+            },
+            "eligible_codes": [
+              "D367",
+              "D847"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D847"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-2",
+              "station": "S7",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D481",
+              "D603"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D603"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-10",
+              "station": "S31",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D109",
+              "D953"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D953"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-5",
+              "station": "S16",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D131",
+              "D766"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D766"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-7",
+              "station": "S22",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D117",
+              "D968"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D117"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E6-8": "D860",
+            "E6-1": "D137",
+            "E6-9": "D619",
+            "E6-4": "D239",
+            "E6-6": "D139",
+            "E6-11": "D847",
+            "E6-0": "D705",
+            "E6-2": "D603",
+            "E6-10": "D953",
+            "E6-5": "D766",
+            "E6-7": "D117",
+            "E6-3": "D384"
+          }
+        },
+        "tokens": 930,
+        "elapsed_ms": 907
+      },
+      "skill": {
+        "id": "ambiguous-6-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-8",
+              "station": "S25",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D570",
+              "D860"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D570"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-1",
+              "station": "S4",
+              "signal": " 压痕 "
+            },
+            "eligible_codes": [
+              "D137",
+              "D180"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D137"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-4",
+              "station": "S13",
+              "signal": " 错位 "
+            },
+            "eligible_codes": [
+              "D173",
+              "D239"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D239"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-10",
+              "station": "S31",
+              "signal": " 包边 "
+            },
+            "eligible_codes": [
+              "D109",
+              "D953"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D953"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-7",
+              "station": "S22",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D117",
+              "D968"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D117"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E6-8": "D570",
+            "E6-1": "D137",
+            "E6-9": "D619",
+            "E6-4": "D239",
+            "E6-6": "D139",
+            "E6-11": "UNKNOWN",
+            "E6-0": "D705",
+            "E6-2": "UNKNOWN",
+            "E6-10": "D953",
+            "E6-5": "UNKNOWN",
+            "E6-7": "D117",
+            "E6-3": "D384"
+          }
+        },
+        "tokens": 1808,
+        "elapsed_ms": 1453
+      }
+    }
+  },
+  {
+    "id": "ambiguous-7",
+    "stratum": "ambiguous",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "ambiguous-7-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-8",
+              "station": "S25",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D377",
+              "D541"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D377"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-10",
+              "station": "S31",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D579",
+              "D900"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D579"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-5",
+              "station": "S16",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D282",
+              "D676"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D282"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-7",
+              "station": "S22",
+              "signal": " 颜色 "
+            },
+            "eligible_codes": [
+              "D259",
+              "D356"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D259"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-4",
+              "station": "S13",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D180",
+              "D709"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D180"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-11",
+              "station": "S34",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D481",
+              "D913"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D913"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-1",
+              "station": "S4",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D822",
+              "D916"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D916"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-2",
+              "station": "S7",
+              "signal": " WRINKLE "
+            },
+            "eligible_codes": [
+              "D317",
+              "D471"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D471"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E7-8": "D377",
+            "E7-10": "D579",
+            "E7-5": "D282",
+            "E7-7": "D259",
+            "E7-6": "D352",
+            "E7-4": "D180",
+            "E7-11": "D913",
+            "E7-1": "D916",
+            "E7-0": "D216",
+            "E7-3": "D816",
+            "E7-2": "D471",
+            "E7-9": "D264"
+          }
+        },
+        "tokens": 920,
+        "elapsed_ms": 641
+      },
+      "skill": {
+        "id": "ambiguous-7-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-8",
+              "station": "S25",
+              "signal": " 偏移 "
+            },
+            "eligible_codes": [
+              "D377",
+              "D541"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D377"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-10",
+              "station": "S31",
+              "signal": " LOOSE LABEL "
+            },
+            "eligible_codes": [
+              "D579",
+              "D900"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D579"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-5",
+              "station": "S16",
+              "signal": " 噪声 "
+            },
+            "eligible_codes": [
+              "D282",
+              "D676"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D282"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-7",
+              "station": "S22",
+              "signal": " 颜色 "
+            },
+            "eligible_codes": [
+              "D259",
+              "D356"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D259"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-4",
+              "station": "S13",
+              "signal": " FOLD "
+            },
+            "eligible_codes": [
+              "D180",
+              "D709"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D180"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-11",
+              "station": "S34",
+              "signal": " 断点 "
+            },
+            "eligible_codes": [
+              "D481",
+              "D913"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D481"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-1",
+              "station": "S4",
+              "signal": " MARK "
+            },
+            "eligible_codes": [
+              "D822",
+              "D916"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D916"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-2",
+              "station": "S7",
+              "signal": " WRINKLE "
+            },
+            "eligible_codes": [
+              "D317",
+              "D471"
+            ],
+            "expected": "UNKNOWN",
+            "actual": "D471"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E7-8": "D377",
+            "E7-10": "D579",
+            "E7-5": "D282",
+            "E7-7": "D259",
+            "E7-6": "D352",
+            "E7-4": "D180",
+            "E7-11": "D481",
+            "E7-1": "D916",
+            "E7-0": "D216",
+            "E7-3": "D816",
+            "E7-2": "D471",
+            "E7-9": "D264"
+          }
+        },
+        "tokens": 1798,
+        "elapsed_ms": 797
+      }
+    }
+  },
+  {
+    "id": "unlisted-0",
+    "stratum": "unlisted",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-0-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-11",
+              "station": "S34",
+              "signal": " NEAR 毛边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D192"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-8",
+              "station": "S25",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D636"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-2",
+              "station": "S7",
+              "signal": " NEAR 压痕 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D708"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-5",
+              "station": "S16",
+              "signal": " NEAR 偏移 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D583"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E0-6": "D218",
+            "E0-1": "UNKNOWN",
+            "E0-10": "UNKNOWN",
+            "E0-11": "D192",
+            "E0-4": "UNKNOWN",
+            "E0-9": "D824",
+            "E0-8": "D636",
+            "E0-7": "UNKNOWN",
+            "E0-0": "D237",
+            "E0-2": "D708",
+            "E0-5": "D583",
+            "E0-3": "D336"
+          }
+        },
+        "tokens": 784,
+        "elapsed_ms": 859
+      },
+      "skill": {
+        "id": "unlisted-0-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-11",
+              "station": "S34",
+              "signal": " NEAR 毛边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D192"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-8",
+              "station": "S25",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D636"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-2",
+              "station": "S7",
+              "signal": " NEAR 压痕 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D708"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E0-5",
+              "station": "S16",
+              "signal": " NEAR 偏移 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D583"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E0-6": "D218",
+            "E0-1": "UNKNOWN",
+            "E0-10": "UNKNOWN",
+            "E0-11": "D192",
+            "E0-4": "UNKNOWN",
+            "E0-9": "D824",
+            "E0-8": "D636",
+            "E0-7": "UNKNOWN",
+            "E0-0": "D237",
+            "E0-2": "D708",
+            "E0-5": "D583",
+            "E0-3": "D336"
+          }
+        },
+        "tokens": 1662,
+        "elapsed_ms": 1141
+      }
+    }
+  },
+  {
+    "id": "unlisted-1",
+    "stratum": "unlisted",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-1-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-5",
+              "station": "S16",
+              "signal": " NEAR DARK SPOT "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D711"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-11",
+              "station": "S34",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D542"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-8",
+              "station": "S25",
+              "signal": " NEAR WRINKLE "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D768"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-2",
+              "station": "S7",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D667"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E1-6": "D487",
+            "E1-7": "UNKNOWN",
+            "E1-5": "D711",
+            "E1-4": "UNKNOWN",
+            "E1-11": "D542",
+            "E1-1": "UNKNOWN",
+            "E1-9": "D826",
+            "E1-3": "D898",
+            "E1-8": "D768",
+            "E1-0": "D947",
+            "E1-10": "UNKNOWN",
+            "E1-2": "D667"
+          }
+        },
+        "tokens": 791,
+        "elapsed_ms": 1109
+      },
+      "skill": {
+        "id": "unlisted-1-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-5",
+              "station": "S16",
+              "signal": " NEAR DARK SPOT "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D711"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-11",
+              "station": "S34",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D542"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-8",
+              "station": "S25",
+              "signal": " NEAR WRINKLE "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D768"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E1-2",
+              "station": "S7",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D667"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E1-6": "D487",
+            "E1-7": "UNKNOWN",
+            "E1-5": "D711",
+            "E1-4": "UNKNOWN",
+            "E1-11": "D542",
+            "E1-1": "UNKNOWN",
+            "E1-9": "D826",
+            "E1-3": "D898",
+            "E1-8": "D768",
+            "E1-0": "D947",
+            "E1-10": "UNKNOWN",
+            "E1-2": "D667"
+          }
+        },
+        "tokens": 1669,
+        "elapsed_ms": 890
+      }
+    }
+  },
+  {
+    "id": "unlisted-2",
+    "stratum": "unlisted",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-2-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-5",
+              "station": "S16",
+              "signal": " NEAR FOLD "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D487"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-11",
+              "station": "S34",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D396"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-8",
+              "station": "S25",
+              "signal": " NEAR 包边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D788"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-2",
+              "station": "S7",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D351"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E2-4": "UNKNOWN",
+            "E2-1": "UNKNOWN",
+            "E2-6": "D937",
+            "E2-9": "D552",
+            "E2-7": "UNKNOWN",
+            "E2-5": "D487",
+            "E2-3": "D432",
+            "E2-11": "D396",
+            "E2-0": "D295",
+            "E2-8": "D788",
+            "E2-2": "D351",
+            "E2-10": "UNKNOWN"
+          }
+        },
+        "tokens": 791,
+        "elapsed_ms": 813
+      },
+      "skill": {
+        "id": "unlisted-2-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-5",
+              "station": "S16",
+              "signal": " NEAR FOLD "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D487"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-11",
+              "station": "S34",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D396"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-8",
+              "station": "S25",
+              "signal": " NEAR 包边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D788"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E2-2",
+              "station": "S7",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D351"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E2-4": "UNKNOWN",
+            "E2-1": "UNKNOWN",
+            "E2-6": "D937",
+            "E2-9": "D552",
+            "E2-7": "UNKNOWN",
+            "E2-5": "D487",
+            "E2-3": "D432",
+            "E2-11": "D396",
+            "E2-0": "D295",
+            "E2-8": "D788",
+            "E2-2": "D351",
+            "E2-10": "UNKNOWN"
+          }
+        },
+        "tokens": 1669,
+        "elapsed_ms": 750
+      }
+    }
+  },
+  {
+    "id": "unlisted-3",
+    "stratum": "unlisted",
+    "support": true,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-3-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-11",
+              "station": "S34",
+              "signal": " NEAR MARK "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D990"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-2",
+              "station": "S7",
+              "signal": " NEAR 毛边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D624"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-8",
+              "station": "S25",
+              "signal": " NEAR 颜色 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D176"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-5",
+              "station": "S16",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D968"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E3-11": "D990",
+            "E3-1": "UNKNOWN",
+            "E3-9": "D654",
+            "E3-2": "D624",
+            "E3-4": "UNKNOWN",
+            "E3-3": "D780",
+            "E3-7": "UNKNOWN",
+            "E3-0": "D549",
+            "E3-10": "UNKNOWN",
+            "E3-6": "D256",
+            "E3-8": "D176",
+            "E3-5": "D968"
+          }
+        },
+        "tokens": 788,
+        "elapsed_ms": 859
+      },
+      "skill": {
+        "id": "unlisted-3-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-11",
+              "station": "S34",
+              "signal": " NEAR MARK "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D990"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-2",
+              "station": "S7",
+              "signal": " NEAR 毛边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D624"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-8",
+              "station": "S25",
+              "signal": " NEAR 颜色 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D176"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E3-5",
+              "station": "S16",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D968"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E3-11": "D990",
+            "E3-1": "UNKNOWN",
+            "E3-9": "D654",
+            "E3-2": "D624",
+            "E3-4": "UNKNOWN",
+            "E3-3": "D780",
+            "E3-7": "UNKNOWN",
+            "E3-0": "D549",
+            "E3-10": "UNKNOWN",
+            "E3-6": "D256",
+            "E3-8": "D176",
+            "E3-5": "D968"
+          }
+        },
+        "tokens": 1666,
+        "elapsed_ms": 1687
+      }
+    }
+  },
+  {
+    "id": "unlisted-4",
+    "stratum": "unlisted",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-4-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-11",
+              "station": "S34",
+              "signal": " NEAR 压痕 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D756"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-5",
+              "station": "S16",
+              "signal": " NEAR 断点 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D421"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-2",
+              "station": "S7",
+              "signal": " NEAR 噪声 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D807"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-8",
+              "station": "S25",
+              "signal": " NEAR 包边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D381"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E4-3": "D380",
+            "E4-7": "UNKNOWN",
+            "E4-10": "UNKNOWN",
+            "E4-1": "UNKNOWN",
+            "E4-11": "D756",
+            "E4-5": "D421",
+            "E4-9": "D726",
+            "E4-0": "D311",
+            "E4-4": "UNKNOWN",
+            "E4-6": "D784",
+            "E4-2": "D807",
+            "E4-8": "D381"
+          }
+        },
+        "tokens": 792,
+        "elapsed_ms": 719
+      },
+      "skill": {
+        "id": "unlisted-4-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-11",
+              "station": "S34",
+              "signal": " NEAR 压痕 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D756"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-5",
+              "station": "S16",
+              "signal": " NEAR 断点 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D421"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-2",
+              "station": "S7",
+              "signal": " NEAR 噪声 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D807"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E4-8",
+              "station": "S25",
+              "signal": " NEAR 包边 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D381"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E4-3": "D380",
+            "E4-7": "UNKNOWN",
+            "E4-10": "UNKNOWN",
+            "E4-1": "UNKNOWN",
+            "E4-11": "D756",
+            "E4-5": "D421",
+            "E4-9": "D726",
+            "E4-0": "D311",
+            "E4-4": "UNKNOWN",
+            "E4-6": "D784",
+            "E4-2": "D807",
+            "E4-8": "D381"
+          }
+        },
+        "tokens": 1670,
+        "elapsed_ms": 781
+      }
+    }
+  },
+  {
+    "id": "unlisted-5",
+    "stratum": "unlisted",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-5-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-11",
+              "station": "S34",
+              "signal": " NEAR 压痕 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D983"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-5",
+              "station": "S16",
+              "signal": " NEAR TILT "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D971"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-2",
+              "station": "S7",
+              "signal": " NEAR BUBBLE "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D214"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-8",
+              "station": "S25",
+              "signal": " NEAR FOLD "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D797"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E5-6": "D341",
+            "E5-1": "UNKNOWN",
+            "E5-11": "D983",
+            "E5-9": "D429",
+            "E5-3": "D680",
+            "E5-5": "D971",
+            "E5-0": "D132",
+            "E5-2": "D214",
+            "E5-10": "UNKNOWN",
+            "E5-7": "UNKNOWN",
+            "E5-8": "D797",
+            "E5-4": "UNKNOWN"
+          }
+        },
+        "tokens": 791,
+        "elapsed_ms": 735
+      },
+      "skill": {
+        "id": "unlisted-5-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-11",
+              "station": "S34",
+              "signal": " NEAR 压痕 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D983"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-5",
+              "station": "S16",
+              "signal": " NEAR TILT "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D971"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-2",
+              "station": "S7",
+              "signal": " NEAR BUBBLE "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D214"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E5-8",
+              "station": "S25",
+              "signal": " NEAR FOLD "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D797"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E5-6": "D341",
+            "E5-1": "UNKNOWN",
+            "E5-11": "D983",
+            "E5-9": "D429",
+            "E5-3": "D680",
+            "E5-5": "D971",
+            "E5-0": "D132",
+            "E5-2": "D214",
+            "E5-10": "UNKNOWN",
+            "E5-7": "UNKNOWN",
+            "E5-8": "D797",
+            "E5-4": "UNKNOWN"
+          }
+        },
+        "tokens": 1669,
+        "elapsed_ms": 1063
+      }
+    }
+  },
+  {
+    "id": "unlisted-6",
+    "stratum": "unlisted",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-6-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-8",
+              "station": "S25",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D895"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-11",
+              "station": "S34",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D170"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-2",
+              "station": "S7",
+              "signal": " NEAR FOLD "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D665"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-5",
+              "station": "S16",
+              "signal": " NEAR 断点 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D202"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E6-8": "D895",
+            "E6-11": "D170",
+            "E6-9": "D554",
+            "E6-4": "UNKNOWN",
+            "E6-10": "UNKNOWN",
+            "E6-7": "UNKNOWN",
+            "E6-3": "D485",
+            "E6-6": "D876",
+            "E6-2": "D665",
+            "E6-1": "UNKNOWN",
+            "E6-0": "D519",
+            "E6-5": "D202"
+          }
+        },
+        "tokens": 792,
+        "elapsed_ms": 1032
+      },
+      "skill": {
+        "id": "unlisted-6-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-8",
+              "station": "S25",
+              "signal": " NEAR LOOSE LABEL "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D895"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-11",
+              "station": "S34",
+              "signal": " NEAR 错位 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D170"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-2",
+              "station": "S7",
+              "signal": " NEAR FOLD "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D665"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E6-5",
+              "station": "S16",
+              "signal": " NEAR 断点 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D202"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E6-8": "D895",
+            "E6-11": "D170",
+            "E6-9": "D554",
+            "E6-4": "UNKNOWN",
+            "E6-10": "UNKNOWN",
+            "E6-7": "UNKNOWN",
+            "E6-3": "D485",
+            "E6-6": "D876",
+            "E6-2": "D665",
+            "E6-1": "UNKNOWN",
+            "E6-0": "D519",
+            "E6-5": "D202"
+          }
+        },
+        "tokens": 1670,
+        "elapsed_ms": 1422
+      }
+    }
+  },
+  {
+    "id": "unlisted-7",
+    "stratum": "unlisted",
+    "support": false,
+    "arms": {
+      "no_skill": {
+        "id": "unlisted-7-no_skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-5",
+              "station": "S16",
+              "signal": " NEAR MARK "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D393"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-8",
+              "station": "S25",
+              "signal": " NEAR 噪声 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D502"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-2",
+              "station": "S7",
+              "signal": " NEAR 颜色 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D802"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-11",
+              "station": "S34",
+              "signal": " NEAR TILT "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D736"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E7-5": "D393",
+            "E7-0": "D195",
+            "E7-8": "D502",
+            "E7-1": "UNKNOWN",
+            "E7-3": "D309",
+            "E7-2": "D802",
+            "E7-10": "UNKNOWN",
+            "E7-11": "D736",
+            "E7-6": "D512",
+            "E7-4": "UNKNOWN",
+            "E7-9": "D540",
+            "E7-7": "UNKNOWN"
+          }
+        },
+        "tokens": 784,
+        "elapsed_ms": 687
+      },
+      "skill": {
+        "id": "unlisted-7-skill",
+        "accepted": false,
+        "rule_accepts": false,
+        "deviations": [
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-5",
+              "station": "S16",
+              "signal": " NEAR MARK "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D393"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-8",
+              "station": "S25",
+              "signal": " NEAR 噪声 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D502"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-2",
+              "station": "S7",
+              "signal": " NEAR 颜色 "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D802"
+          },
+          {
+            "rule": "station_and_alias_eligibility",
+            "event": {
+              "id": "E7-11",
+              "station": "S34",
+              "signal": " NEAR TILT "
+            },
+            "eligible_codes": [],
+            "expected": "UNKNOWN",
+            "actual": "D736"
+          }
+        ],
+        "artifact": {
+          "result": {
+            "E7-5": "D393",
+            "E7-0": "D195",
+            "E7-8": "D502",
+            "E7-1": "UNKNOWN",
+            "E7-3": "D309",
+            "E7-2": "D802",
+            "E7-10": "UNKNOWN",
+            "E7-11": "D736",
+            "E7-6": "D512",
+            "E7-4": "UNKNOWN",
+            "E7-9": "D540",
+            "E7-7": "UNKNOWN"
+          }
+        },
+        "tokens": 1662,
+        "elapsed_ms": 1109
+      }
+    }
+  }
+]

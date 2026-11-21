@@ -1,0 +1,7970 @@
+[
+  {
+    "id": "unambiguous-0",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D329",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D773",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D672",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D425",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D159",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D421",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D108",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D694",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D918",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D595",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D691",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D668",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E0-4",
+          "station": "S13",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E0-7",
+          "station": "S22",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E0-1",
+          "station": "S4",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E0-5",
+          "station": "S16",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E0-11",
+          "station": "S34",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E0-6",
+          "station": "S19",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E0-0",
+          "station": "S1",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E0-3",
+          "station": "S10",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E0-9",
+          "station": "S28",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E0-2",
+          "station": "S7",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E0-8",
+          "station": "S25",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E0-10",
+          "station": "S31",
+          "signal": " 偏移 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E0-0": "D668",
+      "E0-1": "D421",
+      "E0-2": "D425",
+      "E0-3": "D691",
+      "E0-4": "D329",
+      "E0-5": "D595",
+      "E0-6": "D108",
+      "E0-7": "D672",
+      "E0-8": "D773",
+      "E0-9": "D694",
+      "E0-10": "D159",
+      "E0-11": "D918"
+    },
+    "support": true
+  },
+  {
+    "id": "unambiguous-1",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D130",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D666",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D746",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D120",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D517",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D276",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D844",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D408",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D617",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D181",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D665",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D982",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E1-3",
+          "station": "S10",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E1-7",
+          "station": "S22",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E1-2",
+          "station": "S7",
+          "signal": " TILT "
+        },
+        {
+          "id": "E1-5",
+          "station": "S16",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E1-10",
+          "station": "S31",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E1-6",
+          "station": "S19",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E1-11",
+          "station": "S34",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E1-1",
+          "station": "S4",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E1-4",
+          "station": "S13",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E1-0",
+          "station": "S1",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E1-8",
+          "station": "S25",
+          "signal": " MARK "
+        },
+        {
+          "id": "E1-9",
+          "station": "S28",
+          "signal": " LOOSE LABEL "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E1-0": "D408",
+      "E1-1": "D844",
+      "E1-2": "D130",
+      "E1-3": "D120",
+      "E1-4": "D665",
+      "E1-5": "D517",
+      "E1-6": "D181",
+      "E1-7": "D617",
+      "E1-8": "D982",
+      "E1-9": "D666",
+      "E1-10": "D276",
+      "E1-11": "D746"
+    },
+    "support": true
+  },
+  {
+    "id": "unambiguous-2",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D417",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D488",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D992",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D343",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D608",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D760",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D230",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D335",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D324",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D361",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D149",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D602",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E2-2",
+          "station": "S7",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E2-1",
+          "station": "S4",
+          "signal": " TILT "
+        },
+        {
+          "id": "E2-5",
+          "station": "S16",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E2-9",
+          "station": "S28",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E2-4",
+          "station": "S13",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E2-3",
+          "station": "S10",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E2-0",
+          "station": "S1",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E2-11",
+          "station": "S34",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E2-7",
+          "station": "S22",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E2-8",
+          "station": "S25",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E2-10",
+          "station": "S31",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E2-6",
+          "station": "S19",
+          "signal": " 包边 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E2-0": "D230",
+      "E2-1": "D992",
+      "E2-2": "D760",
+      "E2-3": "D343",
+      "E2-4": "D324",
+      "E2-5": "D335",
+      "E2-6": "D602",
+      "E2-7": "D417",
+      "E2-8": "D608",
+      "E2-9": "D488",
+      "E2-10": "D361",
+      "E2-11": "D149"
+    },
+    "support": true
+  },
+  {
+    "id": "unambiguous-3",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D129",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D414",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D814",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D575",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D895",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D411",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D713",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D567",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D229",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D821",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D273",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D815",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E3-1",
+          "station": "S4",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E3-0",
+          "station": "S1",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E3-4",
+          "station": "S13",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E3-11",
+          "station": "S34",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E3-10",
+          "station": "S31",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E3-3",
+          "station": "S10",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E3-5",
+          "station": "S16",
+          "signal": " MARK "
+        },
+        {
+          "id": "E3-2",
+          "station": "S7",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E3-7",
+          "station": "S22",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E3-6",
+          "station": "S19",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E3-8",
+          "station": "S25",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E3-9",
+          "station": "S28",
+          "signal": " WRINKLE "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E3-0": "D713",
+      "E3-1": "D895",
+      "E3-2": "D411",
+      "E3-3": "D814",
+      "E3-4": "D815",
+      "E3-5": "D575",
+      "E3-6": "D414",
+      "E3-7": "D821",
+      "E3-8": "D129",
+      "E3-9": "D229",
+      "E3-10": "D273",
+      "E3-11": "D567"
+    },
+    "support": true
+  },
+  {
+    "id": "unambiguous-4",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D156",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D926",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D181",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D827",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D578",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D964",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D474",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D305",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D650",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D315",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D503",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D572",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E4-4",
+          "station": "S13",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E4-7",
+          "station": "S22",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E4-10",
+          "station": "S31",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E4-6",
+          "station": "S19",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E4-5",
+          "station": "S16",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E4-3",
+          "station": "S10",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E4-11",
+          "station": "S34",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E4-0",
+          "station": "S1",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E4-1",
+          "station": "S4",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E4-8",
+          "station": "S25",
+          "signal": " MARK "
+        },
+        {
+          "id": "E4-2",
+          "station": "S7",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E4-9",
+          "station": "S28",
+          "signal": " 噪声 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E4-0": "D156",
+      "E4-1": "D964",
+      "E4-2": "D474",
+      "E4-3": "D572",
+      "E4-4": "D926",
+      "E4-5": "D827",
+      "E4-6": "D181",
+      "E4-7": "D503",
+      "E4-8": "D305",
+      "E4-9": "D578",
+      "E4-10": "D315",
+      "E4-11": "D650"
+    },
+    "support": false
+  },
+  {
+    "id": "unambiguous-5",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D499",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D444",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D704",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D886",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D459",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D709",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D409",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D565",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D948",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D639",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D480",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D327",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E5-3",
+          "station": "S10",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E5-6",
+          "station": "S19",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E5-10",
+          "station": "S31",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E5-8",
+          "station": "S25",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E5-9",
+          "station": "S28",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E5-4",
+          "station": "S13",
+          "signal": " MARK "
+        },
+        {
+          "id": "E5-7",
+          "station": "S22",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E5-1",
+          "station": "S4",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E5-2",
+          "station": "S7",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E5-0",
+          "station": "S1",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E5-5",
+          "station": "S16",
+          "signal": " TILT "
+        },
+        {
+          "id": "E5-11",
+          "station": "S34",
+          "signal": " 压痕 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E5-0": "D565",
+      "E5-1": "D948",
+      "E5-2": "D639",
+      "E5-3": "D459",
+      "E5-4": "D704",
+      "E5-5": "D444",
+      "E5-6": "D499",
+      "E5-7": "D886",
+      "E5-8": "D409",
+      "E5-9": "D709",
+      "E5-10": "D327",
+      "E5-11": "D480"
+    },
+    "support": false
+  },
+  {
+    "id": "unambiguous-6",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D596",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D447",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D720",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D613",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D223",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D475",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D151",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D799",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D854",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D640",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D124",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D943",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E6-4",
+          "station": "S13",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E6-3",
+          "station": "S10",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E6-11",
+          "station": "S34",
+          "signal": " MARK "
+        },
+        {
+          "id": "E6-10",
+          "station": "S31",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E6-9",
+          "station": "S28",
+          "signal": " TILT "
+        },
+        {
+          "id": "E6-7",
+          "station": "S22",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E6-1",
+          "station": "S4",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E6-0",
+          "station": "S1",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E6-5",
+          "station": "S16",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E6-2",
+          "station": "S7",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E6-8",
+          "station": "S25",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E6-6",
+          "station": "S19",
+          "signal": " 噪声 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E6-0": "D943",
+      "E6-1": "D223",
+      "E6-2": "D854",
+      "E6-3": "D613",
+      "E6-4": "D447",
+      "E6-5": "D720",
+      "E6-6": "D596",
+      "E6-7": "D640",
+      "E6-8": "D475",
+      "E6-9": "D151",
+      "E6-10": "D799",
+      "E6-11": "D124"
+    },
+    "support": false
+  },
+  {
+    "id": "unambiguous-7",
+    "stratum": "unambiguous",
+    "stratum_title": "常规单一匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D491",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D498",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D418",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D327",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D959",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D193",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D618",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D426",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D538",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D253",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D606",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D691",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E7-2",
+          "station": "S7",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E7-1",
+          "station": "S4",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E7-0",
+          "station": "S1",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E7-9",
+          "station": "S28",
+          "signal": " MARK "
+        },
+        {
+          "id": "E7-11",
+          "station": "S34",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E7-4",
+          "station": "S13",
+          "signal": " TILT "
+        },
+        {
+          "id": "E7-8",
+          "station": "S25",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E7-6",
+          "station": "S19",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E7-7",
+          "station": "S22",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E7-10",
+          "station": "S31",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E7-5",
+          "station": "S16",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E7-3",
+          "station": "S10",
+          "signal": " DARK SPOT "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E7-0": "D618",
+      "E7-1": "D959",
+      "E7-2": "D327",
+      "E7-3": "D538",
+      "E7-4": "D253",
+      "E7-5": "D498",
+      "E7-6": "D426",
+      "E7-7": "D691",
+      "E7-8": "D491",
+      "E7-9": "D606",
+      "E7-10": "D193",
+      "E7-11": "D418"
+    },
+    "support": false
+  },
+  {
+    "id": "station-0",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D935",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D581",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D506",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D925",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D600",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D678",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D915",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D560",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D624",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D592",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D501",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D924",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D652",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D216",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D571",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D298",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D488",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D844",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D633",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D462",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "dark spot"
+          ]
+        },
+        {
+          "code": "D833",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D792",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D233",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D947",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E0-11",
+          "station": "S34",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E0-2",
+          "station": "S7",
+          "signal": " TILT "
+        },
+        {
+          "id": "E0-4",
+          "station": "S13",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E0-0",
+          "station": "S2",
+          "signal": " MARK "
+        },
+        {
+          "id": "E0-7",
+          "station": "S22",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E0-8",
+          "station": "S25",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E0-10",
+          "station": "S31",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E0-3",
+          "station": "S11",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E0-5",
+          "station": "S16",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E0-9",
+          "station": "S29",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E0-1",
+          "station": "S4",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E0-6",
+          "station": "S20",
+          "signal": " FOLD "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E0-0": "D624",
+      "E0-1": "D915",
+      "E0-2": "D792",
+      "E0-3": "D581",
+      "E0-4": "D652",
+      "E0-5": "D592",
+      "E0-6": "D488",
+      "E0-7": "D506",
+      "E0-8": "D600",
+      "E0-9": "D833",
+      "E0-10": "D233",
+      "E0-11": "D560"
+    },
+    "support": true
+  },
+  {
+    "id": "station-1",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D581",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D841",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D692",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D520",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D557",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D756",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D110",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D781",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D626",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D696",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D323",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D660",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D438",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D697",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D346",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D839",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D666",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D513",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D912",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D227",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D817",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D189",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D774",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D725",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E1-2",
+          "station": "S7",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E1-4",
+          "station": "S13",
+          "signal": " MARK "
+        },
+        {
+          "id": "E1-5",
+          "station": "S16",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E1-6",
+          "station": "S20",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E1-7",
+          "station": "S22",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E1-3",
+          "station": "S11",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E1-8",
+          "station": "S25",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E1-1",
+          "station": "S4",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E1-11",
+          "station": "S34",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E1-10",
+          "station": "S31",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E1-0",
+          "station": "S2",
+          "signal": " TILT "
+        },
+        {
+          "id": "E1-9",
+          "station": "S29",
+          "signal": " WRINKLE "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E1-0": "D346",
+      "E1-1": "D438",
+      "E1-2": "D841",
+      "E1-3": "D189",
+      "E1-4": "D692",
+      "E1-5": "D323",
+      "E1-6": "D912",
+      "E1-7": "D696",
+      "E1-8": "D513",
+      "E1-9": "D817",
+      "E1-10": "D660",
+      "E1-11": "D839"
+    },
+    "support": true
+  },
+  {
+    "id": "station-2",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D704",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D402",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D327",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D575",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D394",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D811",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D366",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D750",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D685",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D357",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D463",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D152",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D405",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D837",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "dark spot"
+          ]
+        },
+        {
+          "code": "D314",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D700",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D383",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D912",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D683",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D333",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D196",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D985",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D507",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D401",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E2-6",
+          "station": "S20",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E2-11",
+          "station": "S34",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E2-2",
+          "station": "S7",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E2-10",
+          "station": "S31",
+          "signal": " TILT "
+        },
+        {
+          "id": "E2-5",
+          "station": "S16",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E2-4",
+          "station": "S13",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E2-3",
+          "station": "S11",
+          "signal": " MARK "
+        },
+        {
+          "id": "E2-9",
+          "station": "S29",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E2-0",
+          "station": "S2",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E2-1",
+          "station": "S4",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E2-8",
+          "station": "S25",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E2-7",
+          "station": "S22",
+          "signal": " BUBBLE "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E2-0": "D333",
+      "E2-1": "D912",
+      "E2-2": "D750",
+      "E2-3": "D314",
+      "E2-4": "D366",
+      "E2-5": "D152",
+      "E2-6": "D704",
+      "E2-7": "D401",
+      "E2-8": "D327",
+      "E2-9": "D985",
+      "E2-10": "D402",
+      "E2-11": "D463"
+    },
+    "support": true
+  },
+  {
+    "id": "station-3",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D643",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D153",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D420",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D756",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D351",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D619",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D403",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D366",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D612",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D555",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D955",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D684",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D331",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D439",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D855",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D858",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D427",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D203",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D592",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D567",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D890",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D945",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D912",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D358",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E3-6",
+          "station": "S20",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E3-4",
+          "station": "S13",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E3-7",
+          "station": "S22",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E3-10",
+          "station": "S31",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E3-3",
+          "station": "S11",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E3-11",
+          "station": "S34",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E3-1",
+          "station": "S4",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E3-9",
+          "station": "S29",
+          "signal": " MARK "
+        },
+        {
+          "id": "E3-0",
+          "station": "S2",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E3-2",
+          "station": "S7",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E3-8",
+          "station": "S25",
+          "signal": " TILT "
+        },
+        {
+          "id": "E3-5",
+          "station": "S16",
+          "signal": " 压痕 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E3-0": "D912",
+      "E3-1": "D567",
+      "E3-2": "D955",
+      "E3-3": "D351",
+      "E3-4": "D684",
+      "E3-5": "D555",
+      "E3-6": "D890",
+      "E3-7": "D612",
+      "E3-8": "D945",
+      "E3-9": "D439",
+      "E3-10": "D203",
+      "E3-11": "D153"
+    },
+    "support": true
+  },
+  {
+    "id": "station-4",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D712",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D587",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D322",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D348",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D714",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D457",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D438",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D788",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D297",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D471",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D422",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D546",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D790",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D785",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D994",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D194",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D606",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D569",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D301",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D512",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D513",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D231",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D611",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D228",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E4-5",
+          "station": "S16",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E4-7",
+          "station": "S22",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E4-2",
+          "station": "S7",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E4-10",
+          "station": "S31",
+          "signal": " MARK "
+        },
+        {
+          "id": "E4-1",
+          "station": "S4",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E4-6",
+          "station": "S20",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E4-9",
+          "station": "S29",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E4-3",
+          "station": "S11",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E4-8",
+          "station": "S25",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E4-4",
+          "station": "S13",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E4-11",
+          "station": "S34",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E4-0",
+          "station": "S2",
+          "signal": " 噪声 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E4-0": "D322",
+      "E4-1": "D512",
+      "E4-2": "D438",
+      "E4-3": "D301",
+      "E4-4": "D712",
+      "E4-5": "D606",
+      "E4-6": "D471",
+      "E4-7": "D297",
+      "E4-8": "D587",
+      "E4-9": "D546",
+      "E4-10": "D785",
+      "E4-11": "D231"
+    },
+    "support": false
+  },
+  {
+    "id": "station-5",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D372",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "dark spot"
+          ]
+        },
+        {
+          "code": "D375",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D362",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D895",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D351",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D635",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D884",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D519",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D914",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D781",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D106",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D639",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D277",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D657",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D253",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D748",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D434",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D628",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D412",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D601",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D518",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D715",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D420",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D295",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "fold"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E5-0",
+          "station": "S2",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E5-7",
+          "station": "S22",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E5-1",
+          "station": "S4",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E5-2",
+          "station": "S7",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E5-6",
+          "station": "S20",
+          "signal": " TILT "
+        },
+        {
+          "id": "E5-11",
+          "station": "S34",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E5-10",
+          "station": "S31",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E5-8",
+          "station": "S25",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E5-5",
+          "station": "S16",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E5-4",
+          "station": "S13",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E5-9",
+          "station": "S29",
+          "signal": " MARK "
+        },
+        {
+          "id": "E5-3",
+          "station": "S11",
+          "signal": " 毛边 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E5-0": "D519",
+      "E5-1": "D895",
+      "E5-2": "D715",
+      "E5-3": "D434",
+      "E5-4": "D362",
+      "E5-5": "D635",
+      "E5-6": "D601",
+      "E5-7": "D781",
+      "E5-8": "D106",
+      "E5-9": "D748",
+      "E5-10": "D628",
+      "E5-11": "D884"
+    },
+    "support": false
+  },
+  {
+    "id": "station-6",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D288",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D953",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D976",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D263",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D781",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D832",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D912",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D274",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D861",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D581",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D522",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D185",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D901",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D665",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D642",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D954",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D445",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D620",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D496",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D561",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D705",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D268",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D474",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D525",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E6-10",
+          "station": "S31",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E6-0",
+          "station": "S2",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E6-6",
+          "station": "S20",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E6-2",
+          "station": "S7",
+          "signal": " TILT "
+        },
+        {
+          "id": "E6-9",
+          "station": "S29",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E6-7",
+          "station": "S22",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E6-4",
+          "station": "S13",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E6-11",
+          "station": "S34",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E6-3",
+          "station": "S11",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E6-8",
+          "station": "S25",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E6-5",
+          "station": "S16",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E6-1",
+          "station": "S4",
+          "signal": " 毛边 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E6-0": "D954",
+      "E6-1": "D288",
+      "E6-2": "D901",
+      "E6-3": "D705",
+      "E6-4": "D781",
+      "E6-5": "D832",
+      "E6-6": "D496",
+      "E6-7": "D953",
+      "E6-8": "D185",
+      "E6-9": "D561",
+      "E6-10": "D474",
+      "E6-11": "D525"
+    },
+    "support": false
+  },
+  {
+    "id": "station-7",
+    "stratum": "station",
+    "stratum_title": "同词在不同工位",
+    "data": {
+      "codebook": [
+        {
+          "code": "D252",
+          "stations": [
+            "S8"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D668",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D738",
+          "stations": [
+            "S2"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D863",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D213",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D623",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D783",
+          "stations": [
+            "S5"
+          ],
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D985",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D155",
+          "stations": [
+            "S26"
+          ],
+          "aliases": [
+            "dark spot"
+          ]
+        },
+        {
+          "code": "D794",
+          "stations": [
+            "S29"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D116",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D721",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D512",
+          "stations": [
+            "S11"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D943",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D457",
+          "stations": [
+            "S35"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D659",
+          "stations": [
+            "S32"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D611",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D207",
+          "stations": [
+            "S14"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D847",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D517",
+          "stations": [
+            "S23"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D766",
+          "stations": [
+            "S17"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D313",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D201",
+          "stations": [
+            "S20"
+          ],
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D174",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E7-10",
+          "station": "S31",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E7-11",
+          "station": "S34",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E7-2",
+          "station": "S7",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E7-5",
+          "station": "S16",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E7-7",
+          "station": "S22",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E7-1",
+          "station": "S4",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E7-6",
+          "station": "S20",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E7-9",
+          "station": "S29",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E7-0",
+          "station": "S2",
+          "signal": " MARK "
+        },
+        {
+          "id": "E7-4",
+          "station": "S13",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E7-3",
+          "station": "S11",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E7-8",
+          "station": "S25",
+          "signal": " DARK SPOT "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E7-0": "D738",
+      "E7-1": "D863",
+      "E7-2": "D668",
+      "E7-3": "D512",
+      "E7-4": "D943",
+      "E7-5": "D721",
+      "E7-6": "D201",
+      "E7-7": "D611",
+      "E7-8": "D213",
+      "E7-9": "D794",
+      "E7-10": "D847",
+      "E7-11": "D174"
+    },
+    "support": false
+  },
+  {
+    "id": "ambiguous-0",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D607",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D590",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D385",
+          "stations": null,
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D404",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D578",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D634",
+          "stations": null,
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D540",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D883",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D169",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D951",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D232",
+          "stations": null,
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D102",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D798",
+          "stations": null,
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D134",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D150",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D880",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D584",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D891",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D825",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D781",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E0-8",
+          "station": "S25",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E0-3",
+          "station": "S10",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E0-1",
+          "station": "S4",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E0-9",
+          "station": "S28",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E0-2",
+          "station": "S7",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E0-7",
+          "station": "S22",
+          "signal": " MARK "
+        },
+        {
+          "id": "E0-5",
+          "station": "S16",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E0-4",
+          "station": "S13",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E0-6",
+          "station": "S19",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E0-10",
+          "station": "S31",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E0-0",
+          "station": "S1",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E0-11",
+          "station": "S34",
+          "signal": " 裂纹 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E0-0": "D880",
+      "E0-1": "UNKNOWN",
+      "E0-2": "UNKNOWN",
+      "E0-3": "D781",
+      "E0-4": "UNKNOWN",
+      "E0-5": "UNKNOWN",
+      "E0-6": "D590",
+      "E0-7": "UNKNOWN",
+      "E0-8": "UNKNOWN",
+      "E0-9": "D169",
+      "E0-10": "UNKNOWN",
+      "E0-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "ambiguous-1",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D853",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D516",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D247",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D598",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D206",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D564",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D841",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D695",
+          "stations": null,
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D652",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D441",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D497",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D990",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D472",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D682",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D677",
+          "stations": null,
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D123",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D241",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D942",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D929",
+          "stations": null,
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D498",
+          "stations": null,
+          "aliases": [
+            "偏移"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E1-3",
+          "station": "S10",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E1-0",
+          "station": "S1",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E1-7",
+          "station": "S22",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E1-4",
+          "station": "S13",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E1-1",
+          "station": "S4",
+          "signal": " MARK "
+        },
+        {
+          "id": "E1-10",
+          "station": "S31",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E1-5",
+          "station": "S16",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E1-2",
+          "station": "S7",
+          "signal": " TILT "
+        },
+        {
+          "id": "E1-8",
+          "station": "S25",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E1-11",
+          "station": "S34",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E1-9",
+          "station": "S28",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E1-6",
+          "station": "S19",
+          "signal": " DARK SPOT "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E1-0": "D441",
+      "E1-1": "UNKNOWN",
+      "E1-2": "UNKNOWN",
+      "E1-3": "D472",
+      "E1-4": "UNKNOWN",
+      "E1-5": "UNKNOWN",
+      "E1-6": "D516",
+      "E1-7": "UNKNOWN",
+      "E1-8": "UNKNOWN",
+      "E1-9": "D652",
+      "E1-10": "UNKNOWN",
+      "E1-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "ambiguous-2",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D340",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D407",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D768",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D123",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D231",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D606",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D144",
+          "stations": null,
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D354",
+          "stations": null,
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D457",
+          "stations": null,
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D308",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D479",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D131",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D676",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D533",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D948",
+          "stations": null,
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D935",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D872",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D942",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D673",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D438",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E2-9",
+          "station": "S28",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E2-8",
+          "station": "S25",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E2-3",
+          "station": "S10",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E2-11",
+          "station": "S34",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E2-7",
+          "station": "S22",
+          "signal": " MARK "
+        },
+        {
+          "id": "E2-4",
+          "station": "S13",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E2-10",
+          "station": "S31",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E2-1",
+          "station": "S4",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E2-0",
+          "station": "S1",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E2-6",
+          "station": "S19",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E2-2",
+          "station": "S7",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E2-5",
+          "station": "S16",
+          "signal": " 压痕 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E2-0": "D407",
+      "E2-1": "UNKNOWN",
+      "E2-2": "UNKNOWN",
+      "E2-3": "D606",
+      "E2-4": "UNKNOWN",
+      "E2-5": "UNKNOWN",
+      "E2-6": "D131",
+      "E2-7": "UNKNOWN",
+      "E2-8": "UNKNOWN",
+      "E2-9": "D438",
+      "E2-10": "UNKNOWN",
+      "E2-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "ambiguous-3",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D388",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D885",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D517",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D911",
+          "stations": null,
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D508",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D409",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D456",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D137",
+          "stations": null,
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D835",
+          "stations": null,
+          "aliases": [
+            "裂纹"
+          ]
+        },
+        {
+          "code": "D949",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D940",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D433",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D705",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D344",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D318",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D497",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D221",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D510",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D901",
+          "stations": null,
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D806",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "压痕"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E3-1",
+          "station": "S4",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E3-5",
+          "station": "S16",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E3-6",
+          "station": "S19",
+          "signal": " TILT "
+        },
+        {
+          "id": "E3-7",
+          "station": "S22",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E3-4",
+          "station": "S13",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E3-2",
+          "station": "S7",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E3-3",
+          "station": "S10",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E3-9",
+          "station": "S28",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E3-8",
+          "station": "S25",
+          "signal": " MARK "
+        },
+        {
+          "id": "E3-11",
+          "station": "S34",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E3-0",
+          "station": "S1",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E3-10",
+          "station": "S31",
+          "signal": " 裂纹 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E3-0": "D318",
+      "E3-1": "UNKNOWN",
+      "E3-2": "UNKNOWN",
+      "E3-3": "D388",
+      "E3-4": "UNKNOWN",
+      "E3-5": "UNKNOWN",
+      "E3-6": "D705",
+      "E3-7": "UNKNOWN",
+      "E3-8": "UNKNOWN",
+      "E3-9": "D517",
+      "E3-10": "UNKNOWN",
+      "E3-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "ambiguous-4",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D122",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D395",
+          "stations": null,
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D654",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D480",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D157",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D188",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D521",
+          "stations": null,
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D192",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D514",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D671",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D524",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D854",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D572",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D402",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D487",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "dark spot"
+          ]
+        },
+        {
+          "code": "D386",
+          "stations": null,
+          "aliases": [
+            "毛边"
+          ]
+        },
+        {
+          "code": "D579",
+          "stations": null,
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D413",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D908",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D240",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E4-9",
+          "station": "S28",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E4-6",
+          "station": "S19",
+          "signal": " MARK "
+        },
+        {
+          "id": "E4-2",
+          "station": "S7",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E4-5",
+          "station": "S16",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E4-0",
+          "station": "S1",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E4-1",
+          "station": "S4",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E4-10",
+          "station": "S31",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E4-11",
+          "station": "S34",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E4-8",
+          "station": "S25",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E4-3",
+          "station": "S10",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E4-4",
+          "station": "S13",
+          "signal": " TILT "
+        },
+        {
+          "id": "E4-7",
+          "station": "S22",
+          "signal": " FOLD "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E4-0": "D908",
+      "E4-1": "UNKNOWN",
+      "E4-2": "UNKNOWN",
+      "E4-3": "D192",
+      "E4-4": "UNKNOWN",
+      "E4-5": "UNKNOWN",
+      "E4-6": "D671",
+      "E4-7": "UNKNOWN",
+      "E4-8": "UNKNOWN",
+      "E4-9": "D402",
+      "E4-10": "UNKNOWN",
+      "E4-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "ambiguous-5",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D870",
+          "stations": null,
+          "aliases": [
+            "dark spot"
+          ]
+        },
+        {
+          "code": "D656",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D132",
+          "stations": null,
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D900",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D456",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D575",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D211",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D497",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "tilt"
+          ]
+        },
+        {
+          "code": "D445",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D386",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D345",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D598",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D977",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D355",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D649",
+          "stations": null,
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D458",
+          "stations": null,
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D327",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D628",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "bubble"
+          ]
+        },
+        {
+          "code": "D591",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D590",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E5-10",
+          "station": "S31",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E5-11",
+          "station": "S34",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E5-7",
+          "station": "S22",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E5-8",
+          "station": "S25",
+          "signal": " TILT "
+        },
+        {
+          "id": "E5-0",
+          "station": "S1",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E5-6",
+          "station": "S19",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E5-3",
+          "station": "S10",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E5-2",
+          "station": "S7",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E5-9",
+          "station": "S28",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E5-4",
+          "station": "S13",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E5-5",
+          "station": "S16",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E5-1",
+          "station": "S4",
+          "signal": " 压痕 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E5-0": "D355",
+      "E5-1": "UNKNOWN",
+      "E5-2": "UNKNOWN",
+      "E5-3": "D900",
+      "E5-4": "UNKNOWN",
+      "E5-5": "UNKNOWN",
+      "E5-6": "D327",
+      "E5-7": "UNKNOWN",
+      "E5-8": "UNKNOWN",
+      "E5-9": "D977",
+      "E5-10": "UNKNOWN",
+      "E5-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "ambiguous-6",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D953",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D384",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D139",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D180",
+          "stations": null,
+          "aliases": [
+            "压痕"
+          ]
+        },
+        {
+          "code": "D570",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D137",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D968",
+          "stations": null,
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D131",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D117",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D173",
+          "stations": null,
+          "aliases": [
+            "错位"
+          ]
+        },
+        {
+          "code": "D367",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D847",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D705",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D766",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D109",
+          "stations": null,
+          "aliases": [
+            "包边"
+          ]
+        },
+        {
+          "code": "D860",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D481",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D619",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D603",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D239",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E6-8",
+          "station": "S25",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E6-1",
+          "station": "S4",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E6-9",
+          "station": "S28",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E6-4",
+          "station": "S13",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E6-6",
+          "station": "S19",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E6-11",
+          "station": "S34",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E6-0",
+          "station": "S1",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E6-2",
+          "station": "S7",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E6-10",
+          "station": "S31",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E6-5",
+          "station": "S16",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E6-7",
+          "station": "S22",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E6-3",
+          "station": "S10",
+          "signal": " MARK "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E6-0": "D705",
+      "E6-1": "UNKNOWN",
+      "E6-2": "UNKNOWN",
+      "E6-3": "D384",
+      "E6-4": "UNKNOWN",
+      "E6-5": "UNKNOWN",
+      "E6-6": "D139",
+      "E6-7": "UNKNOWN",
+      "E6-8": "UNKNOWN",
+      "E6-9": "D619",
+      "E6-10": "UNKNOWN",
+      "E6-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "ambiguous-7",
+    "stratum": "ambiguous",
+    "stratum_title": "同工位多码",
+    "data": {
+      "codebook": [
+        {
+          "code": "D377",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D471",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "wrinkle"
+          ]
+        },
+        {
+          "code": "D259",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D282",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "噪声"
+          ]
+        },
+        {
+          "code": "D216",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D579",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D180",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D264",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D900",
+          "stations": null,
+          "aliases": [
+            "loose label"
+          ]
+        },
+        {
+          "code": "D481",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D317",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D822",
+          "stations": null,
+          "aliases": [
+            "mark"
+          ]
+        },
+        {
+          "code": "D356",
+          "stations": null,
+          "aliases": [
+            "颜色"
+          ]
+        },
+        {
+          "code": "D709",
+          "stations": null,
+          "aliases": [
+            "fold"
+          ]
+        },
+        {
+          "code": "D352",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D816",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D676",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D913",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "断点"
+          ]
+        },
+        {
+          "code": "D541",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "偏移"
+          ]
+        },
+        {
+          "code": "D916",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E7-8",
+          "station": "S25",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E7-10",
+          "station": "S31",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E7-5",
+          "station": "S16",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E7-7",
+          "station": "S22",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E7-6",
+          "station": "S19",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E7-4",
+          "station": "S13",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E7-11",
+          "station": "S34",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E7-1",
+          "station": "S4",
+          "signal": " MARK "
+        },
+        {
+          "id": "E7-0",
+          "station": "S1",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E7-3",
+          "station": "S10",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E7-2",
+          "station": "S7",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E7-9",
+          "station": "S28",
+          "signal": " 包边 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E7-0": "D216",
+      "E7-1": "UNKNOWN",
+      "E7-2": "UNKNOWN",
+      "E7-3": "D816",
+      "E7-4": "UNKNOWN",
+      "E7-5": "UNKNOWN",
+      "E7-6": "D352",
+      "E7-7": "UNKNOWN",
+      "E7-8": "UNKNOWN",
+      "E7-9": "D264",
+      "E7-10": "UNKNOWN",
+      "E7-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "unlisted-0",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D218",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D875",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D524",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D824",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D336",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D826",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D708",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D237",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D192",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D796",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D636",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D583",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E0-6",
+          "station": "S19",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E0-1",
+          "station": "S5",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E0-10",
+          "station": "S32",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E0-11",
+          "station": "S34",
+          "signal": " NEAR 毛边 "
+        },
+        {
+          "id": "E0-4",
+          "station": "S14",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E0-9",
+          "station": "S28",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E0-8",
+          "station": "S25",
+          "signal": " NEAR LOOSE LABEL "
+        },
+        {
+          "id": "E0-7",
+          "station": "S23",
+          "signal": " MARK "
+        },
+        {
+          "id": "E0-0",
+          "station": "S1",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E0-2",
+          "station": "S7",
+          "signal": " NEAR 压痕 "
+        },
+        {
+          "id": "E0-5",
+          "station": "S16",
+          "signal": " NEAR 偏移 "
+        },
+        {
+          "id": "E0-3",
+          "station": "S10",
+          "signal": " 裂纹 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E0-0": "D237",
+      "E0-1": "UNKNOWN",
+      "E0-2": "UNKNOWN",
+      "E0-3": "D336",
+      "E0-4": "UNKNOWN",
+      "E0-5": "UNKNOWN",
+      "E0-6": "D218",
+      "E0-7": "UNKNOWN",
+      "E0-8": "UNKNOWN",
+      "E0-9": "D824",
+      "E0-10": "UNKNOWN",
+      "E0-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "unlisted-1",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D898",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D667",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D228",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D768",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D812",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D711",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D947",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D696",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D542",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D914",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D487",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D826",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E1-6",
+          "station": "S19",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E1-7",
+          "station": "S23",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E1-5",
+          "station": "S16",
+          "signal": " NEAR DARK SPOT "
+        },
+        {
+          "id": "E1-4",
+          "station": "S14",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E1-11",
+          "station": "S34",
+          "signal": " NEAR LOOSE LABEL "
+        },
+        {
+          "id": "E1-1",
+          "station": "S5",
+          "signal": " TILT "
+        },
+        {
+          "id": "E1-9",
+          "station": "S28",
+          "signal": " MARK "
+        },
+        {
+          "id": "E1-3",
+          "station": "S10",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E1-8",
+          "station": "S25",
+          "signal": " NEAR WRINKLE "
+        },
+        {
+          "id": "E1-0",
+          "station": "S1",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E1-10",
+          "station": "S32",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E1-2",
+          "station": "S7",
+          "signal": " NEAR 错位 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E1-0": "D947",
+      "E1-1": "UNKNOWN",
+      "E1-2": "UNKNOWN",
+      "E1-3": "D898",
+      "E1-4": "UNKNOWN",
+      "E1-5": "UNKNOWN",
+      "E1-6": "D487",
+      "E1-7": "UNKNOWN",
+      "E1-8": "UNKNOWN",
+      "E1-9": "D826",
+      "E1-10": "UNKNOWN",
+      "E1-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "unlisted-2",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D432",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D937",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D396",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D295",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D652",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D304",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D487",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D788",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D552",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D351",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D739",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D170",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E2-4",
+          "station": "S14",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E2-1",
+          "station": "S5",
+          "signal": " 毛边 "
+        },
+        {
+          "id": "E2-6",
+          "station": "S19",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E2-9",
+          "station": "S28",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E2-7",
+          "station": "S23",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E2-5",
+          "station": "S16",
+          "signal": " NEAR FOLD "
+        },
+        {
+          "id": "E2-3",
+          "station": "S10",
+          "signal": " TILT "
+        },
+        {
+          "id": "E2-11",
+          "station": "S34",
+          "signal": " NEAR LOOSE LABEL "
+        },
+        {
+          "id": "E2-0",
+          "station": "S1",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E2-8",
+          "station": "S25",
+          "signal": " NEAR 包边 "
+        },
+        {
+          "id": "E2-2",
+          "station": "S7",
+          "signal": " NEAR 错位 "
+        },
+        {
+          "id": "E2-10",
+          "station": "S32",
+          "signal": " 噪声 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E2-0": "D295",
+      "E2-1": "UNKNOWN",
+      "E2-2": "UNKNOWN",
+      "E2-3": "D432",
+      "E2-4": "UNKNOWN",
+      "E2-5": "UNKNOWN",
+      "E2-6": "D937",
+      "E2-7": "UNKNOWN",
+      "E2-8": "UNKNOWN",
+      "E2-9": "D552",
+      "E2-10": "UNKNOWN",
+      "E2-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "unlisted-3",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D968",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D176",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D624",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "毛边",
+            "毛边-detail"
+          ]
+        },
+        {
+          "code": "D549",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D256",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D881",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D990",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D615",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D780",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D812",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D198",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D654",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E3-11",
+          "station": "S34",
+          "signal": " NEAR MARK "
+        },
+        {
+          "id": "E3-1",
+          "station": "S5",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E3-9",
+          "station": "S28",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E3-2",
+          "station": "S7",
+          "signal": " NEAR 毛边 "
+        },
+        {
+          "id": "E3-4",
+          "station": "S14",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E3-3",
+          "station": "S10",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E3-7",
+          "station": "S23",
+          "signal": " 偏移 "
+        },
+        {
+          "id": "E3-0",
+          "station": "S1",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E3-10",
+          "station": "S32",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E3-6",
+          "station": "S19",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E3-8",
+          "station": "S25",
+          "signal": " NEAR 颜色 "
+        },
+        {
+          "id": "E3-5",
+          "station": "S16",
+          "signal": " NEAR 错位 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E3-0": "D549",
+      "E3-1": "UNKNOWN",
+      "E3-2": "UNKNOWN",
+      "E3-3": "D780",
+      "E3-4": "UNKNOWN",
+      "E3-5": "UNKNOWN",
+      "E3-6": "D256",
+      "E3-7": "UNKNOWN",
+      "E3-8": "UNKNOWN",
+      "E3-9": "D654",
+      "E3-10": "UNKNOWN",
+      "E3-11": "UNKNOWN"
+    },
+    "support": true
+  },
+  {
+    "id": "unlisted-4",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D423",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D421",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D756",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D311",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D381",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D380",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D134",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D726",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D437",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D164",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D784",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D807",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E4-3",
+          "station": "S10",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E4-7",
+          "station": "S23",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E4-10",
+          "station": "S32",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E4-1",
+          "station": "S5",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E4-11",
+          "station": "S34",
+          "signal": " NEAR 压痕 "
+        },
+        {
+          "id": "E4-5",
+          "station": "S16",
+          "signal": " NEAR 断点 "
+        },
+        {
+          "id": "E4-9",
+          "station": "S28",
+          "signal": " 错位 "
+        },
+        {
+          "id": "E4-0",
+          "station": "S1",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E4-4",
+          "station": "S14",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E4-6",
+          "station": "S19",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E4-2",
+          "station": "S7",
+          "signal": " NEAR 噪声 "
+        },
+        {
+          "id": "E4-8",
+          "station": "S25",
+          "signal": " NEAR 包边 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E4-0": "D311",
+      "E4-1": "UNKNOWN",
+      "E4-2": "UNKNOWN",
+      "E4-3": "D380",
+      "E4-4": "UNKNOWN",
+      "E4-5": "UNKNOWN",
+      "E4-6": "D784",
+      "E4-7": "UNKNOWN",
+      "E4-8": "UNKNOWN",
+      "E4-9": "D726",
+      "E4-10": "UNKNOWN",
+      "E4-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "unlisted-5",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D680",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D971",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D797",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D207",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D983",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D200",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D341",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D132",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D429",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D561",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D214",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D148",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E5-6",
+          "station": "S19",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E5-1",
+          "station": "S5",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E5-11",
+          "station": "S34",
+          "signal": " NEAR 压痕 "
+        },
+        {
+          "id": "E5-9",
+          "station": "S28",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E5-3",
+          "station": "S10",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E5-5",
+          "station": "S16",
+          "signal": " NEAR TILT "
+        },
+        {
+          "id": "E5-0",
+          "station": "S1",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E5-2",
+          "station": "S7",
+          "signal": " NEAR BUBBLE "
+        },
+        {
+          "id": "E5-10",
+          "station": "S32",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E5-7",
+          "station": "S23",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E5-8",
+          "station": "S25",
+          "signal": " NEAR FOLD "
+        },
+        {
+          "id": "E5-4",
+          "station": "S14",
+          "signal": " MARK "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E5-0": "D132",
+      "E5-1": "UNKNOWN",
+      "E5-2": "UNKNOWN",
+      "E5-3": "D680",
+      "E5-4": "UNKNOWN",
+      "E5-5": "UNKNOWN",
+      "E5-6": "D341",
+      "E5-7": "UNKNOWN",
+      "E5-8": "UNKNOWN",
+      "E5-9": "D429",
+      "E5-10": "UNKNOWN",
+      "E5-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "unlisted-6",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D895",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D519",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "dark spot",
+            "dark spot-detail"
+          ]
+        },
+        {
+          "code": "D382",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        },
+        {
+          "code": "D432",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "包边",
+            "包边-detail"
+          ]
+        },
+        {
+          "code": "D316",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D485",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D202",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D876",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D665",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D170",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "错位",
+            "错位-detail"
+          ]
+        },
+        {
+          "code": "D845",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D554",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E6-8",
+          "station": "S25",
+          "signal": " NEAR LOOSE LABEL "
+        },
+        {
+          "id": "E6-11",
+          "station": "S34",
+          "signal": " NEAR 错位 "
+        },
+        {
+          "id": "E6-9",
+          "station": "S28",
+          "signal": " 颜色 "
+        },
+        {
+          "id": "E6-4",
+          "station": "S14",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E6-10",
+          "station": "S32",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E6-7",
+          "station": "S23",
+          "signal": " 包边 "
+        },
+        {
+          "id": "E6-3",
+          "station": "S10",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E6-6",
+          "station": "S19",
+          "signal": " 噪声 "
+        },
+        {
+          "id": "E6-2",
+          "station": "S7",
+          "signal": " NEAR FOLD "
+        },
+        {
+          "id": "E6-1",
+          "station": "S5",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E6-0",
+          "station": "S1",
+          "signal": " DARK SPOT "
+        },
+        {
+          "id": "E6-5",
+          "station": "S16",
+          "signal": " NEAR 断点 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E6-0": "D519",
+      "E6-1": "UNKNOWN",
+      "E6-2": "UNKNOWN",
+      "E6-3": "D485",
+      "E6-4": "UNKNOWN",
+      "E6-5": "UNKNOWN",
+      "E6-6": "D876",
+      "E6-7": "UNKNOWN",
+      "E6-8": "UNKNOWN",
+      "E6-9": "D554",
+      "E6-10": "UNKNOWN",
+      "E6-11": "UNKNOWN"
+    },
+    "support": false
+  },
+  {
+    "id": "unlisted-7",
+    "stratum": "unlisted",
+    "stratum_title": "无合法匹配",
+    "data": {
+      "codebook": [
+        {
+          "code": "D736",
+          "stations": [
+            "S34"
+          ],
+          "aliases": [
+            "tilt",
+            "tilt-detail"
+          ]
+        },
+        {
+          "code": "D512",
+          "stations": [
+            "S19"
+          ],
+          "aliases": [
+            "断点",
+            "断点-detail"
+          ]
+        },
+        {
+          "code": "D393",
+          "stations": [
+            "S16"
+          ],
+          "aliases": [
+            "mark",
+            "mark-detail"
+          ]
+        },
+        {
+          "code": "D513",
+          "stations": [
+            "S22"
+          ],
+          "aliases": [
+            "偏移",
+            "偏移-detail"
+          ]
+        },
+        {
+          "code": "D749",
+          "stations": [
+            "S4"
+          ],
+          "aliases": [
+            "bubble",
+            "bubble-detail"
+          ]
+        },
+        {
+          "code": "D195",
+          "stations": [
+            "S1"
+          ],
+          "aliases": [
+            "fold",
+            "fold-detail"
+          ]
+        },
+        {
+          "code": "D540",
+          "stations": [
+            "S28"
+          ],
+          "aliases": [
+            "loose label",
+            "loose label-detail"
+          ]
+        },
+        {
+          "code": "D399",
+          "stations": [
+            "S13"
+          ],
+          "aliases": [
+            "wrinkle",
+            "wrinkle-detail"
+          ]
+        },
+        {
+          "code": "D502",
+          "stations": [
+            "S25"
+          ],
+          "aliases": [
+            "噪声",
+            "噪声-detail"
+          ]
+        },
+        {
+          "code": "D802",
+          "stations": [
+            "S7"
+          ],
+          "aliases": [
+            "颜色",
+            "颜色-detail"
+          ]
+        },
+        {
+          "code": "D392",
+          "stations": [
+            "S31"
+          ],
+          "aliases": [
+            "压痕",
+            "压痕-detail"
+          ]
+        },
+        {
+          "code": "D309",
+          "stations": [
+            "S10"
+          ],
+          "aliases": [
+            "裂纹",
+            "裂纹-detail"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "id": "E7-5",
+          "station": "S16",
+          "signal": " NEAR MARK "
+        },
+        {
+          "id": "E7-0",
+          "station": "S1",
+          "signal": " FOLD "
+        },
+        {
+          "id": "E7-8",
+          "station": "S25",
+          "signal": " NEAR 噪声 "
+        },
+        {
+          "id": "E7-1",
+          "station": "S5",
+          "signal": " BUBBLE "
+        },
+        {
+          "id": "E7-3",
+          "station": "S10",
+          "signal": " 裂纹 "
+        },
+        {
+          "id": "E7-2",
+          "station": "S7",
+          "signal": " NEAR 颜色 "
+        },
+        {
+          "id": "E7-10",
+          "station": "S32",
+          "signal": " 压痕 "
+        },
+        {
+          "id": "E7-11",
+          "station": "S34",
+          "signal": " NEAR TILT "
+        },
+        {
+          "id": "E7-6",
+          "station": "S19",
+          "signal": " 断点 "
+        },
+        {
+          "id": "E7-4",
+          "station": "S14",
+          "signal": " WRINKLE "
+        },
+        {
+          "id": "E7-9",
+          "station": "S28",
+          "signal": " LOOSE LABEL "
+        },
+        {
+          "id": "E7-7",
+          "station": "S23",
+          "signal": " 偏移 "
+        }
+      ]
+    },
+    "gold_by_construction": {
+      "E7-0": "D195",
+      "E7-1": "UNKNOWN",
+      "E7-2": "UNKNOWN",
+      "E7-3": "D309",
+      "E7-4": "UNKNOWN",
+      "E7-5": "UNKNOWN",
+      "E7-6": "D512",
+      "E7-7": "UNKNOWN",
+      "E7-8": "UNKNOWN",
+      "E7-9": "D540",
+      "E7-10": "UNKNOWN",
+      "E7-11": "UNKNOWN"
+    },
+    "support": false
+  }
+]

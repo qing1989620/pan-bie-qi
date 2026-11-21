@@ -1,0 +1,361 @@
+\documentclass[final,5p,twocolumn,10pt]{elsarticle}
+\usepackage[UTF8,fontset=fandol,heading=true]{ctex}
+\usepackage{geometry}
+\geometry{reset,a4paper,left=17mm,right=17mm,top=19mm,bottom=20mm,headheight=14pt,headsep=5mm,footskip=10mm}
+\usepackage{amsmath,amssymb,booktabs,array,tabularx,fancyhdr,xurl,flushend}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[unicode,colorlinks,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\setlength{\columnsep}{7mm}
+\setlength{\parskip}{2pt}
+\setlength{\dbltextfloatsep}{13pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{11pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{11pt plus 2pt minus 2pt}
+\setlength{\emergencystretch}{2em}
+\setcounter{topnumber}{3}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\topfraction}{.87}
+\renewcommand{\dbltopfraction}{.82}
+\renewcommand{\textfraction}{.10}
+\linespread{1.10}
+\raggedbottom
+\ctexset{section={format=\large\bfseries,beforeskip=10pt,afterskip=5pt},subsection={format=\normalsize\bfseries,beforeskip=8pt,afterskip=4pt}}
+\renewcommand{\tablename}{表}
+\renewcommand{\refname}{参考文献}
+\abstracttitle{摘要}
+\keywordtitle{关键词}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\code}[1]{\texttt{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize 开源 Skill 判别器与配对验收}
+\fancyhead[R]{\footnotesize 学位课题扩展论文 · 2026-11-21}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\makeatletter
+\def\ps@pprintTitle{\ps@fancy}
+\makeatother
+
+\begin{document}
+\begin{frontmatter}
+\title{面向开源链接的 Skill 效果判别器\\版本证据、任务契约与同预算对照}
+\author{开源 Skill 判别器课题研究}
+\journal{独立判别器研究报告}
+
+\begin{abstract}
+开源 Skill 的使用者需要了解其功能和前置条件，并判断在自己的任务上能否带来收益。本文实现了由链接定位版本、依据任务契约验收产物、展示有无 Skill 配对结果的判别器。在一个真实开源工位标签归一化 Skill 的 32 个构造输入上，两种条件共生成 64 份实际模型产物。以生成时独立登记的答案为参照，规则验收器判对 64/64，Flash 直接评审判对 39/64 并误放行 23 份，Pro 补评后 62 个有效判断全对、2 个缺失。去掉工位条件会误拒绝 15 份正确产物，放宽多匹配规则或跳过无匹配检查各误放行 16 份。该 Skill 全部输入由 15/32 提高至 16/32，留出输入两组均为 8/16。对 SkillAudit 发布档案复算 1277 个技能环境分并找回 279 个被发布分记为零的负增益。对 1185 个共有记录的技能环境组合，保留负增益后，同样复查 237 组能找到 29 个回退，发布分找到 18 个，SkillTester 公式移植找到 30 个。本方法的增益平均误差高于发布分。独立任务验收进一步显示，加入环境信息的扩展模型增加了概率误差。研究验证了特定契约内的准确验收、可解释的回退证据与产品接入，泛化到新 Skill 和新环境的效果仍受实测覆盖限制。
+\end{abstract}
+\begin{keyword}
+Agent Skill \sep 效果判别 \sep 任务契约 \sep 配对对照 \sep 反例 \sep 开源生态
+\end{keyword}
+\end{frontmatter}
+
+\section{研究问题与贡献}
+
+用户取得一个开源 Skill 链接后，要先弄清它可以做什么、依赖什么，再决定是否值得纳入工作流。Skill 的说明、脚本和资源可能随提交改变。同一份说明在一个模型上能补足程序知识，在另一个模型已经会做的任务上只会增加上下文。在高基线通过率下，绝对结果正确也可能只说明基础模型已具备相应能力。因而本文把功能正确性与 Skill 的额外贡献作为两个可分别检验的问题。
+
+本文回答三个问题。第一，判别器在给定任务契约时能否准确区分正确和错误产物，哪些检查产生了差异。第二，能否对用户给出有明确适用范围的采用结论，并指出失败发生在哪类输入。第三，用相同试跑预算判断新任务时，与公开强基线各有什么优势和劣势。为此，本文构建链接与证据的版本绑定，比较真实开源 Skill 的有无说明两组，增加对产物验收器的组件消融，并复算公开记录及留出预测。各研究问题各用其可复核的观测量。
+
+实际部署要同时考虑答案正确性和成本。自建效用试验使用只生成文本产物的任务，报告功能、回退和开销。产品覆盖、静态配置检查和模型输出验收采用不同分母，归档复算也保留原始运行来源。
+
+\section{相关工作与比较口径}
+
+SkillAudit 从开放包构造与其能力对齐的测试，用沙箱执行、配对效用、成本统计和语义验收形成评估报告\cite{audit,portrait}。SkillTester 在功能收益之外引入实际调用门控和时间、token 效率\cite{tester,testerspec}。这两项工作与本文的采用问题最接近。公开材料分别支持固定版本的计分复现和效用公式的共同数据比较。
+
+OpenSkillEval 动态构建演示文稿、前端、海报、数据可视化和报告任务，公开研究涵盖 600 余项任务、30 个 Skill，显示效果随模型和框架变化\cite{open}。ACES 则把任务验收、运行轨迹与仓库版本纳入持续评估，主实验有 58 个生产 Skill 的 947 个得分配对，覆盖四种主要宿主\cite{aces}。NVIDIA 的 SkillEvaluator 提供相应工具及更大规模的产品评估材料\cite{nvidia}。两者为扩大工作流与宿主覆盖提供了参照。
+
+SkillsBench 以标准化任务和可执行验收器提供对照轨迹\cite{skillsbench,archive}。SkillCT 的九维质量画像着重于不运行目标 Skill 的规模化估计，参考库含 4098 个 Skill，并在另 3050 个 Skill 上评估\cite{skillct}。SkillDelta 研究如何根据少量相似历史任务决定是否启用指定 Skill\cite{delta,deltacode}。本文复用其公开预测核心比较局部采用决策。不同工作报告的总体增益来自不同任务、样本和验收规则，下文用共同样本上的指标评价可直接核验的差异。
+
+\section{判别方法}
+
+\subsection{固定版本和能力声明}
+
+把可评估快照记为 $L=(r,c,p,h)$，其中 $r$ 为仓库标识，$c$ 为提交，$p$ 为仓库内文件路径，$h$ 为原始 \code{SKILL.md} 的 SHA-256。导入器解析 GitHub 链接，在可能时固定提交、清点 Skill 包文件并读取受支持的文本资源。仓库存在多个候选时先列出可选目录。若只取得直接文档，报告说明目录与其他资源覆盖范围。功能简介取自声明，并同时显示所需文件、配置和环境。通用格式依据 Agent Skills 开放规范\cite{spec}。
+
+服务端将 $L$ 与登记记录的仓库、提交、路径和字节指纹逐一核对，并核对本次检查的文档指纹。只有一致时才展示该版本对应的配对结果和失败样本。代码经变更、同名仓库、不同 Skill 路径均独立对待。报告在标注能力时还指明试验主要覆盖说明加载、真实脚本运行还是只读包检查，使用者可据此检查其需求是否落在已有证据范围内。
+
+\begin{table}[!t]
+\centering\small
+\caption{产品证据与用户可用结论。}
+\label{tab:evidence}
+\begin{tabularx}{\columnwidth}{@{}p{.25\columnwidth}Y@{}}
+\toprule
+证据来源 & 可给出的结论 \\
+\midrule
+说明、清单、声明 & 描述用途、入口及依赖，指明未读取或待配置的资源。 \\
+任务契约和产物 & 给出产物是否通过，记录违反的规则、输入和输出。 \\
+精确版本的配对记录 & 给出两组通过数、变化、回退案例及测试环境。 \\
+无匹配实测 & 显示已取得的材料与配置条件，效果待验证。 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{可计算的任务契约}
+
+以任务输入 $x$、运行环境 $e$ 及可执行验收函数 $V$ 规定结论适用范围。对于可计算的任务，$V(x,y)$ 判断产物 $y$ 是否满足规则，并返回未满足条件的见证。以工位故障标签归一化为例，$x$ 含事件表与故障编码表。对第 $j$ 个事件，依次以工位许可和规范化后的别名精确匹配筛选编码条目。令 $\mathcal{C}_j$ 为合格条目列表，则期望输出为
+\begin{equation}
+ q_j=\begin{cases}
+ c_j,& |\mathcal{C}_j|=1,\\
+ \code{UNKNOWN},& |\mathcal{C}_j|=0\text{ 或 }|\mathcal{C}_j|>1.
+ \end{cases}
+ \label{eq:contract}
+\end{equation}
+这里 $c_j$ 为唯一条目的编码。别名规范化仅去除首尾空白并折叠大小写，字符串按全长比较。输出的 JSON 顶层仅有 \code{result}，事件 ID 齐备，无多余项。所有事件与式\eqref{eq:contract}相符时，该份产物才通过。拒绝结果记录事件、工位、候选、期望值和实际值，使用者可用原始编码表重算。
+
+该规则的验收正确性由另一个数据生成过程检查。构造数据时为常规、工位交叉、多匹配和零匹配四类输入登记答案，随后打乱事件及编码表顺序。验收器只读取待判产物和输入，按条目重新枚举，既无需读取登记答案，也无需询问模型。该设计对具备确定判据的任务可复核，偏好型文稿或开放式方案仍需要对应任务的验收标准。
+
+\subsection{用配对试验测量采用收益}
+
+固定同一 Skill 快照、输入、模型和验收规则，分别得到无 Skill 产物 $y_i^{(0)}$ 与有 Skill 产物 $y_i^{(1)}$。令 $s_i^{(b)}=V(x_i,y_i^{(b)})\in\{0,1\}$。绝对通过率描述该任务上的可用性，配对增益描述启用前后的变化。对 $n$ 个配对输入，记通过率和平均增益为
+\begin{equation}
+ p_b=\frac{1}{n}\sum_i s_i^{(b)},\qquad \Delta=p_1-p_0.
+ \label{eq:paired}
+\end{equation}
+记录 $n_+$ 为无 Skill 失败、有 Skill 通过的组数，$n_-$ 为相反方向的组数，同一均值下仍可展示各自的失败实例。对多项语义清单的外部数据，先在每项任务内按共同判据计算 $g_t=(a_t-b_t)/N_t$，再按任务等权平均。$a_t,b_t$ 分别为两组通过的判据数，$N_t$ 为该任务的判据总数。增益保留正负号，方便区分改善、持平与回退。
+
+\section{实验设计}
+
+\subsection{真实开源案例与参照评价器}
+
+采用 SkillsBench 中固定仓库提交的工位故障标签归一化说明\cite{publicskill}。每种输入类型构造八项测试，每项含 12 个事件。每类前四项为探针，后四项为留出。两组请求共用用户任务中的同一份精确规则、输入和 JSON 输出约束，使用归档中的 \path{deepseek-flash} 作为处理模型，温度为 0。加入 Skill 的条件加载公开 \code{SKILL.md} 内容。测试聚焦说明对任务产物的贡献，执行环境仅输出 JSON 文本。
+
+对实际生成的 64 份产物，比较当前规则验收、Flash 直接评审、Flash 按步骤复核以及 Pro 强模型评审。两种 Flash 评审接收相同输入与成对产物，交换部分样本的顺序，评审时不给出条件标签和登记答案。Pro 初评后只补评缺失的样本，补评使用更长的输出预算。缺少有效布尔判定时记作缺失。总正确率以全部 64 份为分母，同时报告已回答样本的判对情况。规则消融直接重放固定产物，改变单个验收条件，输入、输出及正确标签均固定。
+
+\subsection{公开强基线与留出预测}
+
+固定 SkillPortrait 提交 \code{349eff1e12cf}，核实索引、汇总及逐技能材料的 Git blob 和 SHA-256。索引 217 个条目中两条 Room 记录无法与详情建立唯一对应关系，排除后覆盖 215 个可识别 Skill、六种模型宿主组合。先复算发布场景分的等权平均，再按逐条语义验收记录重算通过数及带符号增益。报告发布值与重算值相符的计数，舍入容差为 $10^{-4}$。
+
+留出问题是用同一技能环境的 U1、U2 两项试跑预测 U3。1193 个完整三联组按发布来源分五折，同一来源的全部 Skill 和运行配置进入同一折。标准化、权重拟合均只用其余四折。基础概率模型用两个配对增益的均值，扩展模型加入无 Skill 改善空间 $1-\bar p_0$、两次增益的绝对差和环境类别。各逻辑回归用相同的 $L_2$ 正则系数 0.03。评估 Brier 误差，即 $\frac{1}{m}\sum_k(\hat p_k-z_k)^2$，其中 $z_k=\mathbb{1}[g_k>0]$，分数越低越好。对照每次移除一组变量，检验其增量。
+
+发现发布负增益的处理差异后，再用逐条记录的带符号 U3 结果做探索性分析。在 1185 个同时有完整开销数据的组合上，比较发布增益、带符号增益、有 Skill 的通过率及 SkillTester 公开效用公式。后者以 80\% 项目通过为任务成功，使用匹配调用标记，并按论文公式纳入计时和 token 代价。各方法同用两项试跑，每折按分数前 40\% 评估改善命中，后 20\% 评估筛查回退命中。同分使用固定哈希键排序。增益平均绝对误差只计算同量纲的两个均值方法。按来源进行 5000 次成对重采样，区间条件于固定预测和复查名单。
+
+另用 SkillsBench 1.1 固定档案的 21 项良性任务复核。保留 130 组两臂的三个试次均有可比较标签且未超时的记录，前两次提供证据，第三次作目标。以任务为组重新拟合相同方法。样本单位是 Skill 组合与运行环境，标签来自公开任务验收器。分别报告两个数据来源上的相对误差，检验稀疏环境信息是否还能帮助预测。
+
+\section{判别器的实测效果}
+
+\subsection{同一批产物的验收准确性}
+
+\begin{table}[!t]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{64 份产物上的同标签验收。}
+\label{tab:graders}
+\begin{tabularx}{\columnwidth}{@{}Yrrrr@{}}
+\toprule
+评价方法 & 判对 & 误放 & 误拒 & 缺失 \\
+\midrule
+Flash 直接评审 & 39 & 23 & 0 & 2 \\
+Flash 按步骤评审 & 37 & 25 & 0 & 2 \\
+Pro 初评 & 32 & 0 & 0 & 32 \\
+Pro 补评后合计 & 62 & 0 & 0 & 2 \\
+本文的规则验收 & \textbf{64} & \textbf{0} & \textbf{0} & \textbf{0} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+64 份产物中有 31 份符合登记答案，33 份存在错误。表\ref{tab:graders}显示，规则验收完整识别了正确和错误产物。Flash 直接评审只判对 39 份，将 23 份错误产物判为通过。把工位、别名与歧义步骤明确写进提示后，实际误放行数为 25，提示中列出规则未使这批评审获得相同的逐条检查能力。Pro 补评后 62 个有效判断均正确，剩余两个缺失，说明强模型可达到较高的有效判断准确率，本规则方案的进一步优势是在这个任务上给出了完整的判定与确定的失败见证。
+
+这一比较的 64 份是 32 个输入各两组生成产物。判断一致性只对应一个数据契约、一个公开 Skill 和一组固定产物，不能作为跨领域质量准确率的估计。它支持在有严格答案标准的任务上优先采用可计算验收，并把适用范围写到证据中。
+
+\subsection{规则消融定位了准确性的来源}
+
+\begin{table}[!t]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{从同一批固定产物移除具体检查。}
+\label{tab:contract-ablation}
+\begin{tabularx}{\columnwidth}{@{}Yrrr@{}}
+\toprule
+验收配置 & 判对（64） & 误放 & 误拒 \\
+\midrule
+当前完整验收 & 64 & 0 & 0 \\
+忽略工位限制 & 49 & 0 & 15 \\
+多匹配时允许任选 & 48 & 16 & 0 \\
+无匹配时跳过验收 & 48 & 16 & 0 \\
+仅检查产物中出现的事件 & 64 & 0 & 0 \\
+只核验格式与事件 ID & 31 & 33 & 0 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+表\ref{tab:contract-ablation}给出相同标签上的逐项消融。忽略工位后，其他工位同别名的条目也被计入候选，同词不同工位组原本唯一匹配的 15 份正确产物被误拒绝。放宽多匹配要求，使带有任一合法候选、却没有按任务要求返回未知的 16 份产物被误放。跳过无匹配事件，也误放了另一类 16 份产物。这两项检查对应有多个依据和没有依据时的两种边界判断。
+
+去掉精确事件集合检查，在这批产物上未改变正确数。只检查 JSON 格式与事件 ID 时，33 份错误产物仍能通过。因此，该样本中观察到的提升来自语义规则覆盖。结构约束仍用于定义接口正确性，它的独立收益需要含缺失或额外事件的产物来测量。当前验收检查解析后的键集合，原始 JSON 中的重复键需要在解析时单独验证。消融按原样重放记录，使用同一批模型输出。
+
+\subsection{真实 Skill 有效到什么程度}
+
+\begin{table}[!t]
+\centering\small\setlength{\tabcolsep}{3pt}
+\caption{读入公开 Skill 说明的配对结果。}
+\label{tab:actual}
+\begin{tabularx}{\columnwidth}{@{}Yrrr@{}}
+\toprule
+测试输入 & 无 Skill & 有 Skill & 改善/回退 \\
+\midrule
+常规单一匹配 & 8/8 & 8/8 & 0/0 \\
+同词不同工位 & 7/8 & 8/8 & 1/0 \\
+同一工位多码 & 0/8 & 0/8 & 0/0 \\
+无合法匹配 & 0/8 & 0/8 & 0/0 \\
+全体 & 15/32 & 16/32 & 1/0 \\
+留出输入 & 8/16 & 8/16 & 0/0 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+该 Skill 的 32 个输入只有一个改善，来自同词跨工位条件，配对净增益为 3.125 个百分点。按输入进行的描述性重采样区间为 $[0,9.375]$ 个百分点，留出输入两组均 8/16。若只测常规及跨工位输入，有 Skill 一组为 16/16。纳入同工位多码及无合法匹配后，这两类共 16 项全部失败，总通过变为 16/32。决定可用范围的关键证据是不同输入类别的验收结果和可回查的失败条件。
+
+例如 \code{ambiguous-0} 的事件 \code{E0-8} 位于 \code{S25}，归一化后同时匹配 \code{D134} 与 \code{D883}。模型取了 \code{D883}，契约需要输出 \code{UNKNOWN}。报告展示两条候选和具体差异。这个反例能直接转为修改或复测用例。同一工位出现多个编码时，现有 Skill 在所测模型与输入中的结果需要人工复核。普通且唯一匹配时，两组均通过 8/8，已经满足需求的基础模型留给 Skill 的改进空间较小。
+
+\subsection{相同通过率下的执行开销}
+
+在留出之前以各类四个探针制定启用规则，至少两例改善且零回退时启用。探针中没有一个输入类型满足该门槛。事后用相同探针作为历史，把 SkillDelta 作者预测核心接入 TF-IDF 比较。该基线启用 4 次，当前规则为 0 次。两侧留出结果同为 8/16，所选执行端分别消耗 17570 和 14058 token，后者约低 20.0\%。始终启用同样通过 8/16，消耗 28106 token。开销只计已记录执行端的 token，历史材料收集和评审开销另计。此结果说明在这一小批留出输入中暂缓启用省去了实际开销，适用范围是本测试条件。
+
+\section{公开强基线的复现与同预算对照}
+
+\begin{table*}[!t]
+\centering\small
+\caption{SkillAudit 计分复算。分母为各层有可比较证据的条目。}
+\label{tab:replay}
+\begin{tabularx}{\textwidth}{@{}Yrrrr@{}}
+\toprule
+模型与宿主 & 有效场景 & 场景逐项重算一致 & 发布均分复算一致 & 逐项复算技能分一致 \\
+\midrule
+Claude Code / Sonnet 4 & 624 & 564/624 & 211/211 & 167/211 \\
+Claude Code / Sonnet 4.6 & 582 & 550/582 & 209/209 & 180/209 \\
+Codex / GPT-5.1 & 644 & 588/644 & 215/215 & 168/215 \\
+Codex / GPT-5.4 & 631 & 599/631 & 215/215 & 185/215 \\
+OpenCode / Sonnet 4.6 & 621 & 578/621 & 214/214 & 184/214 \\
+OpenCode / GPT-5.4 & 628 & 572/628 & 213/213 & 172/213 \\
+\textbf{合计} & 3730 & 3451/3730 & 1277/1277 & 1056/1277 \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\begin{table*}[!t]
+\centering\small
+\caption{1185 个共同记录组合上的效果筛查。各方法使用同样两项试跑，第三项按逐项记录确定改善或回退。}
+\label{tab:effect-compare}
+\begin{tabularx}{\textwidth}{@{}Yrrrr@{}}
+\toprule
+方法 & 前排改善（474） & 前排回退（474） & 复查回退（237） & 增益 MAE（百分点） \\
+\midrule
+只看有 Skill 的通过比例 & 246 & 19 & 40 & 不适用 \\
+SkillAudit 发布增益 & 319 & 34 & 18 & 23.15 \\
+SkillTester 公式移植 & 285 & 28 & 30 & 不适用 \\
+逐项验收的带符号增益 & 318 & 31 & 29 & 24.73 \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection{发布计分复现与负增益审计}
+
+表\ref{tab:replay}显示，按发布场景分求均值，1277 个可比较的技能环境分均能复算，与发布 CSV 一致。从 3730 个有效场景的逐条验收重数双方通过项，也与报告计数一致。按论文带符号公式计算，3451 个场景匹配公开场景分。其余 279 个场景的逐项增益均为负，发布场景分为零，占全部有效场景的 7.48\%。对场景增益施加零下限可匹配该固定档案的全部发布场景分。
+
+例如 \path{academic-paper-review} 在 Codex / GPT-5.1 的 U1 场景中，无 Skill 通过 4/6 项，有 Skill 通过 0/6 项，发布分为零，逐项结果对应 $-66.7$ 个百分点。档案中的零因而同时包含真正持平和可观测的下降。SkillAudit 论文公式本身允许负值，本研究定位的是固定发布档案中的计分差异。把原始分保留到用户结论，能指出下降的输入条件和两个实际计数。
+
+固定档案的 Codex / GPT-5.4 包含 631 个有效场景，Skill 平均发布 PRG 为 0.2011。论文表 3 对应 643 个场景，报告 0.183。两者来自不同公开口径。本研究复现固定发布档案的计分与汇总，运行条件、输出轨迹和语义评审沿用作者材料。
+
+\subsection{回退筛查更敏感，增益点预测仍弱}
+
+1185 个完整组合来自 50 个 Skill 来源，留出场景有 608 个改善、88 个回退。以表\ref{tab:effect-compare}相同复查预算进行比较，保留符号后找到 29 个回退，较发布增益找到的 18 个多 11 个。命中率提高 4.64 个百分点，按来源聚类重采样的 95\% 区间为 $[1.30,7.55]$ 个百分点。保留负增益使此前观察到的下降进入排序，适合优先复查潜在回退。SkillTester 公式找到 30 个回退。只看有 Skill 的通过比例找到 40 个，其前排名单中的改善只有 246 个，反映出绝对低质量筛查和增益排序的侧重点差异。
+
+带符号增益的前 474 项有 318 项真正改善，发布分有 319 项，SkillTester 公式有 285 项。SkillTester 另重视时间和 token，因此这一目标只比较纯功能改善。带符号均值的增益平均绝对误差为 24.73 个百分点，发布均值为 23.15 个百分点。两者相差 1.57 个百分点，95\% 区间为 $[0.66,2.47]$。已有回退对于之后风险排序有信息，直接传播两个探针的原始差值仍可能使未见任务的数值波动增大。
+
+独立验收的 130 组有 21 个改善、7 个回退。对试跑分人为施加零下限作为受控基线，同样复查 25 项，回退命中由 1 个增至 4 个，两种计算的 MAE 均为 22.31 个百分点。该结果的回退数量较少，只用于方向复核。对照中的零下限由研究设置，SkillsBench 的原始发布标签保持原样。
+
+\begin{table*}[!t]
+\centering\small
+\caption{扩展预测器的来源留出消融。Brier 误差越低越好，最右栏是独立任务验收。}
+\label{tab:ablation}
+\begin{tabularx}{\textwidth}{@{}Yrrr@{}}
+\toprule
+预测方法 & 发布场景（1193 组） & 公式一致子集（990 组） & SkillsBench（130 组） \\
+\midrule
+训练折的改善比例 & 0.2536 & 0.2509 & 0.1400 \\
+只看有 Skill 的通过比例 & 0.2523 & 0.2526 & 0.1366 \\
+两次配对增益，拟合概率 & 0.2335 & 0.2284 & 0.1206 \\
+加入余量、探针波动与环境 & 0.2319 & 0.2276 & 0.1555 \\
+移除无 Skill 改善空间 & 0.2314 & 0.2266 & 0.1538 \\
+移除探针波动 & 0.2327 & 0.2276 & 0.1532 \\
+移除环境信息 & 0.2337 & 0.2297 & 0.1240 \\
+只使用环境信息 & 0.2515 & 0.2472 & 0.1734 \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection{额外预测特征的泛化检验}
+
+在 1193 个完整发布三联组上，将无 Skill 改善空间、探针波动与环境加入配对均值后，Brier 只下降 0.0015，成对差值区间为 $[-0.0044,0.0035]$。要求发布值与带符号公式一致的 990 组子集中，两种方法复查 396 项时各命中 283 个正增益。该子集按定义排除了含截断回退的三联组，预测结果与表\ref{tab:effect-compare}的回退筛查应分别解释。
+
+相比之下，在独立任务验收的 130 组上，扩展模型误差为 0.1555，高于配对基线的 0.1206，差值 0.0349，95\% 区间为 $[0.0077,0.0663]$。移除环境信息后回到 0.1240。余量与探针波动的消融在表\ref{tab:ablation}中的表现更接近扩展模型。在当前样本量上，环境指示变量的加入与最大的外部误差增加相关。公开数据的运行配置不代表实测用户环境的分布，简单配对增益目前提供更稳妥的参照。
+
+\section{产品验证与公开强方法的差距}
+
+\subsection{用链接核查效果和失败范围}
+
+在同一本地网页验收中，读入工位标签 Skill 的固定链接，报告复用该版本的 32 项配对记录，突出显示留出两组均为 8/16，并可展开事件失败原因。导出的 JSON 与页面使用相同的证据指纹。另以 Anthropic PDF Skill 的公开目录作未知版本对照\cite{anthropic}。页面读取了 12 个文件，展示包材料，实际效果显示待验证。仓库、提交、路径或原始字节变更都通过了相应版本绑定测试。这个验证体现了用户粘贴链接时可获得的结论及其边界。
+
+补充的只读接入样本来自三个社区仓库，共 30 个包，其中 3 个出现可确认的包问题，7 个产生需要复核的能力线索。样本没有人工正确标签与配对执行，计数仅反映检查发现和覆盖范围。当前网页实测登记覆盖一个公开 Skill 版本，扩展到任意链接仍需要相应的任务、环境和独立验收器。
+
+\begin{table*}[!t]
+\centering\small
+\caption{主要工作与本研究的已验证对照范围。各文献规模是其本身的实验口径。}
+\label{tab:related-scope}
+\begin{tabularx}{\textwidth}{@{}p{.17\textwidth}YY@{}}
+\toprule
+公开方法 & 能解决的问题 & 本研究可对照的结论 \\
+\midrule
+SkillAudit / SkillPortrait\cite{audit,portrait} & 面向真实 Skill 构造配对任务，并报告功能、开销及安全。 & 固定档案中复算 1277 个发布分，找回 279 个回退。共同预算下回退筛查有改进，增益数值预测较弱。 \\
+SkillTester\cite{tester,testerspec} & 考虑实际调用、任务完成及执行成本的综合效用。 & 公式移植后，本文方法在纯功能改善筛查中命中更多，其回退命中略低于该基线。 \\
+OpenSkillEval\cite{open} & 多应用、动态任务和模型框架配置下的社区 Skill 实验。 & 本文验证固定版本的证据接入，实验任务与应用覆盖仍较窄。 \\
+ACES / SkillEvaluator\cite{aces,nvidia} & 真实仓库和多宿主运行的任务验收、轨迹与持续评估。 & 公开研究的覆盖规模更大。本文验证了一个公开 Skill 的契约准确性与可回查反例。 \\
+SkillCT\cite{skillct} & 通过参考库估计新 Skill 的多维度质量。 & 本文的高置信效果判断依赖精确匹配的实测，新链接主要提供结构、依赖和任务适用说明。 \\
+SkillDelta\cite{delta,deltacode} & 依据相似历史任务预测指定 Skill 的收益。 & 相同探针的局部留出回放中，本文规则与作者核心的移植均通过 8/16，启用次数分别为 0 和 4。 \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection{比较可以支持的产品结论}
+
+表\ref{tab:related-scope}分别给出同数据对照和覆盖规模参照。当前最可靠的优势来自可计算任务契约：能稳定判定输出、列出失败证据，并区分任务本身完成与 Skill 带来的改善。归档回退的识别改进来自保留观测差值。与端到端平台的主要差距落在运行适配、独立任务验收覆盖及新版本的实测获取。单一绝对分会混合这几种能力，产品展示应让读者看到结论所依赖的证据等级。
+
+\section{讨论}
+
+\subsection{可信性来自可复核的判据与可见反例}
+
+本文用事前登记的输出答案和独立执行的枚举规则检查同一批产物。移除工位或歧义等条件后，定向变化的误放与误拒支持规则检查的解释路径。答案能复核、样本和版本可定位，意味着用户可以重验特定结论。将多匹配与无匹配置于独立分组则使能力边界可见。对于有开放解的任务，契约和验收证据需要相应设计，例如记录可计算属性、规范约束或独立评审的分歧。
+
+\subsection{样本、环境与成本边界}
+
+生成产物来自一个公开说明、一个主要处理模型及四类构造输入。评分比较测量产物验收，对于模型在真实工具调用中的行为还需进一步试验。独立验收复核来自完整且无超时的档案，排除缺失可能改变样本难度。来源和任务重采样处理了同组相关性，区间对已训练预测和已有筛查名单成立。发布语义项目及独立任务验收分别提供产品决策所需的不同证据。
+
+成本优势目前来自受控的启用策略回放。比较记录的是执行端开销，随着试跑数量、API 依赖、自动任务构造及验收侧成本增加，整体节省比例需要重新测量。对于跨领域性能和覆盖率，后续的确认性检验应固定新的 Skill 版本、独立收集多领域任务及两个以上宿主，并记录未知比例、准确性、误放行成本和证据取得时间。已有消融说明环境特征必须经过这样的来源外检验后才能成为产品判断依据。
+
+\section{结论}
+
+在固定版开源 Skill 的可计算任务中，判别器获得完整且可回查的产物验收，三个关键语义检查分别防止工位误拒、歧义误放和零匹配误放。配对留出结果表明该 Skill 在当前任务上未显示稳定的额外收益。大规模档案对照验证了回退记录的重要性，也揭示了收益点预测及跨环境泛化的不足。版本绑定、规则验收及介入前后证据已经进入产品原型。完整的开放生态判别需要扩大真实任务覆盖和来源外验证。
+
+\section*{复核材料}
+
+独立仓库在 \href{https://github.com/qing1989620/pan-bie-qi}{qing1989620/pan-bie-qi}。随包数据目录为 \path{src/skill_discriminator/data}。其中 \path{codebook-cases.json} 保存冻结输入与登记答案，\path{codebook-outcomes.json} 保存配对产物，\path{codebook-ablation.json} 保存规则消融的逐条判定。
+
+安装后用 \code{python -m} 启动模块 \path{skill_discriminator.verify}，核验归档指纹并重算通过数和留出结果。公开基线对照汇总在 \path{utility-study.json}，固定原始档案由文献链接提供。网页和 API 启动方式见仓库 README。产物复核在本地执行独立规则，新增模型调用为零。
+
+\clearpage
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{audit} Yu D, Li Y, Guan Z, et al. SkillAudit: From Fixed-Suite Benchmarking to Skill-Centered Assessment. arXiv:2606.22613v1, 2026. \href{https://arxiv.org/abs/2606.22613v1}{论文}.
+\bibitem{portrait} SkillAudit 项目. SkillPortrait Artifacts. Git 提交 \code{349eff1e12cf}, 2026. \href{https://github.com/SkillAudit/skillaudit/tree/349eff1e12cf6f210aa9b865a9e865b948b5a89b/docs/artifacts/data}{归档}.
+\bibitem{tester} Wang L, Wang Z, Xu A. SkillTester: Benchmarking Utility and Security of Agent Skills. arXiv:2603.28815, 2026. \href{https://arxiv.org/abs/2603.28815}{技术报告}.
+\bibitem{testerspec} SkillTester 项目. Skill Benchmark Spec, v2.1. \href{https://github.com/skilltester-ai/skilltester/blob/main/AgentKit/Skill_Benchmark_Spec/Skill_Benchmark_Spec.md}{任务规范}.
+\bibitem{open} Ying J, Ai B, Tang W, Liu S, Cao Y. OpenSkillEval: Automatically Auditing the Open Skill Ecosystem for LLM Agents. Findings of EMNLP, 2026. \href{https://aclanthology.org/2026.findings-emnlp.1554/}{正式论文}.
+\bibitem{aces} Kevin C, Raghavan N, Puget J-F, et al. Evaluating Skills, Not Just Agents: Agentic Continuous Evaluation of Skills. arXiv:2608.20614v1, 2026. \href{https://arxiv.org/abs/2608.20614v1}{论文}.
+\bibitem{nvidia} NVIDIA. Evaluating AI Agent Skill Performance with NVIDIA SkillEvaluator. NVIDIA Technical Blog, 2026. \href{https://developer.nvidia.com/blog/evaluating-ai-agent-skill-performance-with-nvidia-skillevaluator/}{发布与基准结果}.
+\bibitem{skillsbench} Li X, Liu Y, Chen W, et al. SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks. arXiv:2602.12670, 2026. \href{https://arxiv.org/abs/2602.12670}{论文}.
+\bibitem{archive} BenchFlow. SkillsBench Leaderboard and Selected Trials, 1.1. Git 提交 \code{f104580363a9}. \href{https://huggingface.co/datasets/benchflow/skillsbench-leaderboard/tree/f104580363a9642563593c475620196ecd36687d}{固定发布档案}.
+\bibitem{skillct} Sun M, Zhou Z, Yang Z, Zhang Y. SkillCT: A Multidimensional Benchmark and Execution-Free Baseline for Agent Skill Assessment. arXiv:2610.38147v1, 2026. \href{https://arxiv.org/abs/2610.38147v1}{论文}.
+\bibitem{delta} Xu A, Zhang Z, Ding R, Xu F, Wang L. When Does a Skill Add Value? Task-Conditional Gain Prediction for Selective Skill Use. arXiv:2609.32274, 2026. \href{https://arxiv.org/abs/2609.32274}{论文}.
+\bibitem{deltacode} SkillDelta 项目. 公开预测实现，Git 提交 \code{bc6c11acdbb4}. \href{https://github.com/TankTechnology/skilldelta/tree/bc6c11acdbb487c321e3a50b33a94067143c436f}{固定实现}.
+\bibitem{spec} Agent Skills 开放规范. \href{https://agentskills.io/specification}{格式与发现}.
+\bibitem{publicskill} BenchFlow. 工位故障标签归一化 Skill. 提交 \code{27738384b1df}. \href{https://github.com/benchflow-ai/skillsbench/blob/27738384b1df694ea2ae466e416f476e94d8fab9/tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md}{公开说明}.
+\bibitem{anthropic} Anthropic. PDF Skill. \href{https://github.com/anthropics/skills/tree/main/skills/pdf}{公开目录}.
+\end{thebibliography}
+
+\end{document}

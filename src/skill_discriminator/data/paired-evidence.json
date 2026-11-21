@@ -1,0 +1,820 @@
+{
+  "schema": "skill-adoption-evidence-v1",
+  "profiles": [
+    {
+      "repository": "benchflow-ai/skillsbench",
+      "commit": "27738384b1df694ea2ae466e416f476e94d8fab9",
+      "skill_path": "tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md",
+      "skill_doc_sha256": "3aba5be4d0f33208d296198fef4bad8816d191bbdd3ec8594cda1de7aab055f0",
+      "url": "https://github.com/benchflow-ai/skillsbench/blob/27738384b1df694ea2ae466e416f476e94d8fab9/tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md",
+      "model": "deepseek-flash",
+      "contract": "Normalize the manufacturing issue labels using the supplied product codebook only. For each event, keep entries allowing the event's station (stations=null allows any). Match the complete signal string to a listed alias after trimming both ends and case-folding. Return the unique eligible matching code. Return UNKNOWN for zero matches or several matches. Do not use fuzzy, substring, or cross-station matches. Return JSON with exactly one field result, an object from every event id to its code. No other fields.",
+      "profile_version": "codebook-exact-v1",
+      "result": {
+        "stratum": "all",
+        "title": "合计",
+        "scope": "all",
+        "pairs": 32,
+        "without_passed": 15,
+        "with_passed": 16,
+        "beneficial": 1,
+        "harmful": 0,
+        "net_gain": 0.03125,
+        "support_decision": null
+      },
+      "holdout": {
+        "stratum": "all",
+        "title": "留出输入",
+        "scope": "holdout",
+        "pairs": 16,
+        "without_passed": 8,
+        "with_passed": 8,
+        "beneficial": 0,
+        "harmful": 0,
+        "net_gain": 0,
+        "support_decision": null
+      },
+      "gain_bootstrap95": [
+        0.0,
+        0.09375
+      ],
+      "raw_outcomes_sha256": "596022fe430f67992e79f7852162d44ef73680cb6254d8947d77d84dafa41da1",
+      "protocol_sha256": "aeeaae0b846827b912410c9e38360498499d6b4cee5606c98d0202aced7025cd",
+      "title": "工位约束下的故障标签归一",
+      "scope": "DeepSeek Flash 文本模式。使用公开 SKILL.md 和合成工位、别名数据，实测四类输入。未覆盖原 SkillsBench 的完整程序任务。",
+      "assessment": "有无 Skill 在留出输入上的通过数相同。可复核当前任务的成功和失败样本，收益仍需更多数据。",
+      "strata": [
+        {
+          "stratum": "unambiguous",
+          "title": "常规单一匹配",
+          "scope": "all",
+          "pairs": 8,
+          "without_passed": 8,
+          "with_passed": 8,
+          "beneficial": 0,
+          "harmful": 0,
+          "net_gain": 0,
+          "support_decision": {
+            "support_pairs": 4,
+            "benefits": 0,
+            "harms": 0,
+            "enable": false
+          }
+        },
+        {
+          "stratum": "station",
+          "title": "同词在不同工位",
+          "scope": "all",
+          "pairs": 8,
+          "without_passed": 7,
+          "with_passed": 8,
+          "beneficial": 1,
+          "harmful": 0,
+          "net_gain": 0.125,
+          "support_decision": {
+            "support_pairs": 4,
+            "benefits": 1,
+            "harms": 0,
+            "enable": false
+          }
+        },
+        {
+          "stratum": "ambiguous",
+          "title": "同工位多码",
+          "scope": "all",
+          "pairs": 8,
+          "without_passed": 0,
+          "with_passed": 0,
+          "beneficial": 0,
+          "harmful": 0,
+          "net_gain": 0,
+          "support_decision": {
+            "support_pairs": 4,
+            "benefits": 0,
+            "harms": 0,
+            "enable": false
+          }
+        },
+        {
+          "stratum": "unlisted",
+          "title": "无合法匹配",
+          "scope": "all",
+          "pairs": 8,
+          "without_passed": 0,
+          "with_passed": 0,
+          "beneficial": 0,
+          "harmful": 0,
+          "net_gain": 0,
+          "support_decision": {
+            "support_pairs": 4,
+            "benefits": 0,
+            "harms": 0,
+            "enable": false
+          }
+        }
+      ],
+      "boundary_examples": [
+        {
+          "id": "ambiguous-0",
+          "stratum": "ambiguous",
+          "without_accepted": false,
+          "with_accepted": false,
+          "with_failure": [
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E0-8",
+                "station": "S25",
+                "signal": " LOOSE LABEL "
+              },
+              "eligible_codes": [
+                "D134",
+                "D883"
+              ],
+              "expected": "UNKNOWN",
+              "actual": "D883"
+            },
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E0-1",
+                "station": "S4",
+                "signal": " 颜色 "
+              },
+              "eligible_codes": [
+                "D232",
+                "D825"
+              ],
+              "expected": "UNKNOWN",
+              "actual": "D825"
+            }
+          ]
+        },
+        {
+          "id": "ambiguous-1",
+          "stratum": "ambiguous",
+          "without_accepted": false,
+          "with_accepted": false,
+          "with_failure": [
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E1-7",
+                "station": "S22",
+                "signal": " 压痕 "
+              },
+              "eligible_codes": [
+                "D677",
+                "D682"
+              ],
+              "expected": "UNKNOWN",
+              "actual": "D682"
+            },
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E1-4",
+                "station": "S13",
+                "signal": " 偏移 "
+              },
+              "eligible_codes": [
+                "D498",
+                "D853"
+              ],
+              "expected": "UNKNOWN",
+              "actual": "D853"
+            }
+          ]
+        },
+        {
+          "id": "unlisted-0",
+          "stratum": "unlisted",
+          "without_accepted": false,
+          "with_accepted": false,
+          "with_failure": [
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E0-11",
+                "station": "S34",
+                "signal": " NEAR 毛边 "
+              },
+              "eligible_codes": [],
+              "expected": "UNKNOWN",
+              "actual": "D192"
+            },
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E0-8",
+                "station": "S25",
+                "signal": " NEAR LOOSE LABEL "
+              },
+              "eligible_codes": [],
+              "expected": "UNKNOWN",
+              "actual": "D636"
+            }
+          ]
+        },
+        {
+          "id": "unlisted-1",
+          "stratum": "unlisted",
+          "without_accepted": false,
+          "with_accepted": false,
+          "with_failure": [
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E1-5",
+                "station": "S16",
+                "signal": " NEAR DARK SPOT "
+              },
+              "eligible_codes": [],
+              "expected": "UNKNOWN",
+              "actual": "D711"
+            },
+            {
+              "rule": "station_and_alias_eligibility",
+              "event": {
+                "id": "E1-11",
+                "station": "S34",
+                "signal": " NEAR LOOSE LABEL "
+              },
+              "eligible_codes": [],
+              "expected": "UNKNOWN",
+              "actual": "D542"
+            }
+          ]
+        }
+      ],
+      "records": "src/skill_discriminator/data/codebook-outcomes.json",
+      "method": "工位允许范围、去除首尾空格后的别名精确匹配和唯一性。零个或多个合法候选输出 UNKNOWN。",
+      "holdout_execution_cost": {
+        "always_none": {
+          "used": 0,
+          "passed": 8,
+          "execution_tokens": 14058,
+          "results": 16
+        },
+        "always_skill": {
+          "used": 16,
+          "passed": 8,
+          "execution_tokens": 28106,
+          "results": 16
+        },
+        "official_skilldelta_tfidf": {
+          "used": 4,
+          "passed": 8,
+          "execution_tokens": 17570,
+          "results": 16
+        },
+        "frozen_stratum_rule": {
+          "used": 0,
+          "passed": 8,
+          "execution_tokens": 14058,
+          "results": 16
+        }
+      }
+    }
+  ],
+  "experiments": {
+    "skillsbench": {
+      "paper_aggregate_from_18_official_score_rows": {
+        "configuration_rows": 18,
+        "reference_trial_slots": 9396,
+        "without_pct": 33.916666666666664,
+        "with_pct": 50.52777777777778,
+        "lift_pp": 16.611111111111114,
+        "paper_rounded_values_matched": true
+      },
+      "raw_non_timeout_ledger": {
+        "rows": 1138,
+        "reconstructed": [
+          {
+            "model": "gemini-3.5-flash",
+            "mode": "with",
+            "completed": 261,
+            "passed": 119,
+            "success_pct": 45.593869731800766,
+            "tasks_seen": 87,
+            "expected": 261
+          },
+          {
+            "model": "gemini-3.5-flash",
+            "mode": "without",
+            "completed": 257,
+            "passed": 95,
+            "success_pct": 36.96498054474708,
+            "tasks_seen": 86,
+            "expected": 261
+          },
+          {
+            "model": "minimax-m3",
+            "mode": "with",
+            "completed": 247,
+            "passed": 125,
+            "success_pct": 50.607287449392715,
+            "tasks_seen": 86,
+            "expected": 261
+          },
+          {
+            "model": "minimax-m3",
+            "mode": "without",
+            "completed": 249,
+            "passed": 69,
+            "success_pct": 27.710843373493976,
+            "tasks_seen": 85,
+            "expected": 261
+          },
+          {
+            "model": "opus-4.8",
+            "mode": "with",
+            "completed": 115,
+            "passed": 72,
+            "success_pct": 62.608695652173914,
+            "tasks_seen": 48,
+            "expected": 261
+          },
+          {
+            "model": "opus-4.8",
+            "mode": "without",
+            "completed": 9,
+            "passed": 2,
+            "success_pct": 22.22222222222222,
+            "tasks_seen": 7,
+            "expected": 261
+          }
+        ],
+        "all_six_pass_count_cells_match_archive_readme": true
+      },
+      "scope": "Second calculation uses raw selected trial outcomes. Paper aggregate uses author configuration summaries and does not re-execute or individually verify 9,396 trials."
+    },
+    "public_replay": {
+      "supported_stack_task_cells": 228,
+      "stacks": 21,
+      "tasks": 21,
+      "eligible_cells_before_peer_filter": 228,
+      "status_scope": "fixed-frame",
+      "results": {
+        "local_gap": {
+          "task_macro_success_pct": 37.92331102481478,
+          "micro_passes": 84,
+          "enabled": 170,
+          "harmful_enabled": 10,
+          "beneficial_enabled": 32,
+          "vs_local_gap_pp": 0.0,
+          "vs_local_gap_bootstrap95_pp": [
+            0.0,
+            0.0
+          ],
+          "tokens_paired_n": 0,
+          "token_saving_vs_on_pct": null
+        },
+        "cross_stack": {
+          "task_macro_success_pct": 36.48729577301006,
+          "micro_passes": 81,
+          "enabled": 170,
+          "harmful_enabled": 12,
+          "beneficial_enabled": 31,
+          "vs_local_gap_pp": -1.4360152518047251,
+          "vs_local_gap_bootstrap95_pp": [
+            -4.273926000899684,
+            0.86996336996337
+          ],
+          "tokens_paired_n": 0,
+          "token_saving_vs_on_pct": null
+        },
+        "local_on_only": {
+          "task_macro_success_pct": 38.85941196091572,
+          "micro_passes": 87,
+          "enabled": 170,
+          "harmful_enabled": 10,
+          "beneficial_enabled": 35,
+          "vs_local_gap_pp": 0.9361009361009361,
+          "vs_local_gap_bootstrap95_pp": [
+            -1.0582010582010581,
+            3.133903133903134
+          ],
+          "tokens_paired_n": 0,
+          "token_saving_vs_on_pct": null
+        },
+        "pooled_gap": {
+          "task_macro_success_pct": 37.14358392929821,
+          "micro_passes": 82,
+          "enabled": 170,
+          "harmful_enabled": 10,
+          "beneficial_enabled": 30,
+          "vs_local_gap_pp": -0.7797270955165692,
+          "vs_local_gap_bootstrap95_pp": [
+            -2.0885547201336676,
+            0.0
+          ],
+          "tokens_paired_n": 0,
+          "token_saving_vs_on_pct": null
+        },
+        "always_on": {
+          "task_macro_success_pct": 36.57003467153843,
+          "micro_passes": 82,
+          "enabled": 228,
+          "harmful_enabled": 15,
+          "beneficial_enabled": 35,
+          "vs_local_gap_pp": -1.3532763532763532,
+          "vs_local_gap_bootstrap95_pp": [
+            -3.5052910052910056,
+            0.5036630036630036
+          ],
+          "tokens_paired_n": 0,
+          "token_saving_vs_on_pct": null
+        },
+        "always_off": {
+          "task_macro_success_pct": 26.41022580872205,
+          "micro_passes": 62,
+          "enabled": 0,
+          "harmful_enabled": 0,
+          "beneficial_enabled": 0,
+          "vs_local_gap_pp": -11.513085216092737,
+          "vs_local_gap_bootstrap95_pp": [
+            -22.561358371508746,
+            -2.335417871602085
+          ],
+          "tokens_paired_n": 0,
+          "token_saving_vs_on_pct": null
+        }
+      }
+    },
+    "live_trial": {
+      "test_cases": 48,
+      "families": [
+        "allocation",
+        "csv_fields",
+        "intervals",
+        "left_join",
+        "markdown",
+        "money",
+        "record_dedup",
+        "semver"
+      ],
+      "policies": {
+        "routine_only": {
+          "passed": 41,
+          "total": 48,
+          "success_rate": 0.8541666666666666,
+          "boundary_passed": 18,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "neutral": 9,
+            "benefit": 9,
+            "abstain": 30
+          },
+          "skill_use": 18,
+          "execution_tokens": 9572,
+          "vs_no_skill": {
+            "difference_pp": 18.75,
+            "family_bootstrap_95_pp": [
+              2.083333333333333,
+              43.75
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": 0.0,
+            "family_bootstrap_95_pp": [
+              0.0,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": 2.083333333333333,
+            "family_bootstrap_95_pp": [
+              0.0,
+              6.25
+            ]
+          }
+        },
+        "mixed_mean": {
+          "passed": 40,
+          "total": 48,
+          "success_rate": 0.8333333333333334,
+          "boundary_passed": 18,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "abstain": 36,
+            "benefit": 8,
+            "neutral": 4
+          },
+          "skill_use": 12,
+          "execution_tokens": 9320,
+          "vs_no_skill": {
+            "difference_pp": 16.666666666666664,
+            "family_bootstrap_95_pp": [
+              0.0,
+              41.66666666666667
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -2.083333333333333,
+            "family_bootstrap_95_pp": [
+              -6.25,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": 0.0,
+            "family_bootstrap_95_pp": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "stratum_mean": {
+          "passed": 37,
+          "total": 48,
+          "success_rate": 0.7708333333333334,
+          "boundary_passed": 15,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "abstain": 42,
+            "benefit": 5,
+            "neutral": 1
+          },
+          "skill_use": 6,
+          "execution_tokens": 8995,
+          "vs_no_skill": {
+            "difference_pp": 10.416666666666666,
+            "family_bootstrap_95_pp": [
+              0.0,
+              24.999999999999996
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -8.333333333333332,
+            "family_bootstrap_95_pp": [
+              -20.833333333333332,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": -6.25,
+            "family_bootstrap_95_pp": [
+              -18.75,
+              0.0
+            ]
+          }
+        },
+        "stratum_veto": {
+          "passed": 37,
+          "total": 48,
+          "success_rate": 0.7708333333333334,
+          "boundary_passed": 15,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "abstain": 42,
+            "benefit": 5,
+            "neutral": 1
+          },
+          "skill_use": 6,
+          "execution_tokens": 8995,
+          "vs_no_skill": {
+            "difference_pp": 10.416666666666666,
+            "family_bootstrap_95_pp": [
+              0.0,
+              24.999999999999996
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -8.333333333333332,
+            "family_bootstrap_95_pp": [
+              -20.833333333333332,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": -6.25,
+            "family_bootstrap_95_pp": [
+              -18.75,
+              0.0
+            ]
+          }
+        },
+        "skilldelta_tfidf": {
+          "passed": 40,
+          "total": 48,
+          "success_rate": 0.8333333333333334,
+          "boundary_passed": 18,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "abstain": 36,
+            "benefit": 8,
+            "neutral": 4
+          },
+          "skill_use": 12,
+          "execution_tokens": 9320,
+          "vs_no_skill": {
+            "difference_pp": 16.666666666666664,
+            "family_bootstrap_95_pp": [
+              0.0,
+              41.66666666666667
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -2.083333333333333,
+            "family_bootstrap_95_pp": [
+              -6.25,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": 0.0,
+            "family_bootstrap_95_pp": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "text_judge": {
+          "passed": 37,
+          "total": 48,
+          "success_rate": 0.7708333333333334,
+          "boundary_passed": 18,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "neutral": 41,
+            "harm": 1,
+            "benefit": 6
+          },
+          "skill_use": 48,
+          "execution_tokens": 11032,
+          "vs_no_skill": {
+            "difference_pp": 10.416666666666668,
+            "family_bootstrap_95_pp": [
+              -6.25,
+              37.5
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -8.333333333333332,
+            "family_bootstrap_95_pp": [
+              -20.833333333333332,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": -6.25,
+            "family_bootstrap_95_pp": [
+              -14.583333333333332,
+              0.0
+            ]
+          }
+        },
+        "no_skill": {
+          "passed": 32,
+          "total": 48,
+          "success_rate": 0.6666666666666666,
+          "boundary_passed": 15,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "abstain": 48
+          },
+          "skill_use": 0,
+          "execution_tokens": 8759,
+          "vs_no_skill": {
+            "difference_pp": 0.0,
+            "family_bootstrap_95_pp": [
+              0.0,
+              0.0
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -18.75,
+            "family_bootstrap_95_pp": [
+              -43.75,
+              -2.083333333333333
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": -16.666666666666664,
+            "family_bootstrap_95_pp": [
+              -41.66666666666667,
+              0.0
+            ]
+          }
+        },
+        "reference_always": {
+          "passed": 37,
+          "total": 48,
+          "success_rate": 0.7708333333333334,
+          "boundary_passed": 18,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "neutral": 41,
+            "harm": 1,
+            "benefit": 6
+          },
+          "skill_use": 48,
+          "execution_tokens": 11032,
+          "vs_no_skill": {
+            "difference_pp": 10.416666666666668,
+            "family_bootstrap_95_pp": [
+              -6.25,
+              37.5
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -8.333333333333332,
+            "family_bootstrap_95_pp": [
+              -20.833333333333332,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": -6.25,
+            "family_bootstrap_95_pp": [
+              -14.583333333333332,
+              0.0
+            ]
+          }
+        },
+        "candidate_always": {
+          "passed": 40,
+          "total": 48,
+          "success_rate": 0.8333333333333334,
+          "boundary_passed": 18,
+          "boundary_total": 24,
+          "action_effect_counts": {
+            "neutral": 40,
+            "benefit": 8
+          },
+          "skill_use": 48,
+          "execution_tokens": 10730,
+          "vs_no_skill": {
+            "difference_pp": 16.666666666666668,
+            "family_bootstrap_95_pp": [
+              2.083333333333333,
+              37.5
+            ]
+          },
+          "vs_routine_only": {
+            "difference_pp": -2.083333333333333,
+            "family_bootstrap_95_pp": [
+              -6.25,
+              0.0
+            ]
+          },
+          "vs_skilldelta": {
+            "difference_pp": 0.0,
+            "family_bootstrap_95_pp": [
+              -6.25,
+              6.25
+            ]
+          }
+        }
+      },
+      "attempted_requests": 304,
+      "peak_upper_usd": "0.0278598"
+    },
+    "matched_public_artifacts": {
+      "exact_constraints": {
+        "correct": 64,
+        "total": 64,
+        "false_accept": 0,
+        "false_reject": 0,
+        "missing": 0
+      },
+      "standard": {
+        "correct": 39,
+        "total": 64,
+        "false_accept": 23,
+        "false_reject": 0,
+        "missing": 2
+      },
+      "procedure": {
+        "correct": 37,
+        "total": 64,
+        "false_accept": 25,
+        "false_reject": 0,
+        "missing": 2
+      },
+      "deepseek_pro": {
+        "correct": 32,
+        "total": 64,
+        "false_accept": 0,
+        "false_reject": 0,
+        "missing": 32
+      },
+      "deepseek_pro_retry": {
+        "correct": 62,
+        "total": 64,
+        "false_accept": 0,
+        "false_reject": 0,
+        "missing": 2
+      }
+    },
+    "paid_attempts": 480,
+    "peak_upper_usd": "0.52585044"
+  },
+  "sources": {
+    "SkillsBench v4": "https://arxiv.org/html/2602.12670v4",
+    "SkillDelta": "https://github.com/TankTechnology/skilldelta/tree/bc6c11acdbb487c321e3a50b33a94067143c436f",
+    "SkillAudit": "https://arxiv.org/abs/2606.22613v1",
+    "SkillTV-Bench": "https://arxiv.org/abs/2608.05573v1"
+  }
+}

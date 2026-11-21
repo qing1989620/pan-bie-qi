@@ -1,0 +1,33 @@
+{
+  "schema": "verified-public-document-snapshot-1",
+  "source": {
+    "requested_url": "https://github.com/benchflow-ai/skillsbench/blob/27738384b1df694ea2ae466e416f476e94d8fab9/tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md",
+    "repository": "benchflow-ai/skillsbench",
+    "commit": "27738384b1df694ea2ae466e416f476e94d8fab9",
+    "requested_ref": "27738384b1df694ea2ae466e416f476e94d8fab9",
+    "retrieved_at_utc": "2026-11-21T04:50:36.874425+00:00",
+    "repository_license": "Apache-2.0",
+    "trust": "GitHub HTTPS snapshot, commit and blob hashes; not author identity or third-party quality certification",
+    "skill_path": "tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md",
+    "package_root": "tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization",
+    "canonical_url": "https://github.com/benchflow-ai/skillsbench/blob/27738384b1df694ea2ae466e416f476e94d8fab9/tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md",
+    "file_hashes": {
+      "SKILL.md": {
+        "git_blob_sha1": "d040bd6e46739b6fc208c0f774d3c6201b20d891",
+        "raw_bytes_sha256": "3aba5be4d0f33208d296198fef4bad8816d191bbdd3ec8594cda1de7aab055f0",
+        "analyzed_text_sha256": "3aba5be4d0f33208d296198fef4bad8816d191bbdd3ec8594cda1de7aab055f0",
+        "bytes": 4475,
+        "transport": "github_blob_api"
+      }
+    },
+    "files_read": 1,
+    "inventory_files": 1,
+    "inventory_complete": true,
+    "omitted": [],
+    "omitted_count": 0,
+    "omissions_truncated": false,
+    "network_requests": 9,
+    "immutable_cache_hits": 0,
+    "package_instructions_treated_as": "untrusted assessment data; not executed as assistant or host instructions"
+  }
+}

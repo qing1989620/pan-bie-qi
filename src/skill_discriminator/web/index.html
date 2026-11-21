@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>开源 Skill 判别器</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/">Skill 判别器</a>
+      <nav aria-label="页面导航"><a href="#check">评估链接</a><a href="#studies">实测与对照</a><a href="/docs">API</a></nav>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="intro" id="check">
+      <h1>开源 Skill 判别器</h1>
+      <p>粘贴公开链接，查看功能、依赖与可复核的实测依据。</p>
+    </section>
+    <form id="link-form" class="card control" aria-label="评估链接">
+      <label for="skill-url">公开 Skill 链接</label>
+      <div class="input-row">
+        <input id="skill-url" type="url" required placeholder="https://github.com/作者/仓库/tree/main/技能目录" maxlength="2048">
+        <button id="evaluate-link" type="submit">评估链接</button>
+      </div>
+      <div class="samples">
+        <button type="button" id="registered-example" class="secondary" disabled>工位标签 · 已有实测</button>
+        <button type="button" id="public-example" class="secondary">PDF Skill · 公开链接</button>
+      </div>
+      <details class="options">
+        <summary>任务与运行条件</summary>
+        <label for="task">要完成的任务</label>
+        <textarea id="task" rows="2" maxlength="4000" placeholder="例如：把工位故障描述映射为已知编码"></textarea>
+        <label for="network">目标环境的联网条件</label>
+        <select id="network">
+          <option value="">未指定</option><option value="yes">可联网</option><option value="no">离线</option>
+        </select>
+      </details>
+      <p class="status" id="link-status" role="status"></p>
+      <div id="candidates" class="candidate-list"></div>
+    </form>
+    <details class="card upload-card">
+      <summary>检查本地 SKILL.md</summary>
+      <div class="input-row upload-row">
+        <input id="skill-file" type="file" accept=".md,text/markdown" aria-label="选择 SKILL.md">
+        <button type="button" id="inspect-file">检查文件</button>
+      </div>
+      <p class="status" id="file-status" role="status"></p>
+    </details>
+    <section id="report-region" hidden tabindex="-1" aria-label="评估报告">
+      <div class="section-head"><h2>评估报告</h2><button class="secondary" id="export-report" type="button" disabled>导出 JSON</button></div>
+      <div id="report"></div>
+    </section>
+    <section id="studies" class="study-section">
+      <div class="section-head"><h2>实测与对照</h2><button class="secondary" id="recheck" type="button">复核 64 份产物</button></div>
+      <p id="recheck-status" class="status" role="status"></p>
+      <div id="study-results" class="study-results"></div>
+      <p class="muted">使用文档与中文论文随仓库发布。实验结果限定在文中所列任务及运行环境。</p>
+    </section>
+  </main>
+</body>
+</html>
