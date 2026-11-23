@@ -42,7 +42,7 @@
       "protocol_sha256": "aeeaae0b846827b912410c9e38360498499d6b4cee5606c98d0202aced7025cd",
       "title": "工位约束下的故障标签归一",
       "scope": "DeepSeek Flash 文本模式。使用公开 SKILL.md 和合成工位、别名数据，实测四类输入。未覆盖原 SkillsBench 的完整程序任务。",
-      "assessment": "有无 Skill 在留出输入上的通过数相同。可复核当前任务的成功和失败样本，收益仍需更多数据。",
+      "assessment": "有无 Skill 在登记的留出输入上通过数相同。可复核登记输入的成功和失败样本。",
       "strata": [
         {
           "stratum": "unambiguous",

@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>开源 Skill 判别器</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <script src="/static/app.js" defer></script>
+  <link rel="stylesheet" href="/static/style.css?v=1.1">
+  <script src="/static/app.js?v=1.1" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="/">Skill 判别器</a>
-      <nav aria-label="页面导航"><a href="#check">评估链接</a><a href="#studies">实测与对照</a><a href="/docs">API</a></nav>
+      <nav aria-label="页面导航"><a href="#check">评估链接</a><a href="#pdf-probe">PDF 试跑</a><a href="#studies">实测与对照</a><a href="/docs">API</a></nav>
     </div>
   </header>
   <main class="shell">
@@ -52,6 +52,26 @@
     <section id="report-region" hidden tabindex="-1" aria-label="评估报告">
       <div class="section-head"><h2>评估报告</h2><button class="secondary" id="export-report" type="button" disabled>导出 JSON</button></div>
       <div id="report"></div>
+    </section>
+    <section id="pdf-probe" class="study-section" aria-labelledby="pdf-probe-title">
+      <div class="section-head"><h2 id="pdf-probe-title">PDF 表格试跑</h2></div>
+      <p class="muted">上传 PDF 提取指定页的表格。添加参考 CSV 可逐格核对。</p>
+      <form id="pdf-form" class="card control">
+        <div class="field-grid">
+          <div><label for="task-pdf">PDF 文件（不超过 4 MB）</label><input id="task-pdf" type="file" accept=".pdf,application/pdf" required></div>
+          <div><label for="pdf-page">表格所在页（从 1 起）</label><input id="pdf-page" type="number" min="1" step="1" value="1" required></div>
+          <div><label for="pdf-reference">参考 CSV（可选）</label><input id="pdf-reference" type="file" accept=".csv,text/csv"></div>
+          <div><label for="pdf-rows">预期数据行数（可选）</label><input id="pdf-rows" type="number" min="1" max="500" step="1" placeholder="例如 4"></div>
+        </div>
+        <div class="field-line">
+          <label for="pdf-headers">目标列名（可选，用 | 分隔）</label>
+          <input id="pdf-headers" maxlength="2000" placeholder="方法 | 前排改善 | 前排回退 | 复查回退 | 增益 MAE">
+          <p class="muted">无竖线的表可填写列名和行数，或上传含表头的参考 CSV。</p>
+        </div>
+        <button type="submit" id="run-pdf">提取并核对</button>
+        <p id="pdf-status" class="status" role="status"></p>
+      </form>
+      <div id="pdf-result" aria-live="polite"></div>
     </section>
     <section id="studies" class="study-section">
       <div class="section-head"><h2>实测与对照</h2><button class="secondary" id="recheck" type="button">复核 64 份产物</button></div>

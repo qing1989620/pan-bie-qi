@@ -34,6 +34,7 @@ def test_link_api_attaches_its_version_matched_observed_gain(monkeypatch, frozen
     assert result.status_code == 200
     report = result.json()["report"]
     assert report["verified_adoption"]["state"] == "measured_on_registered_inputs"
+    assert report["verified_adoption"]["applies_to_current_task"] is False
     assert report["verified_adoption"]["holdout_observation_zh"] == "留出任务中未观察到净增益"
     assert report["decision"] == "paired_evidence_available"
     assert report["evidence_assessment"]["overall_score"] is None
@@ -42,6 +43,25 @@ def test_link_api_attaches_its_version_matched_observed_gain(monkeypatch, frozen
     function = next(x for x in report["evidence_assessment"]["criteria"] if x["id"] == "functional_correctness")
     assert (function["numerator"], function["denominator"]) == (3,4)
     assert result.json()["model_api_calls"] == 0 and not result.json()["skill_code_executed"]
+
+
+def test_link_with_user_task_keeps_archived_evidence_in_its_own_scope(monkeypatch, frozen):
+    source, package, profile = frozen
+    profile["assessment"] = "可复核当前任务的成功和失败样本。"
+    monkeypatch.setattr(adoption, "catalog", lambda: {"profiles": [profile]})
+    monkeypatch.setattr("skill_discriminator.source_import.import_link", lambda *args: {
+        "state": "imported", "source": source, "package": package,
+    })
+    with TestClient(create_app()) as session:
+        response = session.post("/api/discriminator/import-url", json={
+            "url": source["canonical_url"], "task": "从中文 PDF 提取表 6。",
+        })
+    report = response.json()["report"]
+    assert report["current_task"]["state"] == "unverified"
+    assert "当前任务未做配对试验" in report["current_task"]["reason"]
+    assert "当前任务的成功和失败" not in report["reason"]
+    assert not report["verified_adoption"]["applies_to_current_task"]
+    assert report["task_guidance"] is None
 
 
 @pytest.mark.parametrize("mismatch", ["commit", "repository", "skill_path", "bytes"])

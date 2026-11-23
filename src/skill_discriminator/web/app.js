@@ -86,7 +86,7 @@ function evidenceLine(parent, item) {
 function adoptionPanel(proof) {
   const result = proof.result;
   const holdout = proof.holdout;
-  const section = panel("已登记版本的实测效果", proof.holdout_observation_zh, "measurement");
+  const section = panel("历史配对实测", proof.holdout_observation_zh, "measurement");
   section.id = "paired-evidence";
   section.append(table(["输入范围", "无 Skill", "读入 Skill", "改善 / 回退"],
     [...proof.strata, result, holdout].map(item => [item.title, `${item.without_passed}/${item.pairs}`,
@@ -104,15 +104,53 @@ function adoptionPanel(proof) {
   return section;
 }
 
+function taskGuidance(guidance) {
+  const section = panel(guidance.title, guidance.summary);
+  section.id = "task-guidance";
+  const checks = node("ul", undefined, "task-checks");
+  for (const check of guidance.checks) {
+    const line = node("li");
+    line.append(node("strong", check.name), document.createTextNode(` · ${check.detail}`));
+    checks.append(line);
+  }
+  section.append(checks);
+  if (guidance.evidence.length) {
+    const sources = node("details", undefined, "finding");
+    sources.append(node("summary", "查看说明中的工具依据"));
+    for (const reference of guidance.evidence) evidenceLine(sources, reference);
+    section.append(sources);
+  }
+  if (guidance.probe_available) {
+    const link = node("a", "用自己的 PDF 试跑");
+    link.href = "#pdf-probe";
+    section.append(link);
+  }
+  return section;
+}
+
 function renderReport(report) {
   const root = byId("report");
   const warning = ["repair_required", "configuration_required", "task_contract_review"].includes(report.decision);
-  root.replaceChildren(panel(report.decision_zh, report.reason, `verdict${warning ? " warning" : ""}`));
+  const inspection = panel(report.decision_zh, report.reason, `verdict${warning ? " warning" : ""}`);
+  root.replaceChildren(inspection);
+  if (report.current_task?.state === "unverified") {
+    const task = panel(report.current_task.title, report.current_task.reason, "current-task");
+    task.id = "current-task-evidence";
+    if (warning) root.append(task);
+    else root.prepend(task);
+  }
+  if (report.task_guidance) root.append(taskGuidance(report.task_guidance));
   root.append(panel(report.introduction.name, report.introduction.description));
 
   const proof = report.verified_adoption;
   if (proof?.state === "measured_on_registered_inputs") {
-    root.append(adoptionPanel(proof));
+    if (report.current_task?.state === "unverified") {
+      const history = node("details", undefined, "card");
+      history.append(node("summary", "展开该版本的历史配对实测", "archive-title"), adoptionPanel(proof));
+      root.append(history);
+    } else {
+      root.append(adoptionPanel(proof));
+    }
   } else {
     root.append(panel("实际效果待验证", proof?.reason || "这份本地材料尚无可绑定的配对实测。"));
   }
@@ -218,6 +256,7 @@ byId("inspect-file").onclick = async () => {
   if (busy) return;
   const file = byId("skill-file").files[0];
   if (!file) return status("file-status", "请选择 SKILL.md。", true);
+  if (file.name.toLowerCase().endsWith(".pdf")) return status("file-status", "请从下方的 PDF 表格试跑上传这份文件。", true);
   if (file.size > 600000) return status("file-status", "SKILL.md 需小于 600 KB。", true);
   invalidate();
   setBusy(true);
@@ -248,12 +287,92 @@ byId("recheck").onclick = async () => {
 
 byId("export-report").onclick = () => {
   if (!latestReport) return;
-  const url = URL.createObjectURL(new Blob([JSON.stringify(latestReport, null, 2)], {type: "application/json"}));
+  downloadFile("skill-assessment.json", JSON.stringify(latestReport, null, 2), "application/json");
+};
+
+function downloadFile(name, content, type) {
+  const url = URL.createObjectURL(new Blob([content], {type}));
   const link = node("a");
   link.href = url;
-  link.download = "skill-assessment.json";
+  link.download = name;
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function encodeFile(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",", 2)[1]);
+    reader.onerror = () => reject(new Error("无法读取所选 PDF。"));
+    reader.readAsDataURL(file);
+  });
+}
+
+function showPdfResult(result) {
+  const target = byId("pdf-result");
+  if (result.state !== "extracted") {
+    const title = result.state === "needs_ocr" ? "需要 OCR" : "暂未得到可导出的表格";
+    target.replaceChildren(panel(title, result.reason, "verdict warning"));
+    return;
+  }
+  const checked = result.verification;
+  const conflict = ["disagreement", "shape_mismatch"].includes(checked.state);
+  const title = conflict ? "已提取表格，核对有差异" : "已提取表格";
+  const box = panel(title, `第 ${result.page} 页 · ${result.method_label} · ${result.row_count} 行 × ${result.column_count} 列`,
+    conflict ? "verdict warning" : "measurement");
+  if (checked.state === "verified_match" || checked.state === "disagreement") {
+    box.append(node("p", `参考 CSV 核对 ${checked.matched_rows}/${checked.reference_rows} 行、${checked.matched_cells}/${checked.reference_cells} 个数据格一致。`));
+    if (checked.expected_rows != null) {
+      box.append(node("p", `行数与指定值不同，预期 ${checked.expected_rows} 行，实际 ${checked.actual_rows} 行。`, "error"));
+    }
+    for (const diff of checked.differences) {
+      box.append(node("p", `${diff.row} · ${diff.column} · 预期 ${diff.expected}，实际 ${diff.actual}`, "error"));
+    }
+    for (const [key, label] of [["missing_rows", "缺少"], ["unexpected_rows", "额外"], ["duplicate_rows", "重复"]]) {
+      if (checked[key].length) box.append(node("p", `${label}行：${checked[key].join("、")}`, "error"));
+    }
+  } else if (checked.state === "shape_mismatch") {
+    box.append(node("p", `行数不一致。预期 ${checked.expected_rows} 行，实际 ${checked.actual_rows} 行。`, "error"));
+  } else {
+    box.append(node("p", "参考 CSV 未提供，数值待核对。", "muted"));
+  }
+  box.append(table(result.header, result.preview));
+  if (result.row_count > result.preview.length) box.append(node("p", `预览前 ${result.preview.length} 行，完整结果见 CSV。`, "muted"));
+  box.append(node("p", "本次使用本地解析器验证这个文件。Skill 的有无配对收益仍待测量。", "muted"));
+  const download = node("button", "下载 CSV", "secondary");
+  download.type = "button";
+  download.onclick = () => downloadFile(`pdf-table-page-${result.page}.csv`, `\uFEFF${result.csv}`, "text/csv;charset=utf-8");
+  box.append(download);
+  target.replaceChildren(box);
+}
+
+const pdfForm = byId("pdf-form");
+pdfForm.oninput = () => { byId("pdf-result").replaceChildren(); status("pdf-status", ""); };
+pdfForm.onsubmit = async event => {
+  event.preventDefault();
+  const button = byId("run-pdf");
+  if (button.disabled) return;
+  const pdf = byId("task-pdf").files[0];
+  const reference = byId("pdf-reference").files[0];
+  if (!pdf || pdf.size > 4_000_000) return status("pdf-status", "请选择不超过 4 MB 的 PDF。", true);
+  if (reference?.size > 64_000) return status("pdf-status", "参考 CSV 需小于 64 KB。", true);
+  const fields = [...pdfForm.querySelectorAll("input, button")];
+  fields.forEach(field => { field.disabled = true; });
+  byId("pdf-result").replaceChildren();
+  status("pdf-status", "正在检查文字层、提取表格并核对…");
+  try {
+    const result = await request("/task/pdf-table", {
+      pdf_base64: await encodeFile(pdf), page: Number(byId("pdf-page").value),
+      headers: byId("pdf-headers").value, expected_rows: byId("pdf-rows").value ? Number(byId("pdf-rows").value) : null,
+      reference_csv: reference ? await reference.text() : "",
+    });
+    showPdfResult(result);
+    status("pdf-status", result.state === "extracted" ? "试跑完成。" : "已检查所选页。");
+  } catch (error) {
+    status("pdf-status", error.message, true);
+  } finally {
+    fields.forEach(field => { field.disabled = false; });
+  }
 };
 
 loadStudies();

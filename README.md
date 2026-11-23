@@ -32,10 +32,22 @@ python3 -m venv .venv
 4. 粘贴其他 GitHub 仓库、技能目录、`SKILL.md` 或 `skills.sh` 链接。多个候选时选择一项。公开链接通过 HTTPS 读取，GitHub 限流时可能仅取得单份说明或报告读取失败。也可以在页面检查本地 `SKILL.md`。
 5. 下载 JSON 报告以保留判定依据与版本指纹。有效的对比限定于报告指明的模型、输入和任务规则。
 
+## PDF 表格试跑
+
+在页面选择「PDF 试跑」，上传 PDF 并指定表格所在页。用参考 CSV 可以核对每一格，直接从网页下载提取结果。无文字层的页面会提示需要 OCR。
+
+可以用下方两个文件复测。上传论文，页码填 **4**，再上传参考 CSV，预期核对 **4 行、16 个数据格**。
+
+- [输入论文 PDF](docs/skill-discriminator-paper.pdf)
+- [表 6 参考 CSV](docs/examples/paper-table-6.csv)
+
+这项试跑验证当前文件上的本地提取结果。Skill 的配对实测仍显示在「历史配对实测」。
+
 ## 文档与复核
 
 - [使用与 API](docs/usage.md)
 - [判定方法、数据与实测比较](docs/evaluation.md)
+- [真实任务的改前改后验收](docs/field-evaluation.md)
 - [中文双栏论文](docs/skill-discriminator-paper.pdf)
 - [第三方材料说明](docs/third-party.md)
 

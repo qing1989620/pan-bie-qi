@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import os
 import re
 import secrets
@@ -17,6 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 
 from . import __version__, adoption, source_import
+from .pdf_table import MAX_CSV_BYTES, MAX_PDF_BYTES, probe
 from .service import assess
 from .verify import replay_registered
 
@@ -78,10 +80,20 @@ class InspectRequest(TaskRequest):
     inventory_complete: StrictBool = False
 
 
+class PdfTableRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    pdf_base64: str = Field(min_length=8, max_length=4 * ((MAX_PDF_BYTES + 2) // 3))
+    page: int = Field(ge=1, strict=True)
+    reference_csv: str = Field(default="", max_length=MAX_CSV_BYTES)
+    headers: str = Field(default="", max_length=2_000)
+    expected_rows: int | None = Field(default=None, ge=1, le=500, strict=True)
+
+
 def create_app() -> FastAPI:
     app = FastAPI(title="开源 Skill 判别器", version=__version__)
     router = APIRouter(route_class=BoundedRoute, prefix="/api/discriminator")
     link_slots = threading.BoundedSemaphore(2)
+    pdf_slots = threading.BoundedSemaphore(1)
     token = os.environ.get("PAN_BIE_QI_TOKEN", "")
 
     def access(x_discriminator_token: Annotated[str | None, Header()] = None) -> None:
@@ -91,7 +103,7 @@ def create_app() -> FastAPI:
     @router.get("/health")
     def health() -> dict:
         return {"status": "ready", "version": __version__, "link_import_supported": True,
-                "model_api_calls": 0, "skill_code_executed": False}
+                "pdf_table_probe_supported": True, "model_api_calls": 0, "skill_code_executed": False}
 
     @router.get("/adoption-studies")
     def studies() -> dict:
@@ -115,6 +127,21 @@ def create_app() -> FastAPI:
                           request.task, request.environment.model_dump())
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from None
+
+    @router.post("/task/pdf-table", dependencies=[Depends(access)])
+    def pdf_table(request: PdfTableRequest) -> dict:
+        if not pdf_slots.acquire(blocking=False):
+            raise HTTPException(429, "已有 PDF 正在试跑，请稍后重试。")
+        try:
+            try:
+                data = base64.b64decode(request.pdf_base64, validate=True)
+            except ValueError as exc:
+                raise HTTPException(422, "PDF 编码无法读取。") from exc
+            return probe(data, request.page, request.reference_csv, request.headers, request.expected_rows)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from None
+        finally:
+            pdf_slots.release()
 
     @router.post("/import-url", dependencies=[Depends(access)])
     def import_url(request: LinkRequest) -> dict:
