@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>开源 Skill 判别器</title>
-  <link rel="stylesheet" href="/static/style.css?v=1.1">
-  <script src="/static/app.js?v=1.1" defer></script>
+  <link rel="stylesheet" href="/static/style.css?v=1.2">
+  <script src="/static/app.js?v=1.2" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="/">Skill 判别器</a>
-      <nav aria-label="页面导航"><a href="#check">评估链接</a><a href="#pdf-probe">PDF 试跑</a><a href="#studies">实测与对照</a><a href="/docs">API</a></nav>
+      <nav aria-label="页面导航"><a href="#check">评估链接</a><a href="#studies">实测与对照</a><a href="/docs">API</a></nav>
     </div>
   </header>
   <main class="shell">
     <section class="intro" id="check">
       <h1>开源 Skill 判别器</h1>
-      <p>粘贴公开链接，查看功能、依赖与可复核的实测依据。</p>
+      <p>输入一个公开 Skill 链接，查看说明长度、能做的事、实测上限和同类差异。</p>
     </section>
     <form id="link-form" class="card control" aria-label="评估链接">
       <label for="skill-url">公开 Skill 链接</label>
@@ -27,7 +27,8 @@
       </div>
       <div class="samples">
         <button type="button" id="registered-example" class="secondary" disabled>工位标签 · 已有实测</button>
-        <button type="button" id="public-example" class="secondary">PDF Skill · 公开链接</button>
+        <button type="button" id="public-example" class="secondary">PDF Skill · 流程实测</button>
+        <button type="button" id="spreadsheet-example" class="secondary">XLSX Skill · 同类对比</button>
       </div>
       <details class="options">
         <summary>任务与运行条件</summary>
@@ -53,9 +54,9 @@
       <div class="section-head"><h2>评估报告</h2><button class="secondary" id="export-report" type="button" disabled>导出 JSON</button></div>
       <div id="report"></div>
     </section>
-    <section id="pdf-probe" class="study-section" aria-labelledby="pdf-probe-title">
-      <div class="section-head"><h2 id="pdf-probe-title">PDF 表格试跑</h2></div>
-      <p class="muted">上传 PDF 提取指定页的表格。添加参考 CSV 可逐格核对。</p>
+    <details id="pdf-probe" class="card study-section">
+      <summary>单独试跑 PDF 表格任务</summary>
+      <p class="muted">用本地工具提取指定页的表格。添加参考 CSV 可逐格核对。</p>
       <form id="pdf-form" class="card control">
         <div class="field-grid">
           <div><label for="task-pdf">PDF 文件（不超过 4 MB）</label><input id="task-pdf" type="file" accept=".pdf,application/pdf" required></div>
@@ -72,7 +73,7 @@
         <p id="pdf-status" class="status" role="status"></p>
       </form>
       <div id="pdf-result" aria-live="polite"></div>
-    </section>
+    </details>
     <section id="studies" class="study-section">
       <div class="section-head"><h2>实测与对照</h2><button class="secondary" id="recheck" type="button">复核 64 份产物</button></div>
       <p id="recheck-status" class="status" role="status"></p>

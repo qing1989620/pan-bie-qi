@@ -29,7 +29,11 @@ function table(headers, rows) {
   const body = grid.createTBody();
   for (const row of rows) {
     const tr = body.insertRow();
-    for (const field of row) tr.append(node("td", String(field)));
+    for (const field of row) {
+      const cell = node("td");
+      cell.append(field instanceof Node ? field : String(field));
+      tr.append(cell);
+    }
   }
   frame.append(grid);
   return frame;
@@ -83,6 +87,205 @@ function evidenceLine(parent, item) {
   if (item.receipt_id) parent.append(node("p", `实测记录指纹 ${item.receipt_id}`, "muted break"));
 }
 
+function sourceLink(title, url) {
+  const link = node("a", title);
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  return link;
+}
+
+function profileOverview(profile, origin) {
+  const hero = panel(profile.name, undefined, "profile-hero");
+  hero.id = "skill-overview";
+  hero.prepend(node("p", profile.category, "category"));
+  const {size, documentation, functional_quality: quality} = profile;
+  const number = value => value.toLocaleString("zh-CN");
+  const metrics = node("dl", undefined, "profile-metrics");
+  for (const [label, value, description] of [
+    ["说明长度", `${number(size.document_characters)} 字符`, `正文 ${number(size.body_characters)} 字符 · ${number(size.document_lines)} 行`],
+    ["文本材料", `${number(size.read_text_characters ?? size.document_characters)} 字符`,
+      `已读 ${size.files_read} 个文件 · ${size.inventory_complete ? `包清单共 ${size.inventory_files} 项` : "包清单待核对"}`],
+    ["说明覆盖", `${documentation.found}/${documentation.total}`, documentation.label],
+  ]) {
+    const metric = node("div");
+    metric.append(node("dt", label), node("dd", value), node("p", description));
+    metrics.append(metric);
+  }
+  const verdict = node("div", undefined, `quality-callout quality-${quality.state}`);
+  verdict.append(node("h4", quality.title), node("p", quality.reason));
+  if (quality.scope) verdict.append(node("p", quality.scope, "muted"));
+  hero.append(metrics, verdict, node("p", profile.description, "author-description"));
+  if (origin?.canonical_url) hero.append(sourceLink("查看原始说明", origin.canonical_url));
+  return hero;
+}
+
+function observationText(result) {
+  return `${result.passed}/${result.total} 项通过`;
+}
+
+function workflowQuality(result) {
+  if (result.passed === result.total) return "通过全部复跑输入";
+  if (result.passed / result.total < .5) return "该流程表现欠佳";
+  return "该流程有条件可用";
+}
+
+function capacityPanel(profile, origin) {
+  const section = panel("能力与实测边界");
+  section.id = "skill-capabilities";
+  const list = node("div", undefined, "capability-list");
+  for (const capability of profile.capabilities) {
+    const item = node("article", undefined, "capability-item");
+    const {observation, workflow_observation: workflow, evidence} = capability;
+    const measured = observation || workflow;
+    const state = measured ? observationText(measured) : capability.state === "declared" ? "说明有记录 · 效果待验证" : "说明章节 · 效果待验证";
+    const style = measured ? (measured.passed === measured.total ? "success" : measured.passed === 0 ? "failure" : "partial") : "pending";
+    const header = node("div", undefined, "capability-heading");
+    header.append(node("h4", capability.title), node("span", state, `capability-state ${style}`));
+    item.append(header);
+    if (observation) item.append(node("p", `${observation.title} · 无 Skill ${observation.without}/${observation.total}`));
+    if (workflow) {
+      const failing = workflow.cases.filter(row => !row.passed).map(row => row.label);
+      item.append(node("p", workflowQuality(workflow)));
+      if (failing.length) item.append(node("p", `未通过：${failing.join("、")}。`));
+      const details = node("details", undefined, "capability-detail");
+      details.append(node("summary", "逐项结果与复跑方法"), node("p", workflow.method));
+      details.append(table(["测试输入", "结果"], workflow.cases.map(row => [row.label, row.passed ? "通过" : "未通过"])));
+      if (workflow.total_cells) details.append(node("p", `核对正确的数据格 ${workflow.cells}/${workflow.total_cells}。`));
+      if (origin?.canonical_url) details.append(sourceLink(`复跑方法出处 · 第 ${workflow.source_line} 行`, `${origin.canonical_url}#L${workflow.source_line}`));
+      item.append(details);
+    }
+    if (evidence) {
+      const details = node("details", undefined, "capability-detail");
+      details.append(node("summary", `声明依据 · ${evidence.path} 第 ${evidence.start_line} 行`));
+      if (evidence.quote) details.append(node("pre", evidence.quote));
+      if (origin?.canonical_url) details.append(sourceLink("打开原文位置", `${origin.canonical_url}#L${evidence.start_line}`));
+      item.append(details);
+    }
+    list.append(item);
+  }
+  if (!profile.capabilities.length) list.append(node("p", "已读材料中暂未提取出具体能力条目。可在报告顶部查看原始用途。"));
+  section.append(list);
+  if (profile.documented_limits.length) {
+    const limits = node("details", undefined, "capability-detail");
+    limits.append(node("summary", "作者写明的限制与注意事项"));
+    for (const ref of profile.documented_limits) evidenceLine(limits, ref);
+    section.append(limits);
+  }
+  return section;
+}
+
+function documentationPanel(profile) {
+  const {documentation} = profile;
+  const section = node("details", undefined, "card");
+  section.append(node("summary", `为什么说明覆盖是 ${documentation.found}/${documentation.total}`));
+  const rows = documentation.checks.map(row => {
+    if (!row.evidence) return [row.title, "本次规则未找到"];
+    const details = node("details");
+    details.append(node("summary", `第 ${row.evidence.start_line} 行`), node("pre", row.evidence.quote));
+    return [row.title, details];
+  });
+  section.append(table(["检查项", "说明依据"], rows));
+  return section;
+}
+
+function peerPanel(profile) {
+  const comparison = profile.comparison;
+  const section = panel("同类公开 Skill 对比", comparison.scope);
+  section.id = "skill-comparison";
+  if (!comparison.peers.length) {
+    section.append(peerLinkForm(profile));
+    return section;
+  }
+
+  const rows = [[`${profile.name}（当前）`, profile.size.document_characters,
+    `${profile.documentation.found}/${profile.documentation.total}`, "当前评估版本"]];
+  for (const peer of comparison.peers) {
+    const evidence = node("div", undefined, "peer-evidence");
+    if (peer.current_more.length) evidence.append(node("p", `当前说明另外覆盖 ${peer.current_more.join("、")}。`));
+    if (peer.peer_more.length) evidence.append(node("p", `该同类说明另外覆盖 ${peer.peer_more.join("、")}。`));
+    for (const row of peer.review) evidence.append(sourceLink(`${row.text}〔第 ${row.line} 行〕`, `${peer.url}#L${row.line}`));
+    rows.push([sourceLink(peer.name, peer.url), peer.size, `${peer.documentation.found}/${peer.documentation.total}`, evidence]);
+  }
+  section.append(table(["Skill", "字符", "说明覆盖", "主要差异"], rows));
+  if (comparison.method) {
+    const results = [{name: `${profile.name}（当前）`, measurements: profile.measurements}, ...comparison.peers];
+    section.append(node("h4", "同输入复跑"), table(["Skill", "逐页文字", "网格提表"], results.map(row => [
+      row.name, ...["text", "table"].map(key => row.measurements?.[key] ? observationText(row.measurements[key]) : "暂无同条件记录"),
+    ])), node("p", comparison.method, "muted"));
+  }
+  section.append(peerLinkForm(profile));
+  return section;
+}
+
+function peerLinkForm(current) {
+  const details = node("details", undefined, "capability-detail");
+  details.append(node("summary", "添加一个公开 Skill 作对照"));
+  const form = node("form", undefined, "input-row peer-form");
+  const input = node("input");
+  input.type = "url";
+  input.required = true;
+  input.maxLength = 2048;
+  input.setAttribute("aria-label", "对照 Skill 链接");
+  input.placeholder = "粘贴同用途 Skill 的 SKILL.md 链接";
+  const button = node("button", "对照", "secondary");
+  form.append(input, button);
+  const results = node("div");
+  results.setAttribute("role", "status");
+  form.onsubmit = async event => {
+    event.preventDefault();
+    if (busy) return;
+    setBusy(true);
+    button.disabled = true;
+    input.readOnly = true;
+    results.textContent = "正在评估对照链接…";
+    try {
+      const candidate = await request("/import-url", {url: input.value.trim()});
+      if (candidate.state === "selection_required") {
+        results.textContent = "仓库中有多个 Skill，请粘贴要比较的具体 SKILL.md 链接。";
+        return;
+      }
+      const peer = candidate.report.skill_profile;
+      const docs = profile => `${profile.documentation.found}/${profile.documentation.total}`;
+      const rows = [
+        ["说明字符", current.size.document_characters, peer.size.document_characters],
+        ["说明覆盖", docs(current), docs(peer)],
+        ...current.documentation.checks.map((check, i) => [
+          check.title, check.found ? "已定位" : "本次规则未找到",
+          peer.documentation.checks[i].found ? "已定位" : "本次规则未找到",
+        ]),
+      ];
+      if (current.family === peer.family && current.family !== "general") {
+        const documented = profile => new Map(profile.capabilities.filter(row => row.state === "declared").map(row => [row.id, row.title]));
+        const left = documented(current);
+        const right = documented(peer);
+        for (const [id, title] of new Map([...left, ...right])) {
+          rows.push([title, left.has(id) ? "说明有记录" : "本次规则未找到", right.has(id) ? "说明有记录" : "本次规则未找到"]);
+          if (current.measurements?.[id] && peer.measurements?.[id]) rows.push([
+            `${title}（同输入复跑）`, observationText(current.measurements[id]), observationText(peer.measurements[id]),
+          ]);
+        }
+      }
+      const origin = candidate.report.source_import;
+      results.replaceChildren(table(["比较项", current.name, peer.name], rows),
+        sourceLink("打开对照版本的原始说明", origin.canonical_url));
+      current.comparison.requested_peer = {name: peer.name, url: origin.canonical_url, commit: origin.commit, rows};
+    } catch (error) {
+      results.textContent = error.message;
+    } finally {
+      setBusy(false);
+      button.disabled = false;
+      input.readOnly = false;
+    }
+  };
+  input.oninput = () => {
+    delete current.comparison.requested_peer;
+    results.replaceChildren();
+  };
+  details.append(form, results);
+  return details;
+}
+
 function adoptionPanel(proof) {
   const result = proof.result;
   const holdout = proof.holdout;
@@ -123,6 +326,7 @@ function taskGuidance(guidance) {
   if (guidance.probe_available) {
     const link = node("a", "用自己的 PDF 试跑");
     link.href = "#pdf-probe";
+    link.onclick = () => { byId("pdf-probe").open = true; };
     section.append(link);
   }
   return section;
@@ -132,15 +336,20 @@ function renderReport(report) {
   const root = byId("report");
   const warning = ["repair_required", "configuration_required", "task_contract_review"].includes(report.decision);
   const inspection = panel(report.decision_zh, report.reason, `verdict${warning ? " warning" : ""}`);
-  root.replaceChildren(inspection);
+  const profile = report.skill_profile;
+  if (profile) {
+    root.replaceChildren(profileOverview(profile, report.source_import), capacityPanel(profile, report.source_import),
+      peerPanel(profile), documentationPanel(profile));
+  } else {
+    root.replaceChildren(inspection);
+  }
+  if (profile && warning) root.append(inspection);
   if (report.current_task?.state === "unverified") {
     const task = panel(report.current_task.title, report.current_task.reason, "current-task");
     task.id = "current-task-evidence";
-    if (warning) root.append(task);
-    else root.prepend(task);
+    root.append(task);
   }
   if (report.task_guidance) root.append(taskGuidance(report.task_guidance));
-  root.append(panel(report.introduction.name, report.introduction.description));
 
   const proof = report.verified_adoption;
   if (proof?.state === "measured_on_registered_inputs") {
@@ -151,7 +360,7 @@ function renderReport(report) {
     } else {
       root.append(adoptionPanel(proof));
     }
-  } else {
+  } else if (!profile) {
     root.append(panel("实际效果待验证", proof?.reason || "这份本地材料尚无可绑定的配对实测。"));
   }
 
@@ -250,7 +459,8 @@ async function loadStudies() {
 
 byId("link-form").onsubmit = event => { event.preventDefault(); scanLink(); };
 for (const id of ["skill-url", "task", "network", "skill-file"]) byId(id).addEventListener("input", invalidate);
-byId("public-example").onclick = () => example("https://github.com/anthropics/skills/tree/main/skills/pdf");
+byId("public-example").onclick = () => example("https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md");
+byId("spreadsheet-example").onclick = () => example("https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md");
 
 byId("inspect-file").onclick = async () => {
   if (busy) return;

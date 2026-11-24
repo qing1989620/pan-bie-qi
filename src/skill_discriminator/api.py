@@ -19,6 +19,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 
 from . import __version__, adoption, source_import
 from .pdf_table import MAX_CSV_BYTES, MAX_PDF_BYTES, probe
+from .profile import attach as attach_profile
 from .service import assess
 from .verify import replay_registered
 
@@ -123,8 +124,10 @@ def create_app() -> FastAPI:
     @router.post("/inspect", dependencies=[Depends(access)])
     def inspect_request(request: InspectRequest) -> dict:
         try:
-            return assess(request.identity, request.files, request.inventory, request.inventory_complete,
-                          request.task, request.environment.model_dump())
+            report = assess(request.identity, request.files, request.inventory, request.inventory_complete,
+                            request.task, request.environment.model_dump())
+            attach_profile(report["skill_profile"], report)
+            return report
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from None
 
@@ -166,6 +169,7 @@ def create_app() -> FastAPI:
                 "overall_quality_certificate": False, "functional_execution": "not_performed_by_link_import",
             }
             adoption.attach(report, source)
+            attach_profile(report["skill_profile"], report, source)
             return {"state": "assessed", "source": source, "package": visible, "report": report,
                     "model_api_calls": 0, "skill_code_executed": False}
         except ValueError as exc:

@@ -1,0 +1,987 @@
+{
+  "schema": "skill-profiles-v1",
+  "protocol": {
+    "scope": "按固定版本说明复跑公开的读取步骤，逐页文字按内容和顺序验收，表格按已登记的列名和数据格验收。",
+    "environment": {
+      "pdfplumber": "0.11.11",
+      "reportlab": "4.4.10"
+    },
+    "runtime": "使用本地库复跑已写明的步骤，未运行上游 Skill 包、模型、OCR 或人工视觉复核。",
+    "hermes_pdf_read_source": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/scripts/pdf_read.py#L28-L48"
+  },
+  "peers": [
+    {
+      "name": "Anthropic PDF",
+      "repository": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "skill_path": "skills/pdf/SKILL.md",
+      "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md",
+      "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+      "family": "pdf",
+      "characters": 8021,
+      "documentation": {
+        "found": 5,
+        "total": 7
+      },
+      "documented": [
+        "text",
+        "table",
+        "create",
+        "page_ops",
+        "forms",
+        "ocr"
+      ],
+      "review": [
+        {
+          "line": 93,
+          "text": "给出了默认表格提取示例。"
+        },
+        {
+          "line": 197,
+          "text": "版面文本和扫描 OCR 分别有示例。"
+        }
+      ],
+      "measurements": {
+        "text": {
+          "method": "pdfplumber 默认逐页文字提取",
+          "source_line": 85,
+          "passed": 3,
+          "total": 4,
+          "cases": [
+            {
+              "id": "lines",
+              "label": "单栏普通文字",
+              "passed": true
+            },
+            {
+              "id": "pages",
+              "label": "多页独立段落",
+              "passed": true
+            },
+            {
+              "id": "meaning",
+              "label": "数字、负号与百分号",
+              "passed": true
+            },
+            {
+              "id": "columns",
+              "label": "双栏阅读顺序",
+              "passed": false
+            }
+          ]
+        },
+        "table": {
+          "method": "pdfplumber 默认网格表格提取",
+          "source_line": 95,
+          "passed": 2,
+          "total": 6,
+          "cases": [
+            {
+              "id": "grid",
+              "label": "有网格三列表格",
+              "passed": true
+            },
+            {
+              "id": "grid-caption",
+              "label": "带表题的网格表",
+              "passed": true
+            },
+            {
+              "id": "borderless",
+              "label": "无边框三列表格",
+              "passed": false
+            },
+            {
+              "id": "borderless-footer",
+              "label": "无边框表格紧接同列脚注",
+              "passed": false
+            },
+            {
+              "id": "merged",
+              "label": "跨列合并的数值单元格",
+              "passed": false
+            },
+            {
+              "id": "paper",
+              "label": "真实中文论文表 6",
+              "passed": false
+            }
+          ],
+          "cells": 12,
+          "total_cells": 46
+        }
+      }
+    },
+    {
+      "name": "OpenAI PDF",
+      "repository": "openai/skills",
+      "commit": "49f948faa9258a0c61caceaf225e179651397431",
+      "skill_path": "skills/.curated/pdf/SKILL.md",
+      "url": "https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/SKILL.md",
+      "sha256": "d108cf2b36355ab37eb5962933f4d09785ec002f3105c506129320209306b9d2",
+      "family": "pdf",
+      "characters": 2517,
+      "documentation": {
+        "found": 6,
+        "total": 7
+      },
+      "documented": [
+        "text",
+        "create",
+        "render"
+      ],
+      "review": [
+        {
+          "line": 15,
+          "text": "强调把页面渲染成图片做目视复核。"
+        },
+        {
+          "line": 57,
+          "text": "明确列出排版和最终交付检查。"
+        }
+      ],
+      "measurements": {
+        "text": {
+          "method": "pdfplumber 默认逐页文字提取",
+          "source_line": 19,
+          "passed": 3,
+          "total": 4,
+          "cases": [
+            {
+              "id": "lines",
+              "label": "单栏普通文字",
+              "passed": true
+            },
+            {
+              "id": "pages",
+              "label": "多页独立段落",
+              "passed": true
+            },
+            {
+              "id": "meaning",
+              "label": "数字、负号与百分号",
+              "passed": true
+            },
+            {
+              "id": "columns",
+              "label": "双栏阅读顺序",
+              "passed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Nous Research PDF",
+      "repository": "NousResearch/hermes-agent",
+      "commit": "a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9",
+      "skill_path": "skills/productivity/pdf/SKILL.md",
+      "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md",
+      "sha256": "11126ee5460ff6b0699514198a46ac7c2ff2dd4c6c03ac99b81ac3f5b9d37cf3",
+      "family": "pdf",
+      "characters": 15274,
+      "documentation": {
+        "found": 7,
+        "total": 7
+      },
+      "documented": [
+        "text",
+        "table",
+        "create",
+        "page_ops",
+        "forms",
+        "ocr",
+        "render"
+      ],
+      "review": [
+        {
+          "line": 88,
+          "text": "给出导出 CSV 的入口。"
+        },
+        {
+          "line": 146,
+          "text": "明确提示无边框和合并单元格可能需要调参。"
+        }
+      ],
+      "measurements": {
+        "text": {
+          "method": "pdfplumber 默认逐页文字提取",
+          "source_line": 87,
+          "passed": 3,
+          "total": 4,
+          "cases": [
+            {
+              "id": "lines",
+              "label": "单栏普通文字",
+              "passed": true
+            },
+            {
+              "id": "pages",
+              "label": "多页独立段落",
+              "passed": true
+            },
+            {
+              "id": "meaning",
+              "label": "数字、负号与百分号",
+              "passed": true
+            },
+            {
+              "id": "columns",
+              "label": "双栏阅读顺序",
+              "passed": false
+            }
+          ]
+        },
+        "table": {
+          "method": "pdfplumber 默认网格表格提取",
+          "source_line": 88,
+          "passed": 2,
+          "total": 6,
+          "cases": [
+            {
+              "id": "grid",
+              "label": "有网格三列表格",
+              "passed": true
+            },
+            {
+              "id": "grid-caption",
+              "label": "带表题的网格表",
+              "passed": true
+            },
+            {
+              "id": "borderless",
+              "label": "无边框三列表格",
+              "passed": false
+            },
+            {
+              "id": "borderless-footer",
+              "label": "无边框表格紧接同列脚注",
+              "passed": false
+            },
+            {
+              "id": "merged",
+              "label": "跨列合并的数值单元格",
+              "passed": false
+            },
+            {
+              "id": "paper",
+              "label": "真实中文论文表 6",
+              "passed": false
+            }
+          ],
+          "cells": 12,
+          "total_cells": 46
+        }
+      }
+    },
+    {
+      "name": "Anthropic XLSX",
+      "repository": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "skill_path": "skills/xlsx/SKILL.md",
+      "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md",
+      "sha256": "f32b1c2b5d5d31e02964df110d6489613d9345f86830c118cfe24159d8448ce6",
+      "family": "spreadsheet",
+      "characters": 9718,
+      "documentation": {
+        "found": 6,
+        "total": 7
+      },
+      "documented": [
+        "sheet_create",
+        "sheet_edit",
+        "formulas",
+        "csv",
+        "charts"
+      ],
+      "review": [
+        {
+          "line": 20,
+          "text": "检查公式错误、现有公式保留及工作簿交付规范。"
+        },
+        {
+          "line": 30,
+          "text": "解释公式重算、缓存和重算失败。"
+        }
+      ],
+      "measurements": null
+    },
+    {
+      "name": "Nous Research XLSX",
+      "repository": "NousResearch/hermes-agent",
+      "commit": "dc82bec3bd4d2d63e25c1854f5f2b081f05aad38",
+      "skill_path": "skills/productivity/xlsx/SKILL.md",
+      "url": "https://github.com/NousResearch/hermes-agent/blob/dc82bec3bd4d2d63e25c1854f5f2b081f05aad38/skills/productivity/xlsx/SKILL.md",
+      "sha256": "ffe15d1907e1f68b4579dcee0cb1da2193a28c3ff03ec6294061bc9e19e0ff4e",
+      "family": "spreadsheet",
+      "characters": 12167,
+      "documentation": {
+        "found": 7,
+        "total": 7
+      },
+      "documented": [
+        "sheet_create",
+        "sheet_edit",
+        "formulas",
+        "csv",
+        "charts"
+      ],
+      "review": [
+        {
+          "line": 22,
+          "text": "列出工作簿编辑与 CSV 转换。"
+        },
+        {
+          "line": 174,
+          "text": "写明 CSV 类型推断与编码处理。"
+        }
+      ],
+      "measurements": null
+    }
+  ],
+  "outcomes": {
+    "text": [
+      {
+        "id": "lines",
+        "label": "单栏普通文字",
+        "input_sha256": "72b03dd9a21e0fb267cd3b1b58aa9580a181670af97ac02092bef9d45f6cf5d2",
+        "expected": [
+          "Packing register\nBox count: 27"
+        ],
+        "actual": [
+          "Packing register\nBox count: 27"
+        ],
+        "passed": true
+      },
+      {
+        "id": "pages",
+        "label": "多页独立段落",
+        "input_sha256": "fffbdc2e2d2d80c0eb17d4d4147b6ab7911680a5c6b5f5d5570e61a090c80bd0",
+        "expected": [
+          "First delivery",
+          "Second delivery"
+        ],
+        "actual": [
+          "First delivery",
+          "Second delivery"
+        ],
+        "passed": true
+      },
+      {
+        "id": "meaning",
+        "label": "数字、负号与百分号",
+        "input_sha256": "a97462a70b830d18b7faf01aab26986bba6bb9b89e3569e4ced9fe14884b5a8f",
+        "expected": [
+          "Balance: -427.50 USD\nChange: +12.4%"
+        ],
+        "actual": [
+          "Balance: -427.50 USD\nChange: +12.4%"
+        ],
+        "passed": true
+      },
+      {
+        "id": "columns",
+        "label": "双栏阅读顺序",
+        "input_sha256": "a92ed1c55af45e56f7d781bd82c068cfb811b9c9ad4e96c11888b69bbf2297e3",
+        "expected": [
+          "Left alpha\nLeft beta\nRight alpha\nRight beta"
+        ],
+        "actual": [
+          "Left alpha Right alpha\nLeft beta Right beta"
+        ],
+        "passed": false
+      }
+    ],
+    "table": [
+      {
+        "id": "grid",
+        "label": "有网格三列表格",
+        "input_sha256": "aafe8f28619410470b94d93952edbd02c9f7e359be9c6a6e5274c4eee49503fa",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "passed": true,
+        "matched_cells": 6
+      },
+      {
+        "id": "grid-caption",
+        "label": "带表题的网格表",
+        "input_sha256": "33dfad0730d4ba77388b6a8aa4dc90d813c23afbf8c7fe2871b4be90a0507a81",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "passed": true,
+        "matched_cells": 6
+      },
+      {
+        "id": "borderless",
+        "label": "无边框三列表格",
+        "input_sha256": "3c6c4987369a002afd9b485686f0f31ac38516b65b195f9034439a31174c47bd",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [],
+        "passed": false,
+        "matched_cells": 0
+      },
+      {
+        "id": "borderless-footer",
+        "label": "无边框表格紧接同列脚注",
+        "input_sha256": "9b0ae99f71590c5ff612fe6667681d78cf1d443df38a7246368a4e5c06b29ce9",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [],
+        "passed": false,
+        "matched_cells": 0
+      },
+      {
+        "id": "merged",
+        "label": "跨列合并的数值单元格",
+        "input_sha256": "f59806ccdaa1ef8e1fef86b4c333c6193f9a713b84bec056dd3263aeb6825aea",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [],
+        "passed": false,
+        "matched_cells": 0
+      },
+      {
+        "id": "paper",
+        "label": "真实中文论文表 6",
+        "input_sha256": "758438aa713516b5138adc9d1f7784d3220da8a071b200c45dfb68b99fc96a1c",
+        "page": 4,
+        "expected": [
+          [
+            "方法",
+            "前排改善",
+            "前排回退",
+            "复查回退",
+            "增益 MAE"
+          ],
+          [
+            "只看有 Skill 的通过比例",
+            "246",
+            "19",
+            "40",
+            "不适用"
+          ],
+          [
+            "SkillAudit 发布增益",
+            "319",
+            "34",
+            "18",
+            "23.15"
+          ],
+          [
+            "SkillTester 公式移植",
+            "285",
+            "28",
+            "30",
+            "不适用"
+          ],
+          [
+            "逐项验收的带符号增益",
+            "318",
+            "31",
+            "29",
+            "24.73"
+          ]
+        ],
+        "reference_cells": 16,
+        "actual": [],
+        "passed": false,
+        "matched_cells": 0
+      }
+    ],
+    "verified_table": [
+      {
+        "id": "grid",
+        "label": "有网格三列表格",
+        "input_sha256": "aafe8f28619410470b94d93952edbd02c9f7e359be9c6a6e5274c4eee49503fa",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "passed": true,
+        "matched_cells": 6,
+        "extraction_state": "extracted"
+      },
+      {
+        "id": "grid-caption",
+        "label": "带表题的网格表",
+        "input_sha256": "33dfad0730d4ba77388b6a8aa4dc90d813c23afbf8c7fe2871b4be90a0507a81",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "passed": true,
+        "matched_cells": 6,
+        "extraction_state": "extracted"
+      },
+      {
+        "id": "borderless",
+        "label": "无边框三列表格",
+        "input_sha256": "3c6c4987369a002afd9b485686f0f31ac38516b65b195f9034439a31174c47bd",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "passed": true,
+        "matched_cells": 6,
+        "extraction_state": "extracted"
+      },
+      {
+        "id": "borderless-footer",
+        "label": "无边框表格紧接同列脚注",
+        "input_sha256": "9b0ae99f71590c5ff612fe6667681d78cf1d443df38a7246368a4e5c06b29ce9",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ],
+          [
+            "Source",
+            "FY26",
+            "Audit"
+          ]
+        ],
+        "passed": false,
+        "matched_cells": 6,
+        "extraction_state": "extracted"
+      },
+      {
+        "id": "merged",
+        "label": "跨列合并的数值单元格",
+        "input_sha256": "f59806ccdaa1ef8e1fef86b4c333c6193f9a713b84bec056dd3263aeb6825aea",
+        "page": 1,
+        "expected": [
+          [
+            "Region",
+            "Units",
+            "Revenue"
+          ],
+          [
+            "North",
+            "14",
+            "12.40"
+          ],
+          [
+            "West",
+            "7",
+            "-3.20"
+          ],
+          [
+            "East",
+            "11",
+            "8.90"
+          ]
+        ],
+        "reference_cells": 6,
+        "actual": [],
+        "passed": false,
+        "matched_cells": 0,
+        "extraction_state": "table_not_found"
+      },
+      {
+        "id": "paper",
+        "label": "真实中文论文表 6",
+        "input_sha256": "758438aa713516b5138adc9d1f7784d3220da8a071b200c45dfb68b99fc96a1c",
+        "page": 4,
+        "expected": [
+          [
+            "方法",
+            "前排改善",
+            "前排回退",
+            "复查回退",
+            "增益 MAE"
+          ],
+          [
+            "只看有 Skill 的通过比例",
+            "246",
+            "19",
+            "40",
+            "不适用"
+          ],
+          [
+            "SkillAudit 发布增益",
+            "319",
+            "34",
+            "18",
+            "23.15"
+          ],
+          [
+            "SkillTester 公式移植",
+            "285",
+            "28",
+            "30",
+            "不适用"
+          ],
+          [
+            "逐项验收的带符号增益",
+            "318",
+            "31",
+            "29",
+            "24.73"
+          ]
+        ],
+        "reference_cells": 16,
+        "actual": [
+          [
+            "方法",
+            "前排改善（474）",
+            "前排回退（474）",
+            "复查回退（237）",
+            "增益 MAE（百分点）"
+          ],
+          [
+            "只看有 Skill 的通过比例",
+            "246",
+            "19",
+            "40",
+            "不适用"
+          ],
+          [
+            "SkillAudit 发布增益",
+            "319",
+            "34",
+            "18",
+            "23.15"
+          ],
+          [
+            "SkillTester 公式移植",
+            "285",
+            "28",
+            "30",
+            "不适用"
+          ],
+          [
+            "逐项验收的带符号增益",
+            "318",
+            "31",
+            "29",
+            "24.73"
+          ]
+        ],
+        "passed": true,
+        "matched_cells": 16,
+        "extraction_state": "extracted"
+      }
+    ]
+  }
+}

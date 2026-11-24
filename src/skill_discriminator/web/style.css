@@ -58,6 +58,36 @@ summary { cursor: pointer; font-weight: 650; }
 .measurement { background: var(--accent-light); }
 .current-task { border-left: 4px solid #95710a; }
 .archive-title { margin-bottom: .5rem; }
+.profile-hero { background: #f4faf6; padding: clamp(1rem, 3vw, 1.6rem); }
+.profile-hero .category { color: var(--accent); font-size: .87rem; font-weight: 650; margin: 0 0 .2rem; }
+.profile-hero h3 { font-size: clamp(1.35rem, 4vw, 2.05rem); overflow-wrap: anywhere; }
+.profile-metrics { display: grid; gap: .65rem; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.profile-metrics > div { padding: .7rem .84rem; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.profile-metrics dt { color: var(--muted); font-size: .84rem; }
+.profile-metrics dd { margin: .05rem 0; font-size: 1.28rem; font-weight: 700; }
+.profile-metrics p { margin: 0; font-size: .82rem; color: var(--muted); }
+h4 { margin: 0; line-height: 1.45; }
+.quality-callout { border: 1px solid #cbdcd2; border-radius: 10px; background: #fff; padding: .8rem .95rem; }
+.quality-callout p { margin-bottom: .1rem; }
+.quality-blocked, .quality-environment_blocked, .quality-weak { border-color: #d9a995; }
+.quality-conditional { border-color: #cab87e; }
+.author-description { font-size: .92rem; margin-top: .9rem; }
+.capability-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 315px), 1fr)); gap: .7rem; margin: .85rem 0; }
+.capability-item { padding: .8rem; border: 1px solid var(--border); border-radius: 10px; min-width: 0; }
+.capability-item p { font-size: .92rem; margin-bottom: .4rem; }
+.capability-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .28rem .65rem; }
+.capability-heading h4 { overflow-wrap: anywhere; }
+.capability-state { font-size: .79rem; border-radius: 6px; padding: .1rem .4rem; font-weight: 650; color: var(--muted); background: #edf2ef; }
+.capability-state.success { background: #e7f4ed; color: #07533f; }
+.capability-state.partial { background: #faf0d6; color: #674904; }
+.capability-state.failure { background: #faeee9; color: var(--danger); }
+.capability-detail { margin-top: .45rem; font-size: .87rem; }
+.peer-evidence p { margin: 0 0 .35rem; }
+.peer-evidence a { display: block; }
+.peer-form { margin-top: .65rem; }
+#skill-comparison th:nth-child(2), #skill-comparison th:nth-child(3) { min-width: 5.4em; }
+#skill-comparison h4 { margin-top: .9rem; }
+#pdf-probe .control { margin-top: .75rem; }
 .field-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .85rem 1rem; }
 .field-grid input, .field-line input { width: 100%; min-width: 0; }
 .field-line { margin: .85rem 0; }

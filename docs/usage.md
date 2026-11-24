@@ -2,11 +2,11 @@
 
 ## 看懂报告
 
-页面显示 Skill 声明的功能、已取得的 GitHub 提交、可读取的文件与清单覆盖。报告中的源码片段是待分析材料。公开链接的读取范围包括 GitHub 仓库、`tree` 目录、`blob` 或 `raw` 的 `SKILL.md`，以及 `skills.sh` 的公开目录条目。仓库含多个 Skill 时，选择实际要评估的路径。
+页面首先显示单个 Skill 的说明长度、功能质量结论和分项能力。已测能力列出通过数和失败的输入。说明覆盖可逐条展开看依据。公开链接支持 GitHub 仓库、`tree` 目录、`blob` 或 `raw` 的 `SKILL.md`，以及 `skills.sh` 的公开条目。仓库含多个 Skill 时，选择要评估的路径。
 
 填写任务描述可以补充用户的输入、输出或运行条件。源文件和声明能解释已确认的问题或待复核线索。软件只把与仓库、提交、路径和文档 SHA-256 均一致的配对实测附到对应报告。若仅从原始文档端点取得说明，页面会显示读取范围，保留版本和完整清单待核验。
 
-「历史配对实测」同时给出无 Skill 和有 Skill 的通过数，单列改善、回退、留出成绩和失败样本。当前随包登记一个真实开源 Skill 版本。填写新任务后，报告首先显示该任务的验证状态。归档仍可展开，范围限定于登记输入。链接检查和归档复核都通过本地服务进行。
+「历史配对实测」同时给出无 Skill 和有 Skill 的通过数，单列改善、回退、留出成绩和失败样本。填写新任务后，可独立查看该任务的验证状态。同类公开 Skill 卡片显示同规则检查结果、固定说明和共有的局部实测，也可以手动填入另一个公开链接。[能力报告方法与实测范围](skill-profile-evaluation.md)
 
 ## PDF 表格试跑
 
@@ -36,7 +36,7 @@ $body = @{ url = 'https://github.com/anthropics/skills/tree/main/skills/pdf' } |
 Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8853/api/discriminator/import-url' -ContentType 'application/json' -Body $body
 ```
 
-返回 `selection_required` 时，在下一次请求同时传回原始 `url`、候选的 `path` 作为 `skill_path`，以及响应 `source.commit` 作为 `revision`。这样再次获取的材料仍对应原提交。链接评估成功时报告在响应的 `report` 中。界面导出相同的报告 JSON。
+返回 `selection_required` 时，在下一次请求同时传回原始 `url`、候选的 `path` 作为 `skill_path`，以及响应 `source.commit` 作为 `revision`。这样再次获取的材料仍对应原提交。链接评估成功时，在 `report.skill_profile` 获取 `size`、`capabilities`、`functional_quality`、`documentation`、`measurements` 及 `comparison`。界面导出的 JSON 还包含手动添加的对照链接及结果。
 
 `inspect` 接收 `files` 字典，键为包内相对路径，值为文本，至少提供 `SKILL.md`。可选 `inventory` 和 `inventory_complete` 用于说明清单。两个检查接口都接受 `task` 与 `environment`。`environment.available_keys` 只接受变量名称到布尔值的映射，例如 `{"LITERATURE_API_KEY": false}`。`environment.network_allowed` 记录目标环境的联网状态。
 

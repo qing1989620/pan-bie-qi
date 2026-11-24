@@ -10,6 +10,7 @@ from .assurance import static_capabilities
 from .contracts import check as contract_review
 from .explanation import build
 from .inspection import clean, inspect
+from .profile import describe
 from .task_guidance import pdf_guidance
 
 
@@ -48,4 +49,5 @@ def assess(
         elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
     )
     report["evidence_assessment"] = build(report, files)
+    report["skill_profile"] = describe(files, report["introduction"], report["package"])
     return clean(report)

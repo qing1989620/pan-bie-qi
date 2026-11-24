@@ -28,7 +28,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\footnotesize 开源 Skill 判别器与配对验收}
-\fancyhead[R]{\footnotesize 学位课题扩展论文 · 2026-11-21}
+\fancyhead[R]{\footnotesize 学位课题扩展论文 · 2026-11-24}
 \fancyfoot[C]{\footnotesize\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \makeatletter
@@ -290,7 +290,7 @@ SkillTester 公式移植 & 285 & 28 & 30 & 不适用 \\
 
 \subsection{用链接核查效果和失败范围}
 
-在同一本地网页验收中，读入工位标签 Skill 的固定链接，报告复用该版本的 32 项配对记录，突出显示留出两组均为 8/16，并可展开事件失败原因。导出的 JSON 与页面使用相同的证据指纹。另以 Anthropic PDF Skill 的公开目录作未知版本对照\cite{anthropic}。页面读取了 12 个文件，展示包材料，实际效果显示待验证。仓库、提交、路径或原始字节变更都通过了相应版本绑定测试。这个验证体现了用户粘贴链接时可获得的结论及其边界。
+在同一本地网页验收中，读入工位标签 Skill 的固定链接，报告复用该版本的 32 项配对记录，突出显示留出两组均为 8/16，并可展开事件失败原因。导出的 JSON 与页面使用相同的证据指纹。仓库、提交、路径或原始字节变更都通过了相应版本绑定测试。第 \ref{sec:profile} 节报告单个 Skill 的能力、同类差异及按具体任务复跑的结果。
 
 补充的只读接入样本来自三个社区仓库，共 30 个包，其中 3 个出现可确认的包问题，7 个产生需要复核的能力线索。样本没有人工正确标签与配对执行，计数仅反映检查发现和覆盖范围。当前网页实测登记覆盖一个公开 Skill 版本，扩展到任意链接仍需要相应的任务、环境和独立验收器。
 
@@ -328,6 +328,36 @@ SkillDelta\cite{delta,deltacode} & 依据相似历史任务预测指定 Skill �
 
 成本优势目前来自受控的启用策略回放。比较记录的是执行端开销，随着试跑数量、API 依赖、自动任务构造及验收侧成本增加，整体节省比例需要重新测量。对于跨领域性能和覆盖率，后续的确认性检验应固定新的 Skill 版本、独立收集多领域任务及两个以上宿主，并记录未知比例、准确性、误放行成本和证据取得时间。已有消融说明环境特征必须经过这样的来源外检验后才能成为产品判断依据。
 
+\section{单个 Skill 的能力报告}\label{sec:profile}
+
+\subsection{可解释的质量判定}
+
+产品输入是一条公开 Skill 链接。报告按 Unicode 码点统计 \path{SKILL.md} 的字符数，并分开计数正文、文件和字节。能力条目保留来源行号，区分说明声明、公开步骤复跑和带 Skill 的配对产物。说明覆盖检查七项，分别为名称与用途、输入、交付物、步骤、验收、限制和运行环境。每个规则命中计一项，记录命中行。该计数只描述说明材料，无法推出任务成功率。对未登记的可执行能力，报告给出待验证结论。
+
+配对功能评级以留出输入为主。至少有 8 项输入、通过率至少为 90\% 且各已登记分组通过率均达到 75\% 时，给出实测范围内的优秀评级。通过率低于 50\% 时标为表现欠佳，其余可评价结果标为有条件可用。明确的包缺陷优先提示修复。这些阈值是原型采用的产品规则，尚无跨领域校准。在工位标签案例中，常规匹配和同词跨工位分别通过 8/8。同工位多码和无合法匹配分别通过 0/8。试验要求只有唯一合法精确匹配时才输出编码，歧义或无匹配输出 UNKNOWN。评级因此为有条件可用。
+
+\subsection{固定公开版本的同输入对照}
+
+选取 Anthropic、OpenAI 和 Nous Research 的 PDF Skill\cite{anthropic,openaipdf,hermespdf}。将固定提交中明确写出的读取步骤移植为本地库调用。在 4 个文字测试中逐页匹配文本内容及顺序，在 6 个表格测试中使用预设的结构与数据值验收。试验包含双栏、无边框、跨列合并、脚注相邻等情形，以及本文表 6。模型、上游 Skill 包、OCR 和人工视觉复核均不参与本试验。表 \ref{tab:profile-replay} 比较相同可复跑步骤，整包效果需要在具体宿主另行试验。
+
+\begin{table}[!ht]
+\centering\small
+\caption{公开 PDF 步骤在相同输入上的通过数。破折号表示缺少适用的同条件流程记录。}
+\label{tab:profile-replay}
+\begin{tabularx}{\columnwidth}{@{}Xrr@{}}
+\toprule
+固定说明版本 & 逐页文字 & 表格提取 \\
+\midrule
+Anthropic PDF & 3/4 & 2/6 \\
+OpenAI PDF & 3/4 & --- \\
+Nous Research PDF & 3/4 & 2/6 \\
+判别器附带的表格流程 & --- & 4/6 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+三种文字流程均把双栏同高度文本交错输出。Anthropic 与 Nous Research 的默认提表流程在两个网格输入上通过，合计核对正确 12/46 个数据格。附带的表格流程在给定表头和预期行数后增加版面提取，额外通过了普通无边框表格与真实论文表，合计正确 40/46 个数据格。带脚注的例子仍多抽取一行，合并单元格的例子也未通过。通过标准同时要求无缺失、错值和额外行。不同公开说明还有各自侧重。OpenAI 强调渲染和视觉验收，Nous Research 明确提示表格需要调参。这些区别由来源行定位，表中未为未测能力补分。
+
 \section{结论}
 
 在固定版开源 Skill 的可计算任务中，判别器获得完整且可回查的产物验收，三个关键语义检查分别防止工位误拒、歧义误放和零匹配误放。配对留出结果表明该 Skill 在当前任务上未显示稳定的额外收益。大规模档案对照验证了回退记录的重要性，也揭示了收益点预测及跨环境泛化的不足。版本绑定、规则验收及介入前后证据已经进入产品原型。完整的开放生态判别需要扩大真实任务覆盖和来源外验证。
@@ -336,9 +366,8 @@ SkillDelta\cite{delta,deltacode} & 依据相似历史任务预测指定 Skill �
 
 独立仓库在 \href{https://github.com/qing1989620/pan-bie-qi}{qing1989620/pan-bie-qi}。随包数据目录为 \path{src/skill_discriminator/data}。其中 \path{codebook-cases.json} 保存冻结输入与登记答案，\path{codebook-outcomes.json} 保存配对产物，\path{codebook-ablation.json} 保存规则消融的逐条判定。
 
-安装后用 \code{python -m} 启动模块 \path{skill_discriminator.verify}，核验归档指纹并重算通过数和留出结果。公开基线对照汇总在 \path{utility-study.json}，固定原始档案由文献链接提供。网页和 API 启动方式见仓库 README。产物复核在本地执行独立规则，新增模型调用为零。
+安装后用 \code{python -m} 启动模块 \path{skill_discriminator.verify}，核验归档指纹并重算通过数和留出结果。公开基线对照汇总在 \path{utility-study.json}，固定原始档案由文献链接提供。单项流程的输入指纹、预期答案和实际输出见 \path{skill-profiles.json}，生成脚本见 \path{scripts/profile_study.py}。产物复核在本地执行规则，新增模型调用为零。
 
-\clearpage
 \begin{thebibliography}{99}
 \raggedright
 \bibitem{audit} Yu D, Li Y, Guan Z, et al. SkillAudit: From Fixed-Suite Benchmarking to Skill-Centered Assessment. arXiv:2606.22613v1, 2026. \href{https://arxiv.org/abs/2606.22613v1}{论文}.
@@ -355,7 +384,9 @@ SkillDelta\cite{delta,deltacode} & 依据相似历史任务预测指定 Skill �
 \bibitem{deltacode} SkillDelta 项目. 公开预测实现，Git 提交 \code{bc6c11acdbb4}. \href{https://github.com/TankTechnology/skilldelta/tree/bc6c11acdbb487c321e3a50b33a94067143c436f}{固定实现}.
 \bibitem{spec} Agent Skills 开放规范. \href{https://agentskills.io/specification}{格式与发现}.
 \bibitem{publicskill} BenchFlow. 工位故障标签归一化 Skill. 提交 \code{27738384b1df}. \href{https://github.com/benchflow-ai/skillsbench/blob/27738384b1df694ea2ae466e416f476e94d8fab9/tasks/manufacturing-codebook-normalization/environment/skills/manufacturing-failure-reason-codebook-normalization/SKILL.md}{公开说明}.
-\bibitem{anthropic} Anthropic. PDF Skill. \href{https://github.com/anthropics/skills/tree/main/skills/pdf}{公开目录}.
+\bibitem{anthropic} Anthropic. PDF Skill. 提交 \code{e4bb5d960d87}. \href{https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md}{固定说明}.
+\bibitem{openaipdf} OpenAI. PDF Skill. 提交 \code{49f948faa925}. \href{https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/SKILL.md}{固定说明}.
+\bibitem{hermespdf} Nous Research. PDF Skill. 提交 \code{a15b9710395a}. \href{https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md}{固定说明}.
 \end{thebibliography}
 
 \end{document}
