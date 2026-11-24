@@ -103,6 +103,18 @@ def test_cold_start_no_keys_proxies_or_cookies(monkeypatch):
     assert connections[0].response.closed
 
 
+def test_github_auth_is_only_sent_to_direct_repository_api(monkeypatch):
+    token = "fixture_only"
+    calls, connections = network(monkeypatch, Response(status=302, headers={"Location": "https://example.com/repos/x/y"}))
+    blocked = web.fetch_url("https://raw.githubusercontent.com/example/skills/main/SKILL.md",
+                            github_api_token=token, max_redirects=0)
+    assert blocked["state"] == "blocked" and calls == []
+    result = web.fetch_url("https://api.github.com/repos/example/skills", github_api_token=token, max_redirects=0)
+    assert result["state"] == "blocked" and len(calls) == 1
+    assert connections[0].requests[0][2]["Authorization"] == "Bearer " + token
+    assert token not in json.dumps(web.public_record(result))
+
+
 def test_body_hash_is_exact_snapshot_and_html_is_text(monkeypatch):
     body = ('<!doctype html><html><head><meta charset="utf-8"><title>  Scholar &amp; Work </title>'
             '<style>evil css</style></head><body><h1>学术机构</h1><p>Real &amp; evidence.</p>'

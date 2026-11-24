@@ -118,6 +118,32 @@ def test_repository_with_multiple_skills_requires_explicit_selection(remote):
     assert selected["source"]["commit"] == COMMIT
 
 
+def test_public_view_uses_the_only_main_skill_and_keeps_vendor_choices(remote):
+    remote({"main-skill/SKILL.md": DOC, "main-skill/readme.md": "Main resource",
+            "third_party/other/SKILL.md": "# Other\nSummarize notes."})
+    url = "https://github.com/example/skills"
+    assert src.import_link(url)["state"] == "selection_required"
+    with TestClient(create_app()) as client:
+        value = client.post("/api/discriminator/import-url", json={"url": url, "prefer_main": True}).json()
+        other = client.post("/api/discriminator/import-url", json={
+            "url": url, "prefer_main": True, "revision": COMMIT, "skill_path": "third_party/other/SKILL.md",
+        }).json()
+    assert value["state"] == "assessed"
+    assert value["source"]["skill_path"] == "main-skill/SKILL.md"
+    assert value["source"]["selection"]["mode"] == "sole_non_vendored"
+    assert value["source"]["selection"]["candidate_count"] == 2
+    assert set(value["package"]["files"]) == {"SKILL.md", "readme.md"}
+    assert value["report"]["quick_summary"]["verdict"] == "效果待验证"
+    assert other["source"]["skill_path"] == "third_party/other/SKILL.md"
+
+
+def test_automatic_selection_stays_ambiguous_for_two_main_skills(remote):
+    remote({"a/SKILL.md": DOC, "b/SKILL.md": DOC, "vendor/c/SKILL.md": DOC})
+    result = src.import_link("https://github.com/example/skills", prefer_main=True)
+    assert result["state"] == "selection_required"
+    assert result["candidate_count"] == 3
+
+
 def test_branch_with_slash_is_resolved_before_the_package_path(remote):
     remote({"example/SKILL.md": DOC}, branch="feature/topic")
     result = src.import_link("https://github.com/example/skills/tree/feature/topic/example")

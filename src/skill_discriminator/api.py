@@ -20,6 +20,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from . import __version__, adoption, published_benchmarks, source_import
 from .pdf_table import MAX_CSV_BYTES, MAX_PDF_BYTES, probe
 from .profile import attach as attach_profile
+from .quick_summary import summarize
 from .service import assess
 from .verify import replay_registered
 
@@ -72,6 +73,7 @@ class LinkRequest(TaskRequest):
     url: str = Field(min_length=10, max_length=2048)
     skill_path: str | None = Field(default=None, max_length=240)
     revision: str | None = Field(default=None, min_length=40, max_length=40)
+    prefer_main: StrictBool = False
 
 
 class InspectRequest(TaskRequest):
@@ -127,6 +129,7 @@ def create_app() -> FastAPI:
             report = assess(request.identity, request.files, request.inventory, request.inventory_complete,
                             request.task, request.environment.model_dump())
             attach_profile(report["skill_profile"], report)
+            report["quick_summary"] = summarize(report)
             return report
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from None
@@ -151,7 +154,7 @@ def create_app() -> FastAPI:
         if not link_slots.acquire(blocking=False):
             raise HTTPException(429, "已有链接正在读取，请稍后重试。")
         try:
-            data = source_import.import_link(request.url, request.skill_path, request.revision)
+            data = source_import.import_link(request.url, request.skill_path, request.revision, request.prefer_main)
             if data["state"] == "selection_required":
                 return data
             package = data["package"]
@@ -171,6 +174,7 @@ def create_app() -> FastAPI:
             adoption.attach(report, source)
             attach_profile(report["skill_profile"], report, source)
             published_benchmarks.attach(report, source)
+            report["quick_summary"] = summarize(report)
             return {"state": "assessed", "source": source, "package": visible, "report": report,
                     "model_api_calls": 0, "skill_code_executed": False}
         except ValueError as exc:
@@ -181,6 +185,7 @@ def create_app() -> FastAPI:
     app.include_router(router)
     app.mount("/static", StaticFiles(directory=WEB), name="static")
 
+    @app.get("/user", include_in_schema=False)
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(WEB / "index.html", headers={"Cache-Control": "no-store"})

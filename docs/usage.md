@@ -2,6 +2,8 @@
 
 ## 看懂报告
 
+访问 `/user` 使用简洁版。输入公开链接后可看到用途、好不好用以及一句理由。「查看详细报告」会切到同一份结果的完整视图。仓库根链接只有一个非第三方 Skill 时，网页自动评估它，仍可选择其他候选。多个独立 Skill 时，用下拉框选定要评估的一项。
+
 页面首先显示单个 Skill 的说明长度、功能质量结论和分项能力。已测能力列出通过数和失败的输入。说明覆盖可逐条展开看依据。公开链接支持 GitHub 仓库、`tree` 目录、`blob` 或 `raw` 的 `SKILL.md`，以及 `skills.sh` 的公开条目。仓库含多个 Skill 时，选择要评估的路径。
 
 填写任务描述可以补充用户的输入、输出或运行条件。源文件和声明能解释已确认的问题或待复核线索。软件只把与仓库、提交、路径和文档 SHA-256 均一致的配对实测附到对应报告。若仅从原始文档端点取得说明，页面会显示读取范围，保留版本和完整清单待核验。
@@ -37,6 +39,10 @@ Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8853/api/discriminator/imp
 ```
 
 返回 `selection_required` 时，在下一次请求同时传回原始 `url`、候选的 `path` 作为 `skill_path`，以及响应 `source.commit` 作为 `revision`。这样再次获取的材料仍对应原提交。链接评估成功时，在 `report.skill_profile` 获取 `size`、`capabilities`、`functional_quality`、`documentation`、`measurements` 及 `comparison`。界面导出的 JSON 还包含手动添加的对照链接及结果。
+
+可选的 `prefer_main: true` 启用唯一主 Skill 规则。根目录有多个候选且只有一个位于常见第三方目录之外时，接口自动评估该项，在 `source.selection` 保留候选。简洁版用 `report.quick_summary` 读取用途、结论和理由。
+
+遇到 GitHub 匿名读取限流时，部署者可在服务进程设置 `PAN_BIE_QI_GITHUB_TOKEN`。凭据只用于固定 GitHub API 主机的仓库读取请求，页面仍只接受公开 Skill。
 
 `report.package.resource_links` 列出受支持的包内引用、来源行号和 `present`、`missing` 或 `unknown` 状态。完整 Git 清单支持确认缺失。匹配 NVIDIA 发布快照时，`report.skill_profile.public_benchmark` 提供作者配对得分、任务数、任务集指纹和原报告链接。留出预测研究见[未见 Skill 实验](unseen-skill-evaluation.md)。
 

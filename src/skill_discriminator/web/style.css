@@ -20,6 +20,12 @@ a { color: var(--accent); }
 nav { display: flex; flex-wrap: wrap; gap: .9rem; font-size: .94rem; }
 nav a { text-decoration: none; }
 nav a:hover { text-decoration: underline; }
+nav a[aria-current="page"] { font-weight: 700; color: var(--text); text-decoration: underline; text-underline-offset: .3em; }
+.simple-only, [data-view="user"] .expert-only, [hidden] { display: none !important; }
+[data-view="user"] .simple-only:not([hidden]) { display: revert !important; }
+[data-view="user"] .shell { width: min(760px, calc(100% - 2rem)); }
+[data-view="user"] .intro { padding-top: clamp(2.75rem, 8vw, 5rem); }
+[data-view="user"] .intro p { font-size: 1.06rem; }
 main { padding-bottom: 3rem; }
 .intro { padding: 2.8rem 0 1.3rem; }
 h1, h2, h3 { line-height: 1.25; margin: 0 0 .55rem; }
@@ -47,6 +53,21 @@ summary { cursor: pointer; font-weight: 650; }
 .options label { margin-top: .65rem; }
 .candidate-list { display: flex; flex-wrap: wrap; gap: .4rem; }
 .candidate-list button { max-width: 100%; overflow-wrap: anywhere; text-align: start; }
+.candidate-list details, .candidate-picker { width: 100%; min-width: 0; }
+.candidate-list details, .candidate-picker { margin-top: .55rem; }
+.candidate-picker select { flex: 1; min-width: 0; width: 100%; }
+.example-link { margin-top: .65rem; border: 0; background: transparent; padding: .15rem 0; color: var(--accent); font-size: .91rem; }
+.example-link:hover { text-decoration: underline; }
+#quick-result { margin-top: 1.1rem; padding: clamp(1rem, 4vw, 1.7rem); }
+#quick-result h2 { overflow-wrap: anywhere; }
+.quick-answer { border-top: 1px solid var(--border); margin-top: 1rem; padding-top: .95rem; }
+.quick-answer h3 { font-size: .99rem; color: var(--muted); }
+.quick-answer p { margin-bottom: 0; }
+.quick-verdict { font-weight: 750; font-size: 1.18rem; }
+.quick-verdict.verified { color: #07533f; }
+.quick-verdict.mixed { color: #785b00; }
+.quick-verdict.warning { color: var(--danger); }
+.quick-footer { margin-top: 1rem; font-size: .91rem; }
 .upload-row { margin-top: .7rem; }
 .status { color: var(--muted); font-size: .93rem; margin: .65rem 0 0; }
 .status:empty { display: none; }

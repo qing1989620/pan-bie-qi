@@ -348,7 +348,7 @@ def _extract(body: bytes, content_type: str) -> tuple[str, str]:
     return decoded, ''
 
 
-def fetch_url(url, *, timeout=12, max_bytes=1_000_000, max_redirects=3) -> dict:
+def fetch_url(url, *, timeout=12, max_bytes=1_000_000, max_redirects=3, github_api_token=None) -> dict:
     """Fetch public HTTP(S) evidence with a single deadline and bounded memory.
 
     ``body_sha256`` hashes the decoded HTTP entity bytes, before character/HTML
@@ -371,6 +371,17 @@ def fetch_url(url, *, timeout=12, max_bytes=1_000_000, max_redirects=3) -> dict:
     try:
         for hop in range(max_redirects + 1):
             canonical, host, port, target = _validate_url(current)
+            headers = {
+                'User-Agent': USER_AGENT, 'Accept': 'text/html, text/plain, application/json, application/xml;q=0.9',
+                'Accept-Encoding': 'identity', 'Connection': 'close',
+            }
+            if github_api_token is not None:
+                if (host != 'api.github.com' or not canonical.startswith('https://') or port != 443
+                        or not target.startswith('/repos/') or max_redirects != 0
+                        or not isinstance(github_api_token, str)
+                        or not re.fullmatch(r'[A-Za-z0-9_-]{1,512}', github_api_token)):
+                    raise _Blocked('GitHub authentication is restricted to direct repository API requests')
+                headers['Authorization'] = 'Bearer ' + github_api_token
             if canonical in visited:
                 raise _Blocked('redirect loop')
             visited.add(canonical)
@@ -391,10 +402,7 @@ def fetch_url(url, *, timeout=12, max_bytes=1_000_000, max_redirects=3) -> dict:
                         now = time.monotonic()
                         left = _remaining(deadline)
                         connection.connect_deadline = min(deadline, now + min(3.0, left / 2))
-                    connection.request('GET', target, headers={
-                        'User-Agent': USER_AGENT, 'Accept': 'text/html, text/plain, application/json, application/xml;q=0.9',
-                        'Accept-Encoding': 'identity', 'Connection': 'close',
-                    })
+                    connection.request('GET', target, headers=headers)
                     if connection.sock is not None:
                         connection.sock.settimeout(_remaining(deadline))
                     response = connection.getresponse()

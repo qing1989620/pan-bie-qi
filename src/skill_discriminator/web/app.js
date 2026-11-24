@@ -1,7 +1,28 @@
 const byId = id => document.getElementById(id);
 const api = "/api/discriminator";
+const activeReport = () => byId(document.documentElement.dataset.view === "user" ? "quick-result" : "report-region");
 let busy = false;
 let latestReport = null;
+
+function syncView() {
+  const view = location.pathname === "/user" ? "user" : "detail";
+  document.documentElement.dataset.view = view;
+  for (const link of document.querySelectorAll("nav [data-view-link]")) {
+    if (link.dataset.viewLink === view) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  }
+  if (latestReport) activeReport().focus();
+}
+
+document.addEventListener("click", event => {
+  const link = event.target.closest?.("a[data-view-link]");
+  if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  if (location.pathname !== link.pathname) history.pushState(null, "", link.pathname);
+  syncView();
+});
+window.addEventListener("popstate", syncView);
+syncView();
 
 function node(tag, text, className) {
   const element = document.createElement(tag);
@@ -67,6 +88,7 @@ function invalidate() {
   latestReport = null;
   byId("export-report").disabled = true;
   byId("report-region").hidden = true;
+  byId("quick-result").hidden = true;
   byId("candidates").replaceChildren();
 }
 
@@ -419,13 +441,61 @@ function renderReport(report) {
     notes.append(detail);
   }
   root.append(notes);
+  const quick = byId("quick-result");
+  const summary = report.quick_summary;
+  if (summary) {
+    const uses = node("section", undefined, "quick-answer");
+    uses.append(node("h3", "能做什么"), node("p", summary.purpose));
+    const quality = node("section", undefined, "quick-answer");
+    quality.append(node("h3", "好不好用"), node("p", summary.verdict, `quick-verdict ${summary.tone}`), node("p", summary.reason));
+    const detail = node("a", "查看详细报告");
+    detail.href = "/";
+    detail.dataset.viewLink = "detail";
+    const footer = node("div", undefined, "quick-footer");
+    footer.append(detail);
+    quick.replaceChildren(node("h2", summary.name), uses, quality, footer);
+    quick.hidden = false;
+  }
   latestReport = report;
   byId("export-report").disabled = false;
   byId("report-region").hidden = false;
-  byId("report-region").focus();
+  activeReport().focus();
 }
 
-async function scanLink(skillPath, revision) {
+function showCandidates(choices, revision, selected) {
+  const select = node("select");
+  select.setAttribute("aria-label", "选择要评估的 Skill");
+  const placeholder = node("option", "选择一个 Skill");
+  placeholder.value = "";
+  select.append(placeholder);
+  for (const item of choices.candidates) {
+    const option = node("option", item.path.replace(/\/SKILL\.md$/, ""));
+    option.value = item.path;
+    select.append(option);
+  }
+  if (selected) select.value = choices.candidates.some(item => item.path === selected) ? selected : "";
+  const button = node("button", "评估所选");
+  button.type = "button";
+  button.disabled = !select.value || select.value === selected;
+  select.onchange = () => { button.disabled = !select.value || select.value === selected; };
+  button.onclick = () => scanLink(select.value, revision, choices);
+  const row = node("div", undefined, "input-row candidate-picker");
+  row.append(select, button);
+  const target = byId("candidates");
+  if (selected) {
+    const change = node("details");
+    change.append(node("summary", "换一个 Skill"), row);
+    target.append(change);
+  } else {
+    target.append(row);
+    select.focus();
+  }
+  if (choices.candidates_truncated) {
+    target.append(node("p", "这里只列出前 200 项。你也可以粘贴具体 Skill 的链接。", "muted"));
+  }
+}
+
+async function scanLink(skillPath, revision, previousChoices) {
   if (busy) return;
   const url = byId("skill-url").value.trim();
   if (!url) return;
@@ -433,21 +503,19 @@ async function scanLink(skillPath, revision) {
   setBusy(true);
   status("link-status", "正在读取和核对版本…");
   try {
-    const data = await request("/import-url", { url, skill_path: skillPath, revision, ...conditions() });
+    const data = await request("/import-url", { url, skill_path: skillPath, revision, prefer_main: true, ...conditions() });
     if (data.state === "selection_required") {
-      status("link-status", `找到 ${data.candidate_count} 个 Skill，请选择要评估的文件。`);
-      for (const item of data.candidates) {
-        const button = node("button", item.path, "secondary");
-        button.type = "button";
-        button.onclick = () => scanLink(item.path, data.source.commit);
-        byId("candidates").append(button);
-      }
+      status("link-status", `这个链接包含 ${data.candidate_count} 个 Skill。选一个即可评估。`);
+      showCandidates(data, data.source.commit);
       return;
     }
     renderReport(data.report);
-    status("link-status", "链接评估完成。");
+    const choices = data.source.selection || previousChoices;
+    if (choices) showCandidates(choices, data.source.commit, data.source.skill_path);
+    status("link-status", data.source.selection ? "已评估仓库主 Skill。" : "评估完成。");
   } catch (error) {
     status("link-status", error.message, true);
+    if (previousChoices) showCandidates(previousChoices, revision);
   } finally {
     setBusy(false);
   }
@@ -466,6 +534,8 @@ async function loadStudies() {
     const registered = byId("registered-example");
     registered.disabled = false;
     registered.onclick = () => example(data.example_url);
+    byId("quick-example").disabled = false;
+    byId("quick-example").onclick = registered.onclick;
     const verify = panel("同一批真实产物的验收", "对照事先登记的任务答案。64 份模型产物来自一个公开 Skill 的 32 项配对输入。");
     const labels = { exact_constraints: "规则验收", standard: "Flash 直接评审", procedure: "Flash 逐步评审", deepseek_pro_retry: "Pro 补评后" };
     const grading = data.results.matched_public_artifacts;

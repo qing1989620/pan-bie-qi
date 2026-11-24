@@ -7,13 +7,13 @@ import re
 from functools import lru_cache
 from pathlib import Path
 
-from .inspection import clean, frontmatter
+from .inspection import DECLARED_EXCLUSION, clean, description_lines, frontmatter
 
 DATA = Path(__file__).resolve().parent / "data/skill-profiles.json"
 HEADER = re.compile(r"\A\ufeff?---[ \t]*\r?\n.*?^---[ \t]*(?:\r?\n|$)", re.DOTALL | re.MULTILINE)
 HEADING = re.compile(r"^ {0,3}#{1,6}\s+(.+)")
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
-LIMITS = r"\b(?:not supported|unsupported|not for|limitations?|pitfalls?|requires? (?:an? )?(?:text layer|ocr)|heuristic|can (?:fail|miss)|do(?:es)? not (?:evaluate|support)|cannot|never evaluates)\b|不适用|不支持|限制|边界|无法|仅支持"
+LIMITS = DECLARED_EXCLUSION + r"|\b(?:not supported|unsupported|limitations?|pitfalls?|requires? (?:an? )?(?:text layer|ocr)|heuristic|can (?:fail|miss)|do(?:es)? not (?:evaluate|support)|cannot|never evaluates)\b|限制|边界|无法|仅支持"
 FAMILIES = (
     ("codebook", "工位标签与编码归一", r"codebook|故障(?:原因|标签).*归一"),
     ("pdf", "PDF 文档处理", r"\bpdfs?\b"),
@@ -56,7 +56,7 @@ NORMAL_SECTIONS = re.compile(
 )
 DOC_CHECKS = (
     ("input", "说明输入或触发条件",
-     r"\b(?:when to use|inputs?|file formats?|accepted files?|pdf files|excel workbooks)\b|\.(?:pdf|xlsx|docx|pptx)\b|输入|触发条件"),
+     r"\b(?:when to use|inputs?|file formats?|accepted files?|pdf files|excel workbooks)\b|\.(?:pdf|xlsx|docx|pptx)\b|输入|触发条件|当用户(?:说|要求|请求|询问)"),
     ("output", "说明输出或交付物",
      r"\b(?:output(?:s)?|deliverables?|(?:export|save|write|create|produce)s?\s+.{0,35}(?:pdf|csv|json|docx|xlsx|png))\b|输出|交付物"),
     ("steps", "给出操作步骤",
@@ -108,17 +108,18 @@ def describe(files: dict[str, str], introduction: dict, package: dict) -> dict:
                                        for key in ("name", "description")))
     rows = _lines(document, len(header_rows))
     sha = package["file_sha256"]["SKILL.md"]
-    description_line = next(((i, line) for i, line in enumerate(header_rows, 1) if line.startswith("description:")), None)
-    observations = ([description_line] if description_line else []) + rows
+    description_rows = description_lines(document) if isinstance(metadata.get("description"), str) else []
+    description_line = description_rows[0] if description_rows else None
+    observations = description_rows + rows
     name, description = introduction["name"], introduction["description"]
     family, category = next(
         ((key, label) for scope in (name, description) for key, label, pattern in FAMILIES if _match(pattern, scope)),
         ("general", "其他任务"),
     )
-    clauses = ((number, span) for number, line in rows + ([description_line] if description_line else [])
+    clauses = ((number, span) for number, line in rows + description_rows
                for span in re.split(r"(?<=[.!?。！？])\s+|[;；]", line) if span.strip())
     claims = [line for line in clauses if not _match(
-        r"\b(?:not for|not supported|do(?:es)? not|never|cannot|unsupported)\b|不支持|不适用|不要",
+        DECLARED_EXCLUSION + r"|\b(?:not supported|do(?:es)? not|never|cannot|unsupported)\b|不要",
         line[1],
     )]
     capabilities = []
@@ -158,7 +159,7 @@ def describe(files: dict[str, str], introduction: dict, package: dict) -> dict:
             "label": "说明覆盖较完整" if confirmed == len(checks) else "说明有缺项" if confirmed >= 4 else "说明较简略",
         },
         "capabilities": capabilities,
-        "documented_limits": [_evidence(row, sha) for row in rows if _match(LIMITS, row[1])][:5],
+        "documented_limits": [_evidence(row, sha) for row in observations if _match(LIMITS, row[1])][:5],
         "functional_quality": {
             "state": "unverified", "title": "功能质量待验证",
             "reason": "当前版本尚无登记的任务产物与验收结果。", "scope": None,

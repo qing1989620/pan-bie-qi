@@ -5,6 +5,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import os
 import re
 import threading
 import time
@@ -24,10 +25,10 @@ from .inspection import (
     validate_files,
     validate_path,
 )
-
 from .web_fetch import fetch_url
 
 HOSTS = {"github.com", "www.github.com", "raw.githubusercontent.com", "skills.sh"}
+VENDORED_DIRECTORIES = {"third_party", "third-party", "vendor", "vendored"}
 TEXT = {".md", ".py", ".json", ".yaml", ".yml", ".toml", ".txt", ".sh", ".ps1", ".js", ".ts", ".mjs", ".cjs", ".tsx", ".jsx", ".go", ".rs", ".rb", ".java", ".sql", ".r", ".ini", ".cfg", ".c", ".h"}
 _CACHE: OrderedDict[str, bytes] = OrderedDict()
 _CACHE_LOCK = threading.Lock()
@@ -98,6 +99,7 @@ def parse_link(url: str) -> Link:
 class Reader:
     def __init__(self):
         self.deadline = time.monotonic() + 60
+        self.github_api_token = os.environ.get("PAN_BIE_QI_GITHUB_TOKEN") or None
         self.requests = 0
         self.cache_hits = 0
         self.lock = threading.Lock()
@@ -119,9 +121,11 @@ class Reader:
                 raise SourceError("链接读取达到本轮时间或请求上限，请选择更小的技能目录")
             self.requests += 1
         # Only URLs we construct on these two hosts can reach the public fetcher.
-        if urlsplit(url).hostname not in {"api.github.com", "raw.githubusercontent.com"}:
+        host = urlsplit(url).hostname
+        if host not in {"api.github.com", "raw.githubusercontent.com"}:
             raise SourceError("来源地址不受支持")
-        result = fetch_url(url, timeout=min(remaining, timeout_limit), max_bytes=limit, max_redirects=0)
+        auth = {"github_api_token": self.github_api_token} if host == "api.github.com" and self.github_api_token else {}
+        result = fetch_url(url, timeout=min(remaining, timeout_limit), max_bytes=limit, max_redirects=0, **auth)
         status = result.get("status_code")
         if missing_ok and status == 404:
             return None
@@ -253,7 +257,7 @@ def _direct_fallback(link, target, revision, reader):
     return _single_document_result(link, raw, source, complete=False)
 
 
-def import_link(url: str, skill_path: str | None = None, revision: str | None = None) -> dict:
+def import_link(url: str, skill_path: str | None = None, revision: str | None = None, prefer_main: bool = False) -> dict:
     link = parse_link(url)
     if skill_path:
         skill_path = validate_path(skill_path)
@@ -269,14 +273,14 @@ def import_link(url: str, skill_path: str | None = None, revision: str | None = 
         return known
     reader = Reader()
     try:
-        return _import_tree(link, skill_path, revision, reader)
+        return _import_tree(link, skill_path, revision, reader, prefer_main)
     except SourceUnavailable:
         if target is None:
             raise
         return _direct_fallback(link, target, revision, reader)
 
 
-def _import_tree(link, skill_path, revision, reader):
+def _import_tree(link, skill_path, revision, reader, prefer_main):
     base = f"https://api.github.com/repos/{link.owner}/{link.repo}"
     repository = reader.document(base)
     if not isinstance(repository, dict) or repository.get("private") is not False:
@@ -343,6 +347,16 @@ def _import_tree(link, skill_path, revision, reader):
               "trust": "GitHub HTTPS snapshot, commit and blob hashes; not author identity or third-party quality certification"}
     if primary is None and len(candidates) == 1:
         primary = candidates[0]
+    if primary is None and prefer_main and not scope and not skill_path and link.kind in {"repository", "directory"}:
+        first_party = [item for item in candidates if item["path"].split("/", 1)[0].casefold() not in VENDORED_DIRECTORIES]
+        if len(first_party) == 1:
+            primary = first_party[0]
+            source["selection"] = {
+                "mode": "sole_non_vendored",
+                "candidate_count": len(candidates),
+                "candidates": clean(candidates[:200]),
+                "candidates_truncated": len(candidates) > 200,
+            }
     if primary is None:
         if not candidates:
             raise SourceError("该链接范围内没有可读取的SKILL.md；请提供单个Skill或技能库链接")

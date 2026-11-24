@@ -17,6 +17,7 @@ MAX_FILES = 128
 MAX_BYTES = 4_000_000
 MAX_FILE_BYTES = 600_000
 TEXT_SUFFIXES = {".md", ".py", ".json", ".txt", ".yaml", ".yml", ".toml", ".sh", ".ps1"}
+DECLARED_EXCLUSION = r"\b(?:not for|do not use (?:for|when)|not applicable (?:to|when))\b|不触发(?:于|在)|不适用|不支持"
 SECRET = re.compile(r"sk-[A-Za-z0-9_-]{16,}|AKIA[A-Z0-9]{16}|AIza[A-Za-z0-9_-]{30,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|(?:api[_-]?key|access[_-]?token|secret|password)\s*[:=]\s*[\"']?[A-Za-z0-9_./+=-]{16,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----.*?-----END (?:RSA |EC |OPENSSH )?PRIVATE KEY-----", re.DOTALL | re.IGNORECASE)
 
 
@@ -93,6 +94,24 @@ def frontmatter(document: str) -> tuple[dict, str | None]:
         return (parsed if isinstance(parsed, dict) else {}), None
     except (yaml.YAMLError, RecursionError, ValueError):
         return {}, "文档头部元数据无法解析"
+
+
+def description_lines(document: str) -> list[tuple[int, str]]:
+    lines = document.removeprefix("\ufeff").splitlines()
+    if not lines or lines[0].strip() != "---":
+        return []
+    observed = []
+    for number, line in enumerate(lines[1:], 2):
+        if line.strip() == "---":
+            break
+        if observed:
+            if line and not line[0].isspace():
+                break
+            if line.strip():
+                observed.append((number, line.strip()))
+        elif re.match(r"^description[ \t]*:", line):
+            observed.append((number, line))
+    return observed
 
 
 def section_lines(files: dict[str, str], pattern: str, exclude: str = "") -> list[dict]:
@@ -226,6 +245,9 @@ def inspect(identity: str, files: dict[str, str], inventory: list[str], complete
     imports = sorted(dependency_imports - sys.stdlib_module_names - local_modules)
     supported = section_lines(files, r"when to use|use cases|适用|触发|能力|用途", r"not (?:to )?use|不适用|不支持|排除|限制")
     excluded = section_lines(files, r"limitations|not to use|not supported|不适用|限制|边界|排除")
+    if isinstance(metadata.get("description"), str):
+        excluded.extend(citation(files, "SKILL.md", line) for line, text in description_lines(document)
+                        if re.search(DECLARED_EXCLUSION, text, re.IGNORECASE))
     if not excluded:
         review.append({"kind": "boundary_not_explicit", "explanation": "未发现明确的不适用范围；建议补充输入、输出和资源限制"})
     suggestions = []
