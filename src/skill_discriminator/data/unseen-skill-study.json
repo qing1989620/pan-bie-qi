@@ -1,0 +1,4352 @@
+{
+  "schema": "unseen-skill-study-v1",
+  "revision": "252ba53487b73eaafbfcccf3e750c7b350b93db9",
+  "archive_sha256": "87f35b34024b2ffc55bcd244200265835d8f61e771039559cf07776fd9c94e90",
+  "agent": "codex",
+  "environment": "k8s-sandbox",
+  "evaluator_version": "1.5.6",
+  "count": 79,
+  "groups": 31,
+  "axes": [
+    [
+      "Correctness",
+      "with_skill"
+    ],
+    [
+      "Correctness",
+      "lift"
+    ],
+    [
+      "Effectiveness",
+      "with_skill"
+    ],
+    [
+      "Effectiveness",
+      "lift"
+    ]
+  ],
+  "numpy_version": "2.5.5",
+  "methods": [
+    "median",
+    "skillct_top8",
+    "structure_ridge",
+    "nested_blend"
+  ],
+  "folds": [
+    {
+      "id": 1,
+      "training_count": 63,
+      "test_count": 16,
+      "test_groups": [
+        "CDF Simulation",
+        "NVIDIA Broadcast",
+        "Nemotron Speech",
+        "TAO Toolkit",
+        "Video Search and Summarization"
+      ],
+      "blend_weights": [
+        [
+          0.75,
+          0.25,
+          0.0
+        ],
+        [
+          0.25,
+          0.75,
+          0.0
+        ],
+        [
+          0.75,
+          0.25,
+          0.0
+        ],
+        [
+          0.25,
+          0.75,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "training_count": 63,
+      "test_count": 16,
+      "test_groups": [
+        "CUDA-Q",
+        "NVSHMEM",
+        "NeMo AutoModel",
+        "NeMo Fabric",
+        "TileGym",
+        "cuDF"
+      ],
+      "blend_weights": [
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.25,
+          0.75,
+          0.0
+        ],
+        [
+          0.5,
+          0.25,
+          0.25
+        ],
+        [
+          0.0,
+          0.75,
+          0.25
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "training_count": 63,
+      "test_count": 16,
+      "test_groups": [
+        "CDF Augmentation",
+        "Cosmos Data Factory Orchestration",
+        "DeepStream",
+        "HoloHub",
+        "NeMo Relay",
+        "Nsight",
+        "cuOpt"
+      ],
+      "blend_weights": [
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "training_count": 63,
+      "test_count": 16,
+      "test_groups": [
+        "CDF Auto-Labeling",
+        "G-Assist",
+        "NVIDIA FLARE",
+        "NeMo Retriever",
+        "Portfolio Optimization",
+        "Run:ai",
+        "ovnewton"
+      ],
+      "blend_weights": [
+        [
+          0.25,
+          0.0,
+          0.75
+        ],
+        [
+          0.0,
+          0.75,
+          0.25
+        ],
+        [
+          0.25,
+          0.5,
+          0.25
+        ],
+        [
+          0.25,
+          0.75,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "training_count": 64,
+      "test_count": 15,
+      "test_groups": [
+        "CDF AnomalyGen",
+        "CDF Curation and Retrieval",
+        "Holoscan SDK",
+        "Jetson Device",
+        "NVIDIA App",
+        "RTX Remix"
+      ],
+      "blend_weights": [
+        [
+          0.5,
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.25,
+          0.75
+        ],
+        [
+          0.25,
+          0.0,
+          0.75
+        ],
+        [
+          0.5,
+          0.5,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "summary": {
+    "Correctness/with_skill": {
+      "methods": {
+        "median": {
+          "mae": 0.1352784810126582,
+          "rmse": 0.16889593080663004,
+          "bias": 0.03218987341772149,
+          "spearman": -0.5354271646777831
+        },
+        "skillct_top8": {
+          "mae": 0.1486107496865516,
+          "rmse": 0.17045994946992335,
+          "bias": -0.05846195310139936,
+          "spearman": 0.13203328545424936
+        },
+        "structure_ridge": {
+          "mae": 0.1318557894216508,
+          "rmse": 0.16830322458576866,
+          "bias": -0.009759572451088844,
+          "spearman": 0.09713912646237297
+        },
+        "nested_blend": {
+          "mae": 0.12936727436397324,
+          "rmse": 0.1660093944955767,
+          "bias": 0.01232273531221049,
+          "spearman": -0.08990391935243607
+        }
+      },
+      "blend_vs_top8_group_bootstrap95": [
+        -0.042967364885998116,
+        0.004910300525068337
+      ],
+      "blend_vs_median_group_bootstrap95": [
+        -0.018587925337055857,
+        0.0075368139883584895
+      ],
+      "interval_coverage": 0.8860759493670886,
+      "mean_interval_width": 0.421164722613687
+    },
+    "Correctness/lift": {
+      "methods": {
+        "median": {
+          "mae": 0.16976582278481014,
+          "rmse": 0.19821784301908657,
+          "bias": 0.0012341772151898587,
+          "spearman": -0.3904367874653467
+        },
+        "skillct_top8": {
+          "mae": 0.15213306502695098,
+          "rmse": 0.18151959822375907,
+          "bias": 0.03054156601607344,
+          "spearman": 0.24514669195526867
+        },
+        "structure_ridge": {
+          "mae": 0.16312484378594957,
+          "rmse": 0.20070233991085837,
+          "bias": 0.006874203720327377,
+          "spearman": -0.02593307444076098
+        },
+        "nested_blend": {
+          "mae": 0.1630403098559509,
+          "rmse": 0.19161850131368136,
+          "bias": 0.02413668810305131,
+          "spearman": -0.038534357091553284
+        }
+      },
+      "blend_vs_top8_group_bootstrap95": [
+        0.0025717813568722956,
+        0.021111215437526157
+      ],
+      "blend_vs_median_group_bootstrap95": [
+        -0.029101486006176805,
+        0.01894570746713752
+      ],
+      "interval_coverage": 0.8860759493670886,
+      "mean_interval_width": 0.6194220746082377
+    },
+    "Effectiveness/with_skill": {
+      "methods": {
+        "median": {
+          "mae": 0.1758088607594937,
+          "rmse": 0.20957195404932083,
+          "bias": 0.01869746835443041,
+          "spearman": -0.5318857116326964
+        },
+        "skillct_top8": {
+          "mae": 0.17195001553366696,
+          "rmse": 0.20148303519480038,
+          "bias": -0.06354156556464345,
+          "spearman": 0.12679227833061354
+        },
+        "structure_ridge": {
+          "mae": 0.17019006595999256,
+          "rmse": 0.21113743278810804,
+          "bias": -0.019561615339472243,
+          "spearman": -0.05951946251672269
+        },
+        "nested_blend": {
+          "mae": 0.17628359454622752,
+          "rmse": 0.2091283504075333,
+          "bias": 0.0019824691848213637,
+          "spearman": -0.399713743492504
+        }
+      },
+      "blend_vs_top8_group_bootstrap95": [
+        -0.01926048895408426,
+        0.02786236534861272
+      ],
+      "blend_vs_median_group_bootstrap95": [
+        -0.009832734281544105,
+        0.011500963246530667
+      ],
+      "interval_coverage": 0.8860759493670886,
+      "mean_interval_width": 0.5961924790850058
+    },
+    "Effectiveness/lift": {
+      "methods": {
+        "median": {
+          "mae": 0.12184556962025317,
+          "rmse": 0.15278238184598267,
+          "bias": -0.008124050632911389,
+          "spearman": -0.12450649092135734
+        },
+        "skillct_top8": {
+          "mae": 0.11441298744472499,
+          "rmse": 0.15017022957035284,
+          "bias": 0.008711177130224837,
+          "spearman": 0.1931875582276371
+        },
+        "structure_ridge": {
+          "mae": 0.14498510316978502,
+          "rmse": 0.1760017746986602,
+          "bias": -0.007994338825177432,
+          "spearman": -0.27226641191998585
+        },
+        "nested_blend": {
+          "mae": 0.1189585938393752,
+          "rmse": 0.15361672835998055,
+          "bias": 0.002280053939091432,
+          "spearman": 0.06817310443756273
+        }
+      },
+      "blend_vs_top8_group_bootstrap95": [
+        -0.0006660363255518166,
+        0.009123741872934786
+      ],
+      "blend_vs_median_group_bootstrap95": [
+        -0.011443634611034665,
+        0.005599982962957023
+      ],
+      "interval_coverage": 0.8860759493670886,
+      "mean_interval_width": 0.5428560921519029
+    }
+  },
+  "resource_check": {
+    "public_skills": 79,
+    "intact_observations": {
+      "present": 167,
+      "missing": 0
+    },
+    "interventions": [
+      {
+        "path": "skills/cdf-augmentation/SKILL.md",
+        "resource": "references/configuration-schema.md",
+        "line": 73,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-auto-labeling/SKILL.md",
+        "resource": "references/stages/super-resolution.md",
+        "line": 45,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-autonomous-vehicle-dataset-generation/SKILL.md",
+        "resource": "references/airflow-direct-api.md",
+        "line": 169,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-curation-and-retrieval/SKILL.md",
+        "resource": "references/data-mining.md",
+        "line": 33,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-defect-image-generation/SKILL.md",
+        "resource": "references/payload-contract.md",
+        "line": 65,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-event-video-generation/SKILL.md",
+        "resource": "references/airflow-direct-api.md",
+        "line": 128,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-image-attribute-augmentation/SKILL.md",
+        "resource": "references/airflow-direct-api.md",
+        "line": 82,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-orchestration-preflight/SKILL.md",
+        "resource": "references/bootstrap.md",
+        "line": 36,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-orchestration-setup/SKILL.md",
+        "resource": "references/topologies.md",
+        "line": 81,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cdf-video-data-augmentation/SKILL.md",
+        "resource": "references/setup-and-preflight.md",
+        "line": 21,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/cudaq-importing/SKILL.md",
+        "resource": "references/porting-reference.md",
+        "line": 73,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/deepstream-run-mv3dt/SKILL.md",
+        "resource": "references/setup.md",
+        "line": 111,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/holoscan-app-debug-build-run/SKILL.md",
+        "resource": "references/holoscan-cli-contract.md",
+        "line": 45,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/holoscan-module-lifecycle/SKILL.md",
+        "resource": "references/holoscan-cli-contract.md",
+        "line": 67,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/jetson-video-benchmark/SKILL.md",
+        "resource": "references/documented-performance-estimates.md",
+        "line": 60,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/jetson-video-capability/SKILL.md",
+        "resource": "references/surface-selection-contract.md",
+        "line": 38,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/jetson-video-pipeline/SKILL.md",
+        "resource": "references/pipeline-workflow.md",
+        "line": 101,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/jetson-video-recipe/SKILL.md",
+        "resource": "references/recipes-knobs-and-constraints.md",
+        "line": 44,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/jetson-video-setup/SKILL.md",
+        "resource": "references/setup-workflow.md",
+        "line": 31,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nemo-relay-get-started/SKILL.md",
+        "resource": "references/cli-try-now.md",
+        "line": 29,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nemo-relay-install/SKILL.md",
+        "resource": "references/cli-install.md",
+        "line": 34,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvflare-autofl/SKILL.md",
+        "resource": "scripts/run_job_campaign.py",
+        "line": 46,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvidia-app/SKILL.md",
+        "resource": "references/connection.md",
+        "line": 47,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-collect-performance-data/SKILL.md",
+        "resource": "references/perftest-catalog.md",
+        "line": 65,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-configure-nic-pe-mapping/SKILL.md",
+        "resource": "references/version-transport-matrix.md",
+        "line": 53,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-docs/SKILL.md",
+        "resource": "references/topic-map.md",
+        "line": 21,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-enable-tma/SKILL.md",
+        "resource": "references/registration-and-launch.md",
+        "line": 28,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-get-started/SKILL.md",
+        "resource": "references/mental-model.md",
+        "line": 22,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-install/SKILL.md",
+        "resource": "references/source-build.md",
+        "line": 82,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-select-remote-transport/SKILL.md",
+        "resource": "scripts/collect-transport-facts.sh",
+        "line": 63,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/nvshmem-troubleshoot-and-report-bugs/SKILL.md",
+        "resource": "references/troubleshooting-knowledge-base.md",
+        "line": 25,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/runai-diagnose-failed-workload/SKILL.md",
+        "resource": "references/failure-taxonomy.md",
+        "line": 129,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/tao-run-dinov3-ssl-deft/SKILL.md",
+        "resource": "references/adapter-contracts.md",
+        "line": 29,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/tao-train-sparse4d/SKILL.md",
+        "resource": "references/skill_info.yaml",
+        "line": 25,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/tilegym-converting-cutile-to-triton/SKILL.md",
+        "resource": "references/api-mapping.md",
+        "line": 24,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/tilegym-cutile-python/SKILL.md",
+        "resource": "examples/tilegym_and_examples_guide.md",
+        "line": 59,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      },
+      {
+        "path": "skills/vss-build-vision-ai/SKILL.md",
+        "resource": "references/prerequisites.md",
+        "line": 416,
+        "after_removal": "missing",
+        "in_incomplete_inventory": "unknown"
+      }
+    ],
+    "removed_detected": 37,
+    "incomplete_withheld": 37
+  },
+  "observations": [
+    {
+      "path": "skills/accelerated-computing-cudf/SKILL.md",
+      "component": "cuDF",
+      "group": "cuDF",
+      "fold": 2,
+      "document_sha256": "f46d744980c5ea4bea2c2fbe236923c751081e52afa9498ebd9ccd15f33b6a81",
+      "tasks": 13,
+      "dataset_digest": "sha256:307ff81fa3f0d04ee89889dcedc5ac0208fc0eb5dba112e1c8ed515a08fa3ba9",
+      "observed": [
+        1.0,
+        0.0,
+        0.9209999999999999,
+        0.036000000000000004
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.8205192698926276,
+          0.3528757203182868,
+          0.6776557793213085,
+          0.32585585770617154
+        ],
+        [
+          0.7880168872014277,
+          0.2124267999159523,
+          0.6537464811072691,
+          0.1766700134086228
+        ],
+        [
+          0.8190084436007139,
+          0.34290679023871506,
+          0.6698505651071444,
+          0.28855939663178437
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/cdf-anomalygen/SKILL.md",
+      "component": "CDF AnomalyGen",
+      "group": "CDF AnomalyGen",
+      "fold": 5,
+      "document_sha256": "ab65e049dfb57d160417420f13ee6d3b18f3ec014f41d3d36993a2c135673b57",
+      "tasks": 5,
+      "dataset_digest": "sha256:70cd2d0187ec4a98b6dabaca1b4fab7c7a4aea3c53115acdcd5a15d75872cc18",
+      "observed": [
+        0.48,
+        0.48,
+        0.207,
+        0.162
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7618752254583215,
+          0.3391404382375113,
+          0.6434125523747198,
+          0.29573171148845684
+        ],
+        [
+          0.7523950749919263,
+          0.29439870485106406,
+          0.6780787952911385,
+          0.30780766356814093
+        ],
+        [
+          0.8041975374959631,
+          0.3055841381976758,
+          0.6876840964683538,
+          0.2818658557442284
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/cdf-augmentation/SKILL.md",
+      "component": "CDF Augmentation",
+      "group": "CDF Augmentation",
+      "fold": 3,
+      "document_sha256": "6b3a2b95eb0c6fe18d5ed6b322245a788178bdadbf68e267f8c0f7f5fd7fb3cb",
+      "tasks": 14,
+      "dataset_digest": "sha256:187105966081ef5d05de4b8e34cbd0f0432d018836671dde0564eb960fa31b46",
+      "observed": [
+        0.843,
+        0.314,
+        0.772,
+        0.319
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.8028922984089081,
+          0.28794027606102424,
+          0.646951560805888,
+          0.3013127548980495
+        ],
+        [
+          0.7735332516514751,
+          0.29800523260844214,
+          0.6416776019140961,
+          0.2683149190149892
+        ],
+        [
+          0.8397666258257375,
+          0.28794027606102424,
+          0.79,
+          0.2786563774490247
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-auto-labeling/SKILL.md",
+      "component": "CDF Auto-Labeling",
+      "group": "CDF Auto-Labeling",
+      "fold": 4,
+      "document_sha256": "5039e4bbae985aeda4fac614d17118eba911f76eff96c8dd1661e91f94f8b61f",
+      "tasks": 4,
+      "dataset_digest": "sha256:2c6d2a30a41329a86f39d94800eb60f640cf80f7382ff41245aa5d6301cf729c",
+      "observed": [
+        1.0,
+        0.65,
+        0.963,
+        0.713
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7929080228756838,
+          0.38602869014644137,
+          0.6915651706833003,
+          0.32961766928124797
+        ],
+        [
+          0.875039911994079,
+          0.29236100207460075,
+          0.7762517957370364,
+          0.3128090976678195
+        ],
+        [
+          0.8757799339955593,
+          0.3626117681284812,
+          0.7280955342759092,
+          0.31321325196093597
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/cdf-autonomous-vehicle-dataset-generation/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "54acd74e3441c9880ff81197462cedd37f849de53ee6cf89cf2916593a7d519a",
+      "tasks": 6,
+      "dataset_digest": "sha256:35d93cc2c87bd5329bf1ee47eda7b0e50d848bad825d5883757c2e3e00736988",
+      "observed": [
+        1.0,
+        0.767,
+        0.731,
+        0.568
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.8020009213705717,
+          0.34247768394809,
+          0.6397577967957013,
+          0.30686809230687395
+        ],
+        [
+          0.8339805054672661,
+          0.23694321655819423,
+          0.7130286405918393,
+          0.230007458738493
+        ],
+        [
+          0.869990252733633,
+          0.34247768394809,
+          0.79,
+          0.281434046153437
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-curation-and-retrieval/SKILL.md",
+      "component": "CDF Curation and Retrieval",
+      "group": "CDF Curation and Retrieval",
+      "fold": 5,
+      "document_sha256": "a4d53d274c95a6b4529a000947e23d18773a6dd97467366b53f460cce2a322c7",
+      "tasks": 13,
+      "dataset_digest": "sha256:68c9c65d696cee768d1ab51c11a9e58f26d2fa9369aed6853ef5a7d51c69abe8",
+      "observed": [
+        0.9229999999999999,
+        0.4,
+        0.755,
+        0.34299999999999997
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.8577171813992669,
+          0.448605458029772,
+          0.7487107848351149,
+          0.39836243541008404
+        ],
+        [
+          0.8099951888183966,
+          0.28966595588773797,
+          0.6868359547207892,
+          0.2799759899711129
+        ],
+        [
+          0.8329975944091983,
+          0.3294008314232465,
+          0.6942519660405919,
+          0.33318121770504205
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/cdf-defect-image-generation/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "8e64338933fcc6a5f3f9dbcc5b8b89002346e7329178ba9e99ef8edead856f21",
+      "tasks": 18,
+      "dataset_digest": "sha256:93d8e87a1a272081e57030da99fbc687536d36b31369ccc1b3286ee5f9a91abe",
+      "observed": [
+        0.878,
+        0.267,
+        0.883,
+        0.395
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.6970667969641019,
+          0.33108269374381294,
+          0.5588140797431106,
+          0.27305622977916716
+        ],
+        [
+          0.702476129294013,
+          0.27794811619912685,
+          0.577108608357174,
+          0.21276936016538822
+        ],
+        [
+          0.8042380646470064,
+          0.33108269374381294,
+          0.79,
+          0.2645281148895836
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-event-video-generation/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "864b29f13a6f00d8a70bedfbc0ec78619c5329a267662a0414a9332f455bc31d",
+      "tasks": 15,
+      "dataset_digest": "sha256:777897553a6f3d3a1d11c7a4c5e3dfebbcb28e750b5631f1caf902969d0f7cb3",
+      "observed": [
+        0.8270000000000001,
+        0.52,
+        0.672,
+        0.306
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.6997013574262578,
+          0.2726086656464526,
+          0.5626371098596589,
+          0.2418486454145146
+        ],
+        [
+          0.6355916968469633,
+          0.32836578338270644,
+          0.49364131267325795,
+          0.17226460988755807
+        ],
+        [
+          0.7707958484234816,
+          0.2726086656464526,
+          0.79,
+          0.24892432270725728
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-image-attribute-augmentation/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "1c31651d82bc9c927ee42ca79687b1364494962afb379366d0640094d694caf0",
+      "tasks": 13,
+      "dataset_digest": "sha256:ae89be5ed6fc1b93dcd783e4dce32f759aa4fd98aaa966690f25cd8c8046a431",
+      "observed": [
+        0.769,
+        0.461,
+        0.6709999999999999,
+        0.32799999999999996
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.7321523723713854,
+          0.2814670663797239,
+          0.6190570539587614,
+          0.27749262163073807
+        ],
+        [
+          0.6915226809012127,
+          0.28493298576197607,
+          0.5607281078371977,
+          0.18081313270967392
+        ],
+        [
+          0.7987613404506063,
+          0.2814670663797239,
+          0.79,
+          0.26674631081536904
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-orchestration-preflight/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "a8710beb5df8d63fce551ad5bb1e0311f0d1aaa94c66482ef488753a70a9ec21",
+      "tasks": 14,
+      "dataset_digest": "sha256:da87380d621af7409004f0f0ec9b73435205584669d91aaed1c756c648cd2978",
+      "observed": [
+        0.6859999999999999,
+        0.429,
+        0.652,
+        0.284
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.7552053977804095,
+          0.2571171480216971,
+          0.6177953811249379,
+          0.2714065731688603
+        ],
+        [
+          0.7349520363714955,
+          0.2552963494058132,
+          0.5959907668845369,
+          0.16841293024489395
+        ],
+        [
+          0.8204760181857478,
+          0.2571171480216971,
+          0.79,
+          0.26370328658443015
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-orchestration-setup/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "74c52b2537649710a04da40f83bddf043a13cd7bb8fc05a9554e7616957ed62b",
+      "tasks": 11,
+      "dataset_digest": "sha256:4387b9f4a4d9ac65bee1d14597318ac2da37624b65c0d788a1f0689f00881a44",
+      "observed": [
+        0.746,
+        0.5820000000000001,
+        0.45799999999999996,
+        0.259
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.6967443622257797,
+          0.2677325323907989,
+          0.5602012919843546,
+          0.23987966423211265
+        ],
+        [
+          0.7816570170954759,
+          0.2527776903478276,
+          0.6587144370101562,
+          0.2612867079029549
+        ],
+        [
+          0.8438285085477379,
+          0.2677325323907989,
+          0.79,
+          0.24793983211605633
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-orchestration-write-dag/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "2541e4f8a732fba61c7c4ccc372f7d71ae457ad4548fca501805025f568da54c",
+      "tasks": 9,
+      "dataset_digest": "sha256:2bc7705f144b721a29bf402452bef3e40301d230497b3d784778b0746b748162",
+      "observed": [
+        0.733,
+        0.42200000000000004,
+        0.6729999999999999,
+        0.515
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.7343554336177852,
+          0.3068425695730819,
+          0.6011405089599595,
+          0.2683669360201918
+        ],
+        [
+          0.7076893060410799,
+          0.28052517852563663,
+          0.6097440895598398,
+          0.23340540786575156
+        ],
+        [
+          0.80684465302054,
+          0.3068425695730819,
+          0.79,
+          0.2621834680100959
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cdf-simulation/SKILL.md",
+      "component": "CDF Simulation",
+      "group": "CDF Simulation",
+      "fold": 1,
+      "document_sha256": "59f38fee52cc6021b24eba532e8c94fddc2ec51fad32f120a2e6e5a02d7e910e",
+      "tasks": 8,
+      "dataset_digest": "sha256:2e5e11881e77f0623a60210ec155e7d091f33ef15aa5dd0ec3a558c1188ab83c",
+      "observed": [
+        0.55,
+        0.55,
+        0.5,
+        0.32299999999999995
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7787529725668998,
+          0.33365439988347095,
+          0.6872028074029816,
+          0.2892657357685366
+        ],
+        [
+          0.8211879326293176,
+          0.33984803024523275,
+          0.6497103305592025,
+          0.26258911243987443
+        ],
+        [
+          0.8741882431417249,
+          0.3074907999126032,
+          0.7643007018507454,
+          0.27569930182640245
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/cdf-video-data-augmentation/SKILL.md",
+      "component": "Cosmos Data Factory Orchestration",
+      "group": "Cosmos Data Factory Orchestration",
+      "fold": 3,
+      "document_sha256": "3f960f51c7eb99009096b1e4977363311f112f4d99a7e25b122a7fd76f1c317c",
+      "tasks": 21,
+      "dataset_digest": "sha256:3e630c8191a34b59d215c6cad8c34972de2d6012dc3124eb268311b9e98d4d26",
+      "observed": [
+        0.8290000000000001,
+        0.33399999999999996,
+        0.7904000000000001,
+        0.3908
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.8131173551722416,
+          0.3169903862562119,
+          0.6739978327527159,
+          0.3458985841728017
+        ],
+        [
+          0.8208269289044386,
+          0.20380730102952405,
+          0.7088594259824849,
+          0.20005757568647925
+        ],
+        [
+          0.8634134644522193,
+          0.3169903862562119,
+          0.79,
+          0.30094929208640087
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/compute-sanitizer-diagnose-cuda-bugs/SKILL.md",
+      "component": "Nsight",
+      "group": "Nsight",
+      "fold": 3,
+      "document_sha256": "0253adc748efd1154a2337f87f44a4b236426dfed5b777ac5cea3f1a4bcba491",
+      "tasks": 16,
+      "dataset_digest": "sha256:8a351af431b170a1edcef4f1cfc3449b1209d407dc0915bcf32f226b22c78ff8",
+      "observed": [
+        1.0,
+        0.037000000000000005,
+        0.9440000000000001,
+        0.154
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.8176368968864315,
+          0.2994762452981084,
+          0.7455059606254787,
+          0.2998071644408006
+        ],
+        [
+          0.7661708785189026,
+          0.3262769350637753,
+          0.6509486950399399,
+          0.28154090516316693
+        ],
+        [
+          0.8360854392594512,
+          0.2994762452981084,
+          0.79,
+          0.2779035822204003
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/cudaq-importing/SKILL.md",
+      "component": "CUDA-Q",
+      "group": "CUDA-Q",
+      "fold": 2,
+      "document_sha256": "bd078654245a66403400a4ee7d6edbb0c98c30eece00d98863cf38771553c720",
+      "tasks": 4,
+      "dataset_digest": "sha256:85489ea0e566f515affb2b77d430f181d4180dffc638531af9c99f85f899a055",
+      "observed": [
+        1.0,
+        0.1,
+        0.9309999999999999,
+        0.16399999999999998
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.8243767071913948,
+          0.19384641283669507,
+          0.6750135317077337,
+          0.19941643859075456
+        ],
+        [
+          0.9218347447990002,
+          0.20796482264399385,
+          0.7896740188983106,
+          0.2742530648044471
+        ],
+        [
+          0.8859173723995001,
+          0.2236348096275213,
+          0.7031718876515111,
+          0.2181255951441777
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/cuopt-multi-objective-exploration/SKILL.md",
+      "component": "cuOpt",
+      "group": "cuOpt",
+      "fold": 3,
+      "document_sha256": "8ef889c64cfa0024b3818ef78ab5c4c52cbabf9c78b4e6660cea2336fc8c2c46",
+      "tasks": 8,
+      "dataset_digest": "sha256:91da323e5d8f4a5c51ce0ff53037c3876cc0bb17fc8109347b415577c965ab55",
+      "observed": [
+        0.85,
+        -0.05,
+        0.629,
+        -0.03
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.6726755935457677,
+          0.28068889916604584,
+          0.5693744936727364,
+          0.23979742104099172
+        ],
+        [
+          0.764975128823029,
+          0.2431583908995406,
+          0.6268598728623218,
+          0.1958863584682174
+        ],
+        [
+          0.8354875644115145,
+          0.28068889916604584,
+          0.79,
+          0.24789871052049586
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/deepstream-run-mv3dt/SKILL.md",
+      "component": "DeepStream",
+      "group": "DeepStream",
+      "fold": 3,
+      "document_sha256": "7a45de05d45d0916c4262ba030ac00a3add6a0253c9473f38cf0f7f33913056b",
+      "tasks": 4,
+      "dataset_digest": "sha256:2944e4346697d995493b73c4f6b3fedcac029b04b99b55b4dc94838a20457537",
+      "observed": [
+        0.7,
+        0.25,
+        0.599,
+        0.165
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.7740949196626355,
+          0.2865589161400584,
+          0.6626126213183245,
+          0.27535818168838144
+        ],
+        [
+          0.7614800456695676,
+          0.27285674674225036,
+          0.633280065198671,
+          0.23690863502183251
+        ],
+        [
+          0.8337400228347838,
+          0.2865589161400584,
+          0.79,
+          0.2656790908441907
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/g-assist-mcp-skill/SKILL.md",
+      "component": "G-Assist",
+      "group": "G-Assist",
+      "fold": 4,
+      "document_sha256": "f4943d7015add9b2199449b74f37ae6077ea8de80f371f12d279ef1ae67618ec",
+      "tasks": 16,
+      "dataset_digest": "sha256:005ae43f3adb9fe981b27b5096c41379327675753c3c913e0df8734f6d3159f2",
+      "observed": [
+        1.0,
+        0.4,
+        0.9,
+        0.381
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7060839678253951,
+          0.29701921543610105,
+          0.6303801490781784,
+          0.2538506376077715
+        ],
+        [
+          0.8723278953055147,
+          0.20680141950465514,
+          0.7889158858259521,
+          0.281520435865922
+        ],
+        [
+          0.8737459214791361,
+          0.2744647664532396,
+          0.7006690459955772,
+          0.2563879782058286
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/holoscan-app-debug-build-run/SKILL.md",
+      "component": "HoloHub",
+      "group": "HoloHub",
+      "fold": 3,
+      "document_sha256": "db576a9e25d2d72a3d793e9432a7012ac07c7beb25042a52bec08c95af3e5dc1",
+      "tasks": 5,
+      "dataset_digest": "sha256:0d2761be85f364648c039823ecf9f9224d7994dac4d21483df744795dbe7bda0",
+      "observed": [
+        0.76,
+        0.16,
+        0.618,
+        0.038
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.9592643144271981,
+          0.07968185588551585,
+          0.8683286582843153,
+          0.21399589491787455
+        ],
+        [
+          0.8928008406595457,
+          0.2606485241784939,
+          0.7684251694757225,
+          0.2833870651440562
+        ],
+        [
+          0.8994004203297727,
+          0.07968185588551585,
+          0.79,
+          0.23499794745893726
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/holoscan-install-conda/SKILL.md",
+      "component": "Holoscan SDK",
+      "group": "Holoscan SDK",
+      "fold": 5,
+      "document_sha256": "56607a92b6690823acdb16f3cd012565c71c3b15396ae6837bd3cc98fcd817a2",
+      "tasks": 6,
+      "dataset_digest": "sha256:e87c52afd05fad3a0b48ec1070a137338aa69d392aa189bee08d8193030935c2",
+      "observed": [
+        1.0,
+        0.133,
+        0.971,
+        0.225
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.8254368637913292,
+          0.21439662996139935,
+          0.6878184241469041,
+          0.20314232747741806
+        ],
+        [
+          0.7142193792592841,
+          0.32751638979369774,
+          0.5525436470858116,
+          0.1698263967513508
+        ],
+        [
+          0.7851096896296421,
+          0.29923644983562314,
+          0.5935327353143587,
+          0.23557116373870904
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/holoscan-install-container/SKILL.md",
+      "component": "Holoscan SDK",
+      "group": "Holoscan SDK",
+      "fold": 5,
+      "document_sha256": "2779c331e4cb0671b8660c1af6d69b40fbaabc127eb6f4114a94633d674fb704",
+      "tasks": 4,
+      "dataset_digest": "sha256:ed38125dd6f2c6f949645eb559436a68b8acd45f40b70699f3c00835ad4f6f29",
+      "observed": [
+        1.0,
+        0.1,
+        0.904,
+        0.18899999999999997
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7890349384277522,
+          0.26765045285441846,
+          0.6770264017447493,
+          0.23554495016607496
+        ],
+        [
+          0.7766552976944553,
+          0.25616807262662933,
+          0.5970138508331023,
+          0.305482308820889
+        ],
+        [
+          0.8163276488472276,
+          0.25903866768357664,
+          0.6268853881248267,
+          0.25177247508303746
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/holoscan-install-debian/SKILL.md",
+      "component": "Holoscan SDK",
+      "group": "Holoscan SDK",
+      "fold": 5,
+      "document_sha256": "cc6872eae4da2851c25f9a6d24bba33d73c2b285a4f0c58093d719f94d864ab5",
+      "tasks": 5,
+      "dataset_digest": "sha256:9594f47aec4b8468ef84b3c4821781c45a94d3707db30039df8e0a01666764fd",
+      "observed": [
+        1.0,
+        0.0,
+        0.925,
+        0.075
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7989980465142703,
+          0.2174272639125052,
+          0.6825195806436617,
+          0.19900833201187734
+        ],
+        [
+          0.7262352029899795,
+          0.3589544409733747,
+          0.563368587301134,
+          0.3685440099483196
+        ],
+        [
+          0.7911176014949897,
+          0.32357264670815733,
+          0.6016514404758505,
+          0.23350416600593868
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/holoscan-install-source/SKILL.md",
+      "component": "Holoscan SDK",
+      "group": "Holoscan SDK",
+      "fold": 5,
+      "document_sha256": "a34064880e65166e55b1b9d7d1274f0f0d5f09904c89906841decaef62d2600e",
+      "tasks": 6,
+      "dataset_digest": "sha256:8a153da53159948d77200bc314d7c3d7e7dba6b6df680fcd0eb31f5109fdb051",
+      "observed": [
+        0.9670000000000001,
+        -0.033,
+        0.95,
+        0.16699999999999998
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7738842898659934,
+          0.24672002372354943,
+          0.6625842663074343,
+          0.2269976891356607
+        ],
+        [
+          0.8595455469032327,
+          0.3711418955175516,
+          0.7027411380939761,
+          0.33195461963852996
+        ],
+        [
+          0.8577727734516163,
+          0.34003642756905106,
+          0.7061808535704821,
+          0.24749884456783036
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/holoscan-install-wheel/SKILL.md",
+      "component": "Holoscan SDK",
+      "group": "Holoscan SDK",
+      "fold": 5,
+      "document_sha256": "7318dabeb5cffc9ace4a6592840638ae2803f259f2b0e73ea089c3cdaecd0275",
+      "tasks": 6,
+      "dataset_digest": "sha256:18935ebfa4d03f6845b5bc03c7446f438da336bc4a6046bfe090eb4e18405337",
+      "observed": [
+        1.0,
+        0.0,
+        0.925,
+        0.175
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.8267948098914235,
+          0.23088574542216247,
+          0.6979017283844942,
+          0.22972266035378516
+        ],
+        [
+          0.9102283182588038,
+          0.34034678601404006,
+          0.7408150991596366,
+          0.34184627822706054
+        ],
+        [
+          0.8831141591294018,
+          0.31298152586607064,
+          0.7347363243697275,
+          0.2488613301768926
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/holoscan-module-lifecycle/SKILL.md",
+      "component": "HoloHub",
+      "group": "HoloHub",
+      "fold": 3,
+      "document_sha256": "d10b257b9af5f9c9ca14b24de243c322c05aed3de360eb3fda119dfe84deda3e",
+      "tasks": 8,
+      "dataset_digest": "sha256:e4d70204e72ae37b649556e34cec480522ea05caa65ad65f6e267f4cbfc30ef5",
+      "observed": [
+        0.8,
+        0.25,
+        0.6890000000000001,
+        0.171
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.9846042081888611,
+          0.06456514976835032,
+          0.8910209376012959,
+          0.20069359778890217
+        ],
+        [
+          0.8904846086541893,
+          0.23772973809677855,
+          0.7802141483774564,
+          0.27727821358119775
+        ],
+        [
+          0.8982423043270946,
+          0.06456514976835032,
+          0.79,
+          0.2283467988944511
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/holoscan-setup/SKILL.md",
+      "component": "Holoscan SDK",
+      "group": "Holoscan SDK",
+      "fold": 5,
+      "document_sha256": "4ba24a7e3700fc1127db169d192d42e7ec7c18f53be704e00193f6856879cdab",
+      "tasks": 5,
+      "dataset_digest": "sha256:eb042e5df52f57f4abef43703a6a63b1a537a38068aadd09374d605aebbdf208",
+      "observed": [
+        1.0,
+        0.0,
+        0.83,
+        0.15
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.8105274596919658,
+          0.22918167290810468,
+          0.7006779222234721,
+          0.22036270363361143
+        ],
+        [
+          0.9099265459356969,
+          0.2403437498482799,
+          0.8042684248697127,
+          0.2420506283245901
+        ],
+        [
+          0.8829632729678485,
+          0.23755323061323608,
+          0.7823263186522845,
+          0.24418135181680573
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/jetson-video-benchmark/SKILL.md",
+      "component": "Jetson Device",
+      "group": "Jetson Device",
+      "fold": 5,
+      "document_sha256": "4e90b11572d477009a9b3641b45e041f8eca92bba0bdfd85126eaba4590fc5be",
+      "tasks": 7,
+      "dataset_digest": "sha256:d1c525d9b65879a764e8676b2177c71573dee5cbfbceb816d55ca67074b7086b",
+      "observed": [
+        1.0,
+        0.47100000000000003,
+        0.93,
+        0.5820000000000001
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.783817553999533,
+          0.3166318341773391,
+          0.6693600271318398,
+          0.3185752125498312
+        ],
+        [
+          0.8892200612567166,
+          0.2741125391385061,
+          0.7362921127796346,
+          0.25026300684896274
+        ],
+        [
+          0.8726100306283583,
+          0.2847423628982143,
+          0.7313440845847259,
+          0.29328760627491557
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/jetson-video-capability/SKILL.md",
+      "component": "Jetson Device",
+      "group": "Jetson Device",
+      "fold": 5,
+      "document_sha256": "788b673fce60dfa4eb564f3b262610cca55e6fc47230c4a9ce8ba21905cd617d",
+      "tasks": 5,
+      "dataset_digest": "sha256:4954ec1cc526996669be4072c5d1a20bbbed003c6d01b75c541838c4a1161eb5",
+      "observed": [
+        0.96,
+        0.09300000000000001,
+        0.753,
+        0.059000000000000004
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7696683779393108,
+          0.22256268162752607,
+          0.6535246728038813,
+          0.2324269984013742
+        ],
+        [
+          0.8959754635409889,
+          0.2548937953020241,
+          0.7288741879594822,
+          0.2487913233019543
+        ],
+        [
+          0.8759877317704945,
+          0.24681101688339963,
+          0.7257806409696117,
+          0.25021349920068714
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/jetson-video-pipeline/SKILL.md",
+      "component": "Jetson Device",
+      "group": "Jetson Device",
+      "fold": 5,
+      "document_sha256": "4c28f55df3ee0cc7c9dfa086dd24f571f5d1d679ed4a7461788602d1e938c2e6",
+      "tasks": 4,
+      "dataset_digest": "sha256:0c0c71a3ea38de84c6381cf62d77d160d4475319a9fdd7b01475a29e17520891",
+      "observed": [
+        1.0,
+        0.33299999999999996,
+        0.888,
+        0.546
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.8330851418223304,
+          0.31280432517140516,
+          0.7162919990277596,
+          0.29468258502745953
+        ],
+        [
+          0.9403712270959712,
+          0.21963277594547073,
+          0.7978772353959466,
+          0.28321490022953927
+        ],
+        [
+          0.8981856135479855,
+          0.24292566325195436,
+          0.7775329265469599,
+          0.28134129251372975
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/jetson-video-recipe/SKILL.md",
+      "component": "Jetson Device",
+      "group": "Jetson Device",
+      "fold": 5,
+      "document_sha256": "6e795b9e9e4c444b20d30d108d7d9c6217b00a6cbf8e17429b93185da08f6828",
+      "tasks": 4,
+      "dataset_digest": "sha256:e9b7cb78073e3333a346c0bb42578634e0c37bcc68d4676840a4ca503851b006",
+      "observed": [
+        0.95,
+        0.41700000000000004,
+        0.777,
+        0.5770000000000001
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7535857487499668,
+          0.26379976316963555,
+          0.6228839273740058,
+          0.2686252608178353
+        ],
+        [
+          0.9587589862188021,
+          0.20071222451666693,
+          0.7745429115796709,
+          0.2074693690227758
+        ],
+        [
+          0.907379493109401,
+          0.21648410917990907,
+          0.7600321836847532,
+          0.2683126304089176
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/jetson-video-setup/SKILL.md",
+      "component": "Jetson Device",
+      "group": "Jetson Device",
+      "fold": 5,
+      "document_sha256": "f7041496821c31e3cb6428bcd71b1905bf45a835868cea91d2be5126187834e1",
+      "tasks": 5,
+      "dataset_digest": "sha256:b449a2c4d6415eebdcc29fc19f769c7af41d2dd4599b0a624951191e5618b55a",
+      "observed": [
+        0.88,
+        0.373,
+        0.612,
+        0.376
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7472900483703655,
+          0.22838674825521274,
+          0.6223986435110499,
+          0.22754597096126958
+        ],
+        [
+          0.8761034279143292,
+          0.30865483145298905,
+          0.7557475369769774,
+          0.2904338903034925
+        ],
+        [
+          0.8660517139571646,
+          0.28858781065354494,
+          0.745935652732733,
+          0.2477729854806348
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/nemo-automodel-model-onboarding/SKILL.md",
+      "component": "NeMo AutoModel",
+      "group": "NeMo AutoModel",
+      "fold": 2,
+      "document_sha256": "2bddd191cd1d7a350a022240c7a3864c1d23fdc26f6830c9dab776969e20ea96",
+      "tasks": 3,
+      "dataset_digest": "sha256:814bfc7c94da8ea6fd1a065d7f3f0c4fcda9ef918f1da7eb46630700f241fc25",
+      "observed": [
+        1.0,
+        0.133,
+        0.972,
+        0.32299999999999995
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.8009936472494029,
+          0.3759057771714631,
+          0.6570193405115853,
+          0.31325920376389954
+        ],
+        [
+          0.7829222344516914,
+          0.1910552511632294,
+          0.6322169016586153,
+          0.1892049429594878
+        ],
+        [
+          0.8164611172258457,
+          0.3601793328785973,
+          0.6593090605425502,
+          0.2822456385627966
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nemo-automodel-recipe-development/SKILL.md",
+      "component": "NeMo AutoModel",
+      "group": "NeMo AutoModel",
+      "fold": 2,
+      "document_sha256": "57acf26200f269a7d6423059dd17cbb74476a8eb8b9450feae21e1a41d4537d2",
+      "tasks": 3,
+      "dataset_digest": "sha256:471b2da53028232964af5684eb94a1c253ca6d6dc90b78082b31b0d0bc2ee6a0",
+      "observed": [
+        1.0,
+        0.133,
+        1.0,
+        0.537
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7670963879370825,
+          0.3836290411793876,
+          0.6284382177717949,
+          0.28469236445489077
+        ],
+        [
+          0.8017505194609251,
+          0.16862897657903148,
+          0.6637784305223139,
+          0.1596103992210196
+        ],
+        [
+          0.8258752597304626,
+          0.3659717808845407,
+          0.6600541620735272,
+          0.25342187314642295
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nemo-fabric-build-adapter/SKILL.md",
+      "component": "NeMo Fabric",
+      "group": "NeMo Fabric",
+      "fold": 2,
+      "document_sha256": "4d93d97b94b2f54bb7940e7656e861842ef5514603321f46da2ad2383bb4c598",
+      "tasks": 7,
+      "dataset_digest": "sha256:b0644fe48c189bd6fcbf458a022b58e155d5b001adaf4b153c9ea36fd4cae5f7",
+      "observed": [
+        0.8290000000000001,
+        0.115,
+        0.7020000000000001,
+        0.18100000000000002
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7380351267712263,
+          0.28328509800245727,
+          0.5291755335326247,
+          0.21318862470180996
+        ],
+        [
+          0.8850381221327986,
+          0.2807115670495124,
+          0.7478530004476033,
+          0.3043466387734439
+        ],
+        [
+          0.8675190610663993,
+          0.29071382350184294,
+          0.656257133495057,
+          0.23597812821971845
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nemo-relay-get-started/SKILL.md",
+      "component": "NeMo Relay",
+      "group": "NeMo Relay",
+      "fold": 3,
+      "document_sha256": "7a633bdd0bf9ffd92def6ae3372c15a9551dff605d016502aba140ac4568db35",
+      "tasks": 22,
+      "dataset_digest": "sha256:477cc9bd7b45256aa6d8f837938c05e6d79c539ed8bce8bf1908e266f61f3e9f",
+      "observed": [
+        0.855,
+        0.29100000000000004,
+        0.555,
+        0.168
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.7570506574721082,
+          0.19923327574776634,
+          0.6281867775838594,
+          0.25097989777736396
+        ],
+        [
+          0.9722104757556572,
+          0.24674985596969556,
+          0.8323423658872062,
+          0.3259148626949939
+        ],
+        [
+          0.9391052378778286,
+          0.19923327574776634,
+          0.79,
+          0.253489948888682
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/nemo-relay-install/SKILL.md",
+      "component": "NeMo Relay",
+      "group": "NeMo Relay",
+      "fold": 3,
+      "document_sha256": "ad20fbaba7af958f9d218c302dc16ae52c475a355a839f4df652b169ed15829e",
+      "tasks": 15,
+      "dataset_digest": "sha256:ac9a9cc622e67035055f7153d383fd5ea4ef6039a1dfb0eeb0bd7180f89dc9c1",
+      "observed": [
+        0.813,
+        0.293,
+        0.531,
+        0.26
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.256
+        ],
+        [
+          0.8079878269229317,
+          0.20139802005801355,
+          0.6754070915934185,
+          0.2669542504158534
+        ],
+        [
+          0.9792110706715533,
+          0.15945209309735164,
+          0.8527543073998133,
+          0.21315326358138661
+        ],
+        [
+          0.9426055353357766,
+          0.20139802005801355,
+          0.79,
+          0.2614771252079267
+        ]
+      ],
+      "blend_radius": [
+        0.32516059823393284,
+        0.29261348932584275,
+        0.39,
+        0.2644547420912262
+      ]
+    },
+    {
+      "path": "skills/nemo-retriever/SKILL.md",
+      "component": "NeMo Retriever",
+      "group": "NeMo Retriever",
+      "fold": 4,
+      "document_sha256": "ca40575489b372c1c1c5cc38f49a3e213e7f8e8d60848fa64bd2f8b0999684e3",
+      "tasks": 4,
+      "dataset_digest": "sha256:97b3fe3650a2b9d3c8ec824a7f21e6da3551ae7057847765e68213f4d5a72cfa",
+      "observed": [
+        0.7,
+        0.44,
+        0.4,
+        0.195
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.847938698020736,
+          0.29230005544660065,
+          0.6590049822886247,
+          0.25881746645381465
+        ],
+        [
+          0.8709929942911075,
+          0.1617673401244567,
+          0.7632086639884971,
+          0.0966231773108521
+        ],
+        [
+          0.8727447457183307,
+          0.2596668766160647,
+          0.7085546571414366,
+          0.260113099840361
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nemo-retriever-mcp/SKILL.md",
+      "component": "NeMo Retriever",
+      "group": "NeMo Retriever",
+      "fold": 4,
+      "document_sha256": "86867d14d6a3ec6ca6ea610a672b167ab12f60e15311d42e7b02d3993c7d8dd7",
+      "tasks": 4,
+      "dataset_digest": "sha256:66c211f3143896abe07a31fd20994bea25e2de26ead9f3ede9af351fcbc969e5",
+      "observed": [
+        0.44,
+        0.28,
+        0.44299999999999995,
+        0.158
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7111766545361026,
+          0.22220713769221032,
+          0.5620004649718541,
+          0.18280966936295848
+        ],
+        [
+          1.0,
+          0.08146094818837166,
+          0.954259574037678,
+          0.14414253254407966
+        ],
+        [
+          1.0,
+          0.18702059031625065,
+          0.7078151259953465,
+          0.20310725202221885
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nemotron-asr-finetune/SKILL.md",
+      "component": "Nemotron Speech",
+      "group": "Nemotron Speech",
+      "fold": 1,
+      "document_sha256": "e5f197a46d4ce6e9fc7d7e560ac098d6ae20b4c0055c31067d17cfb560d7d07e",
+      "tasks": 17,
+      "dataset_digest": "sha256:1265bdc5a4c5f3bcc2526b4d79cee536998a77dcc82765150ae3cbc7bcb05c2d",
+      "observed": [
+        0.83,
+        0.245,
+        0.667,
+        0.28600000000000003
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7823693274652295,
+          0.3455881882265391,
+          0.6267925762670808,
+          0.2717835901933315
+        ],
+        [
+          0.8471523281279881,
+          0.3297145102448378,
+          0.7674039336227457,
+          0.3245252422912528
+        ],
+        [
+          0.8750923318663073,
+          0.3164411411699043,
+          0.7491981440667702,
+          0.2625876926449986
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/nemotron-speech/SKILL.md",
+      "component": "Nemotron Speech",
+      "group": "Nemotron Speech",
+      "fold": 1,
+      "document_sha256": "9e7f4cc1e53b45695f5998f04c58d68f7d6d7e7e5fad33fc61f1b55d504e9644",
+      "tasks": 18,
+      "dataset_digest": "sha256:7da18a129d0ad5efdc392d764333668f68f9acf996152684bc2464427afdb20f",
+      "observed": [
+        0.9329999999999999,
+        0.11599999999999999,
+        0.815,
+        0.273
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8951796937143881,
+          0.34147779968255637,
+          0.7819641976462214,
+          0.3426284239253844
+        ],
+        [
+          0.8237163562949364,
+          0.29769793931022814,
+          0.6349957175397927,
+          0.23594896201595364
+        ],
+        [
+          0.903294923428597,
+          0.31335834976191723,
+          0.7879910494115554,
+          0.31572131794403824
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/nvflare-autofl/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "efa66b79f4d507ead1efc28dd41abd513ed25092f7a2ac98bc05a36e5a368888",
+      "tasks": 7,
+      "dataset_digest": "sha256:47bb5f4f9de5f1a56ecb009c45deee42349c7c12a196a16f05072e36e82b36ec",
+      "observed": [
+        0.775,
+        0.313,
+        0.5,
+        0.193
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7675867103681917,
+          0.2903328331753662,
+          0.6625757677189147,
+          0.2797383797349554
+        ],
+        [
+          0.824559688415325,
+          0.3094414494752393,
+          0.6896012032539169,
+          0.25698318920362334
+        ],
+        [
+          0.8379197663114938,
+          0.29510998725033444,
+          0.6919381846729366,
+          0.2758037848012166
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvflare-convert-lightning/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "adac1521da451958d2faf4c72a0861dfd872d23d705b0bef15f785d7d202edbc",
+      "tasks": 22,
+      "dataset_digest": "sha256:27fefd3863135e758ee738361deca2313b8f1efa03a456440267ac92dc654196",
+      "observed": [
+        0.818,
+        0.045,
+        0.748,
+        0.136
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.8749299159230478,
+          0.33213157062167664,
+          0.7395749261415008,
+          0.3563352752456746
+        ],
+        [
+          0.8195824890104177,
+          0.3913614648035948,
+          0.7186144199534354,
+          0.3590944346652478
+        ],
+        [
+          0.8341868667578134,
+          0.34693904416715615,
+          0.7376910680591093,
+          0.33325145643425597
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvflare-convert-pytorch/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "97b10ebe8a85d7a4d737b6b1e1f623dad81a1149383124d940f48a0b43c0c9fd",
+      "tasks": 17,
+      "dataset_digest": "sha256:d42be143c4af4e5485ddeff65048069352998e11e2aa2087be4ab06c32675c38",
+      "observed": [
+        0.9059999999999999,
+        0.094,
+        0.665,
+        -0.040999999999999995
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.862179797333881,
+          0.3262508796771155,
+          0.7240937542965888,
+          0.36876142847083965
+        ],
+        [
+          0.8495339211640667,
+          0.3535998500016824,
+          0.7471855996821819,
+          0.34539593909168387
+        ],
+        [
+          0.85665044087305,
+          0.33308812225825724,
+          0.7370932770688399,
+          0.34257107135312975
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvflare-diagnose-job/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "2a18741631736774b6323eafde33dc58ed95e82e505bc1df5ea17b439369d0c0",
+      "tasks": 10,
+      "dataset_digest": "sha256:d08b09690f9a5de1a62fa97ea64d835ad07beab23ebf5dfaf92c30b245b22c9a",
+      "observed": [
+        0.94,
+        0.273,
+        0.893,
+        0.096
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.8292703768262284,
+          0.2613064888933015,
+          0.7195417270920557,
+          0.27207856129448876
+        ],
+        [
+          0.916991513132815,
+          0.24798919616353615,
+          0.8212430766941441,
+          0.26229939751918124
+        ],
+        [
+          0.9072436348496113,
+          0.25797716571086016,
+          0.7533316327195638,
+          0.2700589209708666
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvflare-fed-stats/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "297d56f720a99d217b8cef01d78835d456ddf37eb50a664deb9ba555d45af9e3",
+      "tasks": 17,
+      "dataset_digest": "sha256:5cc037c9cd02f2de89a5191c765b02de1975e6b81d2fbd25b190e8b55c624092",
+      "observed": [
+        0.8590000000000001,
+        0.188,
+        0.698,
+        0.193
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7378876290117744,
+          0.2702769830496931,
+          0.6224830251680047,
+          0.26347475072354076
+        ],
+        [
+          0.8396632650236251,
+          0.36308460885955485,
+          0.7389461158458294,
+          0.3512862844981852
+        ],
+        [
+          0.8492474487677188,
+          0.2934788895021585,
+          0.6842280415454597,
+          0.26360606304265555
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvflare-orient/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "feda7fae03f492b5fe7fdea97bc8e1b33fecb756a09ddaa58d085f7f9c3dc1b0",
+      "tasks": 6,
+      "dataset_digest": "sha256:f0eb3341761e33ff5333a813d0031281967c536ac6580571ac1e5ac319860a60",
+      "observed": [
+        0.9,
+        0.16699999999999998,
+        0.769,
+        0.28300000000000003
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.811891394601845,
+          0.2592414964702582,
+          0.6739063711342136,
+          0.26110154200529656
+        ],
+        [
+          0.9853070772317021,
+          0.2797627264177796,
+          0.8752844045868695,
+          0.34826085374443705
+        ],
+        [
+          0.9584803079237766,
+          0.26437180395713855,
+          0.7440242867138241,
+          0.26182615650397245
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvflare-shared/SKILL.md",
+      "component": "NVIDIA FLARE",
+      "group": "NVIDIA FLARE",
+      "fold": 4,
+      "document_sha256": "f585b5def124e5a395ee17553405ba8ad511c231c543f19731f959ab8ca779f4",
+      "tasks": 3,
+      "dataset_digest": "sha256:0267fb75cdd17b87a2fc8e8a481b55058ed90097b92f97f5a9c8dba18724d58e",
+      "observed": [
+        1.0,
+        0.24,
+        0.8,
+        0.32
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.8010605354680165,
+          0.25322852729971645,
+          0.6717428003184048,
+          0.2885286321003845
+        ],
+        [
+          0.9184352690087766,
+          0.24726109473450356,
+          0.8309082052845067,
+          0.2774869148359578
+        ],
+        [
+          0.9083264517565824,
+          0.25173666915841325,
+          0.7318484514803291,
+          0.28239647407528834
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/nvidia-app/SKILL.md",
+      "component": "NVIDIA App",
+      "group": "NVIDIA App",
+      "fold": 5,
+      "document_sha256": "1b581ce51e46afe9ae28ec1356e09beed989fd99b741b38b69f84573307b527f",
+      "tasks": 32,
+      "dataset_digest": "sha256:24a80b6a8c68db3347169c24fd3020997f52e4a2b1d6de22376feab66226e32f",
+      "observed": [
+        0.613,
+        0.40700000000000003,
+        0.35700000000000004,
+        0.055
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7770328522270317,
+          0.2756566201486193,
+          0.687752641081377,
+          0.28675331070914384
+        ],
+        [
+          0.8617353021589482,
+          0.20015644211100692,
+          0.7415697397577944,
+          0.2506100224096978
+        ],
+        [
+          0.8588676510794742,
+          0.21903148662041,
+          0.7353023048183458,
+          0.2773766553545719
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/nvidia-broadcast/SKILL.md",
+      "component": "NVIDIA Broadcast",
+      "group": "NVIDIA Broadcast",
+      "fold": 1,
+      "document_sha256": "63eccae756b07033b9c43dc093e03bb868d90c69e1d5974d14e0cbd196d974aa",
+      "tasks": 22,
+      "dataset_digest": "sha256:e64ad6bef7a96002e979cd95f36177197892f9a1fc780874e2ca376e1faecd9b",
+      "observed": [
+        0.491,
+        0.191,
+        0.456,
+        0.067
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8476867415754704,
+          0.31530829350627704,
+          0.7415624724404031,
+          0.2941019936988712
+        ],
+        [
+          0.8314505962654397,
+          0.292589022358895,
+          0.7294112820499132,
+          0.27850150094848164
+        ],
+        [
+          0.8914216853938676,
+          0.29373122012970776,
+          0.7778906181101009,
+          0.27932649527415343
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/nvshmem-collect-performance-data/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "da9614b005fdc82147c39f5215504cdb68a20169445525e58e5ea0683e2db9b7",
+      "tasks": 12,
+      "dataset_digest": "sha256:cd5ae2cd5f82d92864a6f880eed91e5f33a0a07cd670cf1f8fc9731b592f19b4",
+      "observed": [
+        0.9329999999999999,
+        0.552,
+        0.79,
+        0.414
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7591870650132607,
+          0.3061306783816098,
+          0.6196253827869556,
+          0.2683525796807616
+        ],
+        [
+          0.7409372170340488,
+          0.2266501234571803,
+          0.6254209686794167,
+          0.19108457366146614
+        ],
+        [
+          0.7954686085170244,
+          0.30784800878620733,
+          0.648261587866593,
+          0.24903557817593774
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-configure-nic-pe-mapping/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "cf921f5fe7b088812484141bd7099cbb847599a3b7ce046b17b3c87a9f78860c",
+      "tasks": 18,
+      "dataset_digest": "sha256:3448f01637a5000ccad4f8afc6f67a581949f5b0749b6c973b7c91d24965a8aa",
+      "observed": [
+        0.922,
+        0.193,
+        0.785,
+        0.345
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7243363397156177,
+          0.31338504383383803,
+          0.5929507106747496,
+          0.235587069421522
+        ],
+        [
+          0.7397114055789284,
+          0.24522297192486597,
+          0.6021846112119575,
+          0.18197036274953163
+        ],
+        [
+          0.7948557027894643,
+          0.31328878287537854,
+          0.6357838304716767,
+          0.2221828927535244
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-docs/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "9d3085a7c69d55ec663d3550d6a0a5ef2a295f9438200554bd1d75b50534d0e2",
+      "tasks": 8,
+      "dataset_digest": "sha256:b5c07e4c1f1f22740c058d2134cd32b62bf42a16e61e6769cf16319d5239f93d",
+      "observed": [
+        1.0,
+        0.025,
+        0.9420000000000001,
+        0.22
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.8464194009135098,
+          0.2139575309154665,
+          0.6627505031419024,
+          0.20235751299769425
+        ],
+        [
+          0.9195298670021352,
+          0.1579420019182,
+          0.7682473850297848,
+          0.19768495840529499
+        ],
+        [
+          0.8847649335010677,
+          0.23871814818659987,
+          0.6947494720429219,
+          0.20118937434959444
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-enable-tma/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "ac8c216a069107bd393b015ead7ce337d5506e5c57c9805e28b39205872ceffb",
+      "tasks": 4,
+      "dataset_digest": "sha256:e3c2d48c44ad179c71aae4981c94ea63468db8ca1773417a7723778f19bdf523",
+      "observed": [
+        0.9,
+        0.2,
+        0.813,
+        0.38799999999999996
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7895382987189249,
+          0.31674783773269877,
+          0.6647324385233138,
+          0.2771354355495049
+        ],
+        [
+          0.8077221286663502,
+          0.23027353662675343,
+          0.6354911652474692,
+          0.196752399600259
+        ],
+        [
+          0.8288610643331751,
+          0.3158108782995241,
+          0.6620559009426957,
+          0.25703967656219345
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-get-started/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "fb1b07738b568cd30e10e7ea6259dc1828bd4071f3cdaddb0aef278511c8c56b",
+      "tasks": 6,
+      "dataset_digest": "sha256:d4b763e4ad4d346d9193abfe1de56a613a73b0a613ad065db2291289b139b7a0",
+      "observed": [
+        1.0,
+        0.34,
+        0.878,
+        0.37799999999999995
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7082465300591892,
+          0.2746454696578429,
+          0.5475923016928212,
+          0.22285494820808766
+        ],
+        [
+          0.7425142611656979,
+          0.23232084079139986,
+          0.5928271983937631,
+          0.14893361624179302
+        ],
+        [
+          0.796257130582849,
+          0.2842341022433822,
+          0.6221048750216461,
+          0.20437461521651398
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-install/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "d117df77a8a32fdfb8fee5afdd3c5f53ec3c25baf9a2f5da24d384fa973c08d8",
+      "tasks": 8,
+      "dataset_digest": "sha256:aacad0c211dc8fa408a75eb047468fb537abb3a6201640ec4145164ebe0d48b0",
+      "observed": [
+        1.0,
+        0.06,
+        0.9329999999999999,
+        0.379
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7251206076481319,
+          0.26908442898824675,
+          0.547172149164994,
+          0.21776340752092724
+        ],
+        [
+          0.8300885233070576,
+          0.17250689774967481,
+          0.7041221047035753,
+          0.1894966892324249
+        ],
+        [
+          0.8400442616535289,
+          0.28006332174118503,
+          0.6498235634671423,
+          0.21069672794880165
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-select-remote-transport/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "cd6fdd70615c4c6a2800eade9f44353a9eadec797cd536cd744a88d379a5c918",
+      "tasks": 14,
+      "dataset_digest": "sha256:45a53bc4095635c996256a6ac68469f434e10178cc0f13552333e5d84478c787",
+      "observed": [
+        0.971,
+        0.128,
+        0.882,
+        0.214
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7694484901006103,
+          0.24313027750789074,
+          0.5989183463381786,
+          0.25402975603113304
+        ],
+        [
+          0.808497907353453,
+          0.1750595546552555,
+          0.6893992130960623,
+          0.18791234265349066
+        ],
+        [
+          0.8292489536767265,
+          0.26059770813091804,
+          0.6590793898585603,
+          0.23750040268672243
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-troubleshoot-and-report-bugs/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "4087d1ab838d3182b6d27affb987e7f99c771d5d41bb786460e7820eb8080dbf",
+      "tasks": 4,
+      "dataset_digest": "sha256:921c8be88893fc6098dc52bb100827d2f0110f99530aa7765eff3e8d7cfe7c72",
+      "observed": [
+        0.9,
+        0.2,
+        0.85,
+        0.287
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7387073453690781,
+          0.31223815330897137,
+          0.6193145011802025,
+          0.2373996514783803
+        ],
+        [
+          0.8276802040029994,
+          0.16182565217745884,
+          0.7049080764966436,
+          0.16739279891340472
+        ],
+        [
+          0.8388401020014997,
+          0.3124286149817285,
+          0.6680556444192116,
+          0.21989793833713642
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/nvshmem-tune-performance/SKILL.md",
+      "component": "NVSHMEM",
+      "group": "NVSHMEM",
+      "fold": 2,
+      "document_sha256": "d7a2f0a5d9ac25678086b2bfef088f3ca5085ee89cf43a05387b66e50b2a242d",
+      "tasks": 8,
+      "dataset_digest": "sha256:126513e60f7ca3d43627ba9aba60b1359057942392c2730e0118164134b1d05d",
+      "observed": [
+        0.825,
+        0.348,
+        0.6809999999999999,
+        0.41
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7716718727388117,
+          0.30942285401141056,
+          0.6244351160060381,
+          0.2760870171807207
+        ],
+        [
+          0.9181551974942795,
+          0.07724766210370215,
+          0.8368019952764026,
+          0.1743857196305476
+        ],
+        [
+          0.8840775987471398,
+          0.3103171405085579,
+          0.7023092778206101,
+          0.2506616927931774
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/ovnewton-usage/SKILL.md",
+      "component": "ovnewton",
+      "group": "ovnewton",
+      "fold": 4,
+      "document_sha256": "9c59de42b613c91059b5177f9f4dfbe18b2b5698e4031725ae9c161ecea46fe8",
+      "tasks": 7,
+      "dataset_digest": "sha256:207f3dfeb5504f9b90e549d26ffcd798dc3df9d4764d50d0f11043cc5e892ab3",
+      "observed": [
+        1.0,
+        0.22899999999999998,
+        0.9179999999999999,
+        0.304
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7989947669640447,
+          0.28980311563629374,
+          0.6924191870104526,
+          0.30393082657110904
+        ],
+        [
+          0.942557591304386,
+          0.2879722565614409,
+          0.8162033682499867,
+          0.3309649620032006
+        ],
+        [
+          0.9264181934782896,
+          0.28934540086758054,
+          0.738510435567723,
+          0.2939481199283318
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/portfolio-optimization/SKILL.md",
+      "component": "Portfolio Optimization",
+      "group": "Portfolio Optimization",
+      "fold": 4,
+      "document_sha256": "862f560e1f05018832ce0210b1992cd4829068dc1fad2a177997a93a19a0d081",
+      "tasks": 4,
+      "dataset_digest": "sha256:97b53fc5f0fc9cbbb6e594394ff89d950c9b5b713c0f4a6594c968dade42869f",
+      "observed": [
+        0.45,
+        -0.025,
+        0.39299999999999996,
+        0.141
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7841368617600515,
+          0.2432867698378038,
+          0.6600424427286243,
+          0.23483711078969463
+        ],
+        [
+          0.8420745093579175,
+          0.25755163161878597,
+          0.7556698476617864,
+          0.2785656453938214
+        ],
+        [
+          0.8510558820184382,
+          0.24685298528304933,
+          0.7071886832797587,
+          0.24212783309227098
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/rtx-remix-modding/SKILL.md",
+      "component": "RTX Remix",
+      "group": "RTX Remix",
+      "fold": 5,
+      "document_sha256": "63b968ef51513e49d10744acd71aa82e54748c5aac1a82985cfea3d31a8c2686",
+      "tasks": 14,
+      "dataset_digest": "sha256:3a20325201aaaf0e423b220c0c53c7f51ea67a26cd886388f07b2c9084f665b9",
+      "observed": [
+        0.6709999999999999,
+        0.371,
+        0.674,
+        0.257
+      ],
+      "prediction": [
+        [
+          0.856,
+          0.2585,
+          0.7165,
+          0.268
+        ],
+        [
+          0.7210961208214455,
+          0.28955521807823215,
+          0.6184744363268728,
+          0.2601750541572986
+        ],
+        [
+          0.7492112142812718,
+          0.195995394138698,
+          0.5970853338651648,
+          0.20551083263870512
+        ],
+        [
+          0.8026056071406359,
+          0.2193853501235815,
+          0.6269390003988736,
+          0.2640875270786493
+        ]
+      ],
+      "blend_radius": [
+        0.3104505379241379,
+        0.31234166587966716,
+        0.3461903850918204,
+        0.2584610858132177
+      ]
+    },
+    {
+      "path": "skills/runai-diagnose-failed-workload/SKILL.md",
+      "component": "Run:ai",
+      "group": "Run:ai",
+      "fold": 4,
+      "document_sha256": "8ebeed2f4cff67066b45e43b7562ea7334704be35ae598c911be3570b011e0f2",
+      "tasks": 22,
+      "dataset_digest": "sha256:11671384f2bddc73199555ab2ec1df1138baead68ab48fc4efd782b89946e0e0",
+      "observed": [
+        0.846,
+        0.064,
+        0.795,
+        0.14400000000000002
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7937005423325516,
+          0.29702183041840785,
+          0.6988564182695348,
+          0.2643022861211308
+        ],
+        [
+          0.8250188092552534,
+          0.3021734283488316,
+          0.7270813991865234,
+          0.2835983892005595
+        ],
+        [
+          0.83826410694144,
+          0.2983097299010138,
+          0.7194485589313983,
+          0.2642267145908481
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/runai-get-utilization-overview/SKILL.md",
+      "component": "Run:ai",
+      "group": "Run:ai",
+      "fold": 4,
+      "document_sha256": "c9dafc93617aefaf6a19f0a743ca1a9eaa6662c7bc5fc333c13f877ade57e39d",
+      "tasks": 22,
+      "dataset_digest": "sha256:a7626a9135219d3b9fa142abfafe70d7b324df6a04228e5890cf22c718eb975b",
+      "observed": [
+        0.873,
+        0.182,
+        0.853,
+        0.235
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7068330615500612,
+          0.2885162479708707,
+          0.6041496294985426,
+          0.25425248753820945
+        ],
+        [
+          0.8804253971526308,
+          0.17016757608096633,
+          0.8170406712999104,
+          0.27718121307989124
+        ],
+        [
+          0.8798190478644732,
+          0.25892907999839465,
+          0.6945849825742488,
+          0.2566893656536571
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/runai-get-workload-health-summary/SKILL.md",
+      "component": "Run:ai",
+      "group": "Run:ai",
+      "fold": 4,
+      "document_sha256": "d36317578680d7f1d2cde1a5d70984ee6d95d967234c795ec7c2400074e429d4",
+      "tasks": 30,
+      "dataset_digest": "sha256:6e09ea63475e9a74d6b84883683da186393aaa90546908bea0e670ac7be05515",
+      "observed": [
+        0.907,
+        0.207,
+        0.79,
+        0.302
+      ],
+      "prediction": [
+        [
+          0.878,
+          0.293,
+          0.753,
+          0.264
+        ],
+        [
+          0.7978270074628497,
+          0.3361907225754367,
+          0.7058978077559909,
+          0.2929473785151485
+        ],
+        [
+          0.8546678635356156,
+          0.3009526747136335,
+          0.7287534945552263,
+          0.29127783883669445
+        ],
+        [
+          0.8605008976517118,
+          0.32738121060998593,
+          0.723387277516802,
+          0.28571053388636136
+        ]
+      ],
+      "blend_radius": [
+        0.2673207831486468,
+        0.3320261670770532,
+        0.3301671610590169,
+        0.27172875564808363
+      ]
+    },
+    {
+      "path": "skills/tao-finetune-cosmos-reason/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "eed10c7a33e033c63b15f2101e9ba299e57abe625c7fb02abdedc4740f7d7d08",
+      "tasks": 7,
+      "dataset_digest": "sha256:81bc83868a378e3f3fdece654f6a44dce369888b12a2f872175a72b84b090797",
+      "observed": [
+        0.857,
+        0.314,
+        0.61,
+        0.272
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8002415206003002,
+          0.3355249987254831,
+          0.6641564370596467,
+          0.28938002064763274
+        ],
+        [
+          0.8734683101019395,
+          0.2824089098609192,
+          0.6957771791365036,
+          0.22115219978819742
+        ],
+        [
+          0.8795603801500751,
+          0.30889374904411226,
+          0.7585391092649116,
+          0.27578501548572454
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-finetune-huggingface-model/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "cb23a5ebfad47c728f43df91dd0a798e23b4e7fecd1145755022a54b45e30baa",
+      "tasks": 4,
+      "dataset_digest": "sha256:1dfae0e82b4644c26c4137c7a97c06489a0136400c4aa9454daa97f9d614dacb",
+      "observed": [
+        0.7,
+        0.35,
+        0.604,
+        0.254
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8112638894813117,
+          0.35219671349656684,
+          0.6975922641382701,
+          0.30347898251424726
+        ],
+        [
+          0.8370498802774895,
+          0.3328270238191598,
+          0.6928848135920722,
+          0.26011743367521434
+        ],
+        [
+          0.8823159723703279,
+          0.3213975351224251,
+          0.7668980660345676,
+          0.28635923688568543
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-finetune-video-clip/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "72aa573a5f2d4b88c39f8db0791b6319ee7539a6a66eaa594fd4950323f44367",
+      "tasks": 3,
+      "dataset_digest": "sha256:4ad92205ac85db52d1f0afec780b50c3453900d9a29d2f0b9e60eb9be7225ee0",
+      "observed": [
+        0.6,
+        0.33299999999999996,
+        0.35600000000000004,
+        0.145
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8186591278565915,
+          0.46189214127803124,
+          0.634764663924551,
+          0.3394484938054443
+        ],
+        [
+          0.8549631734971761,
+          0.36791887398476075,
+          0.6523740591586693,
+          0.2841956189225348
+        ],
+        [
+          0.8841647819641478,
+          0.40366910595852346,
+          0.7511911659811378,
+          0.31333637035408324
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-run-deft-aoi/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "7ea9fd09db49cb9832289a0705bc550966fb11cca330005ab23834de716107b4",
+      "tasks": 3,
+      "dataset_digest": "sha256:ec1289a65b99daada0be3fb22c3130744571015a752689cf955682ed47b014f3",
+      "observed": [
+        0.867,
+        0.467,
+        0.883,
+        0.358
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7976775081374313,
+          0.32484736148423654,
+          0.6912052257985728,
+          0.2892165840258865
+        ],
+        [
+          0.8774555887005117,
+          0.30818410057872286,
+          0.7455310745808393,
+          0.28222450190937715
+        ],
+        [
+          0.8789193770343579,
+          0.3008855211131774,
+          0.7653013064496432,
+          0.2756624380194149
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-run-deft-aoi-cosmos3/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "faa153ae3e516879705beeafe0720604c22ebfd7f639091239931e869940846d",
+      "tasks": 3,
+      "dataset_digest": "sha256:4015aa6d9af5f535d47c8467a34ce351d0cdfc45b0fb0f7be5a6e99c30a1f90a",
+      "observed": [
+        0.733,
+        0.466,
+        0.6579999999999999,
+        0.5329999999999999
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7971159810420658,
+          0.3251806056716479,
+          0.6910137675992686,
+          0.2896787279347227
+        ],
+        [
+          0.9096647992464466,
+          0.3597537413332033,
+          0.7647493771177069,
+          0.32617930371338644
+        ],
+        [
+          0.8787789952605165,
+          0.3011354542537359,
+          0.7652534418998171,
+          0.27600904595104203
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-run-deft-cr-its-mining/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "57bbb631ad512d7ced02144f91f7064c873d974e33eb1c8807570b4ba0bee2e6",
+      "tasks": 4,
+      "dataset_digest": "sha256:e2415bd85ab17e2af8a9afff1301e63b0145eceba60a95906283869558f70186",
+      "observed": [
+        0.6,
+        0.45,
+        0.47700000000000004,
+        0.256
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.828142949767688,
+          0.4179880606067021,
+          0.6842577837154082,
+          0.3448138364179848
+        ],
+        [
+          0.7295568267685806,
+          0.40572844488822624,
+          0.49363762054066695,
+          0.20264308249160085
+        ],
+        [
+          0.886535737441922,
+          0.3707410454550266,
+          0.7635644459288521,
+          0.31736037731348854
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-run-deft-object-detection/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "27bea62cdb8d5e470430787165e913826e3e1bf0aa978870a74e1c96b7c74b15",
+      "tasks": 4,
+      "dataset_digest": "sha256:d3fce2a83efb9ec178ecc5fc8a20f8c2280adffa3b279916a073015372c25237",
+      "observed": [
+        0.75,
+        0.55,
+        0.67,
+        0.456
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7810308883572252,
+          0.3513879959945704,
+          0.6618653068060856,
+          0.276922709187775
+        ],
+        [
+          0.9032099952059481,
+          0.2789985414479881,
+          0.7976507668982062,
+          0.28530752115118835
+        ],
+        [
+          0.8747577220893064,
+          0.32079099699592784,
+          0.7579663267015214,
+          0.26644203189083127
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-run-deft-pas/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "a596e8a7542a31d2b8c219434226f45eb5e62156fd6f1dd0494ef8288885d54a",
+      "tasks": 20,
+      "dataset_digest": "sha256:a96fe279f8dcd9995cf48dab59613268866481e77e344ffcace5746b56926055",
+      "observed": [
+        0.79,
+        0.34,
+        0.598,
+        0.304
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8052835567091249,
+          0.34537903540561216,
+          0.6633587674780966,
+          0.30381265750489916
+        ],
+        [
+          0.772068171257271,
+          0.4101943313570066,
+          0.6162508980340116,
+          0.25529904107652224
+        ],
+        [
+          0.8808208891772812,
+          0.3162842765542091,
+          0.7583396918695242,
+          0.28660949312867434
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-run-dinov3-ssl-deft/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "00d2d3debd29617ab02a96ad64bf067af44819fa60f92b33c46ba777b47407e4",
+      "tasks": 4,
+      "dataset_digest": "sha256:4af41a3d00a986b758547fb383084946dab341ed73b17b47c2a29eadf2a70683",
+      "observed": [
+        0.9,
+        0.45,
+        0.644,
+        0.231
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7989563895692569,
+          0.3207838834202632,
+          0.687696490539786,
+          0.29759835230600384
+        ],
+        [
+          0.8658441031351407,
+          0.3354451081292428,
+          0.6748758070900313,
+          0.2662276436334332
+        ],
+        [
+          0.8792390973923142,
+          0.2978379125651974,
+          0.7644241226349465,
+          0.2819487642295029
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-train-sparse4d/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "dbf765865711f182615e39682178628b066d3de55820d054fb8e83250c4c27c4",
+      "tasks": 7,
+      "dataset_digest": "sha256:2b0115d60b2ccf67771cdf91e07158641e64d575b9497430129ea837a8b28084",
+      "observed": [
+        1.0,
+        0.486,
+        0.8690000000000001,
+        0.359
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8303823119979082,
+          0.2945987910595786,
+          0.722280002100096,
+          0.3064995654756023
+        ],
+        [
+          0.9511804483036095,
+          0.2249583141375743,
+          0.7906819858414986,
+          0.30158647262228294
+        ],
+        [
+          0.887095577999477,
+          0.27819909329468395,
+          0.7730700005250241,
+          0.28862467410670173
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tao-validate-recipe-transfer/SKILL.md",
+      "component": "TAO Toolkit",
+      "group": "TAO Toolkit",
+      "fold": 1,
+      "document_sha256": "7a475af4c76bcc483a7b356f8cea32aecab16603571f717d7c3444b34762e98a",
+      "tasks": 7,
+      "dataset_digest": "sha256:dea4b912faeea7903507a7bc19c358d55a17cb91e339c257469e5db902f4e8be",
+      "observed": [
+        0.6,
+        0.314,
+        0.52,
+        0.264
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.7748559773926589,
+          0.2892716911343029,
+          0.6568915143388371,
+          0.2312315876920194
+        ],
+        [
+          0.8890165579630183,
+          0.39348397969399096,
+          0.7483082737563985,
+          0.33634809898896534
+        ],
+        [
+          0.8732139943481647,
+          0.27420376835072713,
+          0.7567228785847093,
+          0.23217369076901453
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    },
+    {
+      "path": "skills/tilegym-converting-cutile-to-triton/SKILL.md",
+      "component": "TileGym",
+      "group": "TileGym",
+      "fold": 2,
+      "document_sha256": "3a857b76afb3b734380505847d89e2d47b997cb118b1c3226ab0a183df4d9606",
+      "tasks": 5,
+      "dataset_digest": "sha256:6eb6dce8f7e1fd54fc084bc411e537b99c4ddcfd0385c53ed32c220626278056",
+      "observed": [
+        1.0,
+        0.0,
+        0.99,
+        0.09
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.8677559978407389,
+          0.3906595317546488,
+          0.7455997297591941,
+          0.3430149108021795
+        ],
+        [
+          0.7734272649266206,
+          0.48028735930889227,
+          0.5759399116493261,
+          0.40788749078043063
+        ],
+        [
+          0.8117136324633103,
+          0.37124464881598657,
+          0.6673849103521301,
+          0.35923305579674225
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/tilegym-cutile-python/SKILL.md",
+      "component": "TileGym",
+      "group": "TileGym",
+      "fold": 2,
+      "document_sha256": "965c281a642d00d733301c2067ba30f9827b98c5d9ba302df40d5bf2a0055214",
+      "tasks": 3,
+      "dataset_digest": "sha256:8288ba1fc833c22b44a0957b327f0c48f0c9288983f830241d752d6e9dc68716",
+      "observed": [
+        1.0,
+        0.0,
+        0.845,
+        -0.003
+      ],
+      "prediction": [
+        [
+          0.85,
+          0.313,
+          0.674,
+          0.257
+        ],
+        [
+          0.7522776893812978,
+          0.36379887019152,
+          0.6456584944859676,
+          0.2766613161405265
+        ],
+        [
+          0.7752727562451242,
+          0.26982419744929487,
+          0.6990936271655374,
+          0.31753576584859755
+        ],
+        [
+          0.8126363781225621,
+          0.35109915264364,
+          0.6731880304128762,
+          0.2868799285675443
+        ]
+      ],
+      "blend_radius": [
+        0.2694309788911663,
+        0.30024080713724505,
+        0.29775743303964164,
+        0.28268100002424185
+      ]
+    },
+    {
+      "path": "skills/vss-build-vision-ai/SKILL.md",
+      "component": "Video Search and Summarization",
+      "group": "Video Search and Summarization",
+      "fold": 1,
+      "document_sha256": "34feb6a810bb06d8e0c39221a6292c55590bcb6339088ee398131f0c7b5c2e77",
+      "tasks": 11,
+      "dataset_digest": "sha256:503e7e991283a099b167cb9f095067f9045f52afd152fef5ee094b8dbc4eff29",
+      "observed": [
+        0.509,
+        0.036000000000000004,
+        0.287,
+        0.128
+      ],
+      "prediction": [
+        [
+          0.9059999999999999,
+          0.22899999999999998,
+          0.79,
+          0.235
+        ],
+        [
+          0.8063747779408517,
+          0.3345522057920911,
+          0.7035981778018581,
+          0.2877078241495329
+        ],
+        [
+          0.8585924339387289,
+          0.34548620334497404,
+          0.749944282514217,
+          0.3116067689211435
+        ],
+        [
+          0.8810936944852129,
+          0.3081641543440683,
+          0.7683995444504645,
+          0.27453086811214966
+        ]
+      ],
+      "blend_radius": [
+        0.2334470839314935,
+        0.31149747138675754,
+        0.30813995862816224,
+        0.279004211786567
+      ]
+    }
+  ]
+}

@@ -120,6 +120,34 @@ function profileOverview(profile, origin) {
   return hero;
 }
 
+function publishedEvidence(proof) {
+  const box = panel("公开配对评测", proof.scope, "measurement");
+  box.id = "published-benchmark";
+  const percent = value => `${(100 * value).toFixed(1)}%`;
+  box.append(table(["检查维度", "无 Skill", "有 Skill", "净增益"], proof.measures.map(row => [
+    row.label, percent(row.without_skill), percent(row.with_skill),
+    `${row.lift > 0 ? "+" : ""}${(100 * row.lift).toFixed(1)} 个百分点`,
+  ])));
+  box.append(sourceLink("查看原始评测报告", proof.url));
+  return box;
+}
+
+function resourceEvaluation(links, origin) {
+  const resolved = links.filter(row => row.state === "present").length;
+  const box = panel("包内资源检查", `定位到 ${resolved}/${links.length} 个说明链接指向的资源。`);
+  box.id = "resource-evaluation";
+  const status = {present: "已找到", missing: "完整清单中缺失", unknown: "清单不完整，待核对"};
+  const detail = node("details", undefined, "capability-detail");
+  detail.append(node("summary", "查看资源与说明位置"));
+  detail.append(table(["说明引用", "检查结果", "依据"], links.map(row => {
+    const position = `SKILL.md 第 ${row.evidence.start_line} 行`;
+    return [row.resource, status[row.state], origin?.canonical_url ?
+      sourceLink(position, `${origin.canonical_url}#L${row.evidence.start_line}`) : position];
+  })));
+  box.append(detail);
+  return box;
+}
+
 function observationText(result) {
   return `${result.passed}/${result.total} 项通过`;
 }
@@ -338,8 +366,10 @@ function renderReport(report) {
   const inspection = panel(report.decision_zh, report.reason, `verdict${warning ? " warning" : ""}`);
   const profile = report.skill_profile;
   if (profile) {
-    root.replaceChildren(profileOverview(profile, report.source_import), capacityPanel(profile, report.source_import),
-      peerPanel(profile), documentationPanel(profile));
+    root.replaceChildren(profileOverview(profile, report.source_import));
+    if (profile.public_benchmark) root.append(publishedEvidence(profile.public_benchmark));
+    if (report.package.resource_links?.length) root.append(resourceEvaluation(report.package.resource_links, report.source_import));
+    root.append(capacityPanel(profile, report.source_import), peerPanel(profile), documentationPanel(profile));
   } else {
     root.replaceChildren(inspection);
   }
@@ -461,6 +491,7 @@ byId("link-form").onsubmit = event => { event.preventDefault(); scanLink(); };
 for (const id of ["skill-url", "task", "network", "skill-file"]) byId(id).addEventListener("input", invalidate);
 byId("public-example").onclick = () => example("https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md");
 byId("spreadsheet-example").onclick = () => example("https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md");
+byId("published-benchmark-example").onclick = () => example("https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/SKILL.md");
 
 byId("inspect-file").onclick = async () => {
   if (busy) return;

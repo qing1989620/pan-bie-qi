@@ -17,7 +17,7 @@ from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 
-from . import __version__, adoption, source_import
+from . import __version__, adoption, published_benchmarks, source_import
 from .pdf_table import MAX_CSV_BYTES, MAX_PDF_BYTES, probe
 from .profile import attach as attach_profile
 from .service import assess
@@ -170,6 +170,7 @@ def create_app() -> FastAPI:
             }
             adoption.attach(report, source)
             attach_profile(report["skill_profile"], report, source)
+            published_benchmarks.attach(report, source)
             return {"state": "assessed", "source": source, "package": visible, "report": report,
                     "model_api_calls": 0, "skill_code_executed": False}
         except ValueError as exc:

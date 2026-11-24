@@ -11,6 +11,7 @@ from pathlib import PurePosixPath
 import yaml
 
 from .inputs import commands, digest
+from .resource_links import bundled_links
 
 MAX_FILES = 128
 MAX_BYTES = 4_000_000
@@ -149,6 +150,15 @@ def inspect(identity: str, files: dict[str, str], inventory: list[str], complete
         conditions.append({"kind": "network", "requirement": "允许访问网络", "state": "met" if state is True else "unmet" if state is False else "unknown",
                            "explanation": "元数据明确要求网络访问", "evidence": citation(files, "SKILL.md", line)})
     present = set(inventory or files)
+    resource_links = []
+    for line, path in bundled_links(document):
+        resolved = path in present or any(entry.startswith(path + "/") for entry in present)
+        state = "present" if resolved else "missing" if complete else "unknown"
+        reference = {"resource": path, "state": state, "evidence": citation(files, "SKILL.md", line)}
+        resource_links.append(reference)
+        if state == "missing":
+            findings.append({**reference, "kind": "bundled_link_missing", "layer": "resource", "severity": "confirmed",
+                             "explanation": f"说明链接指向包内资源 {path}，完整清单中未找到该文件或目录。"})
     for path, text in files.items():
         for i, line in enumerate(text.splitlines(), 1):
             if SECRET.search(line):
@@ -223,6 +233,8 @@ def inspect(identity: str, files: dict[str, str], inventory: list[str], complete
         suggestions.append("按照脚本实际参数声明修正文档命令，并验证这些命令的真实输出。")
     if any(x["kind"] == "documented_entry_missing" for x in findings):
         suggestions.append("补齐文档承诺的入口文件，或删除无法执行的示例。")
+    if any(x["kind"] == "bundled_link_missing" for x in findings):
+        suggestions.append("补齐说明链接指向的包内资源，或修正相对链接。")
     if any(x["kind"] in {"python_syntax_error", "entrypoint_syntax_error"} for x in findings):
         suggestions.append("先修复指出的语法位置，再运行对应入口的任务测试。")
     if any(x["kind"] == "embedded_credential" for x in review):
@@ -237,6 +249,7 @@ def inspect(identity: str, files: dict[str, str], inventory: list[str], complete
         "introduction": {"name": title[:200], "description": description[:600], "declared_supported": supported, "declared_exclusions": excluded},
         "package": {"status": "confirmed_issue" if findings else "no_confirmed_issue_in_checked_scope", "findings": findings,
                     "review_items": review, "command_observations": command_observations, "unknown_checks": unknown_checks,
+                    "resource_links": resource_links,
                     "files_analyzed": len(files), "inventory_files": len(present), "inventory_complete": complete,
                     "file_sha256": hashes,
                     "origin": "当前上传文本快照，未独立认证上游来源"},

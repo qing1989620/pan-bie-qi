@@ -38,6 +38,8 @@ Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8853/api/discriminator/imp
 
 返回 `selection_required` 时，在下一次请求同时传回原始 `url`、候选的 `path` 作为 `skill_path`，以及响应 `source.commit` 作为 `revision`。这样再次获取的材料仍对应原提交。链接评估成功时，在 `report.skill_profile` 获取 `size`、`capabilities`、`functional_quality`、`documentation`、`measurements` 及 `comparison`。界面导出的 JSON 还包含手动添加的对照链接及结果。
 
+`report.package.resource_links` 列出受支持的包内引用、来源行号和 `present`、`missing` 或 `unknown` 状态。完整 Git 清单支持确认缺失。匹配 NVIDIA 发布快照时，`report.skill_profile.public_benchmark` 提供作者配对得分、任务数、任务集指纹和原报告链接。留出预测研究见[未见 Skill 实验](unseen-skill-evaluation.md)。
+
 `inspect` 接收 `files` 字典，键为包内相对路径，值为文本，至少提供 `SKILL.md`。可选 `inventory` 和 `inventory_complete` 用于说明清单。两个检查接口都接受 `task` 与 `environment`。`environment.available_keys` 只接受变量名称到布尔值的映射，例如 `{"LITERATURE_API_KEY": false}`。`environment.network_allowed` 记录目标环境的联网状态。
 
 `task/pdf-table` 接收 `pdf_base64`、从 1 开始的 `page` 以及可选的 `reference_csv`、`headers` 和 `expected_rows`。成功提取时，`state` 为 `extracted`，`verification.state` 则给出参考核对或待核对状态。没有可读文字层时返回 `needs_ocr`，多表歧义或找不到表格时也会给出单独的原因。接口处理内存中的本地输入，结果中的 `file_sha256` 可用于识别已试跑的文件。
