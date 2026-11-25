@@ -598,7 +598,7 @@
       {
         "id": "paper",
         "label": "真实中文论文表 6",
-        "input_sha256": "8419c47117e0329612a8f358bfc6939d2fb3a0dee04528e32f9a6844ef9f1711",
+        "input_sha256": "f4b27b42aa8edfdbc09af728042bf8a4399cf5563c6a24d606189ad81ff4dc8f",
         "page": 4,
         "expected": [
           [
@@ -901,7 +901,7 @@
       {
         "id": "paper",
         "label": "真实中文论文表 6",
-        "input_sha256": "8419c47117e0329612a8f358bfc6939d2fb3a0dee04528e32f9a6844ef9f1711",
+        "input_sha256": "f4b27b42aa8edfdbc09af728042bf8a4399cf5563c6a24d606189ad81ff4dc8f",
         "page": 4,
         "expected": [
           [

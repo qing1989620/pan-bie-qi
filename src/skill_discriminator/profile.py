@@ -74,7 +74,7 @@ def _match(pattern: str, value: str) -> bool:
     return re.search(pattern, value, re.IGNORECASE) is not None
 
 
-def _lines(document: str, header_length: int) -> list[tuple[int, str]]:
+def prose_lines(document: str, header_length: int) -> list[tuple[int, str]]:
     rows, fence = [], ""
     for number, line in enumerate(document.splitlines(), 1):
         marker = FENCE.match(line)
@@ -106,7 +106,7 @@ def describe(files: dict[str, str], introduction: dict, package: dict) -> dict:
     metadata, _ = frontmatter(document.removeprefix("\ufeff"))
     has_metadata = bool(header and all(isinstance(metadata.get(key), str) and metadata[key].strip()
                                        for key in ("name", "description")))
-    rows = _lines(document, len(header_rows))
+    rows = prose_lines(document, len(header_rows))
     sha = package["file_sha256"]["SKILL.md"]
     description_rows = description_lines(document) if isinstance(metadata.get("description"), str) else []
     description_line = description_rows[0] if description_rows else None

@@ -45,6 +45,12 @@ def _quality(report: dict, profile: dict) -> tuple[str, str, str]:
         return "先修复再用", quality["reason"], "warning"
     if state == "environment_blocked":
         return "需要先配置", quality["reason"], "warning"
+    gate = report["assessment"]["agent"]["status"]
+    if gate == "sensitive_material_review":
+        return "先核对包内配置", "材料中有形似凭据的字面值。确认可公开后再使用。", "warning"
+    if gate == "configuration_unknown":
+        unresolved = [row["requirement"] for row in report["conditions"] if row["state"] == "unknown"]
+        return "先确认运行条件", "使用前请核对" + "、".join(unresolved[:3]) + "。", "mixed"
     if report["decision"] == "task_contract_review":
         return "先核对任务要求", report["task_contract_review"][0]["explanation"], "mixed"
     if state == "strong":
@@ -73,9 +79,15 @@ def _quality(report: dict, profile: dict) -> tuple[str, str, str]:
                   f"从 {metric['without_skill']:.1%} 到 {metric['with_skill']:.1%}。")
         return label, reason, tone
 
-    covered = {item["id"] for item in profile["documentation"]["checks"] if item["found"]}
-    reason = "文档给出了流程和验收方法。当前版本缺少任务实测。" if {"steps", "verification"} <= covered else "当前版本缺少可核查的任务实测。"
-    return "效果待验证", reason, "neutral"
+    dimensions = [row for row in report["assessment"]["dimensions"] if row["basis"] == "说明覆盖"]
+    highest = max(dimensions, key=lambda row: row["score"])
+    lowest = min(dimensions, key=lambda row: row["score"])
+    if lowest["score"] >= 75:
+        return "使用说明较完整", "用途、流程、准备条件与验收均至少说明了 3 项。", "verified"
+    if highest["score"] >= 75:
+        return "可按说明初筛", (f"{highest['label']} {highest['score']} 分。"
+                                 f"使用前优先核对{lowest['label']}（{lowest['score']} 分）。"), "mixed"
+    return "使用说明需要补充", f"{lowest['label']}缺项最多。展开评分依据查看需要补充的内容。", "mixed"
 
 
 def summarize(report: dict) -> dict:

@@ -21,6 +21,7 @@ from . import __version__, adoption, published_benchmarks, source_import
 from .pdf_table import MAX_CSV_BYTES, MAX_PDF_BYTES, probe
 from .profile import attach as attach_profile
 from .quick_summary import summarize
+from .ratings import build as build_ratings
 from .service import assess
 from .verify import replay_registered
 
@@ -129,6 +130,7 @@ def create_app() -> FastAPI:
             report = assess(request.identity, request.files, request.inventory, request.inventory_complete,
                             request.task, request.environment.model_dump())
             attach_profile(report["skill_profile"], report)
+            report["assessment"] = build_ratings(report, request.files, request.inventory)
             report["quick_summary"] = summarize(report)
             return report
         except ValueError as exc:
@@ -174,6 +176,7 @@ def create_app() -> FastAPI:
             adoption.attach(report, source)
             attach_profile(report["skill_profile"], report, source)
             published_benchmarks.attach(report, source)
+            report["assessment"] = build_ratings(report, package["files"], package["inventory"])
             report["quick_summary"] = summarize(report)
             return {"state": "assessed", "source": source, "package": visible, "report": report,
                     "model_api_calls": 0, "skill_code_executed": False}

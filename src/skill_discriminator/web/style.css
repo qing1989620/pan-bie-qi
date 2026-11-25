@@ -67,6 +67,22 @@ summary { cursor: pointer; font-weight: 650; }
 .quick-verdict.verified { color: #07533f; }
 .quick-verdict.mixed { color: #785b00; }
 .quick-verdict.warning { color: var(--danger); }
+.quick-length { margin: .1rem 0 .45rem; color: var(--muted); font-size: .88rem; }
+.score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 253px), 1fr)); gap: .7rem; align-items: start; }
+.score-card { min-width: 0; padding: .7rem .85rem; border: 1px solid var(--border); border-radius: 10px; background: var(--page); }
+.score-head { display: flex; gap: .55rem; align-items: baseline; justify-content: space-between; }
+.score-head h4 { margin: 0; font-size: .98rem; }
+.score-value { color: var(--accent); font-weight: 730; font-size: 1.26rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.score-value small { color: var(--muted); font-weight: 500; font-size: .75rem; }
+.score-bar { height: .23rem; margin: .26rem 0 .65rem; border-radius: 3px; background: var(--border); overflow: hidden; }
+.score-bar span { display: block; height: 100%; background: var(--accent); border-radius: inherit; }
+.score-basis { color: var(--muted); font-size: .8rem; font-weight: 650; }
+.score-reason { margin-top: .15rem; font-size: .9rem; }
+.score-detail { margin-top: .4rem; font-size: .82rem; overflow-wrap: anywhere; }
+.score-detail summary { color: var(--accent); }
+.score-detail ul { padding-inline-start: 1.05rem; }
+.score-detail li + li { margin-top: .35rem; }
+.score-detail pre { margin: .1rem 0 .3rem; white-space: pre-wrap; overflow-wrap: anywhere; }
 .quick-footer { margin-top: 1rem; font-size: .91rem; }
 .upload-row { margin-top: .7rem; }
 .status { color: var(--muted); font-size: .93rem; margin: .65rem 0 0; }

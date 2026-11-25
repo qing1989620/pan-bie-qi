@@ -117,6 +117,55 @@ function sourceLink(title, url) {
   return link;
 }
 
+function scoreCards(assessment) {
+  const section = node("section", undefined, "quick-answer");
+  section.append(node("h3", "分项评分"));
+  const grid = node("div", undefined, "score-grid");
+  for (const axis of assessment.dimensions) {
+    const cell = node("article", undefined, "score-card");
+    const head = node("header", undefined, "score-head");
+    const numeric = typeof axis.score === "number";
+    const value = node("span", numeric ? String(axis.score) : "—", "score-value");
+    if (numeric) value.append(node("small", " / 100"));
+    else value.setAttribute("aria-label", "暂无得分");
+    head.append(node("h4", axis.label), value);
+    cell.append(head);
+    if (numeric) {
+      const bar = node("div", undefined, "score-bar");
+      bar.setAttribute("aria-hidden", "true");
+      const fill = node("span");
+      fill.style.width = axis.score + "%";
+      bar.append(fill);
+      cell.append(bar);
+    }
+    cell.append(node("p", axis.basis, "score-basis"), node("p", axis.reason, "score-reason"));
+    if (axis.checks.length || axis.source_url || axis.scope) {
+      const detail = node("details", undefined, "score-detail");
+      detail.append(node("summary", "查看评分依据"));
+      if (axis.scope) detail.append(node("p", axis.scope));
+      const ordered = [...axis.checks].sort((left, right) => (
+        Number(right.state === "missing") - Number(left.state === "missing")
+      ));
+      if (ordered.length) {
+        const list = node("ul");
+        for (const item of ordered) {
+          const credit = item.max_points ? item.points + "/" + item.max_points + " 分"
+            : ({present: "通过", missing: "发现问题", unknown: "未核实"})[item.state];
+          const row = node("li", item.label + " · " + credit);
+          evidenceLine(row, item.evidence);
+          list.append(row);
+        }
+        detail.append(list);
+      }
+      if (axis.source_url) detail.append(sourceLink("原始评测报告", axis.source_url));
+      cell.append(detail);
+    }
+    grid.append(cell);
+  }
+  section.append(grid);
+  return section;
+}
+
 function profileOverview(profile, origin) {
   const hero = panel(profile.name, undefined, "profile-hero");
   hero.id = "skill-overview";
@@ -453,7 +502,9 @@ function renderReport(report) {
     detail.dataset.viewLink = "detail";
     const footer = node("div", undefined, "quick-footer");
     footer.append(detail);
-    quick.replaceChildren(node("h2", summary.name), uses, quality, footer);
+    const length = report.skill_profile.size.document_characters.toLocaleString("zh-CN");
+    quick.replaceChildren(node("h2", summary.name), node("p", "说明 " + length + " 字符", "quick-length"),
+      uses, quality, scoreCards(report.assessment), footer);
     quick.hidden = false;
   }
   latestReport = report;

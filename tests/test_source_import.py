@@ -133,7 +133,7 @@ def test_public_view_uses_the_only_main_skill_and_keeps_vendor_choices(remote):
     assert value["source"]["selection"]["mode"] == "sole_non_vendored"
     assert value["source"]["selection"]["candidate_count"] == 2
     assert set(value["package"]["files"]) == {"SKILL.md", "readme.md"}
-    assert value["report"]["quick_summary"]["verdict"] == "效果待验证"
+    assert value["report"]["quick_summary"]["verdict"] == "使用说明需要补充"
     assert other["source"]["skill_path"] == "third_party/other/SKILL.md"
 
 

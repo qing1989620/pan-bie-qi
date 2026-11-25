@@ -2,7 +2,7 @@
 
 ## 看懂报告
 
-访问 `/user` 使用简洁版。输入公开链接后可看到用途、好不好用以及一句理由。「查看详细报告」会切到同一份结果的完整视图。仓库根链接只有一个非第三方 Skill 时，网页自动评估它，仍可选择其他候选。多个独立 Skill 时，用下拉框选定要评估的一项。
+访问 `/user` 使用简洁版。输入公开链接可看说明长度、适合的用途、使用前应处理的问题和六项评分。「查看评分依据」列出命中和缺项，带来源行号。「查看详细报告」可打开同一次评估的能力画像、实测范围、失败案例和同类比较。仓库根链接只有一个非第三方 Skill 时，网页自动评估它。多个独立 Skill 时，用下拉框选定一项。
 
 页面首先显示单个 Skill 的说明长度、功能质量结论和分项能力。已测能力列出通过数和失败的输入。说明覆盖可逐条展开看依据。公开链接支持 GitHub 仓库、`tree` 目录、`blob` 或 `raw` 的 `SKILL.md`，以及 `skills.sh` 的公开条目。仓库含多个 Skill 时，选择要评估的路径。
 
@@ -45,6 +45,24 @@ Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8853/api/discriminator/imp
 遇到 GitHub 匿名读取限流时，部署者可在服务进程设置 `PAN_BIE_QI_GITHUB_TOKEN`。凭据只用于固定 GitHub API 主机的仓库读取请求，页面仍只接受公开 Skill。
 
 `report.package.resource_links` 列出受支持的包内引用、来源行号和 `present`、`missing` 或 `unknown` 状态。完整 Git 清单支持确认缺失。匹配 NVIDIA 发布快照时，`report.skill_profile.public_benchmark` 提供作者配对得分、任务数、任务集指纹和原报告链接。留出预测研究见[未见 Skill 实验](unseen-skill-evaluation.md)。
+
+### 分项评分与 Agent 接入
+
+`report.assessment.dimensions` 包含每项的分数、依据和范围。`report.assessment.rubric_version` 标识量表版本。在用途边界、流程产出、运行准备、验收异常四项中，命中一条规则得 25 分。包内一致性显示可静态判定的检查通过比例，未核实项另计。任务实测显示固定版本的登记留出通过率或外部发布效果分。`score: null` 表示该维度暂无得分。
+
+Agent 可先调用 `/import-url`，再读取 `assessment.agent`。使用提交、路径和包指纹关联版本，读取 `task_scope` 核对任务范围。以下状态可用于目录预检、提示缺失配置和安排人工复核。
+
+| `status` | 含义 |
+| --- | --- |
+| `repair_required` | 静态核查已确认缺陷 |
+| `environment_mismatch` | 当前环境缺少声明的条件 |
+| `sensitive_material_review` | 包内配置材料需复核 |
+| `configuration_unknown` | 声明的环境条件尚未核实 |
+| `task_review_required` | 当前任务与声明存在待核对项 |
+| `measured_scope_available` | 存在可引用的实测范围 |
+| `runtime_review_required` | 运行前需要核对任务范围与环境 |
+
+`automatic_execution_authorized` 恒为 `false`。Agent 宿主负责自己的授权和运行隔离。
 
 `inspect` 接收 `files` 字典，键为包内相对路径，值为文本，至少提供 `SKILL.md`。可选 `inventory` 和 `inventory_complete` 用于说明清单。两个检查接口都接受 `task` 与 `environment`。`environment.available_keys` 只接受变量名称到布尔值的映射，例如 `{"LITERATURE_API_KEY": false}`。`environment.network_allowed` 记录目标环境的联网状态。
 
