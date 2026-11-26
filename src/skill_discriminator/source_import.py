@@ -97,8 +97,8 @@ def parse_link(url: str) -> Link:
 
 
 class Reader:
-    def __init__(self):
-        self.deadline = time.monotonic() + 60
+    def __init__(self, *, deadline: float | None = None):
+        self.deadline = deadline if deadline is not None else time.monotonic() + 60
         self.github_api_token = os.environ.get("PAN_BIE_QI_GITHUB_TOKEN") or None
         self.requests = 0
         self.cache_hits = 0
@@ -166,14 +166,41 @@ def _tree(reader: Reader, base: str, sha: str, *, recursive=False) -> dict:
     return document
 
 
-def _scope_tree(reader, base, tree_sha, scope):
+def _scope_tree(reader, base, tree_sha, scope, *, ancestors=None):
+    prefix = ""
     for part in scope.split("/") if scope else []:
         entries = _tree(reader, base, tree_sha)["tree"]
+        if ancestors is not None:
+            licences = [item for item in entries if is_package_license(item["path"])]
+            if licences:
+                ancestors[:] = [{**item, "path": prefix + item["path"]} for item in licences]
         node = next((item for item in entries if item["path"] == part and item["type"] == "tree"), None)
         if node is None:
             raise SourceError("该固定版本中未找到所选技能目录")
         tree_sha = node["sha"]
+        prefix += part + "/"
     return _tree(reader, base, tree_sha, recursive=True)["tree"]
+
+
+def _within(entries: list[dict], scope: str) -> list[dict]:
+    if not scope:
+        return entries
+    prefix = scope + "/"
+    return [{**item, "path": item["path"][len(prefix):]} for item in entries if item["path"].startswith(prefix)]
+
+
+def _nearest_license_nodes(entries: list[dict], folder: str) -> list[dict]:
+    ancestors = {""}
+    current = ""
+    for part in folder.split("/")[:-1]:
+        current = current + "/" + part if current else part
+        ancestors.add(current)
+    levels = {}
+    for item in entries:
+        parent, _, name = item["path"].rpartition("/")
+        if parent in ancestors and is_package_license(name):
+            levels.setdefault(parent, []).append(item)
+    return levels[max(levels, key=len)] if levels else []
 
 
 def _direct_document(link):
@@ -257,7 +284,10 @@ def _direct_fallback(link, target, revision, reader):
     return _single_document_result(link, raw, source, complete=False)
 
 
-def import_link(url: str, skill_path: str | None = None, revision: str | None = None, prefer_main: bool = False) -> dict:
+def import_link(
+    url: str, skill_path: str | None = None, revision: str | None = None, prefer_main: bool = False,
+    *, overview_only: bool = False, deadline: float | None = None,
+) -> dict:
     link = parse_link(url)
     if skill_path:
         skill_path = validate_path(skill_path)
@@ -271,16 +301,16 @@ def import_link(url: str, skill_path: str | None = None, revision: str | None = 
     known = _frozen_snapshot(link, target, revision)
     if known:
         return known
-    reader = Reader()
+    reader = Reader(deadline=deadline)
     try:
-        return _import_tree(link, skill_path, revision, reader, prefer_main)
+        return _import_tree(link, skill_path, revision, reader, prefer_main, overview_only=overview_only)
     except SourceUnavailable:
         if target is None:
             raise
         return _direct_fallback(link, target, revision, reader)
 
 
-def _import_tree(link, skill_path, revision, reader, prefer_main):
+def _import_tree(link, skill_path, revision, reader, prefer_main, *, overview_only=False):
     base = f"https://api.github.com/repos/{link.owner}/{link.repo}"
     repository = reader.document(base)
     if not isinstance(repository, dict) or repository.get("private") is not False:
@@ -324,7 +354,15 @@ def _import_tree(link, skill_path, revision, reader, prefer_main):
         if scope and skill_path != scope + "/SKILL.md" and not skill_path.startswith(scope + "/"):
             raise SourceError("所选技能不在原链接指向的目录内")
         scope = skill_path.rsplit("/", 1)[0] if "/" in skill_path else ""
-    entries = _scope_tree(reader, base, tree_sha, scope)
+    ancestors = [] if overview_only else None
+    all_entries = None
+    if overview_only:
+        try:
+            all_entries = _tree(reader, base, tree_sha, recursive=True)["tree"]
+        except SourceError:
+            if not scope:
+                raise
+    entries = _within(all_entries, scope) if all_entries is not None else _scope_tree(reader, base, tree_sha, scope, ancestors=ancestors)
     candidates = []
     for item in entries:
         path = item.get("path", "")
@@ -366,7 +404,7 @@ def _import_tree(link, skill_path, revision, reader, prefer_main):
     folder = selected.rsplit("/", 1)[0] if "/" in selected else ""
     relative_prefix = folder[len(scope):].strip("/")
     if relative_prefix:
-        entries = _scope_tree(reader, base, tree_sha, folder)
+        entries = _within(all_entries, folder) if all_entries is not None else _scope_tree(reader, base, tree_sha, folder, ancestors=ancestors)
     inventory, readable, omitted = [], [], []
     inventory_complete = True
     for item in entries:
@@ -386,7 +424,9 @@ def _import_tree(link, skill_path, revision, reader, prefer_main):
         inventory.append(path)
         if item.get("mode") not in {"100644", "100755"} or item.get("type") != "blob":
             omitted.append({"path": path, "reason": "symlink_or_submodule_not_followed"})
-        elif PurePosixPath(path).suffix.lower() in TEXT or PurePosixPath(path).name.lower().startswith(("license", "notice", "dockerfile")):
+        elif overview_only and path != "SKILL.md" and not is_package_license(path):
+            omitted.append({"path": path, "reason": "recommendation_overview"})
+        elif is_package_license(path) or PurePosixPath(path).suffix.lower() in TEXT or PurePosixPath(path).name.lower().startswith(("license", "notice", "dockerfile")):
             readable.append(item)
         else:
             omitted.append({"path": path, "reason": "non_text_resource"})
@@ -401,13 +441,13 @@ def _import_tree(link, skill_path, revision, reader, prefer_main):
             planned.append(item)
     if not any(item["path"] == "SKILL.md" for item in planned):
         raise SourceError("SKILL.md缺失或超出600KB读取限制")
-    def read_file(item):
+    def read_file(item, prefix=folder):
         global _RAW_BACKOFF_UNTIL
-        full = (folder + "/" if folder else "") + item["path"]
+        full = (prefix + "/" if prefix else "") + item["path"]
         raw_url = f"https://raw.githubusercontent.com/{link.owner}/{link.repo}/{sha}/" + quote(full, safe="/")
         data, transport = None, "github_raw"
         with _CACHE_LOCK:
-            try_raw = item["path"] != "SKILL.md" and time.monotonic() >= _RAW_BACKOFF_UNTIL
+            try_raw = not overview_only and item["path"] != "SKILL.md" and time.monotonic() >= _RAW_BACKOFF_UNTIL
         if try_raw:
             try:
                 data = reader.raw(raw_url, MAX_FILE_BYTES, immutable=True, timeout_limit=3)
@@ -448,13 +488,32 @@ def _import_tree(link, skill_path, revision, reader, prefer_main):
         raise SourceError("SKILL.md不是可解析的UTF-8文本")
     identity = f"{link.owner}/{link.repo}:{folder or 'root'}"[:120]
     validate_files(files, inventory)
+    inherited_licenses = {}
+    if overview_only and not any(is_package_license(path) for path in inventory):
+        if all_entries is not None:
+            ancestors = _nearest_license_nodes(all_entries, folder)
+        for item in ancestors[:4]:
+            text, provenance = None, {}
+            if (item.get("type") == "blob" and item.get("mode") in {"100644", "100755"}
+                    and isinstance(item.get("size"), int) and 0 < item["size"] <= MAX_FILE_BYTES):
+                _, text, provenance = read_file(item, "")
+            inherited_licenses[item["path"]] = {"text": text, "sha256": provenance.get("raw_bytes_sha256")}
+        if len(ancestors) > 4:
+            inherited_licenses[ancestors[4]["path"]] = {"text": None, "sha256": None}
     source.update(skill_path=selected, package_root=folder, canonical_url=primary["url"], file_hashes=hashes,
                   files_read=len(files), inventory_files=len(inventory), inventory_complete=inventory_complete,
                   omitted=omitted[:200], omitted_count=len(omitted), omissions_truncated=len(omitted) > 200,
                   network_requests=reader.requests, immutable_cache_hits=reader.cache_hits,
                   package_instructions_treated_as="untrusted assessment data; not executed as assistant or host instructions")
-    return {"state": "imported", "source": source, "package": {"identity": identity, "files": files, "inventory": inventory, "inventory_complete": inventory_complete},
+    if overview_only:
+        source["inspection_scope"] = "guide_license_inventory"
+    return {"state": "imported", "source": source, "package": {"identity": identity, "files": files, "inventory": inventory,
+                    "inventory_complete": inventory_complete, **({"ancestor_licenses": inherited_licenses} if overview_only else {})},
             "model_api_calls": 0, "skill_code_executed": False}
+
+
+def is_package_license(path: str) -> bool:
+    return "/" not in path and bool(re.fullmatch(r"(?:license|licence|copying)(?:[-_.][\w.-]+)?", path, re.IGNORECASE))
 
 
 def public_package(package: dict) -> tuple[dict, bool]:

@@ -4,3 +4,4 @@
 - `utility-study.json` 使用 [SkillPortrait 固定发布版](https://github.com/SkillAudit/skillaudit/tree/349eff1e12cf6f210aa9b865a9e865b948b5a89b/docs/artifacts/data)及 [SkillsBench 公共档案](https://huggingface.co/datasets/benchflow/skillsbench-leaderboard)的再分析汇总。相关原始资料、许可和引用见各上游发布页。
 - `unseen-skill-study.json` 和 `docs/results/skill-assessment-training.json` 的公开成绩和任务集指纹来自 NVIDIA Skills Catalog 的同一提交。随包收录重算成绩、预测及来源索引。原始说明由研究脚本从同一发布版读取。[固定发布版](https://github.com/NVIDIA/skills/tree/252ba53487b73eaafbfcccf3e750c7b350b93db9) · [上游 Apache-2.0 许可](https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/LICENSE)
 - 工位案例的测试输入是构造数据，配对产物和规则消融随包供复核。文中引用的出版物保留其各自的版权和使用条件。
+- PT 检索实验使用 R3-Skill 固定提交。仓库记录汇总与指纹，由脚本获取原始数据。量化 E5 实验加载固定 ONNX 导出，模型文件保留在本机缓存。[R3 发布及许可](https://github.com/Tencent/R3-Skill/tree/57d9285969cc293832c71ecbe42a75ac416bef93) · [E5 模型卡](https://huggingface.co/intfloat/multilingual-e5-small)

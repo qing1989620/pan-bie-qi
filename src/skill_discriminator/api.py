@@ -17,12 +17,12 @@ from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 
-from . import __version__, adoption, published_benchmarks, source_import
+from . import __version__, adoption, pt, pt_model, source_import
 from .pdf_table import MAX_CSV_BYTES, MAX_PDF_BYTES, probe
 from .profile import attach as attach_profile
 from .quick_summary import summarize
 from .ratings import build as build_ratings
-from .service import assess
+from .service import assess, assess_imported
 from .verify import replay_registered
 
 WEB = Path(__file__).resolve().parent / "web"
@@ -77,6 +77,12 @@ class LinkRequest(TaskRequest):
     prefer_main: StrictBool = False
 
 
+class RecommendRequest(TaskRequest):
+    task: str = Field(min_length=4, max_length=1600)
+    search_online: StrictBool = True
+    limit: int = Field(default=3, ge=1, le=5, strict=True)
+
+
 class InspectRequest(TaskRequest):
     identity: str = Field(default="my-skill", min_length=1, max_length=120)
     files: dict[str, str] = Field(min_length=1, max_length=128)
@@ -98,6 +104,7 @@ def create_app() -> FastAPI:
     router = APIRouter(route_class=BoundedRoute, prefix="/api/discriminator")
     link_slots = threading.BoundedSemaphore(2)
     pdf_slots = threading.BoundedSemaphore(1)
+    recommend_slots = threading.BoundedSemaphore(2)
     token = os.environ.get("PAN_BIE_QI_TOKEN", "")
 
     def access(x_discriminator_token: Annotated[str | None, Header()] = None) -> None:
@@ -107,7 +114,21 @@ def create_app() -> FastAPI:
     @router.get("/health")
     def health() -> dict:
         return {"status": "ready", "version": __version__, "link_import_supported": True,
-                "pdf_table_probe_supported": True, "model_api_calls": 0, "skill_code_executed": False}
+                "pdf_table_probe_supported": True, "recommend_supported": True,
+                "deepseek_search_planning_configured": pt_model.configured(),
+                "model_api_calls": 0, "skill_code_executed": False}
+
+    @router.post("/recommend", dependencies=[Depends(access)])
+    def recommend_request(request: RecommendRequest) -> dict:
+        if not recommend_slots.acquire(blocking=False):
+            raise HTTPException(429, "已有推荐请求正在处理，请稍后重试。")
+        try:
+            return pt.recommend(request.task, request.environment.model_dump(),
+                                limit=request.limit, search_online=request.search_online, use_model=request.use_model)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from None
+        finally:
+            recommend_slots.release()
 
     @router.get("/adoption-studies")
     def studies() -> dict:
@@ -160,25 +181,9 @@ def create_app() -> FastAPI:
             if data["state"] == "selection_required":
                 return data
             package = data["package"]
-            report = assess(package["identity"], package["files"], package["inventory"],
-                            package["inventory_complete"], request.task, request.environment.model_dump())
             visible, redacted = source_import.public_package(package)
-            source = {**data["source"], "displayed_material_redacted": redacted,
-                      "original_bundle_fingerprint": report["bundle_fingerprint"]}
-            report["source_import"] = source
-            report["package"]["origin"] = {
-                "direct_document_only": "只读取得 SKILL.md。完整清单待核对。",
-                "verified_local_snapshot": "随包提供的固定提交和 Git blob 已核对。",
-            }.get(source.get("source_mode"), "从 GitHub 取得固定提交的文本快照。")
-            report["link_assessment"] = {
-                "overall_quality_certificate": False, "functional_execution": "not_performed_by_link_import",
-            }
-            adoption.attach(report, source)
-            attach_profile(report["skill_profile"], report, source)
-            published_benchmarks.attach(report, source)
-            report["assessment"] = build_ratings(report, package["files"], package["inventory"])
-            report["quick_summary"] = summarize(report)
-            return {"state": "assessed", "source": source, "package": visible, "report": report,
+            report = assess_imported(data, request.task, request.environment.model_dump(), displayed_material_redacted=redacted)
+            return {"state": "assessed", "source": report["source_import"], "package": visible, "report": report,
                     "model_api_calls": 0, "skill_code_executed": False}
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from None
@@ -192,6 +197,10 @@ def create_app() -> FastAPI:
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(WEB / "index.html", headers={"Cache-Control": "no-store"})
+
+    @app.get("/recommend", include_in_schema=False)
+    def recommend_page():
+        return FileResponse(WEB / "recommend.html", headers={"Cache-Control": "no-store"})
 
     return app
 

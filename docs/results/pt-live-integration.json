@@ -1,0 +1,1790 @@
+{
+  "schema": "pt-live-integration-v1",
+  "version": "1.6.0",
+  "measured_at_utc": "2026-11-26T11:49:08.425718+00:00",
+  "cases": [
+    {
+      "id": "pdf_to_excel",
+      "task": "离线从有文字层的 PDF 提取表格，再整理成 Excel 工作簿。",
+      "network_allowed": false,
+      "expected": [
+        "pdf_table",
+        "xlsx"
+      ],
+      "observed": [
+        "pdf_table",
+        "xlsx"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": "anthropics/skills/xlsx",
+      "reference_found": true,
+      "raw_directory_top3": [
+        {
+          "key": "larksuite/cli/lark-sheets",
+          "status": "environment_mismatch"
+        },
+        {
+          "key": "dkyazzentwatwa/chatgpt-skills/document-converter-suite",
+          "status": "license_unconfirmed"
+        },
+        {
+          "key": "kesslerio/mineru-pdf-parser-skill/mineru-pdf",
+          "status": "source_unavailable"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 12906,
+      "stage_ms": {
+        "planning": 15,
+        "discovery": 1344,
+        "assessment": 11531,
+        "recommendation": 16
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "pdf table extraction",
+            "state": "searched",
+            "hits": 6,
+            "top_keys": [
+              "larksuite/cli/lark-sheets",
+              "dkyazzentwatwa/chatgpt-skills/document-converter-suite",
+              "kesslerio/mineru-pdf-parser-skill/mineru-pdf"
+            ]
+          },
+          {
+            "query": "xlsx workbook",
+            "state": "searched",
+            "hits": 7,
+            "top_keys": [
+              "anthropics/financial-services/xlsx-author",
+              "bytedance/deer-flow/data-analysis",
+              "appautomaton/document-skills/xlsx"
+            ]
+          }
+        ],
+        "reference_matches": 3,
+        "candidates": 10
+      },
+      "candidate_outcomes": [
+        {
+          "key": "nousresearch/hermes-agent/pdf",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md",
+          "matched": [
+            "pdf_table"
+          ],
+          "reason": null
+        },
+        {
+          "key": "anthropics/skills/pdf",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md",
+          "matched": [
+            "pdf_table"
+          ],
+          "reason": null
+        },
+        {
+          "key": "anthropics/skills/xlsx",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md",
+          "matched": [
+            "xlsx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "larksuite/cli/lark-sheets",
+          "status": "environment_mismatch",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/larksuite/cli/blob/c5fbf1a52df77d5cb9cac2b1501770b2fb9af7d2/skills/lark-sheets/SKILL.md",
+          "matched": [],
+          "reason": "当前目标环境缺少该 Skill 的运行条件。"
+        },
+        {
+          "key": "anthropics/financial-services/xlsx-author",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "dkyazzentwatwa/chatgpt-skills/document-converter-suite",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/dkyazzentwatwa/chatgpt-skills/blob/103b4308f65df393e76765cb1ce12395d9cf5106/document-converter-suite/SKILL.md",
+          "matched": [
+            "pdf_table"
+          ],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "bytedance/deer-flow/data-analysis",
+          "status": "insufficient_task_evidence",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/bytedance/deer-flow/blob/9a1e1c43981324917c81727da2e8be280683c807/skills/public/data-analysis/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "kesslerio/mineru-pdf-parser-skill/mineru-pdf",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        },
+        {
+          "key": "appautomaton/document-skills/xlsx",
+          "status": "insufficient_task_evidence",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/xlsx/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "alphaonedev/openclaw-graph/pdf-2",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "anthropics/skills/pdf",
+          "repo": "anthropics/skills",
+          "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md",
+          "document_sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "pdf_table",
+              "line": 303,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md#L303"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "部分步骤已实测",
+            "reason": "2 类公开步骤已有复跑记录。详见完整报告。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "anthropics/skills/xlsx",
+          "repo": "anthropics/skills",
+          "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md",
+          "document_sha256": "f32b1c2b5d5d31e02964df110d6489613d9345f86830c118cfe24159d8448ce6",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "xlsx",
+              "line": 3,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "nousresearch/hermes-agent/pdf",
+          "repo": "NousResearch/hermes-agent",
+          "commit": "a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md",
+          "document_sha256": "11126ee5460ff6b0699514198a46ac7c2ff2dd4c6c03ac99b81ac3f5b9d37cf3",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "pdf_table",
+              "line": 114,
+              "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md#L114"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "部分步骤已实测",
+            "reason": "2 类公开步骤已有复跑记录。详见完整报告。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "excel_formulas",
+      "task": "离线编辑已有的 XLSX 工作簿，重算 Excel 公式并重新保存文件。",
+      "network_allowed": false,
+      "expected": [
+        "formulas",
+        "xlsx"
+      ],
+      "observed": [
+        "formulas",
+        "xlsx"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": null,
+      "reference_found": null,
+      "raw_directory_top3": [
+        {
+          "key": "anthropics/financial-services/xlsx-author",
+          "status": "ambiguous_identity"
+        },
+        {
+          "key": "bytedance/deer-flow/data-analysis",
+          "status": "insufficient_task_evidence"
+        },
+        {
+          "key": "appautomaton/document-skills/xlsx",
+          "status": "eligible"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 10984,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 2062,
+        "assessment": 8922,
+        "recommendation": 0
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "xlsx workbook",
+            "state": "searched",
+            "hits": 7,
+            "top_keys": [
+              "anthropics/financial-services/xlsx-author",
+              "bytedance/deer-flow/data-analysis",
+              "appautomaton/document-skills/xlsx"
+            ]
+          },
+          {
+            "query": "xlsx formulas",
+            "state": "searched",
+            "hits": 7,
+            "top_keys": [
+              "anthropics/skills/xlsx",
+              "tfriedel/claude-office-skills/xlsx",
+              "appautomaton/document-skills/xlsx"
+            ]
+          }
+        ],
+        "reference_matches": 1,
+        "candidates": 10
+      },
+      "candidate_outcomes": [
+        {
+          "key": "anthropics/skills/xlsx",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md",
+          "matched": [
+            "formulas",
+            "xlsx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "anthropics/financial-services/xlsx-author",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "bytedance/deer-flow/data-analysis",
+          "status": "insufficient_task_evidence",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/bytedance/deer-flow/blob/9a1e1c43981324917c81727da2e8be280683c807/skills/public/data-analysis/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "tfriedel/claude-office-skills/xlsx",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/tfriedel/claude-office-skills/blob/d4241e43b60e8f96b0a80c3b1eb75fe8858437c0/public/xlsx/SKILL.md",
+          "matched": [
+            "formulas",
+            "xlsx"
+          ],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "appautomaton/document-skills/xlsx",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/xlsx/SKILL.md",
+          "matched": [
+            "formulas"
+          ],
+          "reason": null
+        },
+        {
+          "key": "anthropics/knowledge-work-plugins/report-pack",
+          "status": "insufficient_task_evidence",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/knowledge-work-plugins/blob/5e504ae11498f2b8daa30d86b7dab97b2ecd8092/small-business/skills/report-pack/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "opendatalab/mineru/mineru",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/opendatalab/mineru/blob/097de7f63f54722c9b805ee1c9a14a0c5b02e078/skills/mineru/SKILL.md",
+          "matched": [
+            "formulas"
+          ],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "vasilyu1983/ai-agents-public/document-xlsx",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        },
+        {
+          "key": "davila7/claude-code-templates/xlsx",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "jwynia/agent-skills/xlsx-generator",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/jwynia/agent-skills/blob/e02ec7e226a6e4f8419fd3b88a1d8e472d421b32/skills/general/document-processing/spreadsheet/xlsx-generator/SKILL.md",
+          "matched": [
+            "formulas",
+            "xlsx"
+          ],
+          "reason": null
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "jwynia/agent-skills/xlsx-generator",
+          "repo": "jwynia/agent-skills",
+          "commit": "e02ec7e226a6e4f8419fd3b88a1d8e472d421b32",
+          "url": "https://github.com/jwynia/agent-skills/blob/e02ec7e226a6e4f8419fd3b88a1d8e472d421b32/skills/general/document-processing/spreadsheet/xlsx-generator/SKILL.md",
+          "document_sha256": "e3a333dffad899cddce1f957389df851f847a41648fe52756c6cf861ac22f1ef",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "xlsx",
+              "line": 3,
+              "url": "https://github.com/jwynia/agent-skills/blob/e02ec7e226a6e4f8419fd3b88a1d8e472d421b32/skills/general/document-processing/spreadsheet/xlsx-generator/SKILL.md#L3"
+            },
+            {
+              "id": "formulas",
+              "line": 21,
+              "url": "https://github.com/jwynia/agent-skills/blob/e02ec7e226a6e4f8419fd3b88a1d8e472d421b32/skills/general/document-processing/spreadsheet/xlsx-generator/SKILL.md#L21"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "anthropics/skills/xlsx",
+          "repo": "anthropics/skills",
+          "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md",
+          "document_sha256": "f32b1c2b5d5d31e02964df110d6489613d9345f86830c118cfe24159d8448ce6",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "xlsx",
+              "line": 3,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md#L3"
+            },
+            {
+              "id": "formulas",
+              "line": 3,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/xlsx/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "appautomaton/document-skills/xlsx",
+          "repo": "appautomaton/document-skills",
+          "commit": "dfb5685ce241dd9e1f6148ceba5977ee43b54d46",
+          "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/xlsx/SKILL.md",
+          "document_sha256": "3b080d9eafa3dfdaa812163d3c934946573912de367b74a5a6bdb2f901f1711e",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "formulas",
+              "line": 3,
+              "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/xlsx/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "cudf_groupby",
+      "task": "用 cuDF 处理 pandas 风格的表格数据，并做分组聚合。",
+      "network_allowed": null,
+      "expected": [
+        "cudf",
+        "cudf_groupby"
+      ],
+      "observed": [
+        "cudf",
+        "cudf_groupby"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": "nvidia/skills/accelerated-computing-cudf",
+      "reference_found": true,
+      "raw_directory_top3": [
+        {
+          "key": "nvidia/skills/accelerated-computing-cudf",
+          "status": "conditional"
+        },
+        {
+          "key": "k-dense-ai/scientific-agent-skills/optimize-for-gpu",
+          "status": "conditional"
+        },
+        {
+          "key": "promptingcompany/nv-skills/accelerated-computing-cudf",
+          "status": "eligible"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 18485,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 1031,
+        "assessment": 17454,
+        "recommendation": 0
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "cudf pandas",
+            "state": "searched",
+            "hits": 8,
+            "top_keys": [
+              "nvidia/skills/accelerated-computing-cudf",
+              "k-dense-ai/scientific-agent-skills/optimize-for-gpu",
+              "promptingcompany/nv-skills/accelerated-computing-cudf"
+            ]
+          },
+          {
+            "query": "cudf groupby",
+            "state": "searched",
+            "hits": 7,
+            "top_keys": [
+              "nvidia/skills/accelerated-computing-cudf",
+              "langchain-ai/deepagents/cudf-analytics",
+              "promptingcompany/nv-skills/accelerated-computing-cudf"
+            ]
+          }
+        ],
+        "reference_matches": 1,
+        "candidates": 10
+      },
+      "candidate_outcomes": [
+        {
+          "key": "nvidia/skills/accelerated-computing-cudf",
+          "status": "conditional",
+          "license": "CC-BY-4.0 AND Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": null
+        },
+        {
+          "key": "k-dense-ai/scientific-agent-skills/optimize-for-gpu",
+          "status": "conditional",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/k-dense-ai/scientific-agent-skills/blob/c21d13b3cc2894680229ba9959a53281acb9200e/skills/optimize-for-gpu/SKILL.md",
+          "matched": [
+            "cudf"
+          ],
+          "reason": null
+        },
+        {
+          "key": "langchain-ai/deepagents/cudf-analytics",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/langchain-ai/deepagents/blob/87f6080d9f3375e0b41aa07a71ce0a8f1027dd9a/examples/nvidia_deep_agent/skills/cudf-analytics/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": null
+        },
+        {
+          "key": "promptingcompany/nv-skills/accelerated-computing-cudf",
+          "status": "eligible",
+          "license": "CC-BY-4.0 AND Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/promptingcompany/nv-skills/blob/86ebefb0bd26c4e3903af5d7389086d174c6f750/skills/accelerated-computing-cudf/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": null
+        },
+        {
+          "key": "crazymsn/academic-skills/optimize-for-gpu",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/crazymsn/academic-skills/blob/f9595015b7f717502cc64bf03eb44f5f14b6cd68/academic-skills/optimize-for-gpu/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": null
+        },
+        {
+          "key": "practicalswan/agent-skills/accelerated-computing-cudf",
+          "status": "conditional",
+          "license": "CC-BY-4.0 AND Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/practicalswan/agent-skills/blob/1d800c81c5af4eec2e8ed4a2bfb8adda4e76ceac/accelerated-computing-cudf/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": null
+        },
+        {
+          "key": "eturkes/claude-scientific-skills/optimize-for-gpu",
+          "status": "duplicate_document",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/eturkes/claude-scientific-skills/blob/2f4e5e44dde9fe931454d49de4278418b95e1285/skills/optimize-for-gpu/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": "已找到内容相同的固定版本。"
+        },
+        {
+          "key": "nvidia/cudf/accelerated-computing-cudf",
+          "status": "duplicate_document",
+          "license": "CC-BY-4.0 AND Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/nvidia/cudf/blob/fcd756d11ea957e23301a276e21d536a0df7bdca/skills/accelerated-computing-cudf/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": "已找到内容相同的固定版本。"
+        },
+        {
+          "key": "bhpb864dp9-ux/mainaxiomloom-research/cudf-analytics",
+          "status": "duplicate_document",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/bhpb864dp9-ux/mainaxiomloom-research/blob/8b7426225cedce03a5f5157401696dc9c0d51863/deepagents-main/examples/nvidia_deep_agent/skills/cudf-analytics/SKILL.md",
+          "matched": [
+            "cudf",
+            "cudf_groupby"
+          ],
+          "reason": "已找到内容相同的固定版本。"
+        },
+        {
+          "key": "olixignacious/agent-skills/kaggle-feature-engineering",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "nvidia/skills/accelerated-computing-cudf",
+          "repo": "NVIDIA/skills",
+          "commit": "252ba53487b73eaafbfcccf3e750c7b350b93db9",
+          "url": "https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/SKILL.md",
+          "document_sha256": "f46d744980c5ea4bea2c2fbe236923c751081e52afa9498ebd9ccd15f33b6a81",
+          "license": "CC-BY-4.0 AND Apache-2.0",
+          "fit": "conditional",
+          "conditions_to_check": [
+            "核对 NVIDIA GPU、驱动和所需软件版本"
+          ],
+          "matches": [
+            {
+              "id": "cudf",
+              "line": 3,
+              "url": "https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/SKILL.md#L3"
+            },
+            {
+              "id": "cudf_groupby",
+              "line": 3,
+              "url": "https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": 92.1,
+            "basis": "公开任务效果",
+            "reason": "13 项任务，原报告效果分 88.5 → 92.1。",
+            "scope": "NVIDIA 发布的 codex 配对评测，k8s-sandbox，共 13 个任务。结果与本次所读说明来自同一固定发布快照，评分口径见原始报告。",
+            "source_url": "https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/BENCHMARK.md",
+            "sample_count": 13
+          }
+        },
+        {
+          "key": "promptingcompany/nv-skills/accelerated-computing-cudf",
+          "repo": "promptingcompany/nv-skills",
+          "commit": "86ebefb0bd26c4e3903af5d7389086d174c6f750",
+          "url": "https://github.com/promptingcompany/nv-skills/blob/86ebefb0bd26c4e3903af5d7389086d174c6f750/skills/accelerated-computing-cudf/SKILL.md",
+          "document_sha256": "4b8d3851b7e84b6ffb8fc6d781f66cf340a0b6f994c9f8b88894f82f7caeb353",
+          "license": "CC-BY-4.0 AND Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "cudf",
+              "line": 3,
+              "url": "https://github.com/promptingcompany/nv-skills/blob/86ebefb0bd26c4e3903af5d7389086d174c6f750/skills/accelerated-computing-cudf/SKILL.md#L3"
+            },
+            {
+              "id": "cudf_groupby",
+              "line": 3,
+              "url": "https://github.com/promptingcompany/nv-skills/blob/86ebefb0bd26c4e3903af5d7389086d174c6f750/skills/accelerated-computing-cudf/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "langchain-ai/deepagents/cudf-analytics",
+          "repo": "langchain-ai/deepagents",
+          "commit": "87f6080d9f3375e0b41aa07a71ce0a8f1027dd9a",
+          "url": "https://github.com/langchain-ai/deepagents/blob/87f6080d9f3375e0b41aa07a71ce0a8f1027dd9a/examples/nvidia_deep_agent/skills/cudf-analytics/SKILL.md",
+          "document_sha256": "c8a677b6b83447f849e527f0abce06e4a75289859ed9e0208d4aff939e74a0ac",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "cudf",
+              "line": 3,
+              "url": "https://github.com/langchain-ai/deepagents/blob/87f6080d9f3375e0b41aa07a71ce0a8f1027dd9a/examples/nvidia_deep_agent/skills/cudf-analytics/SKILL.md#L3"
+            },
+            {
+              "id": "cudf_groupby",
+              "line": 3,
+              "url": "https://github.com/langchain-ai/deepagents/blob/87f6080d9f3375e0b41aa07a71ce0a8f1027dd9a/examples/nvidia_deep_agent/skills/cudf-analytics/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "playwright_form",
+      "task": "用 Playwright 做浏览器测试，检查本地网页表单的提交反馈。",
+      "network_allowed": null,
+      "expected": [
+        "browser_test"
+      ],
+      "observed": [
+        "browser_test"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": "microsoft/playwright-cli/playwright-cli",
+      "reference_found": true,
+      "raw_directory_top3": [
+        {
+          "key": "vercel-labs/agent-browser/agent-browser",
+          "status": "eligible"
+        },
+        {
+          "key": "anthropics/skills/webapp-testing",
+          "status": "insufficient_task_evidence"
+        },
+        {
+          "key": "101-skills/superpowers/agent-browser",
+          "status": "license_unconfirmed"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 11047,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 969,
+        "assessment": 10078,
+        "recommendation": 0
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "playwright browser testing",
+            "state": "searched",
+            "hits": 8,
+            "top_keys": [
+              "vercel-labs/agent-browser/agent-browser",
+              "anthropics/skills/webapp-testing",
+              "101-skills/superpowers/agent-browser"
+            ]
+          }
+        ],
+        "reference_matches": 1,
+        "candidates": 9
+      },
+      "candidate_outcomes": [
+        {
+          "key": "microsoft/playwright-cli/playwright-cli",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+          "matched": [
+            "browser_test"
+          ],
+          "reason": null
+        },
+        {
+          "key": "vercel-labs/agent-browser/agent-browser",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/vercel-labs/agent-browser/blob/a67ba089fec5fbfec07346aebad11666463d9799/skills/agent-browser/SKILL.md",
+          "matched": [
+            "browser_test"
+          ],
+          "reason": null
+        },
+        {
+          "key": "anthropics/skills/webapp-testing",
+          "status": "insufficient_task_evidence",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/webapp-testing/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "101-skills/superpowers/agent-browser",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/101-skills/superpowers/blob/93a647364937903fa2f45629ca7c5f9c89fc57c9/tools/utilities/agent-browser/SKILL.md",
+          "matched": [],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "magentosh/superpowers/agent-browser",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/magentosh/superpowers/blob/93a647364937903fa2f45629ca7c5f9c89fc57c9/tools/utilities/agent-browser/SKILL.md",
+          "matched": [],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "antibrow/anti-detect-browser-skills/anti-detect-browser",
+          "status": "declared_out_of_scope",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/antibrow/anti-detect-browser-skills/blob/b800e3a54d8d4f93ae5ee23c59d13b43df5d4462/anti-detect-browser/SKILL.md",
+          "matched": [],
+          "reason": "说明明确排除所需任务。"
+        },
+        {
+          "key": "skills-shell/superpowers/agent-browser",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/skills-shell/superpowers/blob/93a647364937903fa2f45629ca7c5f9c89fc57c9/tools/utilities/agent-browser/SKILL.md",
+          "matched": [],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "qu-skills/superpowers/agent-browser",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/qu-skills/superpowers/blob/93a647364937903fa2f45629ca7c5f9c89fc57c9/tools/utilities/agent-browser/SKILL.md",
+          "matched": [],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "xixu-me/skills/use-my-browser",
+          "status": "insufficient_task_evidence",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/xixu-me/skills/blob/64c638dcf6a792877f70bf8755543f6708b1d75b/skills/use-my-browser/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "microsoft/playwright-cli/playwright-cli",
+          "repo": "microsoft/playwright-cli",
+          "commit": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820",
+          "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+          "document_sha256": "1c4c34000f6102ee71fe91bf25351a221f7da37f48f2d556e1756f66e17d356f",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "browser_test",
+              "line": 3,
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "vercel-labs/agent-browser/agent-browser",
+          "repo": "vercel-labs/agent-browser",
+          "commit": "a67ba089fec5fbfec07346aebad11666463d9799",
+          "url": "https://github.com/vercel-labs/agent-browser/blob/a67ba089fec5fbfec07346aebad11666463d9799/skills/agent-browser/SKILL.md",
+          "document_sha256": "7d46deeb0101e84f8d70fd2e5cd18e3b6017edfb973607ff23e95e22c92ce73e",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "browser_test",
+              "line": 3,
+              "url": "https://github.com/vercel-labs/agent-browser/blob/a67ba089fec5fbfec07346aebad11666463d9799/skills/agent-browser/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "word_report",
+      "task": "编辑一个 Word DOCX 文档，整理段落、标题和页码。",
+      "network_allowed": null,
+      "expected": [
+        "docx"
+      ],
+      "observed": [
+        "docx"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": null,
+      "reference_found": null,
+      "raw_directory_top3": [
+        {
+          "key": "anthropics/skills/docx",
+          "status": "eligible"
+        },
+        {
+          "key": "claude-office-skills/skills/docx-manipulation",
+          "status": "eligible"
+        },
+        {
+          "key": "suzheng/k2f/k2f",
+          "status": "eligible"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 9922,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 1641,
+        "assessment": 8281,
+        "recommendation": 0
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "docx edit word",
+            "state": "searched",
+            "hits": 6,
+            "top_keys": [
+              "anthropics/skills/docx",
+              "claude-office-skills/skills/docx-manipulation",
+              "suzheng/k2f/k2f"
+            ]
+          }
+        ],
+        "reference_matches": 1,
+        "candidates": 6
+      },
+      "candidate_outcomes": [
+        {
+          "key": "anthropics/skills/docx",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md",
+          "matched": [
+            "docx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "claude-office-skills/skills/docx-manipulation",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/docx-manipulation/SKILL.md",
+          "matched": [
+            "docx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "suzheng/k2f/k2f",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/suzheng/k2f/blob/722e0f570069a0dd1fa6b27ec24f12f636acdf7e/skills/core/k2f/SKILL.md",
+          "matched": [
+            "docx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "appautomaton/document-skills/docx",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/docx/SKILL.md",
+          "matched": [
+            "docx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "davila7/claude-code-templates/docx",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "zlanqing/codex-claude-academic-skills/office-academic-skill",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/zlanqing/codex-claude-academic-skills/blob/7ed6377f0efb6a38951b48ef03b19d996e454b1f/office-academic-skill/SKILL.md",
+          "matched": [
+            "docx"
+          ],
+          "reason": null
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "claude-office-skills/skills/docx-manipulation",
+          "repo": "claude-office-skills/skills",
+          "commit": "9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11",
+          "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/docx-manipulation/SKILL.md",
+          "document_sha256": "3f7ff782d696e720eed3499786da7388114eb7db743b1dcb8fe5771fd734e49c",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "docx",
+              "line": 8,
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/docx-manipulation/SKILL.md#L8"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "anthropics/skills/docx",
+          "repo": "anthropics/skills",
+          "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md",
+          "document_sha256": "895d5aa6c4cd98e4aed4c995d846f056f3549086e79bcd6617afea6014f82288",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "docx",
+              "line": 13,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md#L13"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "appautomaton/document-skills/docx",
+          "repo": "appautomaton/document-skills",
+          "commit": "dfb5685ce241dd9e1f6148ceba5977ee43b54d46",
+          "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/docx/SKILL.md",
+          "document_sha256": "d9a09a09426bc7cc2147c2e663a582d56ff3c9b1e01cbdf3c0a778d8f8799ec9",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "docx",
+              "line": 3,
+              "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/docx/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "team_slides",
+      "task": "制作团队周会的 PPTX 演示文稿，要有标题和三页进度。",
+      "network_allowed": null,
+      "expected": [
+        "pptx"
+      ],
+      "observed": [
+        "pptx"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": null,
+      "reference_found": null,
+      "raw_directory_top3": [
+        {
+          "key": "anthropics/skills/pptx",
+          "status": "eligible"
+        },
+        {
+          "key": "larksuite/cli/lark-drive",
+          "status": "insufficient_task_evidence"
+        },
+        {
+          "key": "minimax-ai/skills/pptx-generator",
+          "status": "eligible"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 7875,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 1141,
+        "assessment": 6719,
+        "recommendation": 15
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "pptx slides",
+            "state": "searched",
+            "hits": 6,
+            "top_keys": [
+              "anthropics/skills/pptx",
+              "larksuite/cli/lark-drive",
+              "minimax-ai/skills/pptx-generator"
+            ]
+          }
+        ],
+        "reference_matches": 1,
+        "candidates": 6
+      },
+      "candidate_outcomes": [
+        {
+          "key": "anthropics/skills/pptx",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pptx/SKILL.md",
+          "matched": [
+            "pptx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "larksuite/cli/lark-drive",
+          "status": "insufficient_task_evidence",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/larksuite/cli/blob/c5fbf1a52df77d5cb9cac2b1501770b2fb9af7d2/skills/lark-drive/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "minimax-ai/skills/pptx-generator",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/minimax-ai/skills/blob/02853d885acb1abc157477ce00c4d98a8ed14a71/skills/pptx-generator/SKILL.md",
+          "matched": [
+            "pptx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "hustcer/pptx-nova/pptx-nova",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/hustcer/pptx-nova/blob/92cfc7047db7048adbf5abf955e93afc61a63dc4/pptx-nova/SKILL.md",
+          "matched": [
+            "pptx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "github/awesome-copilot/publish-to-pages",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/publish-to-pages/SKILL.md",
+          "matched": [
+            "pptx"
+          ],
+          "reason": null
+        },
+        {
+          "key": "openai/skills/slides",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "hustcer/pptx-nova/pptx-nova",
+          "repo": "hustcer/pptx-nova",
+          "commit": "92cfc7047db7048adbf5abf955e93afc61a63dc4",
+          "url": "https://github.com/hustcer/pptx-nova/blob/92cfc7047db7048adbf5abf955e93afc61a63dc4/pptx-nova/SKILL.md",
+          "document_sha256": "f4a7950da14a5a31d43dc2bbb5e7d0c4a040df9ebb1de08ef64d85bc6eafdc01",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "pptx",
+              "line": 4,
+              "url": "https://github.com/hustcer/pptx-nova/blob/92cfc7047db7048adbf5abf955e93afc61a63dc4/pptx-nova/SKILL.md#L4"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "minimax-ai/skills/pptx-generator",
+          "repo": "minimax-ai/skills",
+          "commit": "02853d885acb1abc157477ce00c4d98a8ed14a71",
+          "url": "https://github.com/minimax-ai/skills/blob/02853d885acb1abc157477ce00c4d98a8ed14a71/skills/pptx-generator/SKILL.md",
+          "document_sha256": "6eeb36239fdef35ab133ca462e1ec4674cb96dd9c5cd63da39c29151899bda10",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "pptx",
+              "line": 3,
+              "url": "https://github.com/minimax-ai/skills/blob/02853d885acb1abc157477ce00c4d98a8ed14a71/skills/pptx-generator/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "anthropics/skills/pptx",
+          "repo": "anthropics/skills",
+          "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pptx/SKILL.md",
+          "document_sha256": "598c981d93f2173b251f86a4bc94e9fb4e4f5ddaa314ba2dd4eca24b7a07808e",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "pptx",
+              "line": 13,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pptx/SKILL.md#L13"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "scan_text",
+      "task": "从扫描版 PDF 中识别文字，需要 OCR。",
+      "network_allowed": null,
+      "expected": [
+        "ocr"
+      ],
+      "observed": [
+        "ocr"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": null,
+      "reference_found": null,
+      "raw_directory_top3": [
+        {
+          "key": "claude-office-skills/skills/pdf-ocr-extraction",
+          "status": "source_unavailable"
+        },
+        {
+          "key": "yejinlei/pdf-ocr-skill/pdf-ocr-skill",
+          "status": "sensitive_material_review"
+        },
+        {
+          "key": "yejinlei/pdf-ocr-skill/pdf-ocr",
+          "status": "source_unavailable"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "not_configured"
+      },
+      "elapsed_ms": 8984,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 1063,
+        "assessment": 7921,
+        "recommendation": 0
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "pdf ocr",
+            "state": "searched",
+            "hits": 8,
+            "top_keys": [
+              "claude-office-skills/skills/pdf-ocr-extraction",
+              "yejinlei/pdf-ocr-skill/pdf-ocr-skill",
+              "yejinlei/pdf-ocr-skill/pdf-ocr"
+            ]
+          }
+        ],
+        "reference_matches": 2,
+        "candidates": 9
+      },
+      "candidate_outcomes": [
+        {
+          "key": "nousresearch/hermes-agent/pdf",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md",
+          "matched": [
+            "ocr"
+          ],
+          "reason": null
+        },
+        {
+          "key": "anthropics/skills/pdf",
+          "status": "eligible",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md",
+          "matched": [
+            "ocr"
+          ],
+          "reason": null
+        },
+        {
+          "key": "claude-office-skills/skills/pdf-ocr-extraction",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        },
+        {
+          "key": "yejinlei/pdf-ocr-skill/pdf-ocr-skill",
+          "status": "sensitive_material_review",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/yejinlei/pdf-ocr-skill/blob/c44d4e7b758a275fdd578b4132ae9e53cc68164e/SKILL.md",
+          "matched": [
+            "ocr"
+          ],
+          "reason": "包内配置材料需要复核。"
+        },
+        {
+          "key": "yejinlei/pdf-ocr-skill/pdf-ocr",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        },
+        {
+          "key": "tanis90/pdf-converter-mineru/pdf-converter",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        },
+        {
+          "key": "affaan-m/ecc/visa-doc-translate",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "claude-office-skills/skills/office-mcp",
+          "status": "eligible",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/office-mcp/SKILL.md",
+          "matched": [
+            "ocr"
+          ],
+          "reason": null
+        },
+        {
+          "key": "davila7/claude-code-templates/markitdown",
+          "status": "repair_required",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/davila7/claude-code-templates/blob/2a104d81976267e26f31db66901b83f1c97a41df/cli-tool/components/skills/scientific/markitdown/SKILL.md",
+          "matched": [
+            "ocr"
+          ],
+          "reason": "包内或接口核查发现已确认问题。"
+        }
+      ],
+      "recommendations": [
+        {
+          "key": "nousresearch/hermes-agent/pdf",
+          "repo": "NousResearch/hermes-agent",
+          "commit": "a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md",
+          "document_sha256": "11126ee5460ff6b0699514198a46ac7c2ff2dd4c6c03ac99b81ac3f5b9d37cf3",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "ocr",
+              "line": 3,
+              "url": "https://github.com/NousResearch/hermes-agent/blob/a15b9710395aa1c4858fb6dd9e4c5014c5ced4e9/skills/productivity/pdf/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "部分步骤已实测",
+            "reason": "2 类公开步骤已有复跑记录。详见完整报告。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "claude-office-skills/skills/office-mcp",
+          "repo": "claude-office-skills/skills",
+          "commit": "9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11",
+          "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/office-mcp/SKILL.md",
+          "document_sha256": "7c12fe60fb09fbff6be4725162d1901bdf0864fbee520fbb5bf55819550ffc75",
+          "license": "MIT",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "ocr",
+              "line": 70,
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/office-mcp/SKILL.md#L70"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "暂无实测",
+            "reason": "当前版本还没有登记任务得分。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        },
+        {
+          "key": "anthropics/skills/pdf",
+          "repo": "anthropics/skills",
+          "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md",
+          "document_sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee",
+          "license": "Apache-2.0",
+          "fit": "documented",
+          "conditions_to_check": [],
+          "matches": [
+            {
+              "id": "ocr",
+              "line": 3,
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pdf/SKILL.md#L3"
+            }
+          ],
+          "task_evidence": {
+            "score": null,
+            "basis": "部分步骤已实测",
+            "reason": "2 类公开步骤已有复跑记录。详见完整报告。",
+            "scope": null,
+            "source_url": null,
+            "sample_count": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "unavailable_format",
+      "task": "Read a local quellvox q7n-format project and export a quellvox q7n archive.",
+      "network_allowed": false,
+      "expected": [
+        "abstain"
+      ],
+      "observed": [
+        "abstain"
+      ],
+      "expectation_met": true,
+      "out_of_scope_recommendations": [],
+      "expected_reference": null,
+      "reference_found": null,
+      "raw_directory_top3": [
+        {
+          "key": "xixu-me/skills/readme-i18n",
+          "status": "insufficient_task_evidence"
+        },
+        {
+          "key": "anthropics/skills/frontend-design",
+          "status": "insufficient_task_evidence"
+        },
+        {
+          "key": "microsoft/azure-skills/azure-diagnostics",
+          "status": "ambiguous_identity"
+        }
+      ],
+      "model": {
+        "state": "not_requested",
+        "calls": 0
+      },
+      "semantic": {
+        "state": "no_candidates"
+      },
+      "elapsed_ms": 14140,
+      "stage_ms": {
+        "planning": 0,
+        "discovery": 953,
+        "assessment": 13187,
+        "recommendation": 0
+      },
+      "discovery": {
+        "provider": "skills.sh",
+        "enabled": true,
+        "searched": [
+          {
+            "query": "read",
+            "state": "searched",
+            "hits": 8,
+            "top_keys": [
+              "xixu-me/skills/readme-i18n",
+              "anthropics/skills/frontend-design",
+              "microsoft/azure-skills/azure-diagnostics"
+            ]
+          },
+          {
+            "query": "local",
+            "state": "searched",
+            "hits": 8,
+            "top_keys": [
+              "flutter/agent-plugins/flutter-setup-localization",
+              "microsoft/azure-skills/azure-app-onboard-prereq",
+              "heygen-com/hyperframes/media-use"
+            ]
+          },
+          {
+            "query": "quellvox",
+            "state": "searched",
+            "hits": 8,
+            "top_keys": [
+              "processcube-io/processcube.agent.skills/repo-doku",
+              "schletz/claude_settings/document-software",
+              "klotzkette/claude-fuer-deutsches-recht/it-prozess-versandmappe-endfertigen"
+            ]
+          }
+        ],
+        "reference_matches": 0,
+        "candidates": 10
+      },
+      "candidate_outcomes": [
+        {
+          "key": "xixu-me/skills/readme-i18n",
+          "status": "insufficient_task_evidence",
+          "license": "MIT",
+          "license_state": "recognized",
+          "url": "https://github.com/xixu-me/skills/blob/64c638dcf6a792877f70bf8755543f6708b1d75b/skills/readme-i18n/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "flutter/agent-plugins/flutter-setup-localization",
+          "status": "insufficient_task_evidence",
+          "license": "BSD-3-Clause",
+          "license_state": "recognized",
+          "url": "https://github.com/flutter/agent-plugins/blob/ff6d472ee66dbed566c4500edee460c94fde0a02/skills/flutter-setup-localization/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "processcube-io/processcube.agent.skills/repo-doku",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/processcube-io/processcube.agent.skills/blob/a3b3a22c9a1158f7e7612db2e4e3885669bf3bbf/skills/repo-doku/SKILL.md",
+          "matched": [],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "anthropics/skills/frontend-design",
+          "status": "insufficient_task_evidence",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/frontend-design/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "microsoft/azure-skills/azure-app-onboard-prereq",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "schletz/claude_settings/document-software",
+          "status": "license_unconfirmed",
+          "license": null,
+          "license_state": "unconfirmed",
+          "url": "https://github.com/schletz/claude_settings/blob/45fec9f1510a0984fd770e14d56469f82067d004/skills/document-software/SKILL.md",
+          "matched": [],
+          "reason": "该固定版本的开源许可尚未核实。"
+        },
+        {
+          "key": "microsoft/azure-skills/azure-diagnostics",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        },
+        {
+          "key": "heygen-com/hyperframes/media-use",
+          "status": "insufficient_task_evidence",
+          "license": "Apache-2.0",
+          "license_state": "recognized",
+          "url": "https://github.com/heygen-com/hyperframes/blob/274bc21efc7e74b8f9d77207e4644f5d6563478d/skills/media-use/SKILL.md",
+          "matched": [],
+          "reason": "未找到所需能力的来源行。"
+        },
+        {
+          "key": "klotzkette/claude-fuer-deutsches-recht/it-prozess-versandmappe-endfertigen",
+          "status": "source_unavailable",
+          "reason": "本次未能核全固定来源。"
+        },
+        {
+          "key": "microsoft/azure-skills/azure-validate",
+          "status": "ambiguous_identity",
+          "reason": "目录里有多个匹配的 Skill。"
+        }
+      ],
+      "recommendations": []
+    }
+  ],
+  "crosschecks": {
+    "public_nvidia_report": {
+      "expected": {
+        "tasks": 13,
+        "score": 92.1,
+        "without_skill": 88.5
+      },
+      "observed": {
+        "score": 92.1,
+        "basis": "公开任务效果",
+        "reason": "13 项任务，原报告效果分 88.5 → 92.1。",
+        "scope": "NVIDIA 发布的 codex 配对评测，k8s-sandbox，共 13 个任务。结果与本次所读说明来自同一固定发布快照，评分口径见原始报告。",
+        "source_url": "https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/BENCHMARK.md",
+        "sample_count": 13
+      },
+      "state": "matched",
+      "source": "https://raw.githubusercontent.com/NVIDIA/skills/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/BENCHMARK.md",
+      "sha256": "8a2f086e527409b856344f265ffb92b19f39839c7a7d5bc31e5f1b207adc8097"
+    },
+    "local_pdf_contract": {
+      "state": "verified_match",
+      "matched_cells": 16,
+      "reference_cells": 16,
+      "page": 4,
+      "input_sha256": "f4b27b42aa8edfdbc09af728042bf8a4399cf5563c6a24d606189ad81ff4dc8f"
+    }
+  },
+  "summary": {
+    "passed_cases": 8,
+    "case_count": 8,
+    "successful_known_references": 3,
+    "known_references": 3,
+    "baseline_slots": 24,
+    "baseline_excluded_by_policy": 9,
+    "baseline_unresolved": 5,
+    "pt_slots": 20,
+    "median_ms": 11016,
+    "max_ms": 18485,
+    "paid_model_calls": 0
+  }
+}

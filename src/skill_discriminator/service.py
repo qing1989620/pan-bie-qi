@@ -5,12 +5,15 @@ from __future__ import annotations
 import hashlib
 import time
 
-from . import __version__
+from . import __version__, adoption, published_benchmarks
 from .assurance import static_capabilities
 from .contracts import check as contract_review
 from .explanation import build
 from .inspection import clean, inspect
+from .profile import attach as attach_profile
 from .profile import describe
+from .quick_summary import summarize
+from .ratings import build as build_ratings
 from .task_guidance import pdf_guidance
 
 
@@ -51,3 +54,26 @@ def assess(
     report["evidence_assessment"] = build(report, files)
     report["skill_profile"] = describe(files, report["introduction"], report["package"])
     return clean(report)
+
+
+def assess_imported(data: dict, task: str, environment: dict, *, displayed_material_redacted: bool = False) -> dict:
+    """Use the same evidence and version bindings for links and PT candidates."""
+    package = data["package"]
+    report = assess(package["identity"], package["files"], package["inventory"],
+                    package["inventory_complete"], task, environment)
+    source = {**data["source"], "displayed_material_redacted": displayed_material_redacted,
+              "original_bundle_fingerprint": report["bundle_fingerprint"]}
+    report["source_import"] = source
+    report["package"]["origin"] = {
+        "direct_document_only": "只读取得 SKILL.md。完整清单待核对。",
+        "verified_local_snapshot": "随包提供的固定提交和 Git blob 已核对。",
+    }.get(source.get("source_mode"), "从 GitHub 取得固定提交的文本快照。")
+    report["link_assessment"] = {
+        "overall_quality_certificate": False, "functional_execution": "not_performed_by_link_import",
+    }
+    adoption.attach(report, source)
+    attach_profile(report["skill_profile"], report, source)
+    published_benchmarks.attach(report, source)
+    report["assessment"] = build_ratings(report, package["files"], package["inventory"])
+    report["quick_summary"] = summarize(report)
+    return report

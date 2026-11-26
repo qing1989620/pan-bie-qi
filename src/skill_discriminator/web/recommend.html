@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PT · 找 Skill</title>
+  <link rel="stylesheet" href="/static/style.css?v=1.6">
+  <link rel="stylesheet" href="/static/recommend.css?v=1.6">
+  <script src="/static/recommend.js?v=1.6" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="/recommend">PT · Skill 判别器</a>
+      <nav aria-label="页面导航">
+        <a href="/recommend" aria-current="page">找 Skill</a>
+        <a href="/user">评估链接</a>
+        <a href="/docs">API</a>
+      </nav>
+    </div>
+  </header>
+  <main class="shell pt-shell">
+    <section class="intro">
+      <h1>为任务找开源 Skill</h1>
+      <p>描述输入和想要的结果，查看每个推荐适合做什么、有什么依据。</p>
+    </section>
+    <form id="pt-form" class="card pt-form">
+      <label for="pt-task">你想完成什么任务</label>
+      <textarea id="pt-task" rows="3" required minlength="4" maxlength="1600"
+        placeholder="例如，从有文字层的 PDF 提取表格，再整理成 Excel 工作簿"></textarea>
+      <div class="pt-examples" aria-label="任务示例">
+        <button class="secondary" type="button" data-example="从有文字层的 PDF 提取表格，再整理成 Excel 工作簿。">PDF 转 Excel</button>
+        <button class="secondary" type="button" data-example="用 Playwright 做浏览器测试，检查本地前端表单的提交反馈。">测试网页表单</button>
+        <button class="secondary" type="button" data-example="用 cuDF 处理 pandas 风格的表格数据，做分组聚合。">cuDF 数据处理</button>
+      </div>
+      <details class="options">
+        <summary>运行条件</summary>
+        <label for="pt-network">目标 Agent 能否联网</label>
+        <select id="pt-network">
+          <option value="">未指定</option>
+          <option value="yes">能联网</option>
+          <option value="no">离线运行</option>
+        </select>
+        <label class="pt-check"><input type="checkbox" id="pt-model" disabled> 用 DeepSeek 补充搜索词</label>
+        <p id="pt-model-note" class="muted pt-small">已配置时可选。开启后会发送这段任务描述。</p>
+      </details>
+      <div class="pt-actions">
+        <button type="submit" id="pt-submit">搜索并推荐</button>
+        <p id="pt-status" class="status" role="status"></p>
+      </div>
+    </form>
+    <section id="pt-result" hidden tabindex="-1" aria-label="推荐结果"></section>
+  </main>
+</body>
+</html>

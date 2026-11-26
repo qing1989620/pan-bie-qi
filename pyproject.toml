@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pan-bie-qi"
-version = "1.5.0"
+version = "1.6.0"
 description = "Evidence-based assessment of public Agent Skill links"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -18,6 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["httpx>=0.27,<1", "pytest>=8,<10"]
+semantic = ["numpy>=1.26,<3", "onnxruntime>=1.21,<2", "tokenizers>=0.21,<1"]
 
 [project.scripts]
 pan-bie-qi = "skill_discriminator.__main__:main"

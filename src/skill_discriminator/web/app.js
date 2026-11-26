@@ -737,4 +737,9 @@ pdfForm.onsubmit = async event => {
   }
 };
 
+const recommendationLink = new URL(location.href).searchParams.get("url");
+if (recommendationLink && recommendationLink.length <= 2048) {
+  byId("skill-url").value = recommendationLink;
+  byId("link-form").requestSubmit();
+}
 loadStudies();

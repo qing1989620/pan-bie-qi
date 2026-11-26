@@ -2,6 +2,8 @@
 
 粘贴一个公开 Skill 链接，查看说明有多少字符、适合做什么、实测做到了哪一步、在哪些输入上失效，以及和同类公开 Skill 的差别。报告给出限定于证据范围的质量结论，每项依据可查到说明原文、版本指纹或产物验收结果。
 
+PT 推荐页从任务出发。它搜索公开目录，核对候选的固定版本、许可证和任务要求，给出推荐理由与来源。[推荐页](http://127.0.0.1:8853/recommend) · [PT 使用和复核](docs/pt-framework.md)
+
 ## 启动网页
 
 需要 Python 3.11 或更新版本。
@@ -52,6 +54,7 @@ python3 -m venv .venv
 - [未见 Skill 的留出实验与强基线对照](docs/unseen-skill-evaluation.md)
 - [真实任务的改前改后验收](docs/field-evaluation.md)
 - [中文双栏论文](docs/skill-discriminator-paper.pdf)
+- [PT 搜索、判别和推荐论文](docs/pt-framework-paper.pdf)
 - [第三方材料说明](docs/third-party.md)
 
 复核随包产物可直接运行 `python -m skill_discriminator.verify`。它打印固定档案的通过数、留出结果和数据指纹。开发测试安装 `python -m pip install ".[dev]"` 后运行 `python -m pytest -q`。

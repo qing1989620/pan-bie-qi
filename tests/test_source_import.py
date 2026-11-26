@@ -137,6 +137,21 @@ def test_public_view_uses_the_only_main_skill_and_keeps_vendor_choices(remote):
     assert other["source"]["skill_path"] == "third_party/other/SKILL.md"
 
 
+def test_overview_pins_nearest_licence_and_keeps_full_project_inventory(remote):
+    calls = remote({"LICENSE": "MIT", "skills/LICENSE": "Apache-2.0", "skills/office/SKILL.md": DOC,
+                    "skills/office/scripts/run.py": "print('placeholder')", "other/LICENSE": "Proprietary"})
+    imported = src.import_link("https://github.com/example/skills/tree/main/skills/office", overview_only=True)
+    package = imported["package"]
+    assert imported["source"]["commit"] == COMMIT
+    assert imported["source"]["inspection_scope"] == "guide_license_inventory"
+    assert package["inventory_complete"]
+    assert set(package["inventory"]) == {"SKILL.md", "scripts/run.py"}
+    assert package["files"] == {"SKILL.md": DOC}
+    assert set(package["ancestor_licenses"]) == {"skills/LICENSE"}
+    assert package["ancestor_licenses"]["skills/LICENSE"]["text"] == "Apache-2.0"
+    assert sum("/git/trees/" in url for url, _ in calls) == 1
+
+
 def test_automatic_selection_stays_ambiguous_for_two_main_skills(remote):
     remote({"a/SKILL.md": DOC, "b/SKILL.md": DOC, "vendor/c/SKILL.md": DOC})
     result = src.import_link("https://github.com/example/skills", prefer_main=True)
