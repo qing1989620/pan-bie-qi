@@ -31,7 +31,8 @@ CASES = (
     ("unavailable_format", "Read a local quellvox q7n-format project and export a quellvox q7n archive.",
      False, set(), None),
 )
-UNRESOLVED = {"source_unavailable", "ambiguous_identity", "not_assessed"}
+UNRESOLVED = {"source_unavailable", "ambiguous_identity", "not_assessed",
+              "package_review_unavailable", "package_version_mismatch"}
 ADMISSIBLE = {"eligible", "conditional"}
 ROOT = Path(__file__).resolve().parents[1]
 NVIDIA_REVISION = "252ba53487b73eaafbfcccf3e750c7b350b93db9"
@@ -43,6 +44,7 @@ OUT_OF_SCOPE = {
     "pdf_to_excel": {"github/awesome-copilot/convert-excel-to-md", "anthropics/claude-plugins-community/tres-import-contacts",
                      "larksuite/cli/lark-sheets"},
     "playwright_form": {"antibrow/anti-detect-browser-skills/anti-detect-browser"},
+    "team_slides": {"github/awesome-copilot/publish-to-pages"},
 }
 
 
@@ -118,6 +120,8 @@ def check(base: str) -> dict:
                 "license": item["license"]["id"], "fit": item["fit"], "conditions_to_check": item["conditions_to_check"],
                 "matches": [{"id": match["id"], "line": match["evidence"]["start_line"], "url": match["evidence"]["url"]}
                             for match in item["matches"]],
+                "assessment_scope": item["assessment"].get("scope"),
+                "files_analyzed": item["assessment"].get("files_analyzed"),
                 "task_evidence": item["assessment"]["task_evidence"],
             } for item in matches],
         }

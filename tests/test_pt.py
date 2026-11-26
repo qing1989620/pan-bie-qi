@@ -8,7 +8,7 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from skill_discriminator import pt, pt_discovery, pt_model
+from skill_discriminator import pt, pt_discovery, pt_model, source_import
 from skill_discriminator.api import create_app
 from skill_discriminator.pt_discovery import Candidate
 from skill_discriminator.pt_license import license_evidence
@@ -19,16 +19,16 @@ PDF = "Use pdfplumber to extract tables from text-layer PDF pages."
 XLSX = "Create .xlsx workbooks and recalculate spreadsheet formulas using openpyxl."
 
 
-def snapshot(name, description, body="", *, licence="MIT", license_text=None, metadata=""):
+def snapshot(name, description, body="", *, licence="MIT", license_text=None, metadata="", materials=None):
     text = f"---\nname: {name}\ndescription: {json.dumps(description)}\nlicense: {licence}\n{metadata}---\n\n{body}"
-    files = {"SKILL.md": text}
+    files = {"SKILL.md": text, **(materials or {})}
     if license_text is not None:
         files["LICENSE.txt"] = license_text
     repository = f"example/{name}"
     url = f"https://github.com/{repository}/blob/{REVISION}/SKILL.md"
     return {"state": "imported", "package": {"identity": name, "files": files, "inventory": list(files), "inventory_complete": True},
             "source": {"canonical_url": url, "repository": repository, "commit": REVISION, "skill_path": "SKILL.md",
-                       "package_root": "", "inspection_scope": "guide_license_inventory",
+                       "package_root": "",
                        "file_hashes": {path: {"raw_bytes_sha256": hashlib.sha256(value.encode()).hexdigest()} for path, value in files.items()}}}
 
 
@@ -36,10 +36,22 @@ def install_collection(monkeypatch, **documents):
     references = {name: Candidate(f"https://skills.sh/example/{name}/{name}", f"example/{name}", name, "skills.sh", "test")
                   for name in documents}
     lookup = {references[name].url: record for name, record in documents.items()}
+    fixed = {record["source"]["canonical_url"]: record for record in documents.values()}
     monkeypatch.setattr(pt, "discover", lambda *_a, **_k: (
         list(references.values()), {"provider": "fixture", "searched": [], "candidates": len(references), "enabled": True},
     ))
-    monkeypatch.setattr(pt.source_import, "import_link", lambda url, **_k: lookup[url])
+    def import_link(url, *_args, overview_only=False, **_kwargs):
+        if not overview_only:
+            return fixed[url]
+        record = lookup[url]
+        source, package = record["source"], record["package"]
+        retained = {"SKILL.md"} | {path for path in package["files"] if source_import.is_package_license(path)}
+        return {**record,
+                "source": {**source, "inspection_scope": "guide_license_inventory",
+                           "file_hashes": {path: source["file_hashes"][path] for path in retained}},
+                "package": {**package, "files": {path: package["files"][path] for path in retained}}}
+
+    monkeypatch.setattr(pt.source_import, "import_link", import_link)
     monkeypatch.delenv("PAN_BIE_QI_E5_DIR", raising=False)
     return references
 
@@ -70,9 +82,74 @@ def test_covers_two_capabilities_and_filters_similar_ineligible_skills(monkeypat
     }
     for item in report["recommendations"]:
         assert item["source"]["commit"] == REVISION
-        assert item["assessment"]["scope"] == "guide_license_inventory"
+        assert item["assessment"]["scope"] == "package_text"
         assert item["matches"][0]["evidence"]["url"].startswith(item["source"]["canonical_url"] + "#L")
         assert item["assessment"]["task_evidence"]["score"] is None
+
+
+def test_same_package_discriminator_drives_link_assessment_and_recommendation(monkeypatch):
+    command = "```bash\npython scripts/build.py --output report.xlsx\n```"
+    parser = "import argparse\nparser = argparse.ArgumentParser()\nparser.add_argument({!r}, required=True)\nparser.parse_args()\n"
+    good = snapshot("xlsx", XLSX, command, materials={"scripts/build.py": parser.format("--output")})
+    bad = snapshot("xlsx", XLSX, command, materials={"scripts/build.py": parser.format("--target")})
+    bad["source"]["repository"] = "example/broken"
+    bad["source"]["canonical_url"] = f"https://github.com/example/broken/blob/{REVISION}/SKILL.md"
+    install_collection(monkeypatch, broken=bad, xlsx=good)
+
+    with TestClient(create_app()) as client:
+        task = "把数据导出成 Excel 工作簿"
+        ranked = client.post("/api/discriminator/recommend", json={"task": task, "limit": 1}).json()
+        direct = [client.post("/api/discriminator/import-url", json={"task": task, "url": item["source"]["canonical_url"]})
+                  .json()["report"] for item in (bad, good)]
+
+    rejected, accepted = ranked["pipeline"]["assessment"]["candidates"]
+    assert rejected["status"] == direct[0]["assessment"]["agent"]["status"] == "repair_required"
+    assert direct[0]["package"]["findings"][0]["kind"] == "argparse_command_rejected"
+    assert [row["path"] for row in rejected["evidence"]] == ["SKILL.md", "scripts/build.py"]
+    assert rejected["evidence"][1]["url"].startswith(bad["source"]["canonical_url"].removesuffix("SKILL.md"))
+    assert accepted["status"] == "eligible"
+    [item] = ranked["recommendations"]
+    assessment = item["assessment"]
+    assert item["source"]["canonical_url"] == good["source"]["canonical_url"]
+    assert assessment["agent"] == direct[1]["assessment"]["agent"]
+    assert assessment["verdict"] == direct[1]["quick_summary"]["verdict"]
+    assert assessment["files_analyzed"] == 2
+    assert [(row["id"], row["score"], row["reason"]) for row in assessment["dimensions"]] == [
+        (row["id"], row["score"], row["reason"]) for row in direct[1]["assessment"]["dimensions"]
+    ]
+
+
+def test_changed_snapshot_cannot_be_recommended_using_overview(monkeypatch):
+    install_collection(monkeypatch, xlsx=snapshot("xlsx", XLSX, materials={"scripts/build.py": "print('ready')\n"}))
+    read = pt.source_import.import_link
+
+    def changed(url, *, overview_only=False, **kwargs):
+        result = read(url, overview_only=overview_only, **kwargs)
+        return result if overview_only else {**result, "source": {**result["source"], "commit": "2" * 40}}
+
+    monkeypatch.setattr(pt.source_import, "import_link", changed)
+    result = pt.recommend("把数据导出成 Excel 工作簿", {}, limit=1, search_online=False, use_model=False)
+    assert result["recommendations"] == []
+    assert result["pipeline"]["assessment"]["counts"] == {"package_version_mismatch": 1}
+
+
+def test_optional_usage_syntax_does_not_disqualify_public_candidate(monkeypatch):
+    body = "```bash\npython scripts/build.py --output report.xlsx [--formulas]\n```"
+    script = ("import argparse\nparser = argparse.ArgumentParser()\n"
+              "parser.add_argument('--output', required=True)\n"
+              "parser.add_argument('--formulas', action='store_true')\nparser.parse_args()\n")
+    skill = snapshot("xlsx", XLSX, body, materials={"scripts/build.py": script})
+    install_collection(monkeypatch, xlsx=skill)
+    with TestClient(create_app()) as client:
+        task = "把数据导出成 Excel 工作簿"
+        direct = client.post("/api/discriminator/import-url", json={
+            "task": task, "url": skill["source"]["canonical_url"],
+        }).json()["report"]
+        ranked = client.post("/api/discriminator/recommend", json={"task": task, "limit": 1}).json()
+    assert direct["package"]["findings"] == []
+    assert direct["package"]["command_observations"][0]["result"]["reasons"] == ["bracketed_optional_argument_notation"]
+    assert ranked["pipeline"]["assessment"]["counts"] == {"eligible": 1}
+    assert len(ranked["recommendations"]) == 1
 
 
 @pytest.mark.parametrize(("task", "description", "body", "expected"), [
@@ -86,6 +163,7 @@ def test_covers_two_capabilities_and_filters_similar_ineligible_skills(monkeypat
     ("把记录导出成Excel工作簿", "Read .xlsx and list the number of rows.", "Formats: Excel workbook.", "insufficient_task_evidence"),
     ("把表格整理成Excel工作簿", "Convert an Excel workbook into a Markdown file.", "Output a Markdown table.", "insufficient_task_evidence"),
     ("把记录导出成Excel工作簿", "Create contact records from an Excel workbook.", "Import those records into the contacts list.", "insufficient_task_evidence"),
+    ("制作 PPTX 演示文稿", "Publish an existing presentation to GitHub Pages.", "Install python-pptx to convert the input to HTML.", "insufficient_task_evidence"),
 ])
 def test_matches_explicit_scope_instead_of_nearby_terms(monkeypatch, task, description, body, expected):
     install_collection(monkeypatch, selected=snapshot("selected", description, body))

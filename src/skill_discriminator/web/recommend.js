@@ -31,7 +31,9 @@ function skillCard(item) {
   if (item.conditions_to_check.length) {
     card.append(dom("p", item.conditions_to_check.join("。") + "。", "pt-gap"));
   }
-  const proof = item.assessment.task_evidence;
+  const assessment = item.assessment;
+  card.append(dom("p", "判别器结论 · " + assessment.verdict + "。" + assessment.reason, "pt-proof"));
+  const proof = assessment.task_evidence;
   if (proof.score !== null) {
     const tested = dom("p", proof.basis + " " + proof.score + " / 100。" + proof.reason, "pt-proof");
     if (proof.source_url) tested.append(" ", anchor("原评测", proof.source_url));
@@ -43,7 +45,7 @@ function skillCard(item) {
   if (item.license.materials.length) links.append(anchor("许可证", item.license.materials[0].url));
   card.append(links);
   const evidence = dom("details");
-  evidence.append(dom("summary", "查看匹配依据"));
+  evidence.append(dom("summary", "查看匹配和评分依据"));
   const list = dom("ul");
   for (const match of item.matches) {
     const row = dom("li");
@@ -52,13 +54,16 @@ function skillCard(item) {
       dom("blockquote", source.quote));
     list.append(row);
   }
-  evidence.append(list, dom("p", "说明 " + item.assessment.characters.toLocaleString("zh-CN") + " 字符。提交 " +
+  evidence.append(list, dom("p", "说明 " + assessment.characters.toLocaleString("zh-CN") + " 字符。判别器读取 " +
+    assessment.files_analyzed + "/" + assessment.inventory_files + " 个文件。提交 " +
     item.source.commit.slice(0, 12) + "。", "muted pt-small"));
-  if (item.assessment.scope === "guide_license_inventory") {
-    evidence.append(dom("p", "本页核对了说明、许可证和文件清单。", "muted pt-small"));
+  const scores = dom("ul");
+  for (const dimension of assessment.dimensions) {
+    const score = dimension.score === null ? dimension.basis : dimension.score + " / 100（" + dimension.basis + "）";
+    scores.append(dom("li", dimension.label + " · " + score + "。" + dimension.reason));
   }
-  if (proof.score === null) evidence.append(dom("p", proof.reason, "muted pt-small"));
-  else if (proof.scope) evidence.append(dom("p", proof.scope, "muted pt-small"));
+  evidence.append(scores);
+  if (proof.scope) evidence.append(dom("p", proof.scope, "muted pt-small"));
   card.append(evidence);
   return card;
 }
@@ -94,6 +99,9 @@ function render(report) {
     for (const row of filtered) {
       const entry = dom("li");
       entry.append(row.url ? anchor(row.key, row.url) : document.createTextNode(row.key), " · " + row.reason);
+      for (const evidence of row.evidence || []) {
+        entry.append(" ", anchor(evidence.path + " 第 " + evidence.start_line + " 行", evidence.url));
+      }
       list.append(entry);
     }
     trace.append(list);
@@ -119,7 +127,7 @@ form.onsubmit = async event => {
     environment: {network_allowed: network ? network === "yes" : null}};
   submit.disabled = true;
   status.classList.remove("error");
-  status.textContent = "正在搜索公开目录并核对来源…";
+  status.textContent = "正在搜索公开目录并核查候选 Skill…";
   element("pt-result").hidden = true;
   try {
     const response = await fetch(endpoint + "/recommend", {

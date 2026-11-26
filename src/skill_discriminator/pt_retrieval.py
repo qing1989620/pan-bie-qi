@@ -167,7 +167,7 @@ FORMULAS = requirement(
 PPT = requirement(
     "pptx", "制作演示文稿", "pptx slides",
     r"\b(?:create|build|generate|produce|edit|design)\b.{0,85}\b(?:presentations?|powerpoint|pptx|slides?|slide deck)\b"
-    r"|\b(?:pptxgenjs|python-pptx)\b|(?:生成|创建|制作|编辑).{0,12}(?:演示文稿|幻灯片|PPTX)",
+    r"|(?:生成|创建|制作|编辑).{0,12}(?:演示文稿|幻灯片|PPTX)",
 )
 WORD = requirement(
     "docx", "编辑 Word 文档", "docx edit word",

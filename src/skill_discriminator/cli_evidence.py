@@ -231,6 +231,8 @@ def check(source, command):
             raise Unsupported("not_a_literal_python_script_invocation")
         if len(tokens) > 256 or any(t in {"|", ";", "&&", "||", ">", ">>"} for t in tokens) or any(any(c in t for c in "$`<>\n\r") for t in tokens[2:]):
             raise Unsupported("shell_expansion_compound_or_placeholder")
+        if any(token == "[" or token.startswith("[-") for token in tokens[2:]):
+            raise Unsupported("bracketed_optional_argument_notation")
         plan = grammar(source)
         result["grammar"] = plan
         parser = SilentParser(prog=tokens[1], **{k: _materialize(v) for k, v in plan["constructor"].items()})

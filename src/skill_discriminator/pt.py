@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-import hashlib
 import re
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from urllib.parse import quote
 
 from . import pt_model, pt_semantic, source_import
 from .inspection import citation, clean, description_lines, frontmatter
@@ -37,8 +37,10 @@ DOMAIN = {
 HOSTED_BINARIES = {"lark-cli": "需要联网访问飞书服务"}
 ANTI_DETECTION = re.compile(r"\banti[- ]detect(?:ion)?\b|反检测|隐匿指纹|规避.{0,12}检测", re.IGNORECASE)
 HARDWARE = re.compile(r"\b(?:requires?|needs?)\b.{0,50}\b(?:nvidia gpu|compatible driver)\b", re.IGNORECASE)
-TIME_BUDGET = 28
+OVERVIEW_TIME_BUDGET = 25
+TIME_BUDGET = 38
 AUDIT_WORKERS = 5
+INCOMPLETE_TEXT = {"source_read_incomplete", "text_read_budget", "not_utf8_text", "symlink_or_submodule_not_followed"}
 
 
 @dataclass
@@ -105,18 +107,11 @@ def _runtime_requirements(raw: str) -> tuple[str | None, bool]:
     return network, any(HARDWARE.search(line) and not EXCLUSION.search(line) for line in lines)
 
 
-def _review(candidate: Candidate, task: Task, environment: dict, deadline: float) -> tuple[Review | None, dict | None]:
-    try:
-        source = source_import.import_link(candidate.url, overview_only=True, deadline=deadline)
-        if source["state"] != "imported":
-            return None, {"key": candidate.key, "status": "ambiguous_identity", "reason": "目录里有多个匹配的 Skill。"}
-        package = source["package"]
-        raw = package["files"]["SKILL.md"]
-        doc = document(candidate.key, raw, candidate.slug)
-        licence = license_evidence(source)
-        report = assess_imported(source, task.text, environment)
-    except ValueError:
-        return None, {"key": candidate.key, "status": "source_unavailable", "reason": "本次未能核全固定来源。"}
+def _assess_candidate(candidate: Candidate, source: dict, task: Task, environment: dict, licence: dict) -> Review:
+    package = source["package"]
+    raw = package["files"]["SKILL.md"]
+    doc = document(candidate.key, raw, candidate.slug)
+    report = assess_imported(source, task.text, environment)
     fit, unsupported = _task_fit(task, doc, package["files"], source["source"])
     checks = report["assessment"]["agent"]["status"]
     explicit_network, hardware = _runtime_requirements(raw)
@@ -140,7 +135,42 @@ def _review(candidate: Candidate, task: Task, environment: dict, deadline: float
         notes.append("说明与任务有关键词重合，采用前请确认具体输入和产出")
     if unsupported and fit:
         notes.extend(f"说明限制了「{item.label}」" for item in task.requirements if item.id in unsupported)
-    return Review(candidate, doc, report, licence, fit, notes, excluded), None
+    if source["source"].get("inspection_scope") == "package_text_partial":
+        notes.append("部分包内材料未能检查，使用前请复核")
+    return Review(candidate, doc, report, licence, fit, notes, excluded)
+
+
+def _review(candidate: Candidate, task: Task, environment: dict, deadline: float) -> tuple[Review | None, dict | None]:
+    try:
+        source = source_import.import_link(candidate.url, overview_only=True, deadline=deadline)
+        if source["state"] != "imported":
+            return None, {"key": candidate.key, "status": "ambiguous_identity", "reason": "目录里有多个匹配的 Skill。"}
+        return _assess_candidate(candidate, source, task, environment, license_evidence(source)), None
+    except ValueError:
+        return None, {"key": candidate.key, "status": "source_unavailable", "reason": "本次未能核全固定来源。"}
+
+
+def _review_package(overview: Review, task: Task, environment: dict, deadline: float) -> tuple[Review | None, str | None]:
+    bound = overview.report["source_import"]
+    if len(bound["file_hashes"]) == overview.report["package"]["inventory_files"]:
+        bound["inspection_scope"] = "package_text"
+        return overview, None
+    try:
+        imported = source_import.import_link(bound["canonical_url"], deadline=deadline)
+        if imported["state"] != "imported" or not imported["package"]["inventory_complete"]:
+            return None, "package_review_unavailable"
+        source = imported["source"]
+        if (any(source[key] != bound[key] for key in ("canonical_url", "commit", "skill_path"))
+                or source["file_hashes"]["SKILL.md"]["raw_bytes_sha256"] != bound["file_hashes"]["SKILL.md"]["raw_bytes_sha256"]):
+            return None, "package_version_mismatch"
+        limited = source.get("omissions_truncated") or any(
+            item["reason"] in INCOMPLETE_TEXT for item in source.get("omitted", [])
+        )
+        source["inspection_scope"] = "package_text_partial" if limited else "package_text"
+        # The license already applies to this commit, including inherited terms.
+        return _assess_candidate(overview.candidate, imported, task, environment, overview.license), None
+    except ValueError:
+        return None, "package_review_unavailable"
 
 
 def _requirements(review: Review) -> set[str]:
@@ -183,8 +213,34 @@ FILTER_REASONS = {
     "task_review_required": "声明和当前任务之间有待解决的差异。",
     "declared_out_of_scope": "说明明确排除所需任务。",
     "insufficient_task_evidence": "未找到所需能力的来源行。",
-    "duplicate_document": "已找到内容相同的固定版本。",
+    "duplicate_document": "已找到可核查文本相同的固定版本。",
+    "package_review_unavailable": "未能取得固定版本的包内材料以完成复核。",
+    "package_version_mismatch": "读取的包与已匹配的来源版本不一致。",
 }
+
+
+def _outcome(review: Review, state: str) -> dict:
+    report = review.report
+    source = report["source_import"]
+    outcome = {"key": review.candidate.key, "status": state,
+               "license": review.license["id"], "license_state": review.license["state"],
+               "url": source["canonical_url"], "matched": sorted(_requirements(review)),
+               "scope": source.get("inspection_scope"), "reason": FILTER_REASONS.get(state)}
+    if state == "repair_required":
+        finding = report["package"]["findings"][0]
+        root = source["canonical_url"].removesuffix("SKILL.md")
+        outcome["reason"] = finding["explanation"]
+        outcome["evidence"] = [
+            {**item, "url": f"{root}{quote(item['path'], safe='/')}#L{item['start_line']}"}
+            for item in (finding["evidence"], finding.get("contract_evidence")) if item
+        ]
+    return outcome
+
+
+def _content_key(review: Review) -> tuple:
+    source = review.report["source_import"]
+    files = tuple(sorted((path, hashes["raw_bytes_sha256"]) for path, hashes in source["file_hashes"].items()))
+    return files, review.license["id"]
 
 
 def _result(review: Review, increment: list[str], task: Task) -> dict:
@@ -210,14 +266,18 @@ def _result(review: Review, increment: list[str], task: Task) -> dict:
         "discovery": {"channel": review.candidate.discovery, "query": review.candidate.query},
         "assessment": {"inventory_files": profile["size"]["inventory_files"],
                        "characters": profile["size"]["document_characters"],
-                       "scope": src.get("inspection_scope", "guide_and_available_materials"),
-                       "dimensions": [{key: row[key] for key in ("id", "label", "score", "basis")} for row in axes],
+                       "files_analyzed": report["package"]["files_analyzed"],
+                       "scope": src["inspection_scope"],
+                       "verdict": report["quick_summary"]["verdict"],
+                       "reason": report["quick_summary"]["reason"],
+                       "dimensions": [{key: row[key] for key in ("id", "label", "score", "basis", "reason")} for row in axes],
                        "agent": report["assessment"]["agent"], "task_evidence": task_proof},
     }
 
 
 def recommend(task_text: str, environment: dict, *, limit: int, search_online: bool, use_model: bool) -> dict:
     start = time.monotonic()
+    overview_deadline = start + OVERVIEW_TIME_BUDGET
     deadline = start + TIME_BUDGET
     task = plan(clean(task_text))
     if not task.text or not task.queries:
@@ -229,29 +289,37 @@ def recommend(task_text: str, environment: dict, *, limit: int, search_online: b
     if extra and not task.requirements:
         task = Task(task.text, task.requirements, task.queries, " ".join([task.ranking_text, *extra]))
     planned = time.monotonic()
-    candidates, discovery = discover(task, extra, deadline, search_online=search_online)
+    candidates, discovery = discover(task, extra, overview_deadline, search_online=search_online)
     discovered = time.monotonic()
     reviews = []
-    outcomes = []
+    overviews = []
+    outcomes = {}
     seen = set()
     with ThreadPoolExecutor(max_workers=AUDIT_WORKERS, thread_name_prefix="pt-assess") as workers:
-        for review, failure in workers.map(lambda ref: _review(ref, task, constraints, deadline), candidates):
+        for review, failure in workers.map(lambda ref: _review(ref, task, constraints, overview_deadline), candidates):
             if failure:
-                outcomes.append(failure)
+                outcomes[failure["key"]] = failure
+            elif review.excluded:
+                outcomes[review.candidate.key] = _outcome(review, review.excluded)
+            else:
+                outcomes[review.candidate.key] = None
+                overviews.append(review)
+        audited = workers.map(lambda row: _review_package(row, task, constraints, deadline), overviews)
+        for overview, (review, failure) in zip(overviews, audited, strict=True):
+            if failure:
+                outcomes[overview.candidate.key] = _outcome(overview, failure)
                 continue
             state = review.excluded or ("conditional" if review.conditions else "eligible")
-            source = review.report["source_import"]
-            normalized = " ".join(review.document.body.split())
-            sha = hashlib.sha256(normalized.encode()).hexdigest() if normalized else source["file_hashes"]["SKILL.md"]["raw_bytes_sha256"]
-            if state in {"eligible", "conditional"} and sha in seen:
-                state = "duplicate_document"
-            if state in {"eligible", "conditional"}:
-                reviews.append(review)
-                seen.add(sha)
-            outcomes.append({"key": review.candidate.key, "status": state,
-                             "license": review.license["id"], "license_state": review.license["state"],
-                             "url": source["canonical_url"], "matched": sorted(_requirements(review)),
-                             "reason": FILTER_REASONS.get(state)})
+            if not review.excluded:
+                key = _content_key(review)
+                if review.report["source_import"]["inspection_scope"] == "package_text_partial":
+                    reviews.append(review)
+                elif key in seen:
+                    state = "duplicate_document"
+                else:
+                    reviews.append(review)
+                    seen.add(key)
+            outcomes[review.candidate.key] = _outcome(review, state)
     assessed = time.monotonic()
     selected, covered, semantic = select(reviews, task, limit)
     ended = time.monotonic()
@@ -259,8 +327,8 @@ def recommend(task_text: str, environment: dict, *, limit: int, search_online: b
         "state": "recommendations" if selected else "no_supported_candidates",
         "requirements": [{"id": item.id, "label": item.label, "covered": item.id in covered} for item in task.requirements],
         "target_network_allowed": constraints.get("network_allowed"),
-        "pipeline": {"discovery": discovery, "assessment": {"counts": dict(Counter(item["status"] for item in outcomes)),
-                                                            "candidates": outcomes}, "model": model, "semantic": semantic},
+        "pipeline": {"discovery": discovery, "assessment": {"counts": dict(Counter(item["status"] for item in outcomes.values())),
+                                                            "candidates": list(outcomes.values())}, "model": model, "semantic": semantic},
         "recommendations": [_result(review, increment, task) for review, increment in selected],
         "elapsed_ms": round((ended - start) * 1000),
         "stage_ms": {"planning": round((planned - start) * 1000), "discovery": round((discovered - planned) * 1000),
