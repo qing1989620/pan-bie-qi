@@ -1,0 +1,2639 @@
+{
+  "schema": "pt-v17-paired-field-comparison-v1",
+  "evaluated_on": "2026-11-27",
+  "snapshot_sha256": "b4a51bf9afd1b5123f3da7ed0ae269e5dc3929f9e4e18de4ac417423dec9d908",
+  "repository_baseline": "420f191d2b537717f64265d3f71df885bbf8c74c",
+  "protocol": "Each variant replays records of the same live catalog and content requests. Reviewers judge only the first hit's documented clauses.",
+  "annotation": {
+    "reviewers": 1,
+    "labels": {
+      "fit": "有文档证据覆盖所需工具、主要操作和关键产物。",
+      "partial": "用途相关，关键条件存在缺证。",
+      "mismatch": "用途或明示工具不符。",
+      "abstain": "未返回推荐。"
+    },
+    "regression": "六条既有任务。",
+    "held_out_tasks": "六条调试阶段已回看的验证任务，最终按开发集报告。",
+    "transfer": "四条额外任务先冻结结果，随后增加 SDK 范围检查，仅 Rust 结果发生变化。"
+  },
+  "threshold": "Documented applicability, not an agent execution success rate or ground truth for all published Skills.",
+  "cases": [
+    {
+      "id": "matplotlib",
+      "task": "Create a Matplotlib scatter plot with labeled axes and export it as SVG.",
+      "split": "regression",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "通用图形交付 HTML/SVG，未给 Matplotlib 散点图流程。",
+          "query_observations": [
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "matplotlib",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/python-executor",
+                "101-skills/superpowers/python-executor",
+                "magentosh/superpowers/python-executor"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "scatter",
+              "state": "searched",
+              "top_keys": [
+                "cathrynlavery/diagram-design/diagram-design",
+                "roble3/cc-blender-skill/blender-materials",
+                "markdown-viewer/skills/vega"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 7,
+            "conditional": 1,
+            "insufficient_task_evidence": 1,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "cathrynlavery/diagram-design/diagram-design",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md",
+              "commit": "795eec47fd376e5dda0b9e056a49520060cd2f13"
+            }
+          ],
+          "first_document_sha256": "1a197a0adf91872df000de734166fcfaefe31ae428811a970ea363efa99f4600",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "abstain",
+          "parameter_evidence_review": "旧搜索结果没有通过组合条件。",
+          "query_observations": [
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "matplotlib",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/python-executor",
+                "101-skills/superpowers/python-executor",
+                "magentosh/superpowers/python-executor"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "scatter",
+              "state": "searched",
+              "top_keys": [
+                "cathrynlavery/diagram-design/diagram-design",
+                "roble3/cc-blender-skill/blender-materials",
+                "markdown-viewer/skills/vega"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 7,
+            "insufficient_task_evidence": 2,
+            "source_unavailable": 1
+          },
+          "recommended": []
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "Chartkit 用 Matplotlib 绘图并保存 SVG，指南支持散点图。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "matplotlib scatter plot",
+              "state": "searched",
+              "top_keys": [
+                "anthropics/claude-tag-plugins/graphing",
+                "jaechang-hits/sciagent-skills/matplotlib-scientific-plotting",
+                "evoscientist/evoskills/paper-figures"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "matplotlib plotting",
+              "state": "searched",
+              "top_keys": [
+                "jaechang-hits/sciagent-skills/matplotlib-scientific-plotting",
+                "k-dense-ai/scientific-agent-skills/matplotlib",
+                "mindrally/skills/matplotlib-best-practices"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 1,
+            "license_unconfirmed": 3,
+            "insufficient_task_evidence": 5,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "anthropics/claude-tag-plugins/graphing",
+              "url": "https://github.com/anthropics/claude-tag-plugins/blob/b6ee25f8f00a291cbdf31eb75bd7cc1a987d6782/claude-tag-data-viz/skills/graphing/SKILL.md",
+              "commit": "b6ee25f8f00a291cbdf31eb75bd7cc1a987d6782"
+            }
+          ],
+          "first_document_sha256": "c5c33515a1e68ef589b78e1c242f236cca13d39ff3f13093a1b9be29fd323e5c",
+          "matched_sources": [
+            {
+              "label": "用 Matplotlib 生成散点图并导出 SVG",
+              "url": "https://github.com/anthropics/claude-tag-plugins/blob/b6ee25f8f00a291cbdf31eb75bd7cc1a987d6782/claude-tag-data-viz/skills/graphing/SKILL.md#L3",
+              "output_url": "https://github.com/anthropics/claude-tag-plugins/blob/b6ee25f8f00a291cbdf31eb75bd7cc1a987d6782/claude-tag-data-viz/skills/graphing/SKILL.md#L18"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "postgres",
+      "task": "Optimize slow PostgreSQL SELECT queries using EXPLAIN and indexes.",
+      "split": "regression",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "fit",
+          "parameter_evidence_review": "专门支持 PostgreSQL 的 EXPLAIN ANALYZE 和索引。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "optimize",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-skills/vercel-optimize",
+                "neondatabase/agent-skills/neon-postgres-egress-optimizer",
+                "pbakaus/impeccable/optimize"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "slow",
+              "state": "searched",
+              "top_keys": [
+                "dontbesilent2025/dbskill/dbs-slowisfast",
+                "vercel-labs/agent-skills/vercel-optimize",
+                "microsoft/azure-skills/azure-messaging"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "postgresql",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/postgresql-optimization",
+                "github/awesome-copilot/postgresql-code-review",
+                "aws/agent-toolkit-for-aws/amazon-aurora-postgresql"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "source_unavailable": 5,
+            "conditional": 2,
+            "ambiguous_identity": 1,
+            "insufficient_task_evidence": 1
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/postgresql-optimization",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-optimization/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            },
+            {
+              "key": "github/awesome-copilot/postgresql-code-review",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-code-review/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "9b511a7d706302761a7700cd6b87df9793650fa7f7f3299fe33243fc339e3c9f",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-optimization/SKILL.md#L321",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "专门支持 PostgreSQL 的 EXPLAIN ANALYZE 和索引。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "optimize",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-skills/vercel-optimize",
+                "neondatabase/agent-skills/neon-postgres-egress-optimizer",
+                "pbakaus/impeccable/optimize"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "slow",
+              "state": "searched",
+              "top_keys": [
+                "dontbesilent2025/dbskill/dbs-slowisfast",
+                "vercel-labs/agent-skills/vercel-optimize",
+                "microsoft/azure-skills/azure-messaging"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "postgresql",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/postgresql-optimization",
+                "github/awesome-copilot/postgresql-code-review",
+                "aws/agent-toolkit-for-aws/amazon-aurora-postgresql"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "source_unavailable": 5,
+            "eligible": 2,
+            "ambiguous_identity": 1,
+            "conditional": 1
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/postgresql-optimization",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-optimization/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            },
+            {
+              "key": "github/awesome-copilot/postgresql-code-review",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-code-review/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            },
+            {
+              "key": "aws/agent-toolkit-for-aws/amazon-aurora-postgresql",
+              "url": "https://github.com/aws/agent-toolkit-for-aws/blob/e62ada690e3adf340a4cccb3b20204721e4b54d2/skills/specialized-skills/database-skills/amazon-aurora-postgresql/SKILL.md",
+              "commit": "e62ada690e3adf340a4cccb3b20204721e4b54d2"
+            }
+          ],
+          "first_document_sha256": "9b511a7d706302761a7700cd6b87df9793650fa7f7f3299fe33243fc339e3c9f",
+          "matched_sources": [
+            {
+              "label": "检查 PostgreSQL 查询性能",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-optimization/SKILL.md#L246",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "包内索引说明给出运行 EXPLAIN ANALYZE 和索引核查的依据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "postgresql query optimization",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/sql-optimization",
+                "planetscale/database-skills/postgres",
+                "affaan-m/ecc/postgres-patterns"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "postgresql",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/postgresql-optimization",
+                "github/awesome-copilot/postgresql-code-review",
+                "aws/agent-toolkit-for-aws/amazon-aurora-postgresql"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 5,
+            "ambiguous_identity": 1,
+            "conditional": 1,
+            "source_unavailable": 2,
+            "license_unconfirmed": 1
+          },
+          "recommended": [
+            {
+              "key": "planetscale/database-skills/postgres",
+              "url": "https://github.com/planetscale/database-skills/blob/f6ed002d03084cb39c01d1d58904d47a36f5322a/skills/postgres/SKILL.md",
+              "commit": "f6ed002d03084cb39c01d1d58904d47a36f5322a"
+            },
+            {
+              "key": "github/awesome-copilot/sql-optimization",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/sql-optimization/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            },
+            {
+              "key": "github/awesome-copilot/postgresql-optimization",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/postgresql-optimization/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "f64f17253d3b74da106027701fc2f0ea385d4cdaf28ff80115265b9fd307c358",
+          "matched_sources": [
+            {
+              "label": "检查 PostgreSQL 查询性能",
+              "url": "https://github.com/planetscale/database-skills/blob/f6ed002d03084cb39c01d1d58904d47a36f5322a/skills/postgres/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "git-conflict",
+      "task": "Resolve Git merge conflicts while preserving changes from both branches.",
+      "split": "regression",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "fit",
+          "parameter_evidence_review": "明确定位和处理 Git 合并冲突，并给出保留有效修改的流程。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "resolve",
+              "state": "searched",
+              "top_keys": [
+                "lllllllama/rigorpilot-skills/paper-context-resolver",
+                "warpdotdev/common-skills/resolve-merge-conflicts",
+                "dart-lang/skills/dart-resolve-package-conflicts"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "git",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/git-commit",
+                "mattpocock/skills/git-guardrails-claude-code",
+                "obra/superpowers/using-git-worktrees"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "merge",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/resolving-merge-conflicts",
+                "github/awesome-copilot/memory-merger",
+                "warpdotdev/common-skills/resolve-merge-conflicts"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 7,
+            "conditional": 2,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "warpdotdev/common-skills/resolve-merge-conflicts",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/resolve-merge-conflicts/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            },
+            {
+              "key": "github/awesome-copilot/git-commit",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/git-commit/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "ac26cb07c75c1778513383f45df53902ad7b7f97898cf0131f2967a80a3f0e51",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/resolve-merge-conflicts/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "明确定位和处理 Git 合并冲突，并给出保留有效修改的流程。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "resolve",
+              "state": "searched",
+              "top_keys": [
+                "lllllllama/rigorpilot-skills/paper-context-resolver",
+                "warpdotdev/common-skills/resolve-merge-conflicts",
+                "dart-lang/skills/dart-resolve-package-conflicts"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "git",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/git-commit",
+                "mattpocock/skills/git-guardrails-claude-code",
+                "obra/superpowers/using-git-worktrees"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "merge",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/resolving-merge-conflicts",
+                "github/awesome-copilot/memory-merger",
+                "warpdotdev/common-skills/resolve-merge-conflicts"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 8,
+            "source_unavailable": 1,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "warpdotdev/common-skills/resolve-merge-conflicts",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/resolve-merge-conflicts/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            }
+          ],
+          "first_document_sha256": "ac26cb07c75c1778513383f45df53902ad7b7f97898cf0131f2967a80a3f0e51",
+          "matched_sources": [
+            {
+              "label": "解决 Git 合并冲突",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/resolve-merge-conflicts/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "Git 指南明确给出合并冲突解决步骤，要求不同区域的修改全部保留。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "git merge conflicts",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/code-review",
+                "mattpocock/skills/resolving-merge-conflicts",
+                "warpdotdev/common-skills/resolve-merge-conflicts"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "resolve merge conflicts",
+              "state": "searched",
+              "top_keys": [
+                "warpdotdev/common-skills/resolve-merge-conflicts",
+                "dyrits/skills/resolve-merge-conflicts",
+                "mattpocock/skills/resolving-merge-conflicts"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 1,
+            "eligible": 3,
+            "source_unavailable": 2,
+            "conditional": 1,
+            "ambiguous_identity": 1,
+            "license_unconfirmed": 1,
+            "license_restricted": 1
+          },
+          "recommended": [
+            {
+              "key": "jezweb/claude-skills/git-workflow",
+              "url": "https://github.com/jezweb/claude-skills/blob/1260fa7439b36b18dbf16648ccc7fb44783f6c23/plugins/dev-tools/skills/git-workflow/SKILL.md",
+              "commit": "1260fa7439b36b18dbf16648ccc7fb44783f6c23"
+            },
+            {
+              "key": "warpdotdev/common-skills/resolve-merge-conflicts",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/resolve-merge-conflicts/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            },
+            {
+              "key": "prisma/prisma-next/prisma-next-migration-review",
+              "url": "https://github.com/prisma/prisma-next/blob/55458c441d2cf452028c22eed21370447720840a/skills/prisma-next-migration-review/SKILL.md",
+              "commit": "55458c441d2cf452028c22eed21370447720840a"
+            }
+          ],
+          "first_document_sha256": "cfe9c9601e73ef311ad35e8d8d82e64126d300044b5b7f2760ee5c1123ce28b1",
+          "matched_sources": [
+            {
+              "label": "解决 Git 合并冲突",
+              "url": "https://github.com/jezweb/claude-skills/blob/1260fa7439b36b18dbf16648ccc7fb44783f6c23/plugins/dev-tools/skills/git-workflow/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "accessibility",
+      "task": "审查前端界面可访问性，核对键盘焦点、语义标签和颜色对比度。",
+      "split": "regression",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "fit",
+          "parameter_evidence_review": "可访问性审查清单包含键盘焦点、语义和低对比度检查。",
+          "query_observations": [
+            {
+              "hits": 7,
+              "query": "ui accessibility review",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-skills/web-design-guidelines",
+                "nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+                "pbakaus/impeccable/impeccable"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "insufficient_task_evidence": 4,
+            "ambiguous_identity": 1,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/web-design-reviewer",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/web-design-reviewer/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "a08a147cfe555dabe30f2c8f2e267f287e992f74f2b802e68989884338e23b17",
+          "matched_sources": [
+            {
+              "label": "审查前端界面",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/web-design-reviewer/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "可访问性审查清单包含键盘焦点、语义和低对比度检查。",
+          "query_observations": [
+            {
+              "hits": 7,
+              "query": "ui accessibility review",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-skills/web-design-guidelines",
+                "nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+                "pbakaus/impeccable/impeccable"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "insufficient_task_evidence": 4,
+            "ambiguous_identity": 1,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/web-design-reviewer",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/web-design-reviewer/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "a08a147cfe555dabe30f2c8f2e267f287e992f74f2b802e68989884338e23b17",
+          "matched_sources": [
+            {
+              "label": "审查前端界面",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/web-design-reviewer/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "可访问性审查清单包含键盘焦点、语义和低对比度检查。",
+          "query_observations": [
+            {
+              "hits": 7,
+              "query": "ui accessibility review",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-skills/web-design-guidelines",
+                "nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max",
+                "pbakaus/impeccable/impeccable"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "insufficient_task_evidence": 4,
+            "ambiguous_identity": 1,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/web-design-reviewer",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/web-design-reviewer/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "a08a147cfe555dabe30f2c8f2e267f287e992f74f2b802e68989884338e23b17",
+          "matched_sources": [
+            {
+              "label": "审查前端界面",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/web-design-reviewer/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mermaid",
+      "task": "用 Mermaid flowchart 画部署流程，展示步骤和条件分支。",
+      "split": "regression",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "Mermaid 是可导入的输入，指南交付 HTML/SVG。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "mermaid diagrams",
+              "state": "searched",
+              "top_keys": [
+                "softaworks/agent-toolkit/mermaid-diagrams",
+                "forcedotcom/sf-skills/generating-mermaid-diagrams",
+                "tt-a1i/archify/archify"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "ambiguous_identity": 2,
+            "source_unavailable": 1,
+            "license_unconfirmed": 2,
+            "conditional": 2,
+            "sensitive_material_review": 1
+          },
+          "recommended": [
+            {
+              "key": "cathrynlavery/diagram-design/diagram-design",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md",
+              "commit": "795eec47fd376e5dda0b9e056a49520060cd2f13"
+            },
+            {
+              "key": "github/awesome-copilot/azure-resource-visualizer",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/azure-resource-visualizer/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            }
+          ],
+          "first_document_sha256": "1a197a0adf91872df000de734166fcfaefe31ae428811a970ea363efa99f4600",
+          "matched_sources": [
+            {
+              "label": "生成 Mermaid 图",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "abstain",
+          "parameter_evidence_review": "旧检索候选中的转换器与云平台专用候选未通过。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "mermaid diagrams",
+              "state": "searched",
+              "top_keys": [
+                "softaworks/agent-toolkit/mermaid-diagrams",
+                "forcedotcom/sf-skills/generating-mermaid-diagrams",
+                "tt-a1i/archify/archify"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "ambiguous_identity": 2,
+            "source_unavailable": 1,
+            "license_unconfirmed": 2,
+            "declared_out_of_scope": 1,
+            "insufficient_task_evidence": 1,
+            "sensitive_material_review": 1
+          },
+          "recommended": []
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "明确从任务生成 Mermaid 流程图，提供分支语法。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "mermaid flowchart",
+              "state": "searched",
+              "top_keys": [
+                "spillwavesolutions/design-doc-mermaid/design-doc-mermaid",
+                "cathrynlavery/diagram-design/diagram-design",
+                "figma/mcp-server-guide/figma-generate-diagram"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "mermaid diagrams",
+              "state": "searched",
+              "top_keys": [
+                "softaworks/agent-toolkit/mermaid-diagrams",
+                "forcedotcom/sf-skills/generating-mermaid-diagrams",
+                "tt-a1i/archify/archify"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 2,
+            "ambiguous_identity": 2,
+            "insufficient_task_evidence": 2,
+            "source_unavailable": 1,
+            "sensitive_material_review": 1,
+            "declared_out_of_scope": 1,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "claude-office-skills/skills/diagram-creator",
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/diagram-creator/SKILL.md",
+              "commit": "9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11"
+            }
+          ],
+          "first_document_sha256": "0a35fdf71377c082cb5b443d4cce93d28d8b403d7f27acfe262a5b6a185a232d",
+          "matched_sources": [
+            {
+              "label": "生成 Mermaid 流程图",
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/diagram-creator/SKILL.md#L7",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ci",
+      "task": "Diagnose a failing GitHub Actions workflow and explain the failing CI step.",
+      "split": "regression",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "fit",
+          "parameter_evidence_review": "从 GitHub CLI 读取失败 CI 日志和错误步骤。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "diagnose",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/diagnose",
+                "github/awesome-copilot/azure-resource-health-diagnose",
+                "warpdotdev/common-skills/diagnose-ci-failures"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "failing",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/diagnosing-bugs",
+                "mattpocock/skills/diagnose",
+                "liarjsdev/liarjs-skills/fingerprint-failure-triage"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "github",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/git-commit",
+                "github/awesome-copilot/excalidraw-diagram-generator",
+                "github/awesome-copilot/multi-stage-dockerfile"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "source_unavailable": 1,
+            "conditional": 2,
+            "insufficient_task_evidence": 7
+          },
+          "recommended": [
+            {
+              "key": "warpdotdev/common-skills/diagnose-ci-failures",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/diagnose-ci-failures/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            },
+            {
+              "key": "mattpocock/skills/diagnosing-bugs",
+              "url": "https://github.com/mattpocock/skills/blob/6f7f7831a625f040a8e06a0e7954826b87ce775a/skills/engineering/diagnosing-bugs/SKILL.md",
+              "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a"
+            }
+          ],
+          "first_document_sha256": "eacf6cc68063d5c92e1d0a87051b4c5cdd0a18cf8931cb4def3ae541808ddfc8",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/diagnose-ci-failures/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "从 GitHub CLI 读取失败 CI 日志和错误步骤。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "diagnose",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/diagnose",
+                "github/awesome-copilot/azure-resource-health-diagnose",
+                "warpdotdev/common-skills/diagnose-ci-failures"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "failing",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/diagnosing-bugs",
+                "mattpocock/skills/diagnose",
+                "liarjsdev/liarjs-skills/fingerprint-failure-triage"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "github",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/git-commit",
+                "github/awesome-copilot/excalidraw-diagram-generator",
+                "github/awesome-copilot/multi-stage-dockerfile"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "source_unavailable": 1,
+            "insufficient_task_evidence": 8,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "warpdotdev/common-skills/diagnose-ci-failures",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/diagnose-ci-failures/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            }
+          ],
+          "first_document_sha256": "eacf6cc68063d5c92e1d0a87051b4c5cdd0a18cf8931cb4def3ae541808ddfc8",
+          "matched_sources": [
+            {
+              "label": "诊断 GitHub Actions 工作流失败",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/diagnose-ci-failures/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "指南先用 gh CLI 定位 GitHub Actions 失败步骤，再报告诊断。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "diagnose ci failures",
+              "state": "searched",
+              "top_keys": [
+                "warpdotdev/common-skills/diagnose-ci-failures",
+                "obra/superpowers/systematic-debugging",
+                "juliusbrussee/caveman/investigate-first"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "diagnose",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/diagnose",
+                "github/awesome-copilot/azure-resource-health-diagnose",
+                "warpdotdev/common-skills/diagnose-ci-failures"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 2,
+            "source_unavailable": 2,
+            "insufficient_task_evidence": 5,
+            "license_unconfirmed": 1
+          },
+          "recommended": [
+            {
+              "key": "streamlit/streamlit/fixing-streamlit-ci",
+              "url": "https://github.com/streamlit/streamlit/blob/1819c568449c2bcfe12e47b6b6fcd977b8cb6464/.claude/skills/fixing-streamlit-ci/SKILL.md",
+              "commit": "1819c568449c2bcfe12e47b6b6fcd977b8cb6464"
+            },
+            {
+              "key": "warpdotdev/common-skills/diagnose-ci-failures",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/diagnose-ci-failures/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            }
+          ],
+          "first_document_sha256": "77334267a691f6884357ac2fe87cac09fd6cc234c428ca6aec1e8b74f0cf242e",
+          "matched_sources": [
+            {
+              "label": "诊断 GitHub Actions 工作流失败",
+              "url": "https://github.com/streamlit/streamlit/blob/1819c568449c2bcfe12e47b6b6fcd977b8cb6464/.claude/skills/fixing-streamlit-ci/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "plotly",
+      "task": "Use Plotly to create a scatter plot for two numerical fields and export it as HTML.",
+      "split": "held_out_tasks",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "通用图表指南未提供使用 Plotly 生成散点图的证据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "plotly",
+              "state": "searched",
+              "top_keys": [
+                "davila7/claude-code-templates/plotly",
+                "tondevrel/scientific-agent-skills/plotly",
+                "leonchaox/qinyan-academic-skills/plotly"
+              ]
+            },
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "scatter",
+              "state": "searched",
+              "top_keys": [
+                "cathrynlavery/diagram-design/diagram-design",
+                "roble3/cc-blender-skill/blender-materials",
+                "markdown-viewer/skills/vega"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 5,
+            "license_unconfirmed": 3,
+            "insufficient_task_evidence": 1,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "cathrynlavery/diagram-design/diagram-design",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md",
+              "commit": "795eec47fd376e5dda0b9e056a49520060cd2f13"
+            },
+            {
+              "key": "jaechang-hits/sciagent-skills/plotly-interactive-plots",
+              "url": "https://github.com/jaechang-hits/sciagent-skills/blob/65d6ceb875e20b751ffb3a6d8ee19516558789e1/skills/data-visualization/plotly-interactive-plots/SKILL.md",
+              "commit": "65d6ceb875e20b751ffb3a6d8ee19516558789e1"
+            },
+            {
+              "key": "davila7/claude-code-templates/plotly",
+              "url": "https://github.com/davila7/claude-code-templates/blob/24d9d16c0053791c2a02ad755d8c54272e893b27/cli-tool/components/skills/scientific/plotly/SKILL.md",
+              "commit": "24d9d16c0053791c2a02ad755d8c54272e893b27"
+            }
+          ],
+          "first_document_sha256": "1a197a0adf91872df000de734166fcfaefe31ae428811a970ea363efa99f4600",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "散点图示例与 write_html 导出代码都有依据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "plotly",
+              "state": "searched",
+              "top_keys": [
+                "davila7/claude-code-templates/plotly",
+                "tondevrel/scientific-agent-skills/plotly",
+                "leonchaox/qinyan-academic-skills/plotly"
+              ]
+            },
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "scatter",
+              "state": "searched",
+              "top_keys": [
+                "cathrynlavery/diagram-design/diagram-design",
+                "roble3/cc-blender-skill/blender-materials",
+                "markdown-viewer/skills/vega"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 3,
+            "license_unconfirmed": 3,
+            "insufficient_task_evidence": 3,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "davila7/claude-code-templates/plotly",
+              "url": "https://github.com/davila7/claude-code-templates/blob/24d9d16c0053791c2a02ad755d8c54272e893b27/cli-tool/components/skills/scientific/plotly/SKILL.md",
+              "commit": "24d9d16c0053791c2a02ad755d8c54272e893b27"
+            },
+            {
+              "key": "jaechang-hits/sciagent-skills/plotly-interactive-plots",
+              "url": "https://github.com/jaechang-hits/sciagent-skills/blob/65d6ceb875e20b751ffb3a6d8ee19516558789e1/skills/data-visualization/plotly-interactive-plots/SKILL.md",
+              "commit": "65d6ceb875e20b751ffb3a6d8ee19516558789e1"
+            },
+            {
+              "key": "tondevrel/scientific-agent-skills/plotly",
+              "url": "https://github.com/tondevrel/scientific-agent-skills/blob/6e89d9e8c84188050bd50c420e48b639be484bb9/skills/plotly/SKILL.md",
+              "commit": "6e89d9e8c84188050bd50c420e48b639be484bb9"
+            }
+          ],
+          "first_document_sha256": "35afd5f0638e8908c1a1093b212a6ec075f9f15c3b283729cf43813b44eb2a11",
+          "matched_sources": [
+            {
+              "label": "用 Plotly 生成散点图并导出 HTML",
+              "url": "https://github.com/davila7/claude-code-templates/blob/24d9d16c0053791c2a02ad755d8c54272e893b27/cli-tool/components/skills/scientific/plotly/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "散点图示例与 write_html 导出代码都有依据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "plotly scatter plot",
+              "state": "searched",
+              "top_keys": [
+                "davila7/claude-code-templates/plotly",
+                "jaechang-hits/sciagent-skills/matplotlib-scientific-plotting",
+                "jaechang-hits/sciagent-skills/seaborn-statistical-plots"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "plotly plotting",
+              "state": "searched",
+              "top_keys": [
+                "k-dense-ai/scientific-agent-skills/matplotlib",
+                "jaechang-hits/sciagent-skills/matplotlib-scientific-plotting",
+                "jaechang-hits/sciagent-skills/latex-research-posters"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 1,
+            "license_unconfirmed": 5,
+            "insufficient_task_evidence": 3,
+            "conditional": 1
+          },
+          "recommended": [
+            {
+              "key": "davila7/claude-code-templates/plotly",
+              "url": "https://github.com/davila7/claude-code-templates/blob/24d9d16c0053791c2a02ad755d8c54272e893b27/cli-tool/components/skills/scientific/plotly/SKILL.md",
+              "commit": "24d9d16c0053791c2a02ad755d8c54272e893b27"
+            },
+            {
+              "key": "thegovind/claude-scientific-skills/plotly",
+              "url": "https://github.com/thegovind/claude-scientific-skills/blob/6ac2a15e3933b88cd94f81fc68ac9f7f639b7798/scientific-skills/plotly/SKILL.md",
+              "commit": "6ac2a15e3933b88cd94f81fc68ac9f7f639b7798"
+            }
+          ],
+          "first_document_sha256": "35afd5f0638e8908c1a1093b212a6ec075f9f15c3b283729cf43813b44eb2a11",
+          "matched_sources": [
+            {
+              "label": "用 Plotly 生成散点图并导出 HTML",
+              "url": "https://github.com/davila7/claude-code-templates/blob/24d9d16c0053791c2a02ad755d8c54272e893b27/cli-tool/components/skills/scientific/plotly/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "plantuml",
+      "task": "使用 PlantUML 绘制流程图，展示审批流程的两个条件分支。",
+      "split": "held_out_tasks",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "abstain",
+          "parameter_evidence_review": "旧版无推荐。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "plantuml",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/plantuml-ascii",
+                "agents365-ai/365-skills/plantuml-skill",
+                "spillwavesolutions/plantuml/plantuml"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 4,
+            "license_unconfirmed": 1,
+            "source_unavailable": 2,
+            "ambiguous_identity": 1
+          },
+          "recommended": []
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "PlantUML ASCII 指南提供活动图的 if/then/else 分支。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "plantuml",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/plantuml-ascii",
+                "agents365-ai/365-skills/plantuml-skill",
+                "spillwavesolutions/plantuml/plantuml"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 2,
+            "license_unconfirmed": 1,
+            "insufficient_task_evidence": 2,
+            "source_unavailable": 2,
+            "ambiguous_identity": 1
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/plantuml-ascii",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/plantuml-ascii/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            },
+            {
+              "key": "agents365-ai/365-skills/plantuml-skill",
+              "url": "https://github.com/agents365-ai/365-skills/blob/0a1679d1c9188656b104eddea9ae8d677920f13c/plugins/plantuml/skills/plantuml-skill/SKILL.md",
+              "commit": "0a1679d1c9188656b104eddea9ae8d677920f13c"
+            }
+          ],
+          "first_document_sha256": "8bfd83efc42a70cdb9d1e3d64ec305bd4d6f09e1753a03bbb7d3805d9bd13e53",
+          "matched_sources": [
+            {
+              "label": "生成 PlantUML 流程图",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/plantuml-ascii/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "PlantUML ASCII 指南提供活动图的 if/then/else 分支。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "plantuml flowchart",
+              "state": "searched",
+              "top_keys": [
+                "spillwavesolutions/design-doc-mermaid/design-doc-mermaid",
+                "github/awesome-copilot/plantuml-ascii",
+                "cathrynlavery/diagram-design/diagram-design"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "plantuml diagrams",
+              "state": "searched",
+              "top_keys": [
+                "spillwavesolutions/design-doc-mermaid/design-doc-mermaid",
+                "github/awesome-copilot/plantuml-ascii",
+                "cathrynlavery/diagram-design/diagram-design"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 2,
+            "eligible": 3,
+            "insufficient_task_evidence": 5
+          },
+          "recommended": [
+            {
+              "key": "github/awesome-copilot/plantuml-ascii",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/plantuml-ascii/SKILL.md",
+              "commit": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf"
+            },
+            {
+              "key": "claude-office-skills/skills/diagram-creator",
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/diagram-creator/SKILL.md",
+              "commit": "9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11"
+            },
+            {
+              "key": "agents365-ai/365-skills/plantuml-skill",
+              "url": "https://github.com/agents365-ai/365-skills/blob/0a1679d1c9188656b104eddea9ae8d677920f13c/plugins/plantuml/skills/plantuml-skill/SKILL.md",
+              "commit": "0a1679d1c9188656b104eddea9ae8d677920f13c"
+            }
+          ],
+          "first_document_sha256": "8bfd83efc42a70cdb9d1e3d64ec305bd4d6f09e1753a03bbb7d3805d9bd13e53",
+          "matched_sources": [
+            {
+              "label": "生成 PlantUML 流程图",
+              "url": "https://github.com/github/awesome-copilot/blob/93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf/skills/plantuml-ascii/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "local-browser",
+      "task": "用 Playwright 浏览器测试本地页面里的搜索、键盘焦点和弹窗。",
+      "split": "held_out_tasks",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "文档声明使用 CDP，无 Playwright 依赖。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "playwright browser testing",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "anthropics/skills/webapp-testing",
+                "101-skills/superpowers/agent-browser"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "eligible": 1,
+            "insufficient_task_evidence": 2,
+            "license_unconfirmed": 4,
+            "declared_out_of_scope": 1
+          },
+          "recommended": [
+            {
+              "key": "vercel-labs/agent-browser/agent-browser",
+              "url": "https://github.com/vercel-labs/agent-browser/blob/3f43a2affd9944298104b7bb39d5f241aef85e91/skills/agent-browser/SKILL.md",
+              "commit": "3f43a2affd9944298104b7bb39d5f241aef85e91"
+            },
+            {
+              "key": "microsoft/playwright-cli/playwright-cli",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+              "commit": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820"
+            }
+          ],
+          "first_document_sha256": "7d46deeb0101e84f8d70fd2e5cd18e3b6017edfb973607ff23e95e22c92ce73e",
+          "matched_sources": [
+            {
+              "label": "测试浏览器应用",
+              "url": "https://github.com/vercel-labs/agent-browser/blob/3f43a2affd9944298104b7bb39d5f241aef85e91/skills/agent-browser/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "Playwright CLI 支持本地网页检查、按键和交互。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "playwright browser testing",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "anthropics/skills/webapp-testing",
+                "101-skills/superpowers/agent-browser"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "declared_out_of_scope": 2,
+            "insufficient_task_evidence": 2,
+            "license_unconfirmed": 4
+          },
+          "recommended": [
+            {
+              "key": "microsoft/playwright-cli/playwright-cli",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+              "commit": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820"
+            }
+          ],
+          "first_document_sha256": "1c4c34000f6102ee71fe91bf25351a221f7da37f48f2d556e1756f66e17d356f",
+          "matched_sources": [
+            {
+              "label": "用 Playwright 测试浏览器应用",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "Playwright CLI 支持本地网页检查、按键和交互。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "playwright browser testing",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "anthropics/skills/webapp-testing",
+                "101-skills/superpowers/agent-browser"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "declared_out_of_scope": 2,
+            "insufficient_task_evidence": 2,
+            "license_unconfirmed": 4
+          },
+          "recommended": [
+            {
+              "key": "microsoft/playwright-cli/playwright-cli",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+              "commit": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820"
+            }
+          ],
+          "first_document_sha256": "1c4c34000f6102ee71fe91bf25351a221f7da37f48f2d556e1756f66e17d356f",
+          "matched_sources": [
+            {
+              "label": "用 Playwright 测试浏览器应用",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "local-json-schema",
+      "task": "Validate JSON records against a JSON Schema offline and show which entries failed.",
+      "split": "held_out_tasks",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "通用规格审查流程未提供 JSON Schema 校验。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "validate",
+              "state": "searched",
+              "top_keys": [
+                "microsoft/azure-skills/azure-validate",
+                "warpdotdev/common-skills/validate-changes-match-specs",
+                "microsoft/azure-skills/azure-deploy"
+              ]
+            },
+            {
+              "hits": 7,
+              "query": "json",
+              "state": "searched",
+              "top_keys": [
+                "flutter/agent-plugins/flutter-implement-json-serialization",
+                "obsidianmd/obsidian-skills/json-canvas",
+                "vercel/turborepo/turborepo"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "records",
+              "state": "searched",
+              "top_keys": [
+                "wshobson/agents/architecture-decision-records",
+                "affaan-m/ecc/architecture-decision-records",
+                "skymavis/skills/decision-records"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "ambiguous_identity": 4,
+            "insufficient_task_evidence": 3,
+            "conditional": 1,
+            "package_review_unavailable": 1,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "warpdotdev/common-skills/validate-changes-match-specs",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/validate-changes-match-specs/SKILL.md",
+              "commit": "8792394ff1b655e0af451b8fabb68ef0cfcbd208"
+            }
+          ],
+          "first_document_sha256": "52de2c86ab22776a45f54ef10a8b194b524a16e2e64b8454da31f87a55ffa629",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/validate-changes-match-specs/SKILL.md#L42",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "abstain",
+          "parameter_evidence_review": "旧目录查询未找到专门的 JSON Schema 候选。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "validate",
+              "state": "searched",
+              "top_keys": [
+                "microsoft/azure-skills/azure-validate",
+                "warpdotdev/common-skills/validate-changes-match-specs",
+                "microsoft/azure-skills/azure-deploy"
+              ]
+            },
+            {
+              "hits": 7,
+              "query": "json",
+              "state": "searched",
+              "top_keys": [
+                "flutter/agent-plugins/flutter-implement-json-serialization",
+                "obsidianmd/obsidian-skills/json-canvas",
+                "vercel/turborepo/turborepo"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "records",
+              "state": "searched",
+              "top_keys": [
+                "wshobson/agents/architecture-decision-records",
+                "affaan-m/ecc/architecture-decision-records",
+                "skymavis/skills/decision-records"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "ambiguous_identity": 4,
+            "insufficient_task_evidence": 5,
+            "source_unavailable": 1
+          },
+          "recommended": []
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "Zod v4 指南同时记录 fromJSONSchema 和 safeParse，支持本地数据及逐项错误判断。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "json schema validation",
+              "state": "searched",
+              "top_keys": [
+                "mcollina/skills/fastify-best-practices",
+                "prisma/prisma-next/prisma-next-contract",
+                "kostja94/marketing-skills/schema-markup"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "jsonschema",
+              "state": "searched",
+              "top_keys": [
+                "mcollina/skills/fastify-best-practices",
+                "samber/developer-relations-skills/coding-agent-docs-optimization",
+                "affaan-m/ecc/contract-first"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "source_unavailable": 2,
+            "insufficient_task_evidence": 4,
+            "ambiguous_identity": 3,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "secondsky/claude-skills/zod",
+              "url": "https://github.com/secondsky/claude-skills/blob/14966c3024f48eea0386eb970b230ea0f4bebd33/plugins/zod/skills/zod/SKILL.md",
+              "commit": "14966c3024f48eea0386eb970b230ea0f4bebd33"
+            }
+          ],
+          "first_document_sha256": "0e8f91608537b12e947f03a52704247dc116cbb4c1864fda018dd7ca3710b8d4",
+          "matched_sources": [
+            {
+              "label": "用 JSON Schema 校验数据",
+              "url": "https://github.com/secondsky/claude-skills/blob/14966c3024f48eea0386eb970b230ea0f4bebd33/plugins/zod/skills/zod/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "react-interface",
+      "task": "Build a React frontend dashboard with accessible filters and keyboard navigation.",
+      "split": "held_out_tasks",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "fit",
+          "parameter_evidence_review": "指南覆盖 React、仪表盘、键盘控件和可见焦点。",
+          "query_observations": [
+            {
+              "hits": 7,
+              "query": "frontend design",
+              "state": "searched",
+              "top_keys": [
+                "anthropics/skills/frontend-design",
+                "leonxlnx/taste-skill/design-taste-frontend",
+                "leonxlnx/taste-skill/design-taste-frontend-v1"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 1,
+            "source_unavailable": 3,
+            "eligible": 3
+          },
+          "recommended": [
+            {
+              "key": "nexu-io/open-design/frontend-design",
+              "url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md",
+              "commit": "6a74a1521ea2745fcf448bda7cdb8114f20d19b5"
+            },
+            {
+              "key": "cline/skills/frontend-design",
+              "url": "https://github.com/cline/skills/blob/26378461e978f2b4e2e6d67b57121b86b2a79ba5/skills/frontend-design/SKILL.md",
+              "commit": "26378461e978f2b4e2e6d67b57121b86b2a79ba5"
+            },
+            {
+              "key": "julianoczkowski/designer-skills/frontend-design",
+              "url": "https://github.com/julianoczkowski/designer-skills/blob/c259656c76d9758d7ead46b0d2f125cbe84f8665/frontend-design/SKILL.md",
+              "commit": "c259656c76d9758d7ead46b0d2f125cbe84f8665"
+            }
+          ],
+          "first_document_sha256": "6963d8b4ae3d285b021342db2d797ec7aeaabbfd82ffefe9c90607e8a416b116",
+          "matched_sources": [
+            {
+              "label": "实现前端界面",
+              "url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md#L4",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "fit",
+          "parameter_evidence_review": "指南覆盖 React、仪表盘、键盘控件和可见焦点。",
+          "query_observations": [
+            {
+              "hits": 7,
+              "query": "frontend design",
+              "state": "searched",
+              "top_keys": [
+                "anthropics/skills/frontend-design",
+                "leonxlnx/taste-skill/design-taste-frontend",
+                "leonxlnx/taste-skill/design-taste-frontend-v1"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 3,
+            "source_unavailable": 3,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "nexu-io/open-design/frontend-design",
+              "url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md",
+              "commit": "6a74a1521ea2745fcf448bda7cdb8114f20d19b5"
+            }
+          ],
+          "first_document_sha256": "6963d8b4ae3d285b021342db2d797ec7aeaabbfd82ffefe9c90607e8a416b116",
+          "matched_sources": [
+            {
+              "label": "用 React 实现前端界面及键盘可访问性",
+              "url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md#L4",
+              "output_url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md#L55"
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "指南覆盖 React、仪表盘、键盘控件和可见焦点。",
+          "query_observations": [
+            {
+              "hits": 7,
+              "query": "frontend design",
+              "state": "searched",
+              "top_keys": [
+                "anthropics/skills/frontend-design",
+                "leonxlnx/taste-skill/design-taste-frontend",
+                "leonxlnx/taste-skill/design-taste-frontend-v1"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 3,
+            "source_unavailable": 3,
+            "eligible": 1
+          },
+          "recommended": [
+            {
+              "key": "nexu-io/open-design/frontend-design",
+              "url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md",
+              "commit": "6a74a1521ea2745fcf448bda7cdb8114f20d19b5"
+            }
+          ],
+          "first_document_sha256": "6963d8b4ae3d285b021342db2d797ec7aeaabbfd82ffefe9c90607e8a416b116",
+          "matched_sources": [
+            {
+              "label": "用 React 实现前端界面及键盘可访问性",
+              "url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md#L4",
+              "output_url": "https://github.com/nexu-io/open-design/blob/6a74a1521ea2745fcf448bda7cdb8114f20d19b5/skills/frontend-design/SKILL.md#L55"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "docker-compose",
+      "task": "Create a Docker Compose configuration for a local PostgreSQL development database.",
+      "split": "held_out_tasks",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "partial",
+          "parameter_evidence_review": "Docker Compose 段落列出 PostgreSQL 主机名和依赖，缺实际数据库服务定义。",
+          "query_observations": [
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "docker",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/multi-stage-dockerfile",
+                "affaan-m/ecc/docker-patterns",
+                "codewithmukesh/dotnet-claude-kit/docker"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "compose",
+              "state": "searched",
+              "top_keys": [
+                "expo/skills/expo-ui-jetpack-compose",
+                "affaan-m/ecc/compose-multiplatform-patterns",
+                "prisma/skills/prisma-compute"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 4,
+            "insufficient_task_evidence": 2,
+            "source_unavailable": 1,
+            "ambiguous_identity": 2,
+            "conditional": 1
+          },
+          "recommended": [
+            {
+              "key": "codewithmukesh/dotnet-claude-kit/docker",
+              "url": "https://github.com/codewithmukesh/dotnet-claude-kit/blob/6de62a5a64c1d4e2c8b14f9c0b8cf8bb4690814d/skills/docker/SKILL.md",
+              "commit": "6de62a5a64c1d4e2c8b14f9c0b8cf8bb4690814d"
+            }
+          ],
+          "first_document_sha256": "6b5612ea76045db5c49e007d4e249b6a8b7831d0bebfcf201f271d230bfe5da7",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/codewithmukesh/dotnet-claude-kit/blob/6de62a5a64c1d4e2c8b14f9c0b8cf8bb4690814d/skills/docker/SKILL.md#L8",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "abstain",
+          "parameter_evidence_review": "未找到显式的 PostgreSQL 服务输出。",
+          "query_observations": [
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "docker",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/multi-stage-dockerfile",
+                "affaan-m/ecc/docker-patterns",
+                "codewithmukesh/dotnet-claude-kit/docker"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "compose",
+              "state": "searched",
+              "top_keys": [
+                "expo/skills/expo-ui-jetpack-compose",
+                "affaan-m/ecc/compose-multiplatform-patterns",
+                "prisma/skills/prisma-compute"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 4,
+            "insufficient_task_evidence": 3,
+            "source_unavailable": 1,
+            "ambiguous_identity": 2
+          },
+          "recommended": []
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "含独立 Docker Compose 片段和带具体镜像版本的 PostgreSQL 服务定义。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "docker compose postgres",
+              "state": "searched",
+              "top_keys": [
+                "prisma/skills/prisma-postgres",
+                "prisma/skills/prisma-postgres-setup",
+                "giuseppe-trisciuoglio/developer-kit/spring-boot-project-creator"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "docker compose",
+              "state": "searched",
+              "top_keys": [
+                "docker/skills/docker-compose-patterns",
+                "manutej/luxor-claude-marketplace/docker-compose-orchestration",
+                "bagelhole/devops-security-agent-skills/docker-compose"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 4,
+            "sensitive_material_review": 1,
+            "license_unconfirmed": 1,
+            "eligible": 1,
+            "license_restricted": 1,
+            "ambiguous_identity": 2
+          },
+          "recommended": [
+            {
+              "key": "giuseppe-trisciuoglio/developer-kit/spring-boot-project-creator",
+              "url": "https://github.com/giuseppe-trisciuoglio/developer-kit/blob/fe73fb33a09ee6562eeec7415a3f9a3bcf795177/plugins/developer-kit-java/skills/spring-boot-project-creator/SKILL.md",
+              "commit": "fe73fb33a09ee6562eeec7415a3f9a3bcf795177"
+            }
+          ],
+          "first_document_sha256": "ff4705fe1e7b3c4eb7f727dbc391e652c5850401c363c3d717e9068d6ee24ffd",
+          "matched_sources": [
+            {
+              "label": "用 Docker Compose 配置 PostgreSQL 服务",
+              "url": "https://github.com/giuseppe-trisciuoglio/developer-kit/blob/fe73fb33a09ee6562eeec7415a3f9a3bcf795177/plugins/developer-kit-java/skills/spring-boot-project-creator/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "altair",
+      "task": "Use Altair to make a heatmap from two categorical columns and save it as SVG.",
+      "split": "transfer",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "通用图形 Skill 未提供 Altair 热力图及其 SVG 输出。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "altair",
+              "state": "searched",
+              "top_keys": [
+                "nextaltair/altairs-agent-dev-kit/goal-prompt-crafter",
+                "nextaltair/altairs-agent-dev-kit/skill-creator",
+                "nextaltair/altairs-agent-dev-kit/claude-md-progressive-disclosurer"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "heatmap",
+              "state": "searched",
+              "top_keys": [
+                "cathrynlavery/diagram-design/diagram-design",
+                "grafana/skills/dashboarding",
+                "github/awesome-copilot/threat-model-analyst"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "two",
+              "state": "searched",
+              "top_keys": [
+                "better-auth/skills/two-factor-authentication-best-practices",
+                "twostraws/swiftui-agent-skill/swiftui-pro",
+                "twostraws/swift-concurrency-agent-skill/swift-concurrency-pro"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "conditional": 1,
+            "source_unavailable": 3,
+            "insufficient_task_evidence": 3,
+            "sensitive_material_review": 1,
+            "ambiguous_identity": 1
+          },
+          "recommended": [
+            {
+              "key": "cathrynlavery/diagram-design/diagram-design",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md",
+              "commit": "795eec47fd376e5dda0b9e056a49520060cd2f13"
+            }
+          ],
+          "first_document_sha256": "1a197a0adf91872df000de734166fcfaefe31ae428811a970ea363efa99f4600",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/cathrynlavery/diagram-design/blob/795eec47fd376e5dda0b9e056a49520060cd2f13/skills/diagram-design/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "abstain",
+          "parameter_evidence_review": "未找到同时符合三个条件的来源。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "altair",
+              "state": "searched",
+              "top_keys": [
+                "nextaltair/altairs-agent-dev-kit/goal-prompt-crafter",
+                "nextaltair/altairs-agent-dev-kit/skill-creator",
+                "nextaltair/altairs-agent-dev-kit/claude-md-progressive-disclosurer"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "heatmap",
+              "state": "searched",
+              "top_keys": [
+                "cathrynlavery/diagram-design/diagram-design",
+                "grafana/skills/dashboarding",
+                "github/awesome-copilot/threat-model-analyst"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "two",
+              "state": "searched",
+              "top_keys": [
+                "better-auth/skills/two-factor-authentication-best-practices",
+                "twostraws/swiftui-agent-skill/swiftui-pro",
+                "twostraws/swift-concurrency-agent-skill/swift-concurrency-pro"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 1,
+            "insufficient_task_evidence": 5,
+            "source_unavailable": 3,
+            "ambiguous_identity": 1
+          },
+          "recommended": []
+        },
+        "pt-v1.7.0": {
+          "grade": "abstain",
+          "parameter_evidence_review": "未找到同时符合三个条件的来源。",
+          "query_observations": [
+            {
+              "hits": 2,
+              "query": "altair heatmap",
+              "state": "searched",
+              "top_keys": [
+                "zhiming33416/top-cs-paper-skills/top-cs-figure",
+                "zhengliangliahu-cloud/skills/scientific-plotting"
+              ]
+            },
+            {
+              "hits": 1,
+              "query": "altair plotting",
+              "state": "searched",
+              "top_keys": [
+                "zhengliangliahu-cloud/skills/scientific-plotting"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "insufficient_task_evidence": 1,
+            "source_unavailable": 1
+          },
+          "recommended": []
+        }
+      }
+    },
+    {
+      "id": "duckdb",
+      "task": "Use DuckDB to join two local Parquet datasets and write Parquet offline.",
+      "split": "transfer",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "partial",
+          "parameter_evidence_review": "DuckDB 指南查文档，既无 Parquet 读写例，首次使用还需取索引。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "duckdb",
+              "state": "searched",
+              "top_keys": [
+                "duckdb/duckdb-skills/duckdb-docs",
+                "duckdb/duckdb-skills/install-duckdb",
+                "motherduckdb/agent-skills/motherduck-duckdb-sql"
+              ]
+            },
+            {
+              "hits": 7,
+              "query": "join",
+              "state": "searched",
+              "top_keys": [
+                "mbfinotti/partnerships-skills/joint-gtm-planning",
+                "larksuite/cli/lark-event",
+                "googleworkspace/cli/recipe-create-meet-space"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "two",
+              "state": "searched",
+              "top_keys": [
+                "better-auth/skills/two-factor-authentication-best-practices",
+                "twostraws/swiftui-agent-skill/swiftui-pro",
+                "twostraws/swift-concurrency-agent-skill/swift-concurrency-pro"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "insufficient_task_evidence": 5,
+            "source_unavailable": 1,
+            "environment_mismatch": 1,
+            "ambiguous_identity": 2
+          },
+          "recommended": [
+            {
+              "key": "duckdb/duckdb-skills/duckdb-docs",
+              "url": "https://github.com/duckdb/duckdb-skills/blob/44dfbbb414e54187964a2212eae28495f6ae21d9/skills/duckdb-docs/SKILL.md",
+              "commit": "44dfbbb414e54187964a2212eae28495f6ae21d9"
+            }
+          ],
+          "first_document_sha256": "e6388de6257665f71da783b4d4e7b3072d788c0fbc4ce280959fb3c9191d4489",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/duckdb/duckdb-skills/blob/44dfbbb414e54187964a2212eae28495f6ae21d9/skills/duckdb-docs/SKILL.md#L130",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "partial",
+          "parameter_evidence_review": "DuckDB 指南查文档，既无 Parquet 读写例，首次使用还需取索引。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "duckdb",
+              "state": "searched",
+              "top_keys": [
+                "duckdb/duckdb-skills/duckdb-docs",
+                "duckdb/duckdb-skills/install-duckdb",
+                "motherduckdb/agent-skills/motherduck-duckdb-sql"
+              ]
+            },
+            {
+              "hits": 7,
+              "query": "join",
+              "state": "searched",
+              "top_keys": [
+                "mbfinotti/partnerships-skills/joint-gtm-planning",
+                "larksuite/cli/lark-event",
+                "googleworkspace/cli/recipe-create-meet-space"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "two",
+              "state": "searched",
+              "top_keys": [
+                "better-auth/skills/two-factor-authentication-best-practices",
+                "twostraws/swiftui-agent-skill/swiftui-pro",
+                "twostraws/swift-concurrency-agent-skill/swift-concurrency-pro"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "insufficient_task_evidence": 5,
+            "source_unavailable": 1,
+            "environment_mismatch": 1,
+            "ambiguous_identity": 2
+          },
+          "recommended": [
+            {
+              "key": "duckdb/duckdb-skills/duckdb-docs",
+              "url": "https://github.com/duckdb/duckdb-skills/blob/44dfbbb414e54187964a2212eae28495f6ae21d9/skills/duckdb-docs/SKILL.md",
+              "commit": "44dfbbb414e54187964a2212eae28495f6ae21d9"
+            }
+          ],
+          "first_document_sha256": "e6388de6257665f71da783b4d4e7b3072d788c0fbc4ce280959fb3c9191d4489",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/duckdb/duckdb-skills/blob/44dfbbb414e54187964a2212eae28495f6ae21d9/skills/duckdb-docs/SKILL.md#L130",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "partial",
+          "parameter_evidence_review": "DuckDB 指南查文档，既无 Parquet 读写例，首次使用还需取索引。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "duckdb",
+              "state": "searched",
+              "top_keys": [
+                "duckdb/duckdb-skills/duckdb-docs",
+                "duckdb/duckdb-skills/install-duckdb",
+                "motherduckdb/agent-skills/motherduck-duckdb-sql"
+              ]
+            },
+            {
+              "hits": 7,
+              "query": "join",
+              "state": "searched",
+              "top_keys": [
+                "mbfinotti/partnerships-skills/joint-gtm-planning",
+                "larksuite/cli/lark-event",
+                "googleworkspace/cli/recipe-create-meet-space"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "two",
+              "state": "searched",
+              "top_keys": [
+                "better-auth/skills/two-factor-authentication-best-practices",
+                "twostraws/swiftui-agent-skill/swiftui-pro",
+                "twostraws/swift-concurrency-agent-skill/swift-concurrency-pro"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "insufficient_task_evidence": 5,
+            "source_unavailable": 1,
+            "environment_mismatch": 1,
+            "ambiguous_identity": 2
+          },
+          "recommended": [
+            {
+              "key": "duckdb/duckdb-skills/duckdb-docs",
+              "url": "https://github.com/duckdb/duckdb-skills/blob/44dfbbb414e54187964a2212eae28495f6ae21d9/skills/duckdb-docs/SKILL.md",
+              "commit": "44dfbbb414e54187964a2212eae28495f6ae21d9"
+            }
+          ],
+          "first_document_sha256": "e6388de6257665f71da783b4d4e7b3072d788c0fbc4ce280959fb3c9191d4489",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/duckdb/duckdb-skills/blob/44dfbbb414e54187964a2212eae28495f6ae21d9/skills/duckdb-docs/SKILL.md#L130",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "rust-proptest",
+      "task": "Write property-based tests for a Rust parser using `proptest`.",
+      "split": "transfer",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "属性测试指南未提供 Rust 或 proptest 的用法。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "write",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/write-a-skill",
+                "emilkowalski/skills/write-swift",
+                "mattpocock/skills/triage"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "property-based",
+              "state": "searched",
+              "top_keys": [
+                "trailofbits/skills/property-based-testing",
+                "aj-geddes/useful-ai-prompts/property-based-testing",
+                "laurigates/claude-plugins/property-based-testing"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "test",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "microsoft/azure-skills/azure-validate",
+                "microsoft/azure-skills/azure-aigateway"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "source_unavailable": 1,
+            "license_unconfirmed": 2,
+            "insufficient_task_evidence": 2,
+            "conditional": 3,
+            "ambiguous_identity": 2
+          },
+          "recommended": [
+            {
+              "key": "aj-geddes/useful-ai-prompts/property-based-testing",
+              "url": "https://github.com/aj-geddes/useful-ai-prompts/blob/3f5182cfd739fc113f4af5244a1cf342ad7f7911/skills/property-based-testing/SKILL.md",
+              "commit": "3f5182cfd739fc113f4af5244a1cf342ad7f7911"
+            },
+            {
+              "key": "laurigates/claude-plugins/property-based-testing",
+              "url": "https://github.com/laurigates/claude-plugins/blob/c227bdfc3dae7d72dfb7bb65bb67133dcdc0c568/testing-plugin/skills/property-based-testing/SKILL.md",
+              "commit": "c227bdfc3dae7d72dfb7bb65bb67133dcdc0c568"
+            },
+            {
+              "key": "emilkowalski/skills/write-swift",
+              "url": "https://github.com/emilkowalski/skills/blob/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/write-swift/SKILL.md",
+              "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c"
+            }
+          ],
+          "first_document_sha256": "f0e2aa98f3762bb03f27177a346d768cc3ffc93900ad4a622d60447798841b97",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/aj-geddes/useful-ai-prompts/blob/3f5182cfd739fc113f4af5244a1cf342ad7f7911/skills/property-based-testing/SKILL.md#L4",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "abstain",
+          "parameter_evidence_review": "旧查询候选不支持指定 Rust 库。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "write",
+              "state": "searched",
+              "top_keys": [
+                "mattpocock/skills/write-a-skill",
+                "emilkowalski/skills/write-swift",
+                "mattpocock/skills/triage"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "property-based",
+              "state": "searched",
+              "top_keys": [
+                "trailofbits/skills/property-based-testing",
+                "aj-geddes/useful-ai-prompts/property-based-testing",
+                "laurigates/claude-plugins/property-based-testing"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "test",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "microsoft/azure-skills/azure-validate",
+                "microsoft/azure-skills/azure-aigateway"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "source_unavailable": 1,
+            "license_unconfirmed": 2,
+            "insufficient_task_evidence": 5,
+            "ambiguous_identity": 2
+          },
+          "recommended": []
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "排除说明写明只适用于 Evolve SDK 的候选。首选提供通用 Rust parser 的输入生成器与断言案例。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "proptest",
+              "state": "searched",
+              "top_keys": [
+                "inanna-malick/agent-skills/proptest-praxis",
+                "nichoth/skills/proptest",
+                "patrykgz/rust-devagent-loop-template/proptest"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 4,
+            "license_unconfirmed": 1,
+            "source_unavailable": 2,
+            "declared_out_of_scope": 1
+          },
+          "recommended": [
+            {
+              "key": "leynos/rust-skill/proptest",
+              "url": "https://github.com/leynos/rust-skill/blob/5bc2c079fc3fb58fdc13f9de35366b0a64cccc59/skills/proptest/SKILL.md",
+              "commit": "5bc2c079fc3fb58fdc13f9de35366b0a64cccc59"
+            },
+            {
+              "key": "patrykgz/rust-devagent-loop-template/proptest",
+              "url": "https://github.com/patrykgz/rust-devagent-loop-template/blob/255c11ce27b1e1ef3cd02a576f871bf62c69dc54/.claude/skills/proptest/SKILL.md",
+              "commit": "255c11ce27b1e1ef3cd02a576f871bf62c69dc54"
+            },
+            {
+              "key": "claude-dev-suite/claude-dev-suite/proptest",
+              "url": "https://github.com/claude-dev-suite/claude-dev-suite/blob/b6a8182be20e76fc2744877af3126d1e58779876/skills/testing/proptest/SKILL.md",
+              "commit": "b6a8182be20e76fc2744877af3126d1e58779876"
+            }
+          ],
+          "first_document_sha256": "dbef396e19b0df18abcae74e6a403457c1f4259e3936288508fd881559a9dc30",
+          "matched_sources": [
+            {
+              "label": "使用 proptest",
+              "url": "https://github.com/leynos/rust-skill/blob/5bc2c079fc3fb58fdc13f9de35366b0a64cccc59/skills/proptest/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      },
+      "before_scope_correction": {
+        "grade": "mismatch",
+        "parameter_evidence_review": "第一项偏 Evolve SDK，通用 Rust parser 属性测试在第二项。",
+        "query_observations": [
+          {
+            "hits": 8,
+            "query": "proptest",
+            "state": "searched",
+            "top_keys": [
+              "inanna-malick/agent-skills/proptest-praxis",
+              "nichoth/skills/proptest",
+              "patrykgz/rust-devagent-loop-template/proptest"
+            ]
+          }
+        ],
+        "candidates_by_outcome": {
+          "eligible": 5,
+          "license_unconfirmed": 1,
+          "source_unavailable": 2
+        },
+        "recommended": [
+          {
+            "key": "evstack/ev-rs/evolve-proptest",
+            "url": "https://github.com/evstack/ev-rs/blob/7e7af5947268aee71dfd4015358cef60a26c594a/.claude/skills/evolve-proptest/SKILL.md",
+            "commit": "7e7af5947268aee71dfd4015358cef60a26c594a"
+          },
+          {
+            "key": "leynos/rust-skill/proptest",
+            "url": "https://github.com/leynos/rust-skill/blob/5bc2c079fc3fb58fdc13f9de35366b0a64cccc59/skills/proptest/SKILL.md",
+            "commit": "5bc2c079fc3fb58fdc13f9de35366b0a64cccc59"
+          },
+          {
+            "key": "patrykgz/rust-devagent-loop-template/proptest",
+            "url": "https://github.com/patrykgz/rust-devagent-loop-template/blob/255c11ce27b1e1ef3cd02a576f871bf62c69dc54/.claude/skills/proptest/SKILL.md",
+            "commit": "255c11ce27b1e1ef3cd02a576f871bf62c69dc54"
+          }
+        ],
+        "first_document_sha256": "b6582a3f67cbc0e09649fd9c29ec51350c447d80c65fc159ab33a7a781e148c8",
+        "matched_sources": [
+          {
+            "label": "使用 proptest",
+            "url": "https://github.com/evstack/ev-rs/blob/7e7af5947268aee71dfd4015358cef60a26c594a/.claude/skills/evolve-proptest/SKILL.md#L343",
+            "output_url": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "ffmpeg",
+      "task": "用 FFmpeg 将 WebM 转成带字幕的 MP4，保留音频。",
+      "split": "transfer",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "partial",
+          "parameter_evidence_review": "能转换媒体并处理音轨，未提供 WebM 转带字幕 MP4 的依据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "ffmpeg",
+              "state": "searched",
+              "top_keys": [
+                "digitalsamba/claude-code-video-toolkit/ffmpeg",
+                "kajisho5/ffmpeg-skill/ffmpeg-skill",
+                "fabriqaai/ffmpeg-analyse-video-skill/ffmpeg-analyse-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "webm",
+              "state": "searched",
+              "top_keys": [
+                "browserbase/skills/webmcp-gen",
+                "webmaxru/web-ai-agent-skills/webmcp",
+                "webmaxru/web-ai-agent-skills/writing-assistance-apis"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "mp4",
+              "state": "searched",
+              "top_keys": [
+                "alchaincyf/huashu-design/huashu-design",
+                "inference-sh/skills/remotion-render",
+                "101-skills/superpowers/remotion-render"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 2,
+            "insufficient_task_evidence": 4,
+            "license_unconfirmed": 3,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "digitalsamba/claude-code-video-toolkit/ffmpeg",
+              "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/463f7be001e51cbb7f28f848cd323541acff8ad8/.claude/skills/ffmpeg/SKILL.md",
+              "commit": "463f7be001e51cbb7f28f848cd323541acff8ad8"
+            },
+            {
+              "key": "kajisho5/ffmpeg-skill/ffmpeg-skill",
+              "url": "https://github.com/kajisho5/ffmpeg-skill/blob/210b8f28f5eace2e27f8de21bd60d03ba5739d32/SKILL.md",
+              "commit": "210b8f28f5eace2e27f8de21bd60d03ba5739d32"
+            }
+          ],
+          "first_document_sha256": "20a0c1e35a683a6bdb2ba978cb822b950b3ead5d638e84ef711e021e52711d06",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/463f7be001e51cbb7f28f848cd323541acff8ad8/.claude/skills/ffmpeg/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "old-queries-new-audit": {
+          "grade": "partial",
+          "parameter_evidence_review": "能转换媒体并处理音轨，未提供 WebM 转带字幕 MP4 的依据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "ffmpeg",
+              "state": "searched",
+              "top_keys": [
+                "digitalsamba/claude-code-video-toolkit/ffmpeg",
+                "kajisho5/ffmpeg-skill/ffmpeg-skill",
+                "fabriqaai/ffmpeg-analyse-video-skill/ffmpeg-analyse-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "webm",
+              "state": "searched",
+              "top_keys": [
+                "browserbase/skills/webmcp-gen",
+                "webmaxru/web-ai-agent-skills/webmcp",
+                "webmaxru/web-ai-agent-skills/writing-assistance-apis"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "mp4",
+              "state": "searched",
+              "top_keys": [
+                "alchaincyf/huashu-design/huashu-design",
+                "inference-sh/skills/remotion-render",
+                "101-skills/superpowers/remotion-render"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 2,
+            "insufficient_task_evidence": 4,
+            "license_unconfirmed": 3,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "digitalsamba/claude-code-video-toolkit/ffmpeg",
+              "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/463f7be001e51cbb7f28f848cd323541acff8ad8/.claude/skills/ffmpeg/SKILL.md",
+              "commit": "463f7be001e51cbb7f28f848cd323541acff8ad8"
+            },
+            {
+              "key": "kajisho5/ffmpeg-skill/ffmpeg-skill",
+              "url": "https://github.com/kajisho5/ffmpeg-skill/blob/210b8f28f5eace2e27f8de21bd60d03ba5739d32/SKILL.md",
+              "commit": "210b8f28f5eace2e27f8de21bd60d03ba5739d32"
+            }
+          ],
+          "first_document_sha256": "20a0c1e35a683a6bdb2ba978cb822b950b3ead5d638e84ef711e021e52711d06",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/463f7be001e51cbb7f28f848cd323541acff8ad8/.claude/skills/ffmpeg/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "partial",
+          "parameter_evidence_review": "能转换媒体并处理音轨，未提供 WebM 转带字幕 MP4 的依据。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "ffmpeg",
+              "state": "searched",
+              "top_keys": [
+                "digitalsamba/claude-code-video-toolkit/ffmpeg",
+                "kajisho5/ffmpeg-skill/ffmpeg-skill",
+                "fabriqaai/ffmpeg-analyse-video-skill/ffmpeg-analyse-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "webm",
+              "state": "searched",
+              "top_keys": [
+                "browserbase/skills/webmcp-gen",
+                "webmaxru/web-ai-agent-skills/webmcp",
+                "webmaxru/web-ai-agent-skills/writing-assistance-apis"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "mp4",
+              "state": "searched",
+              "top_keys": [
+                "alchaincyf/huashu-design/huashu-design",
+                "inference-sh/skills/remotion-render",
+                "101-skills/superpowers/remotion-render"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 2,
+            "insufficient_task_evidence": 4,
+            "license_unconfirmed": 3,
+            "source_unavailable": 1
+          },
+          "recommended": [
+            {
+              "key": "digitalsamba/claude-code-video-toolkit/ffmpeg",
+              "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/463f7be001e51cbb7f28f848cd323541acff8ad8/.claude/skills/ffmpeg/SKILL.md",
+              "commit": "463f7be001e51cbb7f28f848cd323541acff8ad8"
+            },
+            {
+              "key": "kajisho5/ffmpeg-skill/ffmpeg-skill",
+              "url": "https://github.com/kajisho5/ffmpeg-skill/blob/210b8f28f5eace2e27f8de21bd60d03ba5739d32/SKILL.md",
+              "commit": "210b8f28f5eace2e27f8de21bd60d03ba5739d32"
+            }
+          ],
+          "first_document_sha256": "20a0c1e35a683a6bdb2ba978cb822b950b3ead5d638e84ef711e021e52711d06",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/463f7be001e51cbb7f28f848cd323541acff8ad8/.claude/skills/ffmpeg/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "aggregates": {
+    "baseline-420f191": {
+      "regression": {
+        "mismatch": 2,
+        "fit": 4
+      },
+      "all": {
+        "mismatch": 7,
+        "fit": 5,
+        "abstain": 1,
+        "partial": 3
+      },
+      "held_out_tasks": {
+        "mismatch": 3,
+        "abstain": 1,
+        "fit": 1,
+        "partial": 1
+      },
+      "transfer": {
+        "mismatch": 2,
+        "partial": 2
+      }
+    },
+    "old-queries-new-audit": {
+      "regression": {
+        "abstain": 2,
+        "fit": 4
+      },
+      "all": {
+        "abstain": 6,
+        "fit": 8,
+        "partial": 2
+      },
+      "held_out_tasks": {
+        "fit": 4,
+        "abstain": 2
+      },
+      "transfer": {
+        "abstain": 2,
+        "partial": 2
+      }
+    },
+    "pt-v1.7.0": {
+      "regression": {
+        "fit": 6
+      },
+      "all": {
+        "fit": 13,
+        "abstain": 1,
+        "partial": 2
+      },
+      "held_out_tasks": {
+        "fit": 6
+      },
+      "transfer": {
+        "abstain": 1,
+        "partial": 2,
+        "fit": 1
+      }
+    }
+  }
+}

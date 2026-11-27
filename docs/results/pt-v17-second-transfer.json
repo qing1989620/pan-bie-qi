@@ -1,0 +1,514 @@
+{
+  "schema": "pt-v17-independent-second-transfer-v1",
+  "date": "2026-11-27",
+  "snapshot_sha256": "1f229cc94cab217ff6a0b0fadb50e5936e14ab3ff3dd0f3dbb12f541a8ffa975",
+  "protocol": "Four new tasks evaluated with the frozen baseline and release. No tuning on these four tasks.",
+  "cases": [
+    {
+      "id": "polars",
+      "task": "Use Polars to group a local CSV by two fields, compute totals, and write Parquet offline.",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "fit",
+          "parameter_evidence_review": "Polars 固定包提供本地 CSV 读取、分组聚合和 sink_parquet 示例。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "polars",
+              "state": "searched",
+              "top_keys": [
+                "k-dense-ai/scientific-agent-skills/polars",
+                "k-dense-ai/scientific-agent-skills/polars-bio",
+                "polars-inc/skills/polars"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "group",
+              "state": "searched",
+              "top_keys": [
+                "mbfinotti/advertising-skills/ad-buyer-group-mapper",
+                "replicas-group/skill/replicas-agent",
+                "gamedev-skills/awesome-gamedev-agent-skills/godot-signals-groups"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "local",
+              "state": "searched",
+              "top_keys": [
+                "flutter/agent-plugins/flutter-setup-localization",
+                "microsoft/azure-skills/azure-app-onboard-prereq",
+                "heygen-com/hyperframes/media-use"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 2,
+            "insufficient_task_evidence": 3,
+            "conditional": 3,
+            "source_unavailable": 1,
+            "ambiguous_identity": 1
+          },
+          "recommended": [
+            {
+              "key": "polars-inc/skills/polars",
+              "url": "https://github.com/polars-inc/skills/blob/7d58a5df7829aa784d4ebb3fa9360aadc95ca0db/skills/polars/SKILL.md",
+              "commit": "7d58a5df7829aa784d4ebb3fa9360aadc95ca0db"
+            },
+            {
+              "key": "k-dense-ai/scientific-agent-skills/polars-bio",
+              "url": "https://github.com/k-dense-ai/scientific-agent-skills/blob/c21d13b3cc2894680229ba9959a53281acb9200e/skills/polars-bio/SKILL.md",
+              "commit": "c21d13b3cc2894680229ba9959a53281acb9200e"
+            },
+            {
+              "key": "gamedev-skills/awesome-gamedev-agent-skills/godot-signals-groups",
+              "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/c6ca6c41c839b68319ffc08430b99ab768debc32/skills/godot/godot-signals-groups/SKILL.md",
+              "commit": "c6ca6c41c839b68319ffc08430b99ab768debc32"
+            }
+          ],
+          "first_document_sha256": "72d51da53bc0bf2ff6891fef3a328c66dd3518af6f3ad65d56a5610eb35534c6",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/polars-inc/skills/blob/7d58a5df7829aa784d4ebb3fa9360aadc95ca0db/skills/polars/SKILL.md#L7",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "Polars 固定包提供本地 CSV 读取、分组聚合和 sink_parquet 示例。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "polars",
+              "state": "searched",
+              "top_keys": [
+                "k-dense-ai/scientific-agent-skills/polars",
+                "k-dense-ai/scientific-agent-skills/polars-bio",
+                "polars-inc/skills/polars"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "group",
+              "state": "searched",
+              "top_keys": [
+                "mbfinotti/advertising-skills/ad-buyer-group-mapper",
+                "replicas-group/skill/replicas-agent",
+                "gamedev-skills/awesome-gamedev-agent-skills/godot-signals-groups"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "local",
+              "state": "searched",
+              "top_keys": [
+                "flutter/agent-plugins/flutter-setup-localization",
+                "microsoft/azure-skills/azure-app-onboard-prereq",
+                "heygen-com/hyperframes/media-use"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 2,
+            "insufficient_task_evidence": 3,
+            "conditional": 3,
+            "source_unavailable": 1,
+            "ambiguous_identity": 1
+          },
+          "recommended": [
+            {
+              "key": "polars-inc/skills/polars",
+              "url": "https://github.com/polars-inc/skills/blob/7d58a5df7829aa784d4ebb3fa9360aadc95ca0db/skills/polars/SKILL.md",
+              "commit": "7d58a5df7829aa784d4ebb3fa9360aadc95ca0db"
+            },
+            {
+              "key": "k-dense-ai/scientific-agent-skills/polars-bio",
+              "url": "https://github.com/k-dense-ai/scientific-agent-skills/blob/c21d13b3cc2894680229ba9959a53281acb9200e/skills/polars-bio/SKILL.md",
+              "commit": "c21d13b3cc2894680229ba9959a53281acb9200e"
+            },
+            {
+              "key": "gamedev-skills/awesome-gamedev-agent-skills/godot-signals-groups",
+              "url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/c6ca6c41c839b68319ffc08430b99ab768debc32/skills/godot/godot-signals-groups/SKILL.md",
+              "commit": "c6ca6c41c839b68319ffc08430b99ab768debc32"
+            }
+          ],
+          "first_document_sha256": "72d51da53bc0bf2ff6891fef3a328c66dd3518af6f3ad65d56a5610eb35534c6",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/polars-inc/skills/blob/7d58a5df7829aa784d4ebb3fa9360aadc95ca0db/skills/polars/SKILL.md#L7",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pandoc",
+      "task": "用 Pandoc 把包含表格和脚注的 Markdown 转成可编辑 DOCX。",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "首项是通用 DOCX 指南，Pandoc 示例将 DOCX 反向转换为 Markdown。",
+          "query_observations": [
+            {
+              "hits": 6,
+              "query": "docx edit word",
+              "state": "searched",
+              "top_keys": [
+                "anthropics/skills/docx",
+                "claude-office-skills/skills/docx-manipulation",
+                "suzheng/k2f/k2f"
+              ]
+            },
+            {
+              "hits": 6,
+              "query": "markdown document",
+              "state": "searched",
+              "top_keys": [
+                "firecrawl/anydoc/convert-documents-to-markdown",
+                "mattpocock/skills/grill-with-docs",
+                "mattpocock/skills/research"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 7,
+            "insufficient_task_evidence": 2,
+            "ambiguous_identity": 1
+          },
+          "recommended": [
+            {
+              "key": "anthropics/skills/docx",
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md",
+              "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba"
+            },
+            {
+              "key": "claude-office-skills/skills/docx-manipulation",
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/docx-manipulation/SKILL.md",
+              "commit": "9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11"
+            },
+            {
+              "key": "appautomaton/document-skills/docx",
+              "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/docx/SKILL.md",
+              "commit": "dfb5685ce241dd9e1f6148ceba5977ee43b54d46"
+            }
+          ],
+          "first_document_sha256": "895d5aa6c4cd98e4aed4c995d846f056f3549086e79bcd6617afea6014f82288",
+          "matched_sources": [
+            {
+              "label": "编辑 Word 文档",
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md#L13",
+              "output_url": null
+            },
+            {
+              "label": "处理 Markdown 文档",
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md#L15",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "首项是通用 DOCX 指南，Pandoc 示例将 DOCX 反向转换为 Markdown。",
+          "query_observations": [
+            {
+              "hits": 6,
+              "query": "docx edit word",
+              "state": "searched",
+              "top_keys": [
+                "anthropics/skills/docx",
+                "claude-office-skills/skills/docx-manipulation",
+                "suzheng/k2f/k2f"
+              ]
+            },
+            {
+              "hits": 6,
+              "query": "markdown document",
+              "state": "searched",
+              "top_keys": [
+                "firecrawl/anydoc/convert-documents-to-markdown",
+                "mattpocock/skills/grill-with-docs",
+                "mattpocock/skills/research"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "eligible": 7,
+            "insufficient_task_evidence": 2,
+            "ambiguous_identity": 1
+          },
+          "recommended": [
+            {
+              "key": "anthropics/skills/docx",
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md",
+              "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba"
+            },
+            {
+              "key": "claude-office-skills/skills/docx-manipulation",
+              "url": "https://github.com/claude-office-skills/skills/blob/9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11/docx-manipulation/SKILL.md",
+              "commit": "9c4c7d5cd2813a8936bf2c9fdb174ea883b85a11"
+            },
+            {
+              "key": "appautomaton/document-skills/docx",
+              "url": "https://github.com/appautomaton/document-skills/blob/dfb5685ce241dd9e1f6148ceba5977ee43b54d46/docx/SKILL.md",
+              "commit": "dfb5685ce241dd9e1f6148ceba5977ee43b54d46"
+            }
+          ],
+          "first_document_sha256": "895d5aa6c4cd98e4aed4c995d846f056f3549086e79bcd6617afea6014f82288",
+          "matched_sources": [
+            {
+              "label": "编辑 Word 文档",
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md#L13",
+              "output_url": null
+            },
+            {
+              "label": "处理 Markdown 文档",
+              "url": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/docx/SKILL.md#L15",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "playwright-form",
+      "task": "Use Playwright to test a local multi-step registration form and verify its error messages.",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "mismatch",
+          "parameter_evidence_review": "通用浏览器宿主无 Playwright 依赖。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "playwright browser testing",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "anthropics/skills/webapp-testing",
+                "101-skills/superpowers/agent-browser"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "eligible": 1,
+            "insufficient_task_evidence": 2,
+            "license_unconfirmed": 4,
+            "declared_out_of_scope": 1
+          },
+          "recommended": [
+            {
+              "key": "vercel-labs/agent-browser/agent-browser",
+              "url": "https://github.com/vercel-labs/agent-browser/blob/3f43a2affd9944298104b7bb39d5f241aef85e91/skills/agent-browser/SKILL.md",
+              "commit": "3f43a2affd9944298104b7bb39d5f241aef85e91"
+            },
+            {
+              "key": "microsoft/playwright-cli/playwright-cli",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+              "commit": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820"
+            }
+          ],
+          "first_document_sha256": "7d46deeb0101e84f8d70fd2e5cd18e3b6017edfb973607ff23e95e22c92ce73e",
+          "matched_sources": [
+            {
+              "label": "测试浏览器应用",
+              "url": "https://github.com/vercel-labs/agent-browser/blob/3f43a2affd9944298104b7bb39d5f241aef85e91/skills/agent-browser/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "fit",
+          "parameter_evidence_review": "Playwright CLI 的表单提交和页面测试示例支持核对错误提示。",
+          "query_observations": [
+            {
+              "hits": 8,
+              "query": "playwright browser testing",
+              "state": "searched",
+              "top_keys": [
+                "vercel-labs/agent-browser/agent-browser",
+                "anthropics/skills/webapp-testing",
+                "101-skills/superpowers/agent-browser"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "conditional": 1,
+            "declared_out_of_scope": 2,
+            "insufficient_task_evidence": 2,
+            "license_unconfirmed": 4
+          },
+          "recommended": [
+            {
+              "key": "microsoft/playwright-cli/playwright-cli",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md",
+              "commit": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820"
+            }
+          ],
+          "first_document_sha256": "1c4c34000f6102ee71fe91bf25351a221f7da37f48f2d556e1756f66e17d356f",
+          "matched_sources": [
+            {
+              "label": "用 Playwright 测试浏览器应用",
+              "url": "https://github.com/microsoft/playwright-cli/blob/dc5f4d5616ab5a28ded12fd7101a4d49bd59a820/skills/playwright-cli/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "go-ci",
+      "task": "Create a GitHub Actions workflow to test Go modules and save JUnit test output.",
+      "versions": {
+        "baseline-420f191": {
+          "grade": "partial",
+          "parameter_evidence_review": "提供 Actions 工作流模板，缺少 Go modules + JUnit 产物步骤。",
+          "query_observations": [
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "github",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/git-commit",
+                "github/awesome-copilot/excalidraw-diagram-generator",
+                "github/awesome-copilot/multi-stage-dockerfile"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "actions",
+              "state": "searched",
+              "top_keys": [
+                "callstackincubator/agent-skills/github-actions",
+                "wshobson/agents/github-actions-templates",
+                "xixu-me/skills/github-actions-docs"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 4,
+            "insufficient_task_evidence": 3,
+            "conditional": 3
+          },
+          "recommended": [
+            {
+              "key": "wshobson/agents/github-actions-templates",
+              "url": "https://github.com/wshobson/agents/blob/c96b5f6552dba32e4492307493ee613581430715/plugins/cicd-automation/skills/github-actions-templates/SKILL.md",
+              "commit": "c96b5f6552dba32e4492307493ee613581430715"
+            },
+            {
+              "key": "callstackincubator/agent-skills/github-actions",
+              "url": "https://github.com/callstackincubator/agent-skills/blob/59e9d17446a248b21d86f078fcd0bd2d36db1ca4/skills/github-actions/SKILL.md",
+              "commit": "59e9d17446a248b21d86f078fcd0bd2d36db1ca4"
+            },
+            {
+              "key": "xixu-me/skills/github-actions-docs",
+              "url": "https://github.com/xixu-me/skills/blob/64c638dcf6a792877f70bf8755543f6708b1d75b/skills/github-actions-docs/SKILL.md",
+              "commit": "64c638dcf6a792877f70bf8755543f6708b1d75b"
+            }
+          ],
+          "first_document_sha256": "fc3c06ddb2423804be275defbb8a2c35f1564ba28aaeb07dcf01ec9c4cc8f023",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/wshobson/agents/blob/c96b5f6552dba32e4492307493ee613581430715/plugins/cicd-automation/skills/github-actions-templates/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        },
+        "pt-v1.7.0": {
+          "grade": "partial",
+          "parameter_evidence_review": "提供 Actions 工作流模板，缺少 Go modules + JUnit 产物步骤。",
+          "query_observations": [
+            {
+              "hits": 4,
+              "query": "create",
+              "state": "searched",
+              "top_keys": [
+                "inference-sh/skills/ai-video-generation",
+                "inference-sh/skills/ai-image-generation",
+                "inference-sh/skills/ai-avatar-video"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "github",
+              "state": "searched",
+              "top_keys": [
+                "github/awesome-copilot/git-commit",
+                "github/awesome-copilot/excalidraw-diagram-generator",
+                "github/awesome-copilot/multi-stage-dockerfile"
+              ]
+            },
+            {
+              "hits": 8,
+              "query": "actions",
+              "state": "searched",
+              "top_keys": [
+                "callstackincubator/agent-skills/github-actions",
+                "wshobson/agents/github-actions-templates",
+                "xixu-me/skills/github-actions-docs"
+              ]
+            }
+          ],
+          "candidates_by_outcome": {
+            "license_unconfirmed": 4,
+            "insufficient_task_evidence": 3,
+            "conditional": 3
+          },
+          "recommended": [
+            {
+              "key": "wshobson/agents/github-actions-templates",
+              "url": "https://github.com/wshobson/agents/blob/c96b5f6552dba32e4492307493ee613581430715/plugins/cicd-automation/skills/github-actions-templates/SKILL.md",
+              "commit": "c96b5f6552dba32e4492307493ee613581430715"
+            },
+            {
+              "key": "callstackincubator/agent-skills/github-actions",
+              "url": "https://github.com/callstackincubator/agent-skills/blob/59e9d17446a248b21d86f078fcd0bd2d36db1ca4/skills/github-actions/SKILL.md",
+              "commit": "59e9d17446a248b21d86f078fcd0bd2d36db1ca4"
+            },
+            {
+              "key": "xixu-me/skills/github-actions-docs",
+              "url": "https://github.com/xixu-me/skills/blob/64c638dcf6a792877f70bf8755543f6708b1d75b/skills/github-actions-docs/SKILL.md",
+              "commit": "64c638dcf6a792877f70bf8755543f6708b1d75b"
+            }
+          ],
+          "first_document_sha256": "fc3c06ddb2423804be275defbb8a2c35f1564ba28aaeb07dcf01ec9c4cc8f023",
+          "matched_sources": [
+            {
+              "label": "任务关键词呼应",
+              "url": "https://github.com/wshobson/agents/blob/c96b5f6552dba32e4492307493ee613581430715/plugins/cicd-automation/skills/github-actions-templates/SKILL.md#L3",
+              "output_url": null
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "aggregates": {
+    "baseline-420f191": {
+      "fit": 1,
+      "mismatch": 2,
+      "partial": 1
+    },
+    "pt-v1.7.0": {
+      "fit": 2,
+      "mismatch": 1,
+      "partial": 1
+    }
+  }
+}

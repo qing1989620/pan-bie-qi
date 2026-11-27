@@ -55,6 +55,7 @@ python3 -m venv .venv
 - [真实任务的改前改后验收](docs/field-evaluation.md)
 - [中文双栏论文](docs/skill-discriminator-paper.pdf)
 - [PT 搜索、判别和推荐论文](docs/pt-framework-paper.pdf)
+- [PT 1.7.0 论文复现与框架对照](docs/pt-2026-iteration.md)
 - [第三方材料说明](docs/third-party.md)
 
 复核随包产物可直接运行 `python -m skill_discriminator.verify`。它打印固定档案的通过数、留出结果和数据指纹。开发测试安装 `python -m pip install ".[dev]"` 后运行 `python -m pytest -q`。

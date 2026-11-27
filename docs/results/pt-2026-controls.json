@@ -1,0 +1,155 @@
+{
+  "schema": "pt-2026-external-evidence-and-coverage-v1",
+  "paired_skillsbench": {
+    "revision": "f104580363a9642563593c475620196ecd36687d",
+    "manifest_sha256": "cf1087ddc2f342e5366d91d0f300d5ed517c66cdf6279b69046eeb9f39480408",
+    "selected_trials": 1150,
+    "matched_task_model_harness_cells": {
+      "matched_cells": 180,
+      "tasks": 87,
+      "without_skill_mean": 0.3558196296296296,
+      "with_skill_mean": 0.5064057407407407,
+      "paired_delta": 0.15058611115,
+      "improved": 64,
+      "degraded": 24,
+      "tied": 92
+    },
+    "model_breakdown": {
+      "gemini-3.5-flash": {
+        "matched_cells": 87,
+        "tasks": 87,
+        "without_skill_mean": 0.41220191570881226,
+        "with_skill_mean": 0.4926287356321839,
+        "paired_delta": 0.08042681994252873,
+        "improved": 26,
+        "degraded": 14,
+        "tied": 47
+      },
+      "minimax-m3": {
+        "matched_cells": 86,
+        "tasks": 86,
+        "without_skill_mean": 0.304487984496124,
+        "with_skill_mean": 0.5305542635658914,
+        "paired_delta": 0.22606627912790697,
+        "improved": 37,
+        "degraded": 10,
+        "tied": 39
+      },
+      "opus-4.8": {
+        "matched_cells": 7,
+        "tasks": 7,
+        "without_skill_mean": 0.2857142857142857,
+        "with_skill_mean": 0.38095238095238093,
+        "paired_delta": 0.09523809528571428,
+        "improved": 1,
+        "degraded": 0,
+        "tied": 6
+      }
+    },
+    "cross_model_transfer": [
+      {
+        "reference_model": "gemini-3.5-flash",
+        "target_model": "minimax-m3",
+        "matched_tasks": 86,
+        "adoptions_from_positive_reference": 26,
+        "adoptions_with_target_regression": 4,
+        "adoptions_with_target_gain": 14,
+        "target_without_skill": 0.304487984496124,
+        "target_always_with_skill": 0.5305542635658914,
+        "target_reference_gated": 0.3958643410852713
+      },
+      {
+        "reference_model": "gemini-3.5-flash",
+        "target_model": "opus-4.8",
+        "matched_tasks": 7,
+        "adoptions_from_positive_reference": 1,
+        "adoptions_with_target_regression": 0,
+        "adoptions_with_target_gain": 0,
+        "target_without_skill": 0.2857142857142857,
+        "target_always_with_skill": 0.38095238095238093,
+        "target_reference_gated": 0.2857142857142857
+      },
+      {
+        "reference_model": "minimax-m3",
+        "target_model": "gemini-3.5-flash",
+        "matched_tasks": 86,
+        "adoptions_from_positive_reference": 37,
+        "adoptions_with_target_regression": 5,
+        "adoptions_with_target_gain": 14,
+        "target_without_skill": 0.4053670542635659,
+        "target_always_with_skill": 0.4906050387596899,
+        "target_reference_gated": 0.4766577519379845
+      },
+      {
+        "reference_model": "minimax-m3",
+        "target_model": "opus-4.8",
+        "matched_tasks": 7,
+        "adoptions_from_positive_reference": 3,
+        "adoptions_with_target_regression": 0,
+        "adoptions_with_target_gain": 0,
+        "target_without_skill": 0.2857142857142857,
+        "target_always_with_skill": 0.38095238095238093,
+        "target_reference_gated": 0.2857142857142857
+      },
+      {
+        "reference_model": "opus-4.8",
+        "target_model": "gemini-3.5-flash",
+        "matched_tasks": 7,
+        "adoptions_from_positive_reference": 1,
+        "adoptions_with_target_regression": 0,
+        "adoptions_with_target_gain": 0,
+        "target_without_skill": 0.3333333333333333,
+        "target_always_with_skill": 0.38095238095238093,
+        "target_reference_gated": 0.3333333333333333
+      },
+      {
+        "reference_model": "opus-4.8",
+        "target_model": "minimax-m3",
+        "matched_tasks": 7,
+        "adoptions_from_positive_reference": 1,
+        "adoptions_with_target_regression": 0,
+        "adoptions_with_target_gain": 0,
+        "target_without_skill": 0.23809523809523808,
+        "target_always_with_skill": 0.5238095238095238,
+        "target_reference_gated": 0.23809523809523808
+      }
+    ],
+    "task_cluster_bootstrap_95": [
+      0.09304212454212454,
+      0.20935154826958105
+    ],
+    "repeated_trials": "Select official manifest rows, average rewards within each condition at the same task, model and harness.",
+    "source": "https://huggingface.co/datasets/benchflow/skillsbench-leaderboard/blob/f104580363a9642563593c475620196ecd36687d/analysis/experiment_final_selected_manifest.json"
+  },
+  "selection": {
+    "synthetic_trials": 5400,
+    "candidate_count": 10,
+    "seed": 581,
+    "by_limit": {
+      "2": {
+        "trials": 1800,
+        "improved": 104,
+        "degraded": 0,
+        "mean_greedy_coverage": 7.07,
+        "mean_exact_coverage": 7.131111111111111,
+        "p95_exact_time_ms": 0.08140000136336312
+      },
+      "3": {
+        "trials": 1800,
+        "improved": 129,
+        "degraded": 0,
+        "mean_greedy_coverage": 8.09388888888889,
+        "mean_exact_coverage": 8.166666666666666,
+        "p95_exact_time_ms": 0.16070000128820539
+      },
+      "4": {
+        "trials": 1800,
+        "improved": 63,
+        "degraded": 0,
+        "mean_greedy_coverage": 8.625555555555556,
+        "mean_exact_coverage": 8.660555555555556,
+        "p95_exact_time_ms": 0.2319999985047616
+      }
+    }
+  }
+}

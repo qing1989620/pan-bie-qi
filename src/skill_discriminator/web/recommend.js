@@ -35,7 +35,8 @@ function skillCard(item) {
   card.append(dom("p", "判别器结论 · " + assessment.verdict + "。" + assessment.reason, "pt-proof"));
   const proof = assessment.task_evidence;
   if (proof.score !== null) {
-    const tested = dom("p", proof.basis + " " + proof.score + " / 100。" + proof.reason, "pt-proof");
+    const history = proof.applies_to_current_task ? proof.basis : "历史评测 · " + proof.basis;
+    const tested = dom("p", history + " " + proof.score + " / 100。" + proof.reason, "pt-proof");
     if (proof.source_url) tested.append(" ", anchor("原评测", proof.source_url));
     card.append(tested);
   }
@@ -52,6 +53,11 @@ function skillCard(item) {
     const source = match.evidence;
     row.append(anchor(match.label + " · 第 " + source.start_line + " 行", source.url),
       dom("blockquote", source.quote));
+    if (match.output_evidence) {
+      const output = match.output_evidence;
+      row.append(anchor("产出依据 · 第 " + output.start_line + " 行", output.url),
+        dom("blockquote", output.quote));
+    }
     list.append(row);
   }
   evidence.append(list, dom("p", "说明 " + assessment.characters.toLocaleString("zh-CN") + " 字符。判别器读取 " +

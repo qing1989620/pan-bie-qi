@@ -183,7 +183,8 @@ def _package_dimension(report, files, inventory):
 def _task_dimension(report):
     profile = report["skill_profile"]
     task = {"id": "task", "label": "任务实测", "basis": "暂无实测", "score": None,
-            "reason": "当前版本还没有登记任务得分。", "scope": None, "checks": []}
+            "reason": "当前版本还没有登记任务得分。", "scope": None, "checks": [],
+            "applies_to_current_task": False}
     proof = report.get("verified_adoption", {})
     if proof.get("state") == "measured_on_registered_inputs":
         holdout = proof.get("holdout")
@@ -194,6 +195,7 @@ def _task_dimension(report):
             task.update(score=round(100 * with_score / count, 1), basis="固定任务验收",
                         reason=f"有 Skill 通过 {with_score}/{count}，无 Skill 通过 {without}/{count}。",
                         scope=proof["scope"], sample_count=count,
+                        applies_to_current_task=proof.get("applies_to_current_task") is True,
                         without_skill=round(100 * without / count, 1), lift=round(100 * (with_score - without) / count, 1))
     elif released := profile.get("public_benchmark"):
         measure = next(row for row in released["measures"] if row["dimension"] == "Effectiveness")

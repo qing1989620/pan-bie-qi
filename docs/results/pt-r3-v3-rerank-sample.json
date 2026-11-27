@@ -1,0 +1,130 @@
+{
+  "schema": "pt-r3-release-reproduction-v1",
+  "data_revision": "57d9285969cc293832c71ecbe42a75ac416bef93",
+  "hashes": {
+    "skills_test.jsonl": "b80f88aa0d3826fb6456eb45f84be12e4ca6df23d60a1148ac92854a0ce2a6a5",
+    "test.jsonl": "f1f241303379d313ca7904460c4395b3e80143f5b3ee4a1e0f4056135e30a947",
+    "reproduce.py": "00c094970bacc79f265b606cf800fbec4c44d6aad1b149a9b68b15da3495f44d"
+  },
+  "queries": 5696,
+  "skills": 2050,
+  "model": {
+    "revision": "9df7e112330d858f4fd0a9d1aa5e1def15d5d25a",
+    "sha256": "832c0224b941c586af58bdb9b14a6b597ed15464055d1f7338cca172b51065c4"
+  },
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.5.1+cu121",
+  "dtype": "torch.float16",
+  "sequence_limit": 4096,
+  "embedding": {
+    "hit@1": 0.7208567415730337,
+    "ndcg@5": 0.8006229977527234,
+    "ndcg@10": 0.8158150292521354,
+    "ndcg@15": 0.8204724858616579,
+    "recall@5": 0.8725713951310862,
+    "recall@10": 0.9174859550561796,
+    "recall@15": 0.9343398876404494,
+    "comp@5": 0.8725713951310862,
+    "comp@10": 0.9174859550561796,
+    "comp@15": 0.9343398876404494,
+    "set_compat": 0.2811881188118812
+  },
+  "author_v3_full_reference": {
+    "emb": {
+      "hit@1": 0.7207,
+      "ndcg@5": 0.8006,
+      "ndcg@10": 0.816,
+      "ndcg@15": 0.8205,
+      "recall@5": 0.8722,
+      "recall@10": 0.9177,
+      "recall@15": 0.9338,
+      "comp@5": 0.8722,
+      "comp@10": 0.9177,
+      "comp@15": 0.9338,
+      "set_compat": 0.2812
+    },
+    "rerank": {
+      "hit@1": 0.7521,
+      "ndcg@5": 0.8008,
+      "ndcg@10": 0.8173,
+      "ndcg@15": 0.8254,
+      "recall@5": 0.8481,
+      "recall@10": 0.8969,
+      "recall@15": 0.9264,
+      "comp@5": 0.8481,
+      "comp@10": 0.8969,
+      "comp@15": 0.9264,
+      "set_compat": 0.3188
+    }
+  },
+  "embedding_seconds": null,
+  "rerank_sample": {
+    "indices": [
+      109,
+      779,
+      792,
+      912,
+      926,
+      1205,
+      1728,
+      1874,
+      2114,
+      2115,
+      2175,
+      2217,
+      2423,
+      2575,
+      2690,
+      2816,
+      3187,
+      3559,
+      3610,
+      3716,
+      3756,
+      3774,
+      3787,
+      3911,
+      4192,
+      4310,
+      4552,
+      4866,
+      5050,
+      5196,
+      5297,
+      5429
+    ],
+    "model": {
+      "revision": "6d0c3e486b8653578fd3f0e3c8e7871a0ce01953",
+      "sha256": "bd2594bfbffaaff0e5cab6283cc32025cac5d5397262fd73ecd109b69cddeb92"
+    },
+    "shortlist": 20,
+    "truncation": "trim document before rendering to retain classifier suffix",
+    "embedding": {
+      "hit@1": 0.6875,
+      "ndcg@5": 0.7749885388807685,
+      "ndcg@10": 0.7984972810814577,
+      "ndcg@15": 0.8063097810814577,
+      "recall@5": 0.859375,
+      "recall@10": 0.921875,
+      "recall@15": 0.953125,
+      "comp@5": 0.859375,
+      "comp@10": 0.921875,
+      "comp@15": 0.953125,
+      "set_compat": 0.25
+    },
+    "reranked": {
+      "hit@1": 0.71875,
+      "ndcg@5": 0.7334491041208699,
+      "ndcg@10": 0.7392170946452314,
+      "ndcg@15": 0.7654835259739097,
+      "recall@5": 0.78125,
+      "recall@10": 0.796875,
+      "recall@15": 0.890625,
+      "comp@5": 0.78125,
+      "comp@10": 0.796875,
+      "comp@15": 0.890625,
+      "set_compat": 0.0
+    }
+  },
+  "elapsed_seconds": 365.327
+}

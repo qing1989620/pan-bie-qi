@@ -20,7 +20,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\footnotesize PT 开源 Skill 搜索、判别与推荐}
-\fancyhead[R]{\footnotesize 科研与产品验证报告 · 2026-11-26}
+\fancyhead[R]{\footnotesize 科研与产品验证报告 · 2026-11-27}
 \fancyfoot[C]{\footnotesize\thepage}
 \makeatletter
 \def\ps@pprintTitle{\ps@fancy}
@@ -32,7 +32,7 @@
 \author{开源 Skill 判别器课题研究}
 \journal{独立判别器研究报告}
 \begin{abstract}
-当 Agent 需要完成任务时，公开目录的高相关候选仍可能依赖目标环境没有的服务，或者支持与任务相反的输入输出方向。本文实现 PT 框架，使用户可以由任务发起公开搜索，核查固定版本和开源许可，获得带依据的推荐集合。选择时优先补齐未覆盖的能力。本文在 R3-Skill 的 5696 条查询和 2050 个候选上复算词法、双语向量及混合基线。按 Skill 成组隔离的 1320 条查询中，按召回候选采样训练的轻量模型将标题和简介基线的 Recall@10 从 34.55\% 提到 40.92\%，Hit@1 从 17.80\% 提到 25.98\%。量化 E5 在全量语料上低于词法基线。另在真实公开目录测试八种任务，包括离线 PDF 转 Excel、浏览器测试、cuDF 分组与无适用候选。推荐 API 提供匹配依据、未覆盖能力、依赖和实测范围，可用于 Agent 的发现和安装前决策。
+面向 Agent 的公开 Skill 搜索需要区分目录相关性、任务适用性与采用收益。PT 接收用户任务和运行约束，搜索公开候选，复用同一单链接判别器核查固定提交，再返回带证据的推荐集合。新版查询保留工具和操作，判别核对产物方向，推荐在固定预算下补齐已核实的能力。真实目录回放的 12 条开发及回归任务中，首条文档适用数从 5 增至 12。仅保留旧查询并更换核查与推荐时为 8。冻结后新增四条任务，首条适用数从 1 增至 2。使用 R3 官方发布权重复现全部 5,696 条查询，Hit@1 为 72.09\%。SkillsBench 的公开记录按任务、模型、宿主配成 180 个单元，平均奖励差为 15.06 个百分点，24 个单元回退。5,400 个同预算模拟中，精确选择在 296 个候选池补齐额外能力。
 \end{abstract}
 \begin{keyword}
 Agent Skill \sep 任务条件推荐 \sep 版本绑定 \sep 成组留出 \sep 软件服务
@@ -41,7 +41,7 @@ Agent Skill \sep 任务条件推荐 \sep 版本绑定 \sep 成组留出 \sep 软
 
 \section{研究问题}
 
-用户输入「离线从有文字层的 PDF 提取表格，再整理成 Excel 工作簿」时，目录里的 PDF 转换器、在线表格服务、从 Excel 读联系人或导出 Markdown 的 Skill 都可能排在前面。真正适用需要能力跟输入和交付物同向，依赖与目标环境兼容，许可证在固定版本有证据。复合任务还需要多个候选分别承担不同工作。
+用户想在 Matplotlib 上生成散点图并交付 SVG，或者找一个 Skill 诊断失败的 GitHub Actions 作业。公开目录的高位候选可能只提到工具，缺少所需功能或交付格式。对于 Mermaid 任务，读取 Mermaid 源并转换成 HTML 与从任务生成 Mermaid 源对应不同的能力。适用性需要检查输入、操作、输出、目标环境与可采用的版本。复合任务还可能需要多个 Skill 分别承担不同步骤。
 
 本文解决三个问题。第一，怎样在线找候选并把匹配理由定位到固定版本。第二，怎样在开源许可、任务条件与已测效果之间作出可解释的选择。第三，检索、判别和推荐分别能用什么外部数据复核。本文的主要评价对象是发现和选型。真实环境采用某个 Skill 是否有净收益，还需要同任务配对。
 
@@ -98,7 +98,7 @@ STAR、RaaS\cite{star,raas} & 6 月期刊，Q1、Q2 & 依据剩余需求选择�
 
 使用 R3-Skill 固定数据发布 \texttt{57d9285969cc}。测试包含 2050 个说明和 5696 条查询，505 条有两个或三个正确 Skill。模型输入为公开 JSONL 的名称、简介和正文。输出按同一作者标注复核 Hit@1、nDCG@10、Recall@10 和 Set-Compat。Set-Compat 指所有正确 Skill 同时进入长度等于正确集合大小的前缀\cite{r3}。
 
-词法字段融合使用全文、标题简介和词覆盖。量化多语 E5 对标题简介生成 384 维向量，以余弦相似度估计相关性\cite{e5}。语义融合在每查询归一化后使用 0.82 的向量分与 0.18 的标题简介 BM25 分。表~\ref{tab:r3all} 展示共同标签结果，R3-Embedding 一行为原论文发布对照。
+词法字段融合使用全文、标题简介和词覆盖。量化多语 E5 对标题简介生成 384 维向量，以余弦相似度估计相关性\cite{e5}。语义融合在每查询归一化后使用 0.82 的向量分与 0.18 的标题简介 BM25 分。表~\ref{tab:r3all} 展示共同标签结果。复现使用 Tencent 公开的 v3 R3-Embedding-0.6B 权重、4096 token 编码、末 token 池化和原始算法指标脚本\cite{r3vthree}。在 RTX 4050 上以 FP16 推理，四项与作者 v3 的差值绝对值均小于 0.03 个百分点。
 
 \begin{table}[!ht]
 \centering\small
@@ -113,7 +113,9 @@ STAR、RaaS\cite{star,raas} & 6 月期刊，Q1、Q2 & 依据剩余需求选择�
 词法字段融合 & 17.71 & 22.97 & 29.52 & 4.36 \\
 量化 E5 & 7.22 & 10.32 & 14.24 & 0.20 \\
 语义与词法融合 & 14.75 & 19.11 & 24.48 & 2.38 \\
-R3 官方发布 & 70.24 & 80.64 & 91.80 & 22.18 \\
+R3 v2 作者发布 & 70.24 & 80.64 & 91.80 & 22.18 \\
+R3 v3 作者发布 & 72.07 & 81.60 & 91.77 & 28.12 \\
+R3 v3 本地复现 & 72.09 & 81.58 & 91.75 & 28.12 \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -146,7 +148,10 @@ R3 官方发布 & 70.24 & 80.64 & 91.80 & 22.18 \\
 
 修正后，Recall@10 相比标题简介提高 6.38 个百分点，Hit@1 提高 8.18 个百分点。114 条多 Skill 查询里完整前缀由 5 条增到 12 条。正例过滤与改抽负例同时发生，现有试验无法分别归因。该留出表与全量池的表~\ref{tab:r3all} 分母有别。训练参数开放复核，当前在线路径沿用经端到端核查的评分与筛查。
 
-\clearpage
+在同一成组留出上进一步尝试以 BM25 重排 R3 前 20 项。4,376 条开发查询选择融合权重。固定权重方案选择 0，限制为前两名分差较小时启用的方案选择 0.005。后者在 1,320 条留出查询上把 nDCG@10 从 79.66\% 降到 79.61\%，按 Skill 组成组重采样得到差值区间 $[-0.151,+0.048]$ 个百分点。两种方案未观察到稳定的排序提升。
+
+以固定哈希抽取 32 条查询，在相同前 20 项上用发布的重排权重完成 640 个输入。先裁剪文档以保留 yes/no 评分所需的提示末尾。Hit@1 从 68.75\% 到 71.88\%，nDCG@10 从 79.85\% 到 73.92\%，Recall@10 从 92.19\% 到 79.69\%。该抽样表明有首项与列表质量的权衡，重排器仍留在实验路径。
+
 \section{在线任务与公开效果验证}
 
 在线验收涵盖离线 PDF 转 Excel、Excel 公式、cuDF 分组、网页表单、Word 编辑、PPTX 生成、扫描件识别和无匹配格式。验收脚本记录所需能力、示范来源和开发中发现的方向反例。通过表示输出满足该任务的说明证据或预期弃权。每次真实搜索 skills.sh，再核对固定 GitHub 版本。记录目录首查询前三和 PT 的排除原因。没有完整来源的条目单列。
@@ -173,7 +178,6 @@ Word、PPTX & 有编辑 Word 或生成演示文稿的证据。 \\
 
 早期试用曾把飞书表格当作离线候选，也把以 Excel 为输入的转换器误判为可生成 Excel。修正后，在离线复测中推荐可提取表格的 PDF Skill 和可生成工作簿的 XLSX Skill，并排除需联网的飞书表格。浏览器测试中推荐 Playwright CLI，并排除用途不符的同类工具。规则对非标准表述的漏检率仍需要独立标注验证。
 
-\newpage
 \begin{table}[!ht]
 \centering\small
 \caption{逐任务的实测推荐。名称为首项或分别承担主能力的组合。}
@@ -198,24 +202,69 @@ PPTX 生成 & PPTX Nova & 6/3 & 7.88 \\
 
 在 cuDF 分组案例，PT 匹配 NVIDIA 指南提交 \texttt{252ba53487b7}，提示 GPU 和驱动要求。作者的 \path{BENCHMARK.md} 对 13 项 Codex k8s-sandbox 任务报告效果从 88.5\% 到 92.1\%，正确性均为 100\%。脚本直接读取固定版报告，核对 92.1 分和 13 项任务一致\cite{nvidia}。另将既有论文第 4 页提交给本地表格接口，独立参考 CSV 核对 16/16 个数据格。此项验证当前输入 PDF 的解析质量。Skill 实际组合的效果仍需在目标宿主上检验。
 
+\section{2026 年方法对照与 PT 1.7.0}
+
+\subsection{查找、判别与推荐的改动}
+
+检索仍采用 SkillFlow 的分级思想\cite{skillflow}。查询从单个工具词扩展到带操作的短语，同时用短查询保留召回。例如 \texttt{matplotlib scatter plot} 可发现专门绘图 Skill，\texttt{diagnose} 可补回长查询里漏掉的 CI 候选。判别复用对单个链接的函数，分别核查工具、操作和输出依据。若指定 Mermaid，输入转换器的 HTML/SVG 交付证据无法满足产出方向条件。Playwright 任务需要本工具的使用证据，React 键盘任务需要焦点或键盘操作依据。
+
+推荐借鉴 STAR 的剩余需求视角和 Graph-of-Skills 的预算匹配对照\cite{star,graph}. 设合格候选 $i$ 的已核实能力为 $C_i$，推荐预算为 $k$，候选池上限为 10。本文在候选池内比较 $|\bigcup_{i \in S} C_i|$，其中 $|S|\le k$。只有覆盖增加才替换贪心结果。同等覆盖保留配置条件和原始相关性。归档提升只在有当前任务条件证明时参与排序。方法直接优化文档能力覆盖，暂未在目标宿主验证组合依赖。
+
+Graph-of-Skills 的三个原始小图测试通过，分别验证正向传播、反向一步补齐依赖和预算匹配的无图对照。公开工作区为早期无向版本。当前有向图的全量依赖对消融需另行重建工作区\cite{graphassets}。
+
+\subsection{同来源回放与消融}
+
+从 skills.sh 和 GitHub 捕获公开目录结果与固定版本材料。对照共用同一批捕获，候选预算 10，返回上限 3，均关闭模型。由一位评审核对首条结果的工具、操作和关键交付物，保留固定提交、文档指纹、依据行和未覆盖项。12 条开发与回归任务在调整中已回看，第一组四条迁移用于诊断并复跑，第二组四条在代码冻结后测量。表~\ref{tab:ptiteration} 报告文档适用性。
+
+\begin{table}[!ht]
+\centering\small
+\caption{真实目录固定来源的首条文档适用对照。}
+\label{tab:ptiteration}
+\begin{tabularx}{\columnwidth}{@{}Xrrr@{}}
+\toprule
+任务 & 1.6.1 & 仅换核查$^{a}$ & 1.7.0 \\
+\midrule
+六条早期回归 & 4/6 & 4/6 & 6/6 \\
+六条开发期新任务 & 1/6 & 4/6 & 6/6 \\
+第一组迁移，修正后复测 & 0/4 & 0/4 & 1/4 \\
+第二组迁移，代码冻结后 & 1/4 & 未测 & 2/4 \\
+首条明确错配$^{b}$ & 7 & 0 & 0 \\
+首条部分符合$^{b}$ & 3 & 2 & 2 \\
+弃权$^{b}$ & 1 & 6 & 1 \\
+\bottomrule
+\end{tabularx}
+\par\smallskip\raggedright\footnotesize $^{a}$ 使用旧查询、新判别与推荐。$^{b}$ 前 16 条任务。
+\end{table}
+
+PlantUML、Plotly 和 Playwright 的首选改善可由核查层取得。Matplotlib、Mermaid、JSON Schema 和 Docker Compose 还需要搜索找回足够来源。第一组迁移中，Rust 首项曾推荐 Evolve SDK 专用方案。增加 SDK 范围检查后，通用 parser 测试 Skill 提到首位。Altair、DuckDB 和 FFmpeg 仍有缺项。第二组中，Pandoc 首项是反方向转换指南，Go CI 首项缺 JUnit 依据。真实 Mermaid 和 Rust 请求分别耗时 38.23 秒和 19.66 秒，两次结果均通过文档复核。
+
+\subsection{采用收益与集合覆盖}
+
+沿用 OpenSkillEval 的配对思路\cite{open}，用 SkillsBench 固定发布记录复算\cite{skillsbench}. 1,150 条已选记录内，在 87 个任务中得到 180 个同任务、模型、宿主的匹配单元。平均奖励为 35.58\% 至 50.64\%，提升 15.06 个百分点。2,000 次任务聚类重采样得到区间 9.30 至 20.94 个百分点。64 个单元提升，24 个回退，92 个相同。以一个模型的正向收益推荐给另一个模型，Gemini 到 MiniMax 有 4/26 个采用项回退，反向有 5/37 个回退。该检查支持在界面保留历史证据的模型和环境范围。
+
+另固定候选数 10、推荐数 2 至 4，按三种覆盖稀疏度生成 5,400 个候选池。同预算精确选择在 296 个池提高覆盖，零覆盖回退。预算为 3 时平均覆盖从 8.094 到 8.167，选择器 P95 为 0.161 ms。该试验的产物是候选集合，后续需要用配对 Agent 执行检验所选组合的实际收益。
+
 \section{业务应用与边界}
 
 PT 可作为目录预检和任务启动前的选型服务。调用端保存版本、许可证、条件、匹配依据和测试范围。采用服务可依据能力缺口继续查找，或者转到目标环境验证。缺少合适候选时可以正常返回空集合，而用户仍可评估已有链接。导入阶段先用一次固定 Git 树切片定位候选与许可文件，减少逐目录往返。
 
-当前领域集中在办公、文档、浏览器和数据处理。检索、候选条件和产物验收分别面向不同目标。R3 留出试验提供排序增益，在线小样本核查接口行为、已知反例和匹配依据。DeepSeek 适配器通过响应解析和错误回退测试。一次真实请求未通过原凭据认证，未得到该模型的有效搜索词。业务中的跨宿主采用增益、复杂许可和组合执行正确性需要扩展评测。
+检索基准评价候选位置，目录回放评价文档适用性，代理配对任务评价采用收益。当前证据支持在已测任务上作为人工选型或 Agent 预检。跨领域、复杂许可、冷启动延迟及组合执行仍需扩大试验。R3 v3 发布了强检索对照\cite{r3vthree}。SkillFlow、OpenSkillEval、Graph-of-Skills 与 STAR 的端到端结果仍保留其原始协议，完成同任务、同模型、同预算的直接对照后才可评判整体领先与否。
 
 \section*{复核材料}
 
 独立仓库为 \href{https://github.com/qing1989620/pan-bie-qi}{qing1989620/pan-bie-qi}。\\
 \path{docs/results/pt-r3-retrieval.json} 保存全量基线。\\
 \path{docs/results/pt-r3-group-ranker.json} 记录分组和训练。\\
-\path{docs/results/pt-live-integration.json} 保存在线候选、筛查、来源校验及延迟。实验和网页可在本地运行。
+\path{docs/results/pt-r3-v3-reproduced.json} 保存官方权重复跑。\\
+\path{docs/results/pt-v17-field-comparison.json} 保存三个版本的逐任务对照。\\
+\path{docs/results/pt-v17-second-transfer.json} 保存代码冻结后测量。\\
+\path{docs/results/pt-2026-controls.json} 保存发布记录复算和集合覆盖实验。
 
-\clearpage
 \begin{thebibliography}{99}
 \raggedright
 \bibitem{skillflow} Li F, Tagkopoulos P, Tagkopoulos I. SkillFlow: Scalable and Efficient Agent Skill Retrieval System. COLM, 2026. \href{https://proceedings.colm.cc/paper_files/paper/2026/file/425ee25d6c22ef98b67328273b8f95d5-Paper-Conference.pdf}{正式论文}.
 \bibitem{r3} Skill Is Not Document: A Query-Conditional Benchmark and Two-Stage Retriever for LLM Agent Skill Routing. arXiv:2606.03565v2, 2026. \href{https://arxiv.org/html/2606.03565v2}{论文} · \href{https://github.com/Tencent/R3-Skill/tree/57d9285969cc293832c71ecbe42a75ac416bef93/data}{固定语料}.
+\bibitem{r3vthree} Skill Is Not Document. arXiv:2606.03565v3, 2026. \href{https://arxiv.org/html/2606.03565v3}{第 3 版预印本及指标}.
 \bibitem{risk} Ding J, Ji H, Liu M, Duan T. Right Family, Wrong Skill: Evaluating Risk Exposure in Agent Skill Retrieval. arXiv:2606.10388v4, 2026. \href{https://arxiv.org/abs/2606.10388v4}{论文}.
 \bibitem{contrast} Ding J, Ji H, Liu M, Duan T. SkillContrast: Difference-Guided Text Selection for Agent Skill Reranking. arXiv:2610.11650, 2026. \href{https://arxiv.org/abs/2610.11650}{论文}.
 \bibitem{star} STAR: A Sequential Transformer-Based Adaptive Reinforcement Learning Framework for Service Recommendation. IEEE Transactions on Services Computing, 19(4), 3099--3111, 2026. \href{https://doi.org/10.1109/TSC.2026.3704136}{论文}.
@@ -226,6 +275,9 @@ PT 可作为目录预检和任务启动前的选型服务。调用端保存版�
 \bibitem{toollery} Tian X, Guan R. Toollery: Scaling LLM Agents to Thousands of Skills and Tools. EMNLP 2026 Industry Track. \href{https://aclanthology.org/volumes/2026.emnlp-industry/}{正式会议录}.
 \bibitem{dag} Bai T, Wan Z, Zhou P, et al. SkillDAG: Self-Evolving Typed Skill Graphs for LLM Skill Selection at Scale. Findings of EMNLP, 2026. \href{https://aclanthology.org/2026.findings-emnlp.1022/}{正式论文}.
 \bibitem{open} Ying J, Ai B, Tang W, Liu S, Cao Y. OpenSkillEval: Automatically Auditing the Open Skill Ecosystem for LLM Agents. Findings of EMNLP, 2026. \href{https://aclanthology.org/2026.findings-emnlp.1554/}{正式论文}.
+\bibitem{graph} Liu D, Li Z, Du H, et al. Graph-of-Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills. EMNLP, 2026. \href{https://aclanthology.org/2026.emnlp-main.2614/}{正式论文}.
+\bibitem{graphassets} Graph-of-Skills. \href{https://github.com/davidliuk/graph-of-skills/blob/203f60a2c689da055ce1ac351eb3cb9912a3bca7/DATA.md}{公开工作区说明与版本限制}, 2026.
+\bibitem{skillsbench} SkillsBench. Official selected experiment manifest. 2026. \href{https://huggingface.co/datasets/benchflow/skillsbench-leaderboard/blob/f104580363a9642563593c475620196ecd36687d/analysis/experiment_final_selected_manifest.json}{固定发布记录}.
 \bibitem{vercel} Vercel. Open agent skills CLI. \href{https://github.com/vercel-labs/skills/blob/main/src/find.ts}{公开搜索调用}.
 \bibitem{e5} Wang L, Yang N, Huang X, et al. Multilingual E5 Text Embeddings: A Technical Report. arXiv:2402.05672, 2024. \href{https://arxiv.org/abs/2402.05672}{模型论文}.
 \bibitem{nvidia} NVIDIA. Skill Benchmark: accelerated-computing-cudf. \href{https://github.com/NVIDIA/skills/blob/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf/BENCHMARK.md}{固定提交公开报告}.

@@ -7,6 +7,7 @@ import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from itertools import combinations
 from urllib.parse import quote
 
 from . import pt_model, pt_semantic, source_import
@@ -14,7 +15,7 @@ from .inspection import citation, clean, description_lines, frontmatter
 from .profile import HEADER, HEADING, prose_lines
 from .pt_discovery import Candidate, discover
 from .pt_license import license_evidence
-from .pt_retrieval import Document, Retrieval, Task, document, plan, terms
+from .pt_retrieval import PLOT_TOOLS, Document, Retrieval, Task, document, plan, terms
 from .service import assess_imported
 
 NETWORK_NEEDED = re.compile(
@@ -37,6 +38,12 @@ DOMAIN = {
 HOSTED_BINARIES = {"lark-cli": "需要联网访问飞书服务"}
 ANTI_DETECTION = re.compile(r"\banti[- ]detect(?:ion)?\b|反检测|隐匿指纹|规避.{0,12}检测", re.IGNORECASE)
 HARDWARE = re.compile(r"\b(?:requires?|needs?)\b.{0,50}\b(?:nvidia gpu|compatible driver)\b", re.IGNORECASE)
+DIAGRAM_PLATFORMS = tuple(re.compile(rf"\b{item}\b", re.IGNORECASE) for item in ("azure", "aws", "gcp"))
+SDK_SCOPE = re.compile(r"\b(?:for|within)\s+(?:the\s+)?([A-Za-z][A-Za-z0-9.+-]{1,30})\s+SDK\b", re.IGNORECASE)
+NAMED_OUTPUT_TOOL = re.compile(
+    r"\b(?:" + "|".join(map(re.escape, (*PLOT_TOOLS, "D3", "Bokeh", "ggplot2", "Mermaid", "PlantUML"))) + r")\b",
+    re.IGNORECASE,
+)
 OVERVIEW_TIME_BUDGET = 25
 TIME_BUDGET = 38
 AUDIT_WORKERS = 5
@@ -65,24 +72,43 @@ def _task_fit(task: Task, doc: Document, files: dict, source: dict) -> tuple[lis
     header = HEADER.match(raw)
     rows = description_lines(raw) + prose_lines(raw, len(header[0].splitlines()) if header else 0)
     synopsis = f"{doc.name} {doc.description}"
+    sdk_names = {name.casefold() for name in SDK_SCOPE.findall(doc.description)}
+    scoped_sdk = {name for name in sdk_names if re.search(rf"(?<!\w){re.escape(name)}(?!\w)", doc.name, re.IGNORECASE)}
+    sdk_requested = any(re.search(rf"(?<!\w){re.escape(name)}(?!\w)", task.text, re.IGNORECASE) for name in scoped_sdk)
     matched, excluded_facets = [], set()
     for item in task.requirements:
-        domain = DOMAIN.get(item.id)
+        domain = item.context or DOMAIN.get(item.id)
+        if item.id in {"mermaid", "plantuml"} and any(
+            platform.search(doc.name) and platform.search(doc.description) and not platform.search(task.text)
+            for platform in DIAGRAM_PLATFORMS
+        ):
+            excluded_facets.add(item.id)
+            continue
         if item.id == "browser_test" and ANTI_DETECTION.search(synopsis):
+            excluded_facets.add(item.id)
+            continue
+        if item.id.startswith("tool_") and scoped_sdk and not sdk_requested:
             excluded_facets.add(item.id)
             continue
         if item.id in {"cudf", "cudf_groupby"} and not domain.search(synopsis):
             continue
-        support = None
+        support = output = None
         for number, line in rows:
-            if domain and not domain.search(synopsis + " " + line):
-                continue
-            if item.explicit_exclusion and item.explicit_exclusion.search(line):
+            in_context = not domain or domain.search(synopsis + " " + line)
+            if in_context and item.explicit_exclusion and item.explicit_exclusion.search(line):
                 excluded_facets.add(item.id)
-            elif support is None and not HEADING.match(line) and item.evidence.search(line) and not EXCLUSION.search(line):
+            if HEADING.match(line) or EXCLUSION.search(line):
+                continue
+            output_tool_matches = not item.context or not NAMED_OUTPUT_TOOL.search(line) or item.context.search(line)
+            if in_context and output_tool_matches and item.output and output is None and item.output.search(line):
+                output = number
+            if support is None and in_context and (not item.output or output_tool_matches) and item.evidence.search(line):
                 support = number
-        if support is not None and item.id not in excluded_facets:
-            matched.append({"id": item.id, "label": item.label, "evidence": _publish_evidence(files, support, source)})
+        if support is not None and item.id not in excluded_facets and (not item.output or output is not None):
+            witness = {"id": item.id, "label": item.label, "evidence": _publish_evidence(files, support, source)}
+            if output is not None and output != support:
+                witness["output_evidence"] = _publish_evidence(files, output, source)
+            matched.append(witness)
     if not task.requirements:
         query_terms = set(terms(task.ranking_text))
         if len(query_terms) >= 2:
@@ -177,6 +203,22 @@ def _requirements(review: Review) -> set[str]:
     return {item["id"] for item in review.matched}
 
 
+def complete_coverage(supported: list[set[str]], ranked: list[int], limit: int) -> list[int]:
+    """Replace a greedy shortlist only when another set covers more requirements."""
+    current = ranked[:limit]
+    covered = set().union(*(supported[index] for index in current))
+    possible = set().union(*supported)
+    if len(covered) == len(possible) or len(current) == len(ranked):
+        return current
+
+    def coverage(indices):
+        return len(set().union(*(supported[index] for index in indices)))
+
+    # Enumerate in ranking order for a stable tie break. The catalog sends at most 10 Skills.
+    winner = max(combinations(ranked, len(current)), key=coverage, default=tuple(current))
+    return list(winner) if coverage(winner) > len(covered) else current
+
+
 def select(reviews: list[Review], task: Task, limit: int) -> tuple[list[tuple[Review, list[str]]], set[str], dict]:
     """Cover uncovered task requirements before showing overlapping alternatives."""
     if not reviews:
@@ -184,24 +226,38 @@ def select(reviews: list[Review], task: Task, limit: int) -> tuple[list[tuple[Re
     candidates = [review.document for review in reviews]
     scores = Retrieval(candidates).scores(task.ranking_text)
     relevance, semantic = pt_semantic.rank(task.text, candidates, scores["metadata"])
-    covered = set()
-    remaining = list(range(len(reviews)))
     order = {item.id: position for position, item in enumerate(task.requirements)}
+    supported = [_requirements(review) for review in reviews]
+    task_evidence = [review.report["assessment"]["dimensions"][-1] for review in reviews]
+    positive_evidence = [row.get("applies_to_current_task") is True and (row.get("lift") or 0) > 0
+                         for row in task_evidence]
+
+    def greedy(pool):
+        remaining = list(pool)
+        covered = set()
+        ranked = []
+        while remaining:
+            number = min(remaining, key=lambda i: (
+                -len(supported[i] - covered), -len(supported[i]),
+                bool(reviews[i].conditions), not positive_evidence[i],
+                min((order.get(key, len(order)) for key in supported[i] - covered), default=len(order)),
+                -relevance.get(i, 0), -scores["pt"].get(i, 0), reviews[i].candidate.key,
+            ))
+            remaining.remove(number)
+            ranked.append(number)
+            covered.update(supported[number])
+        return ranked
+
+    ranked = greedy(range(len(reviews)))
+    selected = complete_coverage(supported, ranked, limit)
+    improved = selected != ranked[:limit]
+    covered = set()
     results = []
-    while remaining and len(results) < limit:
-        number = min(remaining, key=lambda i: (
-            -len(_requirements(reviews[i]) - covered), -len(_requirements(reviews[i])),
-            reviews[i].report["assessment"]["dimensions"][-1]["score"] is None, bool(reviews[i].conditions),
-            min((order.get(key, len(order)) for key in _requirements(reviews[i]) - covered),
-                                                 default=len(order)),
-            -relevance.get(i, 0), -scores["pt"].get(i, 0), reviews[i].candidate.key,
-        ))
-        remaining.remove(number)
-        review = reviews[number]
-        increment = sorted(_requirements(review) - covered)
-        results.append((review, increment))
+    for number in greedy(selected) if improved else selected:
+        increment = sorted(supported[number] - covered)
+        results.append((reviews[number], increment))
         covered.update(increment)
-    return results, covered, semantic
+    return results, covered, {**semantic, "recovered_coverage": improved}
 
 
 FILTER_REASONS = {
@@ -211,7 +267,7 @@ FILTER_REASONS = {
     "environment_mismatch": "当前目标环境缺少该 Skill 的运行条件。",
     "sensitive_material_review": "包内配置材料需要复核。",
     "task_review_required": "声明和当前任务之间有待解决的差异。",
-    "declared_out_of_scope": "说明明确排除所需任务。",
+    "declared_out_of_scope": "说明中的适用范围与当前任务不符。",
     "insufficient_task_evidence": "未找到所需能力的来源行。",
     "duplicate_document": "已找到可核查文本相同的固定版本。",
     "package_review_unavailable": "未能取得固定版本的包内材料以完成复核。",
@@ -249,7 +305,10 @@ def _result(review: Review, increment: list[str], task: Task) -> dict:
     axes = report["assessment"]["dimensions"]
     available = _requirements(review)
     missing = [{"id": item.id, "label": item.label} for item in task.requirements if item.id not in available]
-    task_proof = {key: axes[-1].get(key) for key in ("score", "basis", "reason", "scope", "source_url", "sample_count")}
+    task_proof = {key: axes[-1].get(key) for key in (
+        "score", "basis", "reason", "scope", "source_url", "sample_count", "without_skill", "lift",
+        "applies_to_current_task",
+    )}
     return {
         "key": review.candidate.key,
         "name": profile["name"],

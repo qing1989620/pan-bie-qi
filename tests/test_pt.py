@@ -172,6 +172,87 @@ def test_matches_explicit_scope_instead_of_nearby_terms(monkeypatch, task, descr
     assert bool(result["recommendations"]) is (expected == "eligible")
 
 
+def test_browser_automation_without_playwright_cannot_cover_named_tool(monkeypatch):
+    install_collection(monkeypatch,
+                       generic=snapshot("generic", "Test web pages by browser automation.", "Uses CDP without Playwright."),
+                       playwright=snapshot("playwright", "Run Playwright tests against local web apps."))
+    result = pt.recommend("用 Playwright 测试本地网页", {}, limit=2, search_online=False, use_model=False)
+    assert [item["name"] for item in result["recommendations"]] == ["playwright"]
+    assert result["pipeline"]["assessment"]["counts"]["declared_out_of_scope"] == 1
+
+
+def test_named_plot_tool_and_output_require_own_evidence(monkeypatch):
+    install_collection(monkeypatch,
+                       generic=snapshot("generic", "Create scatter plots.", "Save the diagram as SVG."),
+                       png=snapshot("png", "Use Matplotlib to make scatter plots.", "Save the plot as PNG."),
+                       mixed=snapshot("mixed", "Use Matplotlib to make scatter plots.", "Plotly exports plots to SVG."),
+                       svg=snapshot("svg", "Use Matplotlib to make scatter plots.", "Save the plot as SVG."))
+    result = pt.recommend("Create a Matplotlib scatter plot and export it as SVG.", {},
+                          limit=3, search_online=False, use_model=False)
+    assert [item["name"] for item in result["recommendations"]] == ["svg"]
+    match = result["recommendations"][0]["matches"][0]
+    assert "Matplotlib" in match["evidence"]["quote"]
+    assert "SVG" in match["output_evidence"]["quote"]
+    assert result["pipeline"]["assessment"]["counts"]["insufficient_task_evidence"] == 3
+
+
+def test_platform_specialization_limits_diagram_match(monkeypatch):
+    install_collection(monkeypatch,
+                       azure=snapshot("azure-diagrams", "Create Mermaid flowcharts for Azure resources."),
+                       converter=snapshot("converter", "Create SVG flowcharts from existing Mermaid source.",
+                                          "Imports draw.io, Mermaid, or PlantUML."),
+                       standalone=snapshot("flowcharts", "Create Mermaid flowcharts for generic processes."))
+    result = pt.recommend("用 Mermaid 生成流程图", {}, limit=2, search_online=False, use_model=False)
+    assert [item["name"] for item in result["recommendations"]] == ["flowcharts"]
+    assert result["pipeline"]["assessment"]["counts"]["declared_out_of_scope"] == 1
+    assert result["pipeline"]["assessment"]["counts"]["insufficient_task_evidence"] == 1
+
+
+def test_react_accessibility_needs_keyboard_evidence(monkeypatch):
+    install_collection(monkeypatch,
+                       vague=snapshot("vague", "Create React frontend interfaces with accessible design."),
+                       keyboard=snapshot("keyboard", "Create React frontend interfaces.",
+                                         "Use keyboard-accessible controls and visible focus."))
+    result = pt.recommend("Build a React frontend with keyboard navigation.", {},
+                          limit=2, search_online=False, use_model=False)
+    assert [item["name"] for item in result["recommendations"]] == ["keyboard"]
+    assert "visible focus" in result["recommendations"][0]["matches"][0]["output_evidence"]["quote"]
+
+
+def test_name_and_description_can_limit_a_tool_skill_to_one_sdk(monkeypatch):
+    install_collection(monkeypatch,
+                       scoped=snapshot("orbit-proptest", "Write property tests for the Orbit SDK using proptest"),
+                       general=snapshot("proptest", "Write Rust parser property tests using proptest"))
+    generic = pt.recommend("Write Rust parser tests using `proptest`.", {}, limit=3, search_online=False, use_model=False)
+    named = pt.recommend("Test the Orbit SDK with a parser using `proptest`.", {},
+                         limit=3, search_online=False, use_model=False)
+    assert [item["name"] for item in generic["recommendations"]] == ["proptest"]
+    assert generic["pipeline"]["assessment"]["counts"]["declared_out_of_scope"] == 1
+    assert {item["name"] for item in named["recommendations"]} == {"proptest", "orbit-proptest"}
+
+
+def test_exact_selection_fills_a_gap_under_the_same_budget():
+    supported = [set("abde"), set("abc"), set("def")]
+    assert pt.complete_coverage(supported, [0, 1, 2], 2) == [1, 2]
+    assert pt.complete_coverage(supported, [0, 1, 2], 3) == [0, 1, 2]
+
+
+def test_positive_paired_lift_breaks_ties_for_known_conditions(monkeypatch):
+    monkeypatch.delenv("PAN_BIE_QI_E5_DIR", raising=False)
+    task = plan("Resolve Git merge conflicts")
+    docs = [pt.document(name, "", name) for name in ("first", "second")]
+    reviews = [pt.Review(
+        Candidate("", name, name, "fixture", None), doc,
+        {"assessment": {"dimensions": [{"score": 90, "lift": lift, "applies_to_current_task": True}]}},
+        {}, [{"id": "git_conflict"}], [], None,
+    ) for doc, name, lift in zip(docs, ("first", "second"), (-10, 8), strict=True)]
+    (chosen, _), = pt.select(reviews, task, 1)[0]
+    assert chosen.candidate.key == "second/second"
+    reviews[1].report["assessment"]["dimensions"][-1]["applies_to_current_task"] = False
+    (chosen, _), = pt.select(reviews, task, 1)[0]
+    assert chosen.candidate.key == "first/first"
+
+
 @pytest.mark.parametrize(("expression", "license_file", "expected", "identity"), [
     ("MIT", None, "recognized", "MIT"),
     ("CC-BY-4.0 AND Apache-2.0", None, "recognized", "CC-BY-4.0 AND Apache-2.0"),

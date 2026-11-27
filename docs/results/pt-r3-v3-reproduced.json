@@ -1,0 +1,61 @@
+{
+  "schema": "pt-r3-release-reproduction-v1",
+  "data_revision": "57d9285969cc293832c71ecbe42a75ac416bef93",
+  "hashes": {
+    "skills_test.jsonl": "b80f88aa0d3826fb6456eb45f84be12e4ca6df23d60a1148ac92854a0ce2a6a5",
+    "test.jsonl": "f1f241303379d313ca7904460c4395b3e80143f5b3ee4a1e0f4056135e30a947",
+    "reproduce.py": "00c094970bacc79f265b606cf800fbec4c44d6aad1b149a9b68b15da3495f44d"
+  },
+  "queries": 5696,
+  "skills": 2050,
+  "model": {
+    "revision": "9df7e112330d858f4fd0a9d1aa5e1def15d5d25a",
+    "sha256": "832c0224b941c586af58bdb9b14a6b597ed15464055d1f7338cca172b51065c4"
+  },
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.5.1+cu121",
+  "dtype": "torch.float16",
+  "sequence_limit": 4096,
+  "embedding": {
+    "hit@1": 0.7208567415730337,
+    "ndcg@5": 0.8006229977527234,
+    "ndcg@10": 0.8158150292521354,
+    "ndcg@15": 0.8204724858616579,
+    "recall@5": 0.8725713951310862,
+    "recall@10": 0.9174859550561796,
+    "recall@15": 0.9343398876404494,
+    "comp@5": 0.8725713951310862,
+    "comp@10": 0.9174859550561796,
+    "comp@15": 0.9343398876404494,
+    "set_compat": 0.2811881188118812
+  },
+  "author_v3_full_reference": {
+    "emb": {
+      "hit@1": 0.7207,
+      "ndcg@5": 0.8006,
+      "ndcg@10": 0.816,
+      "ndcg@15": 0.8205,
+      "recall@5": 0.8722,
+      "recall@10": 0.9177,
+      "recall@15": 0.9338,
+      "comp@5": 0.8722,
+      "comp@10": 0.9177,
+      "comp@15": 0.9338,
+      "set_compat": 0.2812
+    },
+    "rerank": {
+      "hit@1": 0.7521,
+      "ndcg@5": 0.8008,
+      "ndcg@10": 0.8173,
+      "ndcg@15": 0.8254,
+      "recall@5": 0.8481,
+      "recall@10": 0.8969,
+      "recall@15": 0.9264,
+      "comp@5": 0.8481,
+      "comp@10": 0.8969,
+      "comp@15": 0.9264,
+      "set_compat": 0.3188
+    }
+  },
+  "embedding_seconds": 1473.159
+}
