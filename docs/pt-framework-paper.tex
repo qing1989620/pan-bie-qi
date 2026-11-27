@@ -2,7 +2,10 @@
 \usepackage[UTF8,fontset=fandol,heading=true]{ctex}
 \usepackage{geometry}
 \geometry{reset,a4paper,left=17mm,right=17mm,top=19mm,bottom=20mm,headheight=14pt,headsep=5mm,footskip=10mm}
-\usepackage{amsmath,booktabs,array,tabularx,fancyhdr,xurl,flushend}
+\usepackage{amsmath,booktabs,array,tabularx,fancyhdr,xurl,flushend,graphicx}
+\newcommand{\ptFrameworkFigure}{docs/figures/pt-framework-v1.7.0.pdf}
+\IfFileExists{figures/pt-framework-v1.7.0.pdf}{%
+  \renewcommand{\ptFrameworkFigure}{figures/pt-framework-v1.7.0.pdf}}{}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[unicode,colorlinks,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
 \setlength{\columnsep}{7mm}
@@ -13,6 +16,7 @@
 \raggedbottom
 \ctexset{section={format=\large\bfseries,beforeskip=10pt,afterskip=5pt},subsection={format=\normalsize\bfseries,beforeskip=8pt,afterskip=4pt}}
 \renewcommand{\tablename}{表}
+\renewcommand{\figurename}{图}
 \renewcommand{\refname}{参考文献}
 \abstracttitle{摘要}
 \keywordtitle{关键词}
@@ -72,9 +76,18 @@ STAR、RaaS\cite{star,raas} & 6 月期刊，Q1、Q2 & 依据剩余需求选择�
 
 \section{PT 框架}
 
+图~\ref{fig:pt-framework}展示 1.7.0 的在线流程及历史配对证据的来源。线上以用户任务和目标环境为输入。固定版本的 Skill 经核查后，输出推荐理由和未覆盖的能力。
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth,trim=24bp 13bp 22bp 12bp,clip]{\ptFrameworkFigure}
+\caption{PT 1.7.0 在线搜索、判别与推荐。黑色箭头传递任务、候选与发现的证据。下方红色路径引用固定版本的历史配对实测。矩阵与彩色条形为机制示意。}
+\label{fig:pt-framework}
+\end{figure*}
+
 \subsection{搜索}
 
-把任务表示为描述 $q$、所需能力集合 $U$ 与环境 $E$。中英文规则识别格式、操作和目标约束，再为每个能力生成短查询。从 PDF 提取表格并交付 Excel 对应两项能力。未识别的表达先提取短关键词。可选的 DeepSeek 适配器对任务只发起一次查询词扩展，最多生成 140 token，返回值经过词表格式校验。
+把任务表示为描述 $q$、所需能力集合 $U$ 与环境 $E$。中英文规则识别工具、操作、交付物和运行约束。主查询尽量保留工具和操作，如 \texttt{matplotlib scatter plot}，并行的短查询用于补充召回。未识别的表达先提取短关键词。可选的 DeepSeek 适配器对任务只发起一次查询词扩展，最多生成 140 token，返回值经过词表格式校验。
 
 候选来自 skills.sh 公开目录与参考链接\cite{vercel}。每任务最多查四组关键词，交替从各组取候选，同源同项去重，最多核查十个。获取的候选须能定位到公开 GitHub。完成状态记录在返回对象中。最后的局部相关性排序以标题简介 BM25 为主，同分参考全文。正文还用于定位能力和限制。第~\ref{sec:closed} 节比较各文本字段和向量方案。
 
@@ -84,11 +97,11 @@ STAR、RaaS\cite{star,raas} & 6 月期刊，Q1、Q2 & 依据剩余需求选择�
 
 许可证优先核对所在目录的条款与声明，必要时追溯固定提交中带许可文件的最近上级目录。结果附可定位的许可文件或声明。在受支持的规则内，许可证明确、任务能力有据且无硬性冲突的候选进入推荐。复杂或冲突条款保留复核状态。程序识别许可标识，具体再分发义务取决于原条款。
 
-能力匹配需要原文。出现格式名称和能交付该格式分别核查。从 Excel 导出 Markdown 的说明只支持 Excel 输入。如果目标离线而 Skill 依赖联网服务，或清单核查发现已确认缺陷，候选会被筛除。GPU、驱动、软件版本等未核对的条件随推荐展示。在已登记实测中，以固定提交、路径和文档哈希绑定任务分。来源不匹配时保留证据缺口。
+能力匹配需要原文。分别核对指定工具、操作和交付方向。例如读入 Mermaid 生成 HTML 的说明给出的是 HTML 产出依据。对于指定工具的通用任务，当名称和简介共同指向特定 SDK 时，核对任务是否处于该 SDK 的范围。目标离线而候选依赖联网服务，或包内检查发现已确认缺陷时，筛除候选。待核对的 GPU、驱动和软件版本等条件随结果展示。登记实测通过提交、路径与文档哈希绑定，报告保留任务、模型和宿主范围。
 
 \subsection{推荐与交互}
 
-设 $M(s)$ 为候选 $s$ 可找到依据的能力，$C$ 为已覆盖集合。每次选择优先考虑 $|M(s)\setminus C|$。同增量下比较总匹配能力、可引用的历史实测、未决配置、任务顺序与文本相关性。选入后更新 $C$，达到数量限制或无合适候选时停止。有多项备选的能力可以继续比较。
+设 $M(s)$ 为候选 $s$ 可找到依据的能力，$C$ 为已覆盖集合。先按 $|M(s)\setminus C|$ 贪心排序，再在相同推荐数量下精确比较能力并集。只有覆盖增加时才替换贪心组合。同增量下依次参考总匹配能力、待核对的条件、适用于当前任务的正向配对收益、任务顺序与文本相关性。选中集合同时提供备选和未覆盖的能力。
 
 用户看到用途、理由、条件、许可证及原文行号。两项推荐分别覆盖处理步骤时，页面显示各自适用的能力与剩余缺口。完整评估入口使用同一个固定版本。REST 把建议与依据返回给宿主，可注册为 Agent 的只读发现工具。宿主随后结合自己的授权和隔离环境进行配置与运行。
 

@@ -4,6 +4,8 @@
 
 ## 任务到推荐
 
+[可编辑框架图 PowerPoint](figures/pt-framework-v1.7.0.pptx) · [矢量框架图](figures/pt-framework-v1.7.0.pdf)
+
 | 模块 | 输入 | 返回 |
 | --- | --- | --- |
 | 搜索 `pt_discovery.py` | 从任务识别的格式和操作，经中英文规则得到的短查询 | skills.sh 的公开候选、参考版本、各次查询状态 |
