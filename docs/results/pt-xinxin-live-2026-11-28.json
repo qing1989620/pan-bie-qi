@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-28",
+  "ptVersion": "1.8.3",
+  "xinxinCommit": "5c870edfb649409f876b04ce364c8f8ab1f17009",
+  "task": "找个 Skill 帮我做两份 PLY 点云配准并对比误差",
+  "elapsedMs": 18525,
+  "state": "ready",
+  "search": {
+    "candidates": 8,
+    "reviewed": 7,
+    "deepseek": "not_used"
+  },
+  "recommendations": [
+    {
+      "name": "Point Cloud Processing Skill",
+      "source": "https://github.com/a5c-ai/babysitter/blob/feb68abe397acc14f32b34984975c48fedba2b33/library/specializations/robotics-simulation/skills/point-cloud-processing/SKILL.md",
+      "discovery": "reference_catalog",
+      "reasons": [
+        {
+          "label": "做三维点云配准",
+          "quote": "- Implement registration algorithms (ICP, NDT, GICP)",
+          "url": "https://github.com/a5c-ai/babysitter/blob/feb68abe397acc14f32b34984975c48fedba2b33/library/specializations/robotics-simulation/skills/point-cloud-processing/SKILL.md#L33"
+        }
+      ],
+      "conditions": [
+        "来源尚未证实可评估点云配准误差",
+        "来源尚未证实可读取 PLY 点云"
+      ]
+    },
+    {
+      "name": "open3d-cpp",
+      "source": "https://github.com/isl-org/open3d/blob/2ce4f7e0270a53694e2be651496313256e453c89/docs/agent_skills/open3d-cpp/SKILL.md",
+      "discovery": "skills.sh",
+      "reasons": [
+        {
+          "label": "做三维点云配准",
+          "quote": "description: 'Discover and use the Open3D C++ API correctly. Use when writing, reviewing, debugging, or porting C++ code against Open3D — point clouds, triangle meshes, RGB-D images, registration/ICP, odometry, SLAM/SLAC, reconstruction, ray casting, voxel blo",
+          "url": "https://github.com/isl-org/open3d/blob/2ce4f7e0270a53694e2be651496313256e453c89/docs/agent_skills/open3d-cpp/SKILL.md#L3"
+        }
+      ],
+      "conditions": [
+        "来源尚未证实可评估点云配准误差",
+        "来源尚未证实可读取 PLY 点云"
+      ]
+    },
+    {
+      "name": "open3d-python",
+      "source": "https://github.com/isl-org/open3d/blob/2ce4f7e0270a53694e2be651496313256e453c89/docs/agent_skills/open3d-python/SKILL.md",
+      "discovery": "skills.sh",
+      "reasons": [
+        {
+          "label": "做三维点云配准",
+          "quote": "description: 'Discover and use the Open3D Python API correctly. Use when writing, reviewing, debugging, or porting Python code that imports open3d — point clouds, triangle meshes, RGB-D images, registration/ICP, odometry, SLAM/SLAC, reconstruction, ray casting",
+          "url": "https://github.com/isl-org/open3d/blob/2ce4f7e0270a53694e2be651496313256e453c89/docs/agent_skills/open3d-python/SKILL.md#L3"
+        }
+      ],
+      "conditions": [
+        "来源尚未证实可评估点云配准误差",
+        "来源尚未证实可读取 PLY 点云",
+        "需要联网"
+      ]
+    }
+  ],
+  "ui": {
+    "automaticLookupsWhileTyping": 0,
+    "explicitLookupRequests": 1,
+    "selectedReference": true,
+    "promptUnchangedUponSelection": true
+  }
+}

@@ -4,7 +4,9 @@
 
 PT 推荐页从任务出发。它搜索公开目录，核对候选的固定版本、许可证和任务要求，给出推荐理由与来源。[推荐页](http://127.0.0.1:8853/recommend) · [PT 使用和复核](docs/pt-framework.md)
 
-PT 1.8 为集成方提供可选参数 `deepseek_api_key`。启用后用 DeepSeek 模型的 `deepseek_web_search` 工具扩展 GitHub 候选，PT 从工具结果读取链接，再核查真实仓库、许可及证据。公开目录检索并行运行，初筛通过的候选立即进入包核验。[DeepSeek 模型联网工具](https://api-docs.deepseek.com/guides/web_tools/)
+PT 1.8.3 为集成方提供可选参数 `deepseek_api_key`。启用后用 DeepSeek 模型的 `deepseek_web_search` 工具扩展 GitHub 候选，PT 从工具结果读取链接，再核查真实仓库、许可及证据。公开目录检索并行运行，初筛通过的候选立即进入包核验。[DeepSeek 模型联网工具](https://api-docs.deepseek.com/guides/web_tools/)
+
+Xinxin Agent 已接入 PT。用户可在对话框查找公开 Skill、查看固定版本的证据与使用条件，并选取本轮引用。[中文双栏论文](docs/pt-framework-paper.pdf) · [产品接入说明](https://github.com/qing1989620/xinxin-local/blob/5c870edfb649409f876b04ce364c8f8ab1f17009/docs/pt-chat-recommendations.md) · [点云案例实测记录](docs/results/pt-xinxin-live-2026-11-28.json)
 
 ## 启动网页
 
