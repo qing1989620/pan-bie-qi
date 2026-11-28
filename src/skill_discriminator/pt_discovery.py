@@ -23,13 +23,13 @@ MAX_CANDIDATES = 10
 VALID_SLUG = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,99}")
 DEEPSEEK_WEB = "DeepSeek Web"
 WEB_PROMPT = (
-    "Use your built-in web search to find publicly accessible Agent Skills for the task. "
+    "Find live GitHub sources by calling your built-in web search before answering. "
     'Use a targeted query with site:github.com, "SKILL.md", and the requested capability. '
     "When given a focus phrase, use it as the main search terms. Search for the operation the "
     "Skill must perform. For diagrams, focus on the diagram tool or output format. "
     "Prefer links to the actual SKILL.md or its containing directory. "
-    'Then return only JSON: {"queries": ["short English capability phrase"]}. '
-    "Give up to two phrases. Never repeat personal details or credentials."
+    'Then return JSON with up to two short English "queries" and "links" to the actual '
+    "GitHub sources you just found. Never repeat personal details or credentials."
 )
 _SEARCH_CACHE = OrderedDict()
 _SEARCH_CACHE_LOCK = threading.Lock()
@@ -66,6 +66,8 @@ SEEDS = (
      "https://github.com/softaworks/agent-toolkit/tree/3027f20f3181758385a1bb8c022d4041dfb4de84/skills/mermaid-diagrams"),
     (("mermaid",),
      "https://github.com/shep-ai/shep/tree/b6792e4d9def48f6542d858af4eae095ab5527af/.claude/skills/mermaid-diagrams"),
+    (("point_cloud_registration",),
+     "https://github.com/a5c-ai/babysitter/tree/feb68abe397acc14f32b34984975c48fedba2b33/library/specializations/robotics-simulation/skills/point-cloud-processing"),
     (("cudf", "cudf_groupby"),
      "https://github.com/NVIDIA/skills/tree/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf"),
 )
@@ -145,7 +147,7 @@ def _response_phrases(content) -> list[str]:
 
 
 def _deepseek_web_search(task: Task, deadline: float, api_key: str) -> tuple[dict, list[Candidate]]:
-    text = task.text[:700]
+    text = f"Search the web now for open-source GitHub SKILL.md files for this task:\n{task.text[:700]}"
     if task.requirements:
         text = f"Search focus: {task.queries[0]}\nTask: {text}"
     observation = {"provider": DEEPSEEK_WEB, "state": "unavailable", "hits": 0, "model_calls": 0}

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pan-bie-qi"
-version = "1.8.1"
+version = "1.8.2"
 description = "Evidence-based assessment of public Agent Skill links"
 readme = "README.md"
 requires-python = ">=3.11"

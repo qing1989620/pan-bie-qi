@@ -246,6 +246,24 @@ REACT_FRONTEND = Requirement(
     re.compile(r"\breact\b|reactjs", re.IGNORECASE),
 )
 KEYBOARD_UI = r"\bkeyboard(?:[- ]accessible| support| navigation)\b|\b(?:visible|keyboard) focus\b|键盘(?:操作|访问|导航)|可见焦点"
+POINT_CLOUD = r"\b(?:point[- ]?clouds?|open3d|cloudcompare)\b|点云"
+POINT_CLOUD_REGISTRATION = requirement(
+    "point_cloud_registration", "做三维点云配准", "point cloud registration",
+    r"\b(?:g?icp|iterative closest point|(?:registration|alignment) of point clouds?)\b"
+    r"|\b(?:point[- ]?cloud|coarse|fine|global|rigid)\s+(?:registration|alignment)\b"
+    r"|点云.{0,10}(?:配准|对齐)|(?:配准|对齐).{0,10}点云",
+    context=POINT_CLOUD,
+)
+POINT_CLOUD_ERROR = requirement(
+    "point_cloud_error", "评估点云配准误差", "point cloud registration rmse",
+    r"\b(?:inlier_rmse|rmse|root mean square error|(?:registration|alignment) (?:error|accuracy|fitness|residuals?))\b"
+    r"|(?:配准|对齐).{0,14}(?:误差|残差|精度)|均方根误差",
+    context=POINT_CLOUD,
+)
+POINT_CLOUD_PLY = requirement(
+    "point_cloud_ply", "读写 PLY 点云", "PLY point cloud import",
+    r"\bply\b", context=POINT_CLOUD,
+)
 PLOT_TYPES = (
     (r"\bscatter(?:plots?)?\b|散点图", "scatter plot", "散点图"),
     (r"\bheat[- ]?maps?\b|热力图", "heatmap", "热力图"),
@@ -266,6 +284,14 @@ EXPLICIT_TOOL = re.compile(
 def _typed_requirements(text: str) -> tuple[list[Requirement], list[str]]:
     """Keep named tools and the requested operation together in one capability."""
     found, broader = [], []
+    if re.search(POINT_CLOUD, text, re.IGNORECASE) and re.search(
+        r"配准|对齐|\b(?:g?icp|registrat\w*|align\w*)\b", text, re.IGNORECASE,
+    ):
+        found.append(POINT_CLOUD_REGISTRATION)
+        if re.search(r"误差|残差|精度|\b(?:rmse|error|residuals?|fitness)\b", text, re.IGNORECASE):
+            found.append(POINT_CLOUD_ERROR)
+        if re.search(r"\bply\b", text, re.IGNORECASE):
+            found.append(POINT_CLOUD_PLY)
     for language in ("Mermaid", "PlantUML"):
         anchor = rf"\b{language}\b"
         if not re.search(anchor, text, re.IGNORECASE):

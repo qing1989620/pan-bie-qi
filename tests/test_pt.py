@@ -154,6 +154,26 @@ def test_full_audit_starts_before_other_overviews_finish(monkeypatch):
     assert [row["status"] for row in result["pipeline"]["assessment"]["candidates"]] == ["eligible", "eligible"]
 
 
+def test_ply_name_collision_does_not_pass_point_cloud_assessment(monkeypatch):
+    cloud = snapshot(
+        "cloud-tools", "Register 3D point clouds with Open3D and ICP.",
+        "Import PLY point clouds. Compare point cloud registration error with inlier RMSE.",
+    )
+    unrelated = snapshot("ply", "Build dashboard interfaces with the Ply UI design system.")
+    install_collection(monkeypatch, ply=unrelated, cloud=cloud)
+    result = pt.recommend(
+        "对两份 PLY 点云做配准并比较误差", {}, limit=3, search_online=False, use_model=False,
+    )
+    assert result["pipeline"]["assessment"]["counts"] == {
+        "insufficient_task_evidence": 1, "eligible": 1,
+    }
+    [best] = result["recommendations"]
+    assert best["name"] == "cloud-tools"
+    assert {item["id"] for item in best["matches"]} == {
+        "point_cloud_registration", "point_cloud_error", "point_cloud_ply",
+    }
+
+
 def test_optional_usage_syntax_does_not_disqualify_public_candidate(monkeypatch):
     body = "```bash\npython scripts/build.py --output report.xlsx [--formulas]\n```"
     script = ("import argparse\nparser = argparse.ArgumentParser()\n"
