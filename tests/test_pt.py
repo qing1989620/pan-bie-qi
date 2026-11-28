@@ -308,8 +308,13 @@ def test_deepseek_search_adds_github_candidates_and_reuses_successful_search(mon
     class Reply:
         status = 200
 
+        def __init__(self, used_tool):
+            self.used_tool = used_tool
+
         def read(self, limit):
             assert limit >= 100_000
+            if not self.used_tool:
+                return json.dumps({"choices": [{"message": {"content": url}}]}).encode()
             return json.dumps({
                 "choices": [{"message": {
                     "content": '{"queries":["mermaid flowchart","https://invalid.test"]}',
@@ -341,7 +346,7 @@ def test_deepseek_search_adds_github_candidates_and_reuses_successful_search(mon
             calls.append(request)
 
         def getresponse(self):
-            return Reply()
+            return Reply(used_tool=len(calls) > 1)
 
         def close(self):
             pass
@@ -352,6 +357,11 @@ def test_deepseek_search_adds_github_candidates_and_reuses_successful_search(mon
         "state": "fetched", "raw_body": b'{"skills":[{"source":"example/catalog","skillId":"flowchart"}]}',
     })
     task = plan("用 Mermaid 画部署流程图")
+    initial, initial_meta = pt_discovery.discover(
+        task, [], float("inf"), search_online=True, deepseek_api_key="fixture-public-search",
+    )
+    assert all(row.discovery != pt_discovery.DEEPSEEK_WEB for row in initial)
+    assert initial_meta["searched"][0]["state"] == "not_used"
     for _ in range(2):
         listed, meta = pt_discovery.discover(
             task, [], float("inf"), search_online=True, deepseek_api_key="fixture-public-search",
@@ -362,7 +372,7 @@ def test_deepseek_search_adds_github_candidates_and_reuses_successful_search(mon
         assert meta["searched"][0]["state"] == "searched"
         assert meta["searched"][0]["hits"] == 1
         assert meta["searched"][0]["terms"] == ["mermaid flowchart"]
-    assert len(calls) == 1
+    assert len(calls) == 2
 
 
 def test_deepseek_quota_does_not_stop_catalog_search(monkeypatch):

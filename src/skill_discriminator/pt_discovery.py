@@ -202,11 +202,12 @@ def _deepseek_web_search(task: Task, deadline: float, api_key: str) -> tuple[dic
             terms=phrases, tokens=usage.get("total_tokens"),
         )
         candidates = list(hits.values())
-        with _SEARCH_CACHE_LOCK:
-            _SEARCH_CACHE[cache_key] = (time.monotonic() + 180, observation, candidates)
-            _SEARCH_CACHE.move_to_end(cache_key)
-            if len(_SEARCH_CACHE) > 32:
-                _SEARCH_CACHE.popitem(last=False)
+        if completed:
+            with _SEARCH_CACHE_LOCK:
+                _SEARCH_CACHE[cache_key] = (time.monotonic() + 180, observation, candidates)
+                _SEARCH_CACHE.move_to_end(cache_key)
+                if len(_SEARCH_CACHE) > 32:
+                    _SEARCH_CACHE.popitem(last=False)
         return observation, candidates
     except TimeoutError:
         return {**observation, "state": "timed_out"}, []
