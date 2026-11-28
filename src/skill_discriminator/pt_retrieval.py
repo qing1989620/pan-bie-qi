@@ -261,8 +261,12 @@ POINT_CLOUD_ERROR = requirement(
     context=POINT_CLOUD,
 )
 POINT_CLOUD_PLY = requirement(
-    "point_cloud_ply", "读写 PLY 点云", "PLY point cloud import",
-    r"\bply\b", context=POINT_CLOUD,
+    "point_cloud_ply", "读取 PLY 点云", "PLY point cloud import",
+    r"\b(?:read|load|import|parse|ingest|accept|input)\w*\b"
+    r"(?:(?!\b(?:export|write|save|output)\w*\b).){0,65}\bply\b"
+    r"|\bply\b.{0,28}\b(?:reader|importer|input formats?)\b"
+    r"|(?:读取|加载|导入|输入|打开).{0,28}\bply\b",
+    context=POINT_CLOUD,
 )
 PLOT_TYPES = (
     (r"\bscatter(?:plots?)?\b|散点图", "scatter plot", "散点图"),
