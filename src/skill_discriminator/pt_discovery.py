@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
+import hashlib
+import http.client
 import json
 import re
+import threading
 import time
+from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from urllib.parse import urlencode
@@ -17,6 +21,18 @@ CATALOG = "https://skills.sh/api/search"
 MAX_QUERIES = 4
 MAX_CANDIDATES = 10
 VALID_SLUG = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,99}")
+DEEPSEEK_WEB = "DeepSeek Web"
+WEB_PROMPT = (
+    "Use your built-in web search to find publicly accessible Agent Skills for the task. "
+    'Use a targeted query with site:github.com, "SKILL.md", and the requested capability. '
+    "When given a focus phrase, use it as the main search terms. Search for the operation the "
+    "Skill must perform. For diagrams, focus on the diagram tool or output format. "
+    "Prefer links to the actual SKILL.md or its containing directory. "
+    'Then return only JSON: {"queries": ["short English capability phrase"]}. '
+    "Give up to two phrases. Never repeat personal details or credentials."
+)
+_SEARCH_CACHE = OrderedDict()
+_SEARCH_CACHE_LOCK = threading.Lock()
 
 
 @dataclass(frozen=True)
@@ -46,6 +62,10 @@ SEEDS = (
     (("pptx",),
      "https://github.com/anthropics/skills/tree/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/pptx"),
     (("browser_test",), "https://github.com/microsoft/playwright-cli/tree/main/skills/playwright-cli"),
+    (("mermaid",),
+     "https://github.com/softaworks/agent-toolkit/tree/3027f20f3181758385a1bb8c022d4041dfb4de84/skills/mermaid-diagrams"),
+    (("mermaid",),
+     "https://github.com/shep-ai/shep/tree/b6792e4d9def48f6542d858af4eae095ab5527af/.claude/skills/mermaid-diagrams"),
     (("cudf", "cudf_groupby"),
      "https://github.com/NVIDIA/skills/tree/252ba53487b73eaafbfcccf3e750c7b350b93db9/skills/accelerated-computing-cudf"),
 )
@@ -95,15 +115,138 @@ def _catalog_search(query: str, deadline: float) -> tuple[dict, list[Candidate]]
     return {"query": query, "state": "searched", "hits": len(hits), "top_keys": [row.key for row in hits[:3]]}, hits
 
 
-def discover(task: Task, extra_queries: list[str], deadline: float, *, search_online: bool) -> tuple[list[Candidate], dict]:
+def _github_candidate(url: str, query: str | None) -> Candidate | None:
+    try:
+        link = parse_link(url)
+    except ValueError:
+        return None
+    if link.kind == "catalog":
+        return None
+    if link.kind == "file" and len(link.tail) > 2:
+        slug = link.tail[-2]
+    elif link.kind == "directory" and len(link.tail) > 1:
+        slug = link.tail[-1]
+    else:
+        slug = link.repo
+    return Candidate(link.requested_url, f"{link.owner}/{link.repo}", slug, DEEPSEEK_WEB, query)
+
+
+def _response_phrases(content) -> list[str]:
+    if not isinstance(content, str):
+        return []
+    try:
+        payload = json.loads(content.strip().removeprefix("```json").removesuffix("```"))
+    except ValueError:
+        return []
+    phrases = payload.get("queries") if isinstance(payload, dict) else None
+    if not isinstance(phrases, list):
+        return []
+    return list(dict.fromkeys(filter(None, (model_query(value) for value in phrases[:2]))))
+
+
+def _deepseek_web_search(task: Task, deadline: float, api_key: str) -> tuple[dict, list[Candidate]]:
+    text = task.text[:700]
+    if task.requirements:
+        text = f"Search focus: {task.queries[0]}\nTask: {text}"
+    observation = {"provider": DEEPSEEK_WEB, "state": "unavailable", "hits": 0, "model_calls": 0}
+    cache_key = hashlib.sha256(f"{api_key}\0{text}".encode()).digest()
+    with _SEARCH_CACHE_LOCK:
+        cached = _SEARCH_CACHE.get(cache_key)
+        if cached and cached[0] > time.monotonic():
+            _SEARCH_CACHE.move_to_end(cache_key)
+            return {**cached[1], "model_calls": 0, "tokens": None}, cached[2]
+    remaining = deadline - time.monotonic()
+    if remaining <= .1:
+        return {**observation, "state": "timed_out"}, []
+    client = http.client.HTTPSConnection("api.deepseek.com", timeout=min(11, remaining))
+    observation["model_calls"] = 1
+    try:
+        client.request(
+            "POST", "/chat/completions",
+            json.dumps({
+                "model": "deepseek-flash", "thinking": {"type": "disabled"},
+                "max_tokens": 180, "tools": [{"type": "deepseek_web_search"}],
+                "messages": [{"role": "system", "content": WEB_PROMPT},
+                             {"role": "user", "content": text}],
+            }, ensure_ascii=False).encode(),
+            {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        )
+        response = client.getresponse()
+        if response.status != 200:
+            state = {
+                401: "authentication_failed", 402: "balance_unavailable",
+                403: "access_denied", 429: "temporarily_limited",
+            }.get(response.status, "unavailable")
+            return {**observation, "state": state}, []
+        payload = json.loads(response.read(256_000))
+        choice = payload["choices"][0]
+        if choice.get("finish_reason") == "content_filter":
+            return {**observation, "state": "content_filtered"}, []
+        message = choice["message"]
+        phrases = _response_phrases(message.get("content"))
+        hits = {}
+        completed = 0
+        for step in message.get("server_tool_calls", [])[:8]:
+            for call in step.get("calls", [])[:8]:
+                if call.get("type") != "deepseek_web_search" or call.get("status") != "completed":
+                    continue
+                completed += 1
+                for source in call.get("sources", [])[:20]:
+                    if isinstance(source, dict) and (candidate := _github_candidate(
+                        source.get("url"), phrases[0] if phrases else None,
+                    )):
+                        hits.setdefault(candidate.key, candidate)
+        usage = payload.get("usage") or {}
+        observation.update(
+            state="searched" if completed else "not_used", hits=len(hits),
+            terms=phrases, tokens=usage.get("total_tokens"),
+        )
+        candidates = list(hits.values())
+        with _SEARCH_CACHE_LOCK:
+            _SEARCH_CACHE[cache_key] = (time.monotonic() + 180, observation, candidates)
+            _SEARCH_CACHE.move_to_end(cache_key)
+            if len(_SEARCH_CACHE) > 32:
+                _SEARCH_CACHE.popitem(last=False)
+        return observation, candidates
+    except TimeoutError:
+        return {**observation, "state": "timed_out"}, []
+    except (http.client.HTTPException, OSError, ValueError, AttributeError, TypeError, KeyError, IndexError):
+        return observation, []
+    finally:
+        client.close()
+
+
+def discover(
+    task: Task, extra_queries: list[str], deadline: float, *, search_online: bool,
+    deepseek_api_key: str | None = None,
+) -> tuple[list[Candidate], dict]:
     seeds = _seeds(task)
     queries = list(dict.fromkeys(task.queries + tuple(extra_queries)))[:MAX_QUERIES]
     observations = []
     pools = []
     if search_online and queries:
-        with ThreadPoolExecutor(max_workers=MAX_QUERIES, thread_name_prefix="pt-discovery") as workers:
-            for observation, hits in workers.map(lambda query: _catalog_search(query, deadline), queries):
+        with ThreadPoolExecutor(max_workers=MAX_QUERIES + 1, thread_name_prefix="pt-discovery") as workers:
+            web_search = (
+                workers.submit(_deepseek_web_search, task, deadline, deepseek_api_key)
+                if deepseek_api_key else None
+            )
+            catalog = workers.map(lambda query: _catalog_search(query, deadline), queries)
+            extra_catalog = None
+            if web_search is not None:
+                observation, hits = web_search.result()
                 observations.append(observation)
+                pools.append(hits)
+                terms = observation.get("terms", [])
+                extra_catalog = (
+                    workers.submit(_catalog_search, terms[0], deadline)
+                    if not task.requirements and terms and terms[0] not in queries else None
+                )
+            for observation, hits in catalog:
+                observations.append({"provider": "skills.sh", **observation})
+                pools.append(hits)
+            if extra_catalog is not None:
+                observation, hits = extra_catalog.result()
+                observations.append({"provider": "skills.sh", **observation})
                 pools.append(hits)
     # Round-robin keeps a second requested operation from being crowded out by one popular query.
     ranked = (pool[position] for position in range(8) for pool in pools if position < len(pool))

@@ -4,6 +4,8 @@
 
 PT 推荐页从任务出发。它搜索公开目录，核对候选的固定版本、许可证和任务要求，给出推荐理由与来源。[推荐页](http://127.0.0.1:8853/recommend) · [PT 使用和复核](docs/pt-framework.md)
 
+PT 1.8.0 为集成方提供可选参数 `deepseek_api_key`。启用后用 DeepSeek 模型的 `deepseek_web_search` 工具扩展 GitHub 候选，PT 从工具结果读取链接，再核查真实仓库、许可及证据。公开目录检索并行运行，初筛通过的候选立即进入包核验。[DeepSeek 模型联网工具](https://api-docs.deepseek.com/guides/web_tools/)
+
 ## 启动网页
 
 需要 Python 3.11 或更新版本。

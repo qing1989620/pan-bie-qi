@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import OrderedDict
+from threading import Event
 
 import pytest
 from fastapi.testclient import TestClient
@@ -131,6 +133,25 @@ def test_changed_snapshot_cannot_be_recommended_using_overview(monkeypatch):
     result = pt.recommend("把数据导出成 Excel 工作簿", {}, limit=1, search_online=False, use_model=False)
     assert result["recommendations"] == []
     assert result["pipeline"]["assessment"]["counts"] == {"package_version_mismatch": 1}
+
+
+def test_full_audit_starts_before_other_overviews_finish(monkeypatch):
+    references = install_collection(monkeypatch,
+                                    xlsx=snapshot("xlsx", XLSX, materials={"examples/notes.md": "Example."}),
+                                    slow=snapshot("slow", XLSX))
+    audit_started = Event()
+    import_link = pt.source_import.import_link
+
+    def coordinated_import(url, *, overview_only=False, **options):
+        if overview_only and url == references["slow"].url:
+            assert audit_started.wait(timeout=3)
+        if not overview_only:
+            audit_started.set()
+        return import_link(url, overview_only=overview_only, **options)
+
+    monkeypatch.setattr(pt.source_import, "import_link", coordinated_import)
+    result = pt.recommend("把数据导出成 Excel 工作簿", {}, limit=2, search_online=False, use_model=False)
+    assert [row["status"] for row in result["pipeline"]["assessment"]["candidates"]] == ["eligible", "eligible"]
 
 
 def test_optional_usage_syntax_does_not_disqualify_public_candidate(monkeypatch):
@@ -278,6 +299,85 @@ def test_registry_only_accepts_valid_github_shape(monkeypatch):
     remote = [row.key for row in listed if row.discovery == "skills.sh"]
     assert remote == ["example/works/sheet"]
     assert all(row["top_keys"] == remote for row in candidates["searched"])
+
+
+def test_deepseek_search_adds_github_candidates_and_reuses_successful_search(monkeypatch):
+    calls = []
+    url = "https://github.com/example/diagrams/blob/main/skills/mermaid/SKILL.md"
+
+    class Reply:
+        status = 200
+
+        def read(self, limit):
+            assert limit >= 100_000
+            return json.dumps({
+                "choices": [{"message": {
+                    "content": '{"queries":["mermaid flowchart","https://invalid.test"]}',
+                    "server_tool_calls": [{"calls": [{
+                        "type": "deepseek_web_search", "status": "completed",
+                        "sources": [
+                            {"url": url + "?tracking=test#L13"},
+                            {"url": url},
+                            {"url": "https://github.com.example.net/example/diagrams"},
+                            {"url": "https://github.com/example/diagrams/blob/main/README.md"},
+                        ],
+                    }]}],
+                }}],
+                "usage": {"total_tokens": 2500},
+            }).encode()
+
+    class Provider:
+        def __init__(self, host, timeout):
+            assert host == "api.deepseek.com" and 0 < timeout <= 11
+
+        def request(self, method, route, body, headers):
+            assert (method, route) == ("POST", "/chat/completions")
+            assert headers["Authorization"] == "Bearer fixture-public-search"
+            request = json.loads(body)
+            assert request["tools"] == [{"type": "deepseek_web_search"}]
+            assert request["thinking"] == {"type": "disabled"}
+            assert request["max_tokens"] == 180
+            assert "site:github.com" in request["messages"][0]["content"]
+            calls.append(request)
+
+        def getresponse(self):
+            return Reply()
+
+        def close(self):
+            pass
+
+    monkeypatch.setattr(pt_discovery.http.client, "HTTPSConnection", Provider)
+    monkeypatch.setattr(pt_discovery, "_SEARCH_CACHE", OrderedDict())
+    monkeypatch.setattr(pt_discovery, "fetch_url", lambda *_a, **_k: {
+        "state": "fetched", "raw_body": b'{"skills":[{"source":"example/catalog","skillId":"flowchart"}]}',
+    })
+    task = plan("用 Mermaid 画部署流程图")
+    for _ in range(2):
+        listed, meta = pt_discovery.discover(
+            task, [], float("inf"), search_online=True, deepseek_api_key="fixture-public-search",
+        )
+        online = [row for row in listed if row.discovery != "reference_catalog"]
+        assert [row.discovery for row in online] == [pt_discovery.DEEPSEEK_WEB, "skills.sh"]
+        assert online[0].url == url
+        assert meta["searched"][0]["state"] == "searched"
+        assert meta["searched"][0]["hits"] == 1
+        assert meta["searched"][0]["terms"] == ["mermaid flowchart"]
+    assert len(calls) == 1
+
+
+def test_deepseek_quota_does_not_stop_catalog_search(monkeypatch):
+    monkeypatch.setattr(pt_discovery, "_deepseek_web_search", lambda *_: (
+        {"provider": pt_discovery.DEEPSEEK_WEB, "state": "balance_unavailable", "hits": 0}, [],
+    ))
+    monkeypatch.setattr(pt_discovery, "fetch_url", lambda *_a, **_k: {
+        "state": "fetched", "raw_body": b'{"skills":[{"source":"example/catalog","skillId":"flowchart"}]}',
+    })
+    listed, meta = pt_discovery.discover(
+        plan("用 Mermaid 画部署流程图"), [], float("inf"),
+        search_online=True, deepseek_api_key="fixture-unavailable-key",
+    )
+    assert [row.discovery for row in listed if row.discovery != "reference_catalog"] == ["skills.sh"]
+    assert meta["searched"][0]["state"] == "balance_unavailable"
 
 
 def test_deepseek_planner_accepts_terms_and_discards_urls(monkeypatch):

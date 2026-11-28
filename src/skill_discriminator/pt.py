@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import time
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from itertools import combinations
 from urllib.parse import quote
@@ -13,7 +13,7 @@ from urllib.parse import quote
 from . import pt_model, pt_semantic, source_import
 from .inspection import citation, clean, description_lines, frontmatter
 from .profile import HEADER, HEADING, prose_lines
-from .pt_discovery import Candidate, discover
+from .pt_discovery import DEEPSEEK_WEB, Candidate, discover
 from .pt_license import license_evidence
 from .pt_retrieval import PLOT_TOOLS, Document, Retrieval, Task, document, plan, terms
 from .service import assess_imported
@@ -48,6 +48,10 @@ OVERVIEW_TIME_BUDGET = 25
 TIME_BUDGET = 38
 AUDIT_WORKERS = 5
 INCOMPLETE_TEXT = {"source_read_incomplete", "text_read_budget", "not_utf8_text", "symlink_or_submodule_not_followed"}
+
+
+class TaskDescriptionRequired(ValueError):
+    """The draft does not provide a single usable search term."""
 
 
 @dataclass
@@ -334,37 +338,60 @@ def _result(review: Review, increment: list[str], task: Task) -> dict:
     }
 
 
-def recommend(task_text: str, environment: dict, *, limit: int, search_online: bool, use_model: bool) -> dict:
+def recommend(
+    task_text: str, environment: dict, *, limit: int, search_online: bool, use_model: bool,
+    deepseek_api_key: str | None = None,
+) -> dict:
     start = time.monotonic()
     overview_deadline = start + OVERVIEW_TIME_BUDGET
     deadline = start + TIME_BUDGET
     task = plan(clean(task_text))
     if not task.text or not task.queries:
-        raise ValueError("请描述要处理的输入和期望产出。")
+        raise TaskDescriptionRequired("请描述要处理的输入和期望产出。")
     constraints = dict(environment)
     if constraints.get("network_allowed") is None and OFFLINE_REQUEST.search(task.text):
         constraints["network_allowed"] = False
-    extra, model = pt_model.suggestions(task.text, requested=use_model and search_online)
+    extra, model = pt_model.suggestions(
+        task.text, requested=use_model and search_online and not deepseek_api_key,
+    )
+    planned = time.monotonic()
+    candidates, discovery = discover(
+        task, extra, overview_deadline, search_online=search_online, deepseek_api_key=deepseek_api_key,
+    )
+    native = next((row for row in discovery["searched"] if row.get("provider") == DEEPSEEK_WEB), None)
+    if native:
+        extra = native.get("terms", [])
+        model = {"provider": "DeepSeek", "model": "deepseek-flash",
+                 "state": native["state"], "calls": native.get("model_calls", 0),
+                 "tokens": native.get("tokens")}
     if extra and not task.requirements:
         task = Task(task.text, task.requirements, task.queries, " ".join([task.ranking_text, *extra]))
-    planned = time.monotonic()
-    candidates, discovery = discover(task, extra, overview_deadline, search_online=search_online)
     discovered = time.monotonic()
     reviews = []
-    overviews = []
     outcomes = {}
     seen = set()
-    with ThreadPoolExecutor(max_workers=AUDIT_WORKERS, thread_name_prefix="pt-assess") as workers:
-        for review, failure in workers.map(lambda ref: _review(ref, task, constraints, overview_deadline), candidates):
+    audits = {}
+    with (
+        ThreadPoolExecutor(max_workers=AUDIT_WORKERS, thread_name_prefix="pt-overview") as readers,
+        ThreadPoolExecutor(max_workers=3, thread_name_prefix="pt-assess") as workers,
+    ):
+        overviews = [readers.submit(_review, ref, task, constraints, overview_deadline) for ref in candidates]
+        for future in as_completed(overviews):
+            review, failure = future.result()
             if failure:
                 outcomes[failure["key"]] = failure
             elif review.excluded:
                 outcomes[review.candidate.key] = _outcome(review, review.excluded)
             else:
-                outcomes[review.candidate.key] = None
-                overviews.append(review)
-        audited = workers.map(lambda row: _review_package(row, task, constraints, deadline), overviews)
-        for overview, (review, failure) in zip(overviews, audited, strict=True):
+                # Reserve the rest of the audit window for each evidenced candidate.
+                audits[review.candidate.key] = review, workers.submit(
+                    _review_package, review, task, constraints, deadline,
+                )
+        for candidate in candidates:
+            if candidate.key not in audits:
+                continue
+            overview, audit = audits[candidate.key]
+            review, failure = audit.result()
             if failure:
                 outcomes[overview.candidate.key] = _outcome(overview, failure)
                 continue
@@ -387,7 +414,8 @@ def recommend(task_text: str, environment: dict, *, limit: int, search_online: b
         "requirements": [{"id": item.id, "label": item.label, "covered": item.id in covered} for item in task.requirements],
         "target_network_allowed": constraints.get("network_allowed"),
         "pipeline": {"discovery": discovery, "assessment": {"counts": dict(Counter(item["status"] for item in outcomes.values())),
-                                                            "candidates": list(outcomes.values())}, "model": model, "semantic": semantic},
+                                                            "candidates": [outcomes[row.key] for row in candidates]},
+                     "model": model, "semantic": semantic},
         "recommendations": [_result(review, increment, task) for review, increment in selected],
         "elapsed_ms": round((ended - start) * 1000),
         "stage_ms": {"planning": round((planned - start) * 1000), "discovery": round((discovered - planned) * 1000),
